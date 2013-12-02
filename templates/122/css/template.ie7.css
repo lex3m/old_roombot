@@ -1,0 +1,140 @@
+/* Created by Artisteer v4.0.0.58475 */
+
+.clearfix {
+   zoom: expression(this.runtimeStyle.zoom="1", this.appendChild(document.createElement("br")).className="cleared");
+}
+
+.gaztextblock > div {
+   display: block;
+   line-height: normal;
+   zoom: 1;
+}
+
+.gazheader
+{
+   z-index: 1;
+}
+
+.gazhmenu>li, .gazhmenu>li>a
+{
+   display: inline !important;
+   zoom: 1;
+   float: none !important;
+   vertical-align: top;
+}
+ul.gazhmenu, ul.gazhmenu ul {
+   zoom: expression(this.runtimeStyle.zoom="1", this.appendChild(document.createElement("br")).className="cleared");
+}
+ul.gazhmenu>li:first-child {
+   padding-right:11px;
+}
+ul.gazhmenu>li{
+   zoom:expression(runtimeStyle.zoom=1,insertBefore(document.createElement('span'),firstChild).className='gazhmenu-separator');
+}
+ul.gazhmenu>li>span.gazhmenu-separator
+{
+   position:absolute;
+   display: block;
+   top:0;
+   left:  -11px;
+   width: 11px;
+   height: 34px;
+   background: url('../images/menuseparator.png') center center no-repeat;
+}
+ul.gazhmenu>li:first-child>span.gazhmenu-separator
+{
+   display:none;
+}
+
+ul.gazhmenu ul, .desktop-nav ul.gazhmenu>li.ext:hover>a{
+   background-color: #EFF2F5 !important;
+}
+
+.gazcontent-layout, .gazcontent-layout-row, .gazlayout-cell 
+{
+   display: block;
+   zoom: 1;
+}
+.gazlayout-cell
+{
+   position:relative;
+   float: left;
+   clear: right;
+}
+
+ul.gazvmenu, ul.gazvmenu ul, ul.gazvmenu li{
+   zoom: 1;
+}
+
+ul.gazvmenu ul 
+{
+}
+
+input[type="text"]
+{
+   margin:0 0 0 -3px;
+   zoom:expression(runtimeStyle.zoom = 1, parentNode.insertBefore(document.createElement('div'), this).appendChild(this));
+}
+
+* html input[type="text"]
+{
+   margin :0;
+}
+
+form.gazsearch>input[type="text"]
+{
+   margin:0 0 0 -3px;
+   zoom:expression(runtimeStyle.zoom = 1, parentNode.insertBefore(document.createElement('div'), this).appendChild(this));
+}
+
+form.gazsearch div>input[type="text"]
+{
+   width: 100%;
+}
+
+* html form.gazsearch>input[type="text"] 
+{
+   margin :0;
+}
+
+.gazpostheadericons span{
+   zoom: 1;
+}
+.gazpostcontent {
+   height: 1%;
+}
+
+.close-alt, .arrow-right-alt, .arrow-left-alt {
+   display: block !important;
+}
+.cw, .ccw {
+   display: none !important;
+}
+
+.gazsidebar1
+{
+   background: none !important;
+   border: none !important;
+   zoom:expression(runtimeStyle.zoom=1, parentNode.parentNode.insertBefore(document.createElement('div'),parentNode.parentNode.firstChild).className='gazsidebar1-bg' + (className.indexOf('gazsidebar1-fix') == -1 ? '' : ' gazsidebar1-bg-fix' ));
+}
+
+.gazsidebar1-bg 
+{
+   border-right:1px dotted #A3B4C8;
+   position:absolute;
+   z-index:-2;
+   direction: ltr;
+   left:  0;
+   bottom:0;
+   top:0;
+   width: 200px;
+   overflow:hidden;
+   display:block;
+}
+
+.gazcontent 
+{
+   width: auto;
+   float:none;
+}
+

@@ -1,0 +1,162 @@
+/* Created by Artisteer v4.0.0.58475 */
+
+.clearfix {
+   zoom: expression(this.runtimeStyle.zoom="1", this.appendChild(document.createElement("br")).className="cleared");
+}
+
+.gaz-textblock > div {
+   display: block;
+   line-height: normal;
+   zoom: 1;
+}
+
+.gaz-hmenu>li, .gaz-hmenu>li>a
+{
+   display: inline !important;
+   zoom: 1;
+   float: none !important;
+   vertical-align: top;
+}
+ul.gaz-hmenu, ul.gaz-hmenu ul {
+   zoom: expression(this.runtimeStyle.zoom="1", this.appendChild(document.createElement("br")).className="cleared");
+}
+ul.gaz-hmenu>li:first-child {
+   padding-right:1px;
+}
+ul.gaz-hmenu>li{
+   zoom:expression(runtimeStyle.zoom=1,insertBefore(document.createElement('span'),firstChild).className='gaz-hmenu-separator');
+}
+ul.gaz-hmenu>li>span.gaz-hmenu-separator
+{
+   position:absolute;
+   display: block;
+   top:0;
+   left:  -1px;
+   width: 1px;
+   height: 68px;
+   background: url('../images/menuseparator.png') center center no-repeat;
+}
+ul.gaz-hmenu>li:first-child>span.gaz-hmenu-separator
+{
+   display:none;
+}
+
+ul.gaz-hmenu ul{
+   background-color: #5DB4C6 !important;
+}
+
+.gaz-header
+{
+   z-index: 1;
+}
+
+.gaz-content-layout, .gaz-content-layout-row, .gaz-layout-cell 
+{
+   display: block;
+   zoom: 1;
+}
+.gaz-layout-cell
+{
+   position:relative;
+   float: left;
+   clear: right;
+}
+
+ul.gaz-vmenu, ul.gaz-vmenu ul, ul.gaz-vmenu li{
+   zoom: 1;
+}
+
+ul.gaz-vmenu ul 
+{
+   background-color: transparent;
+}
+
+input[type="text"]
+{
+   margin:0 0 0 -3px;
+   zoom:expression(runtimeStyle.zoom = 1, parentNode.insertBefore(document.createElement('div'), this).appendChild(this));
+}
+
+* html input[type="text"]
+{
+   margin :0;
+}
+
+form.gaz-search>input[type="text"]
+{
+   margin:0 0 0 -3px;
+   zoom:expression(runtimeStyle.zoom = 1, parentNode.insertBefore(document.createElement('div'), this).appendChild(this));
+}
+
+form.gaz-search div>input[type="text"]
+{
+   width: 100%;
+}
+
+* html form.gaz-search>input[type="text"] 
+{
+   margin :0;
+}
+
+.gaz-postmetadataheader{
+   zoom:1;
+}
+
+.gaz-postheadericons span{
+   zoom: 1;
+}
+.gaz-postcontent {
+   height: 1%;
+}
+
+.close-alt, .arrow-right-alt, .arrow-left-alt {
+   display: block !important;
+}
+.cw, .ccw {
+   display: none !important;
+}
+
+.gaz-sidebar1
+{
+   background: none !important;
+   border: none !important;
+   zoom:expression(runtimeStyle.zoom=1, parentNode.parentNode.insertBefore(document.createElement('div'),parentNode.parentNode.firstChild).className='gaz-sidebar1-bg' + (className.indexOf('gaz-sidebar1-fix') == -1 ? '' : ' gaz-sidebar1-bg-fix' ));
+}
+
+.gaz-sidebar1-bg 
+{
+   border-right:1px solid #5DB4C6;
+   position:absolute;
+   z-index:-2;
+   direction: ltr;
+   left:  0;
+   bottom:0;
+   top:0;
+   width: 225px;
+   overflow:hidden;
+   display:block;
+}
+
+.gaz-sidebar2 
+{
+   width: auto;
+   float:none;
+   background: none !important;
+   border: none !important;
+   zoom:expression(runtimeStyle.zoom=1, parentNode.parentNode.insertBefore(document.createElement('div'),parentNode.parentNode.firstChild).className='gaz-sidebar2-bg' + (className.indexOf('gaz-sidebar2-fix') == -1 ? '' : ' gaz-sidebar2-bg-fix' ));
+}
+
+.gaz-sidebar2-bg 
+{
+   border-left:1px solid #5DB4C6;
+   position:absolute;
+   z-index:-2;
+   direction: ltr;
+   right:  0;
+   bottom:0;
+   top:0;
+   width: 225px;
+   overflow:hidden;
+   display:block;
+}
+

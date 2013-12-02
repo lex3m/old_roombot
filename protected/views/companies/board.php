@@ -1,0 +1,1 @@
+<h1>Board of company "<?php ?>"</h1>

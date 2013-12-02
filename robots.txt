@@ -1,0 +1,8 @@
+User-agent: *
+
+
+Disallow: /backend
+
+Host: roombot.com.ua
+Crawl-delay: 2 #
+

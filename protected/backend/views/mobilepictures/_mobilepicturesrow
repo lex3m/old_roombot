@@ -1,0 +1,4 @@
+gfhhgfg<?php
+echo $data->name;
+echo $data->date; 
+?>

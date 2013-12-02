@@ -1,0 +1,7 @@
+AuthType Basic
+AuthName "/www/roombot.com.ua/webstat"
+AuthUserFile /var/www/astam/data/etc/42207077.passwd
+DirectoryIndex index.html
+<Limit GET POST>
+	require valid-user
+</Limit>

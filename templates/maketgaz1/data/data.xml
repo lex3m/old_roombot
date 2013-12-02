@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <categories>
+        <category id="1" title="Featured"/>
+        <category id="2" title="Articles"/>
+    </categories>
+    <articles>
+        <article id="1" category="1" title="Lorem ipsum" alias="article" path="/Blog Posts/post">
+            <![CDATA[<div class="gaz-content-layout">
+    <div class="gaz-content-layout-row">
+    <div class="gaz-layout-cell" style="padding-right: 10px;padding-left: 10px; width:100%" >
+        <div class="image-caption-wrapper" style="width: 55%; float: left"><img alt="an-image" style="width: 100%" class="gaz-lightbox" src="images/template-content/shutterstock_62287657-01-3.jpg"></div>
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <h4>Heading 4</h4>
+        <h5>Heading 5</h5>
+        <h6>Heading 6</h6>
+        <p>Lorem dolor&nbsp;amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. <cite>cite</cite>. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl.</p>
+        <blockquote>
+        <p>“This stylesheet is going to help so freaking much.”<br>
+        -Blockquote</p>
+        </blockquote>
+        <ul>
+        <li>List Item 1</li>
+        <li>List Item 2</li>
+        <li>List Item 3</li>
+        </ul>
+        <table class="gaz-article">
+        <tbody>
+        <tr>
+        <th>Header</th>
+        <th>Header</th>
+        <th>Header</th>
+        </tr>
+        <tr>
+        <td>Data</td>
+        <td>Data</td>
+        <td>Data</td>
+        </tr>
+        <tr class="even">
+        <td>Data</td>
+        <td>Data</td>
+        <td>Data</td>
+        </tr>
+        <tr>
+        <td>Data</td>
+        <td>Data</td>
+        <td>Data</td>
+        </tr>
+        </tbody>
+        </table>
+    </div>
+    </div>
+</div>
+]]>
+        </article>
+        <article id="2" category="1" title="Conse ctetur" alias="article-1" path="/Blog Posts/post-2">
+            <![CDATA[<div class="gaz-content-layout">
+    <div class="gaz-content-layout-row">
+    <div class="gaz-layout-cell" style="padding-right: 10px;padding-left: 10px; width:100%" >
+        <div class="image-caption-wrapper" style="width: 55%; float: left"><img alt="an image" style="width: 100%" class="gaz-lightbox" src="images/template-content/shutterstock_32050237.png"></div>
+        Lorem&nbsp;<sup>superscript</sup>&nbsp;dolor&nbsp;<sub>subscript</sub>&nbsp;amet, consectetuer adipiscing elit,&nbsp;<a href="#" title="test link">test link</a>. Nullam dignissim convallis est. Quisque aliquam.&nbsp;<cite>cite</cite>. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl.&nbsp;
+        <p>Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy.&nbsp;<abbr title="National Basketball Association">NBA</abbr>&nbsp;Mauris a ante.&nbsp;</p>
+        <p>Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.&nbsp;<abbr title="Avenue">AVE</abbr><br></p>
+    </div>
+    </div>
+</div>
+]]>
+        </article>
+        <article id="3" category="2" title="Home" alias="article-2" path="/home">
+            <![CDATA[<div class="gaz-content-layout-wrapper" style="margin-bottom: 10px;">
+<div class="gaz-content-layout">
+    <div class="gaz-content-layout-row">
+    <div class="gaz-layout-cell" style="border-right-style:solid;border-right-width:1px;border-right-color:#C3E3EA; padding-right: 10px;padding-left: 10px; width:50%" >
+        <h3>Our Company</h3>
+        <div class="image-caption-wrapper" style="width: 100%"><img src="images/template-content/Fotolia_21399008_X-06.jpg" style="width: 100%; max-width:360px" alt="an image" class="gaz-lightbox"></div>
+        <ul>
+        <li><a href="#">Arcu faucibus netus.</a></li>
+        <li><a href="#">Nibh praesent fusce.</a></li>
+        <li><a href="#">Quam neque duis dui.</a></li>
+        <li><a href="#">Eros velit et vitae.</a></li>
+        </ul>
+    </div><div class="gaz-layout-cell" style="padding-right: 10px;padding-left: 10px; width:50%" >
+        <h3>Partners</h3>
+        <div class="image-caption-wrapper" style="width: 100%"><img src="images/template-content/shutterstock_59193421-06.jpg" style="width: 100%; max-width:360px" alt="an image" class="gaz-lightbox"></div>
+        <ul>
+        <li><a href="#">Nec orci porta pede.</a></li>
+        <li><a href="#">Auctor eget felis.</a></li>
+        <li><a href="#">Egestas ligula hac.</a></li>
+        <li><a href="#">Sed mi nunc est dui.</a></li>
+        </ul>
+    </div>
+    </div>
+</div>
+</div>
+<div class="gaz-content-layout-wrapper" style="margin-bottom: 10px;">
+<div class="gaz-content-layout">
+    <div class="gaz-content-layout-row">
+    <div class="gaz-layout-cell" style="padding-right: 10px;padding-left: 10px; width:100%" >
+        <h3>Our Solutions</h3>
+        <div class="image-caption-wrapper" style="width: 60%; float: left"><img src="images/template-content/Fotolia_4837649_X-02.jpg" style="width: 100%; max-width: 360px; " alt="an image" class="gaz-lightbox"></div>
+        <p>Felis felis faucibus morbi curae cras ante quam id metus non posuere rutrum quis magna augue etiam accumsan. Urna amet tellus lorem lacinia.</p>
+        <p><a href="#" class="gaz-button">More →</a></p>
+    </div>
+    </div>
+</div>
+</div>
+]]>
+        </article>
+        <article id="4" category="2" title="Subpage 1" alias="article-3" path="/home/new-page">
+            <![CDATA[<div class="gaz-content-layout">
+    <div class="gaz-content-layout-row">
+    <div class="gaz-layout-cell" style="padding-right: 10px;padding-left: 10px; width:100%" >
+        <p><br /></p>
+    </div>
+    </div>
+</div>
+]]>
+        </article>
+        <article id="5" category="2" title="Subpage 2" alias="article-4" path="/home/new-page-2">
+            <![CDATA[<div class="gaz-content-layout">
+    <div class="gaz-content-layout-row">
+    <div class="gaz-layout-cell" style="padding-right: 10px;padding-left: 10px; width:100%" >
+        <p><br /></p>
+    </div>
+    </div>
+</div>
+]]>
+        </article>
+        <article id="6" category="2" title="Subpage 3" alias="article-5" path="/home/new-page-3">
+            <![CDATA[<div class="gaz-content-layout">
+    <div class="gaz-content-layout-row">
+    <div class="gaz-layout-cell" style="padding-right: 10px;padding-left: 10px; width:100%" >
+        <p><br /></p>
+    </div>
+    </div>
+</div>
+]]>
+        </article>
+        <article id="7" category="2" title="Blog Page" alias="article-6" path="/blog">
+            <![CDATA[<article class="gaz-post gaz-article">
+                                <h2 class="gaz-postheader"><a href="#">Conse ctetur</a>
+                                </h2>
+                                                <div class="gaz-postmetadataheader">
+                                        <div class="gaz-postheadericons gaz-metadata-icons">
+                        <span class="gaz-postdateicon"></span>
+                         | <span class="gaz-postauthoricon"> <a href="#" title="Posts by Admin">Admin</a></span>
+                         | <span class="gaz-postprinticon"></span>
+                         | <span class="gaz-postemailicon"></span>
+                         | <span class="gaz-postediticon"></span>
+                                            </div>
+                                    </div>
+                                <div class="gaz-postcontent gaz-postcontent-0 clearfix" >
+<div class="gaz-content-layout">
+<div class="gaz-content-layout-row">
+<div class="gaz-layout-cell" style="padding-right: 10px;padding-left: 10px; width:100%">
+<div class="image-caption-wrapper" style="width: 55%; float: left"><img alt="an image" style="width: 100%" class="gaz-lightbox" src="images/template-content/shutterstock_32050237.png"></div>
+Lorem&nbsp;<sup>superscript</sup>&nbsp;dolor&nbsp;<sub>subscript</sub>&nbsp;amet, consectetuer adipiscing elit,&nbsp;<a href="#" title="test link">test link</a>. Nullam dignissim convallis est. Quisque aliquam.&nbsp;<cite>cite</cite>. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl.&nbsp;
+<p>Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus. Maecenas ornare tortor.</p>
+</div>
+</div>
+</div><br /><a href="#">Далее...</a>
+                </div>
+</article>
+<article class="gaz-post gaz-article">
+                                <h2 class="gaz-postheader"><a href="#">Lorem ipsum</a>
+                                </h2>
+                                                <div class="gaz-postmetadataheader">
+                                        <div class="gaz-postheadericons gaz-metadata-icons">
+                        <span class="gaz-postdateicon"></span>
+                         | <span class="gaz-postauthoricon"> <a href="#" title="Posts by Admin">Admin</a></span>
+                         | <span class="gaz-postprinticon"></span>
+                         | <span class="gaz-postemailicon"></span>
+                         | <span class="gaz-postediticon"></span>
+                                            </div>
+                                    </div>
+                                <div class="gaz-postcontent gaz-postcontent-1 clearfix" >
+<div class="gaz-content-layout">
+<div class="gaz-content-layout-row">
+<div class="gaz-layout-cell" style="padding-right: 10px;padding-left: 10px; width:100%">
+<div class="image-caption-wrapper" style="width: 55%; float: left"><img alt="an-image" style="width: 100%" class="gaz-lightbox" src="images/template-content/shutterstock_62287657-01-3.jpg"></div>
+<h1>Heading 1</h1>
+<h2>Heading 2</h2>
+<h3>Heading 3</h3>
+<h4>Heading 4</h4>
+<h5>Heading 5</h5>
+<h6>Heading 6</h6>
+<p>Lorem dolor&nbsp;amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. <cite>cite</cite>. Nunc iaculis suscipit dui. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl.</p>
+</div>
+</div>
+</div><br /><a href="#">Далее...</a>
+                </div>
+</article>
+]]>
+        </article>
+    </articles>
+    <menus>
+        <menu id="1" name="ct-horizontal-menu" title="Content / Horizontal Menu"/>
+        <menu id="2" name="ct-vertical-menu" title="Content / Vertical Menu"/>
+        <menu id="3" name="ct-special-menu" title="Content / Special Menu"/>
+    </menus>
+    <menuitems>
+        <menuitem id="1" menu="ct-horizontal-menu" title="Home" alias="ct-menu-item-1" path="/home" menutype="hmenu" type="single-article" article="3" showTitle="no" category="1" default="1"/>
+        <menuitem id="2" menu="ct-vertical-menu" title="Home" alias="ct-menu-item-2" path="/home" menutype="vmenu" type="single-article" article="3" showTitle="no" category="1"/>
+        <menuitem id="3" menu="ct-horizontal-menu" title="Subpage 1" alias="ct-menu-item-3" path="/home/new-page" menutype="hmenu" type="single-article" parent="1" article="4" showTitle="yes" category="1"/>
+        <menuitem id="4" menu="ct-vertical-menu" title="Subpage 1" alias="ct-menu-item-4" path="/home/new-page" menutype="vmenu" type="single-article" parent="2" article="4" showTitle="yes" category="1"/>
+        <menuitem id="5" menu="ct-horizontal-menu" title="Subpage 2" alias="ct-menu-item-5" path="/home/new-page-2" menutype="hmenu" type="single-article" parent="1" article="5" showTitle="yes" category="1"/>
+        <menuitem id="6" menu="ct-vertical-menu" title="Subpage 2" alias="ct-menu-item-6" path="/home/new-page-2" menutype="vmenu" type="single-article" parent="2" article="5" showTitle="yes" category="1"/>
+        <menuitem id="7" menu="ct-horizontal-menu" title="Subpage 3" alias="ct-menu-item-7" path="/home/new-page-3" menutype="hmenu" type="single-article" parent="1" article="6" showTitle="yes" category="1"/>
+        <menuitem id="8" menu="ct-vertical-menu" title="Subpage 3" alias="ct-menu-item-8" path="/home/new-page-3" menutype="vmenu" type="single-article" parent="2" article="6" showTitle="yes" category="1"/>
+        <menuitem id="9" menu="ct-horizontal-menu" title="Blog" alias="ct-menu-item-9" path="/blog" menutype="hmenu" type="category-blog-layout" category="1"/>
+        <menuitem id="10" menu="ct-vertical-menu" title="Blog" alias="ct-menu-item-10" path="/blog" menutype="vmenu" type="category-blog-layout" category="1"/>
+        <menuitem id="11" menu="ct-special-menu" title="Special Blog Page" alias="ct-menu-item-11" menutype="menu" type="category-blog-layout" category="1"/>
+        <menuitem id="12" menu="ct-special-menu" title="Special Single Page" alias="ct-menu-item-12" menutype="menu" type="single-article" showTitle="yes" category="1"/>
+    </menuitems>
+    <modules>
+        <module id="1" title="Content / Horizontal Menu" showTitle="true" position="user3" type="menu" menu="ct-horizontal-menu"/>
+        <module id="2" title="VMenu" showTitle="true" position="left" style="gaz-vmenu" menu="ct-vertical-menu" type="menu"/>
+        <module id="3" title="Block" showTitle="true" position="left" type="custom">
+            <![CDATA[<p>Enter content here...</p>
+<br>
+<p><input type="text" value="Text..."></p>
+<p style="margin-top: 5px"><label class="gaz-checkbox"><input value="" type="checkbox">Lorem ipsum dolor.</label></p>
+<p style="margin-top: 5px"><label class="gaz-radiobutton"><input value="" type="radio" name="rg">Text...</label> <label class="gaz-radiobutton"><input value="" type="radio" name="rg">Text...</label></p>
+<p style="margin-top: 5px"><a href="#" class="gaz-button">Send</a></p>]]>
+        </module>
+        <module id="4" title="Search" showTitle="true" position="right" type="custom">
+            <![CDATA[<div>
+  <form action="#" class="gaz-search" method="get" name="searchform">
+    <input type="text" value="" name="s" />
+    <input type="submit" value="Search" name="search" class="gaz-search-button" />
+  </form>
+</div>]]>
+        </module>
+        <module id="5" title="Login Form" showTitle="true" position="right" type="login">
+            <![CDATA[<form action="#" method="post" name="login" id="form-login">
+  <fieldset class="input" style="border: 0 none;">
+    <p id="form-login-username">
+      <label for="modlgn_username">Username</label>
+      <br />
+      <input id="modlgn_username" type="text" name="username" class="inputbox" alt="username" size="18" />
+    </p>
+    <p id="form-login-password">
+      <label for="modlgn_passwd">Password</label>
+      <br />
+      <input id="modlgn_passwd" type="password" name="passwd" class="inputbox" size="18" alt="password" />
+    </p>
+    <p id="form-login-remember">
+      <label class="gaz-checkbox">
+      <input type="checkbox" id="modlgn_remember" name="remember" value="yes" alt="Remember Me" />Remember Me
+      </label>
+    </p>
+    <input type="submit" value="Login" name="Submit" class="gaz-button" />    
+  </fieldset>
+  <ul>
+    <li>
+      <a href="#">Forgot your password?</a>
+    </li>
+    <li>
+      <a href="#">Forgot your username?</a>
+    </li>
+    <li>
+      <a href="#">Create an account</a>
+    </li>
+  </ul>
+</form>]]>
+        </module>
+        <module id="6" title="Blogroll" showTitle="true" position="right" type="custom">
+            <![CDATA[<div>
+  <ul>
+    <li>
+      <a href="#">My first blog</a>
+    </li>
+    <li>
+      <a href="#">Who will prevail?</a>
+    </li>
+    <li>
+      <a href="#">Stay positive!</a>
+    </li>
+    <li>
+      <a href="#">Oil still going up</a>
+    </li>
+    <li>
+      <a href="#">Gripes and Grins</a>
+    </li>
+    <li>
+      <a href="#">2012 Olympics</a>
+    </li>
+    <li>
+      <a href="#">How to SEO</a>
+    </li>
+    <li>
+      <a href="#">On Global Warming</a>
+    </li>
+    <li>
+      <a href="#">Can you guess?</a>
+    </li>
+  </ul>
+</div>]]>
+        </module>
+        <module id="7" title="Categories" showTitle="true" position="right" type="custom">
+            <![CDATA[<div>
+  <p>Lorem ipsum dolor sit amet. Nam sit amet sem. Mauris a ante.</p>
+  <ul>
+    <li>
+      <a href="#" title="All News">All News</a> (50)
+    </li>
+    <li>
+      <a href="#" title="Best of the Year">Best of the Year</a> (4)
+    </li>
+    <li>
+      <a href="#" title="Hyperlink">Hyperlink</a> (24)
+    </li>
+    <li>
+      <a href="#" title="Visited link" class="visited">Visited link</a> (17)
+    </li>
+    <li>
+      <a href="#" title="Hovered link" class="hover">Hovered link</a> (6)
+    </li>
+  </ul>
+</div>]]>
+        </module>
+        <module id="8" title="Archives" showTitle="true" position="right" type="custom">
+            <![CDATA[<div>
+  <ul>
+    <li>
+      <a href="#" title="November 2008">November 2008</a>
+    </li>
+    <li>
+      <a href="#" title="October 2008">October 2008</a>
+    </li>
+    <li>
+      <a href="#" title="September 2008">September 2008</a>
+    </li>
+    <li>
+      <a href="#" title="June 2008">June 2008</a>
+    </li>
+  </ul>
+</div>]]>
+        </module>
+        <module id="9" title="Footer" showTitle="false" position="copyright" type="custom">
+            <![CDATA[
+<p><a href="#">Link1</a> | <a href="#">Link2</a> | <a href="#">Link3</a></p>
+<p>Copyright © 2013. All Rights Reserved.</p>
+]]>
+        </module>
+    </modules>
+    <parameters>
+        <parameter id="1" name="blogLayoutType" value="artisteer"/>
+    </parameters>
+</data>
