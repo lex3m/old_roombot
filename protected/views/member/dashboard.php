@@ -19,7 +19,7 @@
 <!--</div>-->
 <div class="rightBlockMemeberInfo">
 
-
+    <?php //echo MemberFollowers::checkFollower($member->id) ; exit; ?>
 
 <div class="leftBar">
 <div class="memberCabinetPic">
@@ -27,15 +27,27 @@
             <img id="mainMemberCabinetPic" src="<?php echo Yii::app()->baseUrl; ?>/images/members/avatars/<?php echo $member->memberinfo->avatar;?>"/>
         </a>
 </div>
-<!--<div id="friendsFollowDiv">  
-    <a class="specialBtn whiteBtn Btnfollow" href="" onclick="" onmouseover="" onmouseout="" title="Follow" id="">
-        <span id="" class="label">Follow</span>
-        <span id="followButton_coffeewithanarchitect_icon__" class="whitebuttonIcon  buttonIconAddToIdeabook">
-        
-        </span>
-    </a>                  
-    <input id="followOp_coffeewithanarchitect" type="hidden" value="f">
-</div>-->
+    <div id="friendsFollowDiv">
+    <?php if (Yii::app()->user->id !== $member->id && !Yii::app()->user->isGuest):?>
+         <?php if (!MemberFollowers::checkFollower($member->id)): ?>
+            <div class="knopky1" style="display: block;">
+                <?php echo CHtml::link('Подписаться',array('member/addfollower','id'=>$member->urlID), array('id'=>'addfollower')); ?>
+            </div>
+            <div class="follow" style="display: none;">
+                 Вы подписались на данного пользователя
+            </div>
+        <?php else: ?>
+            <div class="follow" style="display: block;">
+                Вы подписаны на данного пользователя
+            </div>
+         <?php endif; ?>
+    <?php else : ?>
+
+            <div class="knopky1" style="display: block;">
+                <?php echo CHtml::link('Мои подписки',array('member/followers'), array('id'=>'followers')); ?>
+            </div>
+    <?php endif; ?>
+    </div>
 </div>
 
 
@@ -294,6 +306,28 @@ if (Yii::app()->user->id == $member->id):
                               alert('Введите в это поле, что вы хотите найти.');
                           }     
                     return false;});
+
+
         ",CClientScript::POS_READY);
+else:
+    Yii::app()->clientScript->registerScript('mobilePicturesScript',"
+     $( '#addfollower').on('click', function(event){
+               event.preventDefault();
+               var followerUrl = $(this).attr('href');
+               var urlID = followerUrl.split('/')[3];
+                    $.ajax({
+                           type: 'POST',
+                           url: followerUrl,
+                           data: {urlID: urlID},
+                           success: function(msg){
+                                if (msg == 1){
+                                    $('.knopky1').hide();
+                                    $('.follow').show();
+                                }
+                           }
+                         });
+                    return false;
+            });
+            ", CClientScript::POS_READY);
 endif;
 ?>

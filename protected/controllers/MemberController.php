@@ -16,6 +16,7 @@ class MemberController extends Controller
 		return array(
 			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
+            'ajaxOnly + addfollower',
 		);
 	}
 
@@ -28,11 +29,11 @@ class MemberController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('dashboard','view'),  
+				'actions'=>array('dashboard','view','addfollower'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','avatar','change'),
+				'actions'=>array('create','update','avatar','change', 'followers'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -242,6 +243,43 @@ class MemberController extends Controller
              'member'=>$member,  
              'memberinfo'=>$memberinfo,
         ));
+    }
+
+    public function actionAddfollower()
+    {
+        if(Yii::app()->request->isAjaxRequest) {
+            $follower = new MemberFollowers;
+            if (isset($_POST['urlID']) && !empty($_POST['urlID'])) {
+                $member = Member::model()->find('urlID=:id', array(':id'=>intval($_POST['urlID'])));
+                $follower->memberID = Yii::app()->user->id;
+                $follower->followerID = $member->id;
+                if ($follower->save()) {
+                    echo 1;
+                }
+            }
+        }
+    }
+
+    public function actionFollowers()
+    {
+//        $followers = MemberFollowers::model()->with('members')->findAll('memberID=:id', array(':id'=>Yii::app()->user->id));
+        $criteria = new CDbCriteria();
+        $criteria->condition = 'memberID=:id';
+        $criteria->params = array(':id'=>Yii::app()->user->id);
+
+        $dataProvider = new CActiveDataProvider(MemberFollowers::model()->with('members'),
+            array(
+                'criteria'=>$criteria,
+
+                'pagination'=>array(
+                    'pageSize'=>12,
+                ),
+            )
+        );
+        $this->render('followers',array(
+            'dataProvider'=>$dataProvider
+        ));
+
     }
 
 	/**

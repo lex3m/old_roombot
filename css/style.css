@@ -880,6 +880,15 @@ div.memberCountComments {
     padding: 15px 0 0;
     width: 500px;
 }
+.knopky1 {
+    height: 30px;
+    padding: 15px 0 0 35px;
+}
+.follow {
+    color: #002980;
+    font-weight: bold;
+    padding-left: 12px;
+}
 span.zagolowok-info {
     color: #000000;
     display: inline-block;
@@ -887,7 +896,7 @@ span.zagolowok-info {
     padding-bottom: 4px;
     padding-right: 10px;
 }
-.knopky3 a {
+.knopky3 a, .knopky1 a {
     background: none repeat scroll 0 0 #FFFFFF;
     border: 2px solid #002980;
     border-radius: 5px;
@@ -1005,6 +1014,7 @@ div.commentThumb img {
 #friendsFollowDiv{
 	padding: 10px 0;
 	text-align: center;
+    float: left;
 }
 .leftBar{
 	float: left;
