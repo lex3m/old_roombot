@@ -52,7 +52,8 @@ class MemberFollowers extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-            'members' => array(self::BELONGS_TO, 'Member', 'followerID'),
+            'following' => array(self::BELONGS_TO, 'Member', 'followerID'),
+            'followed' => array(self::BELONGS_TO, 'Member', 'memberID'),
 		);
 	}
 

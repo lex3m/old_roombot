@@ -882,13 +882,8 @@ div.memberCountComments {
 }
 .knopky1 {
     height: 30px;
-    padding: 15px 0 0 35px;
 }
-.follow {
-    color: #002980;
-    font-weight: bold;
-    padding-left: 12px;
-}
+
 span.zagolowok-info {
     color: #000000;
     display: inline-block;
@@ -906,6 +901,9 @@ span.zagolowok-info {
     font-weight: bold;
     margin-right: 20px;
     padding: 2px 15px 3px;
+}
+.knopky1 a {
+    margin: 0;
 }
 .knopky3 a:hover {
 
@@ -1015,6 +1013,8 @@ div.commentThumb img {
 	padding: 10px 0;
 	text-align: center;
     float: left;
+    width: inherit;
+    margin:0px auto;
 }
 .leftBar{
 	float: left;
@@ -1305,9 +1305,26 @@ div.ideasPhotoOwnerThumb img {
     text-align: center;
     position: relative;
 }
+.userinfo {
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 717px;
+    border: 1px solid #0000FF;
+}
+.userinfo h3{
+    margin: 0;
+}
 /*****end UserCard*****************/
 
 /*****last photos*****************/
+.lastPhotosElements{
+    width: 110px;
+    padding: 5px;
+    float: left;
+    margin-right: 100px;
+    text-align: center;
+}
+
 #lastPhotosContainer{
      width:700px;
 }

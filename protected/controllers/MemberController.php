@@ -29,11 +29,11 @@ class MemberController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('dashboard','view','addfollower'),
+				'actions'=>array('dashboard','view','addfollower', 'rmfollower'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','avatar','change', 'followers'),
+				'actions'=>array('create','update','avatar','change', 'followers' , 'myfollowers'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -260,6 +260,19 @@ class MemberController extends Controller
         }
     }
 
+    public function actionRmfollower()
+    {
+        if(Yii::app()->request->isAjaxRequest) {
+            if (isset($_POST['urlID']) && !empty($_POST['urlID'])) {
+                $member = Member::model()->find('urlID=:id', array(':id'=>intval($_POST['urlID'])));
+                $follower = MemberFollowers::model()->find('memberID=:mid AND followerID=:fid', array(':mid'=>Yii::app()->user->id, ':fid'=>$member->id));
+                if ($follower->delete()) {
+                    echo 1;
+                }
+            }
+        }
+    }
+
     public function actionFollowers()
     {
 //        $followers = MemberFollowers::model()->with('members')->findAll('memberID=:id', array(':id'=>Yii::app()->user->id));
@@ -267,7 +280,7 @@ class MemberController extends Controller
         $criteria->condition = 'memberID=:id';
         $criteria->params = array(':id'=>Yii::app()->user->id);
 
-        $dataProvider = new CActiveDataProvider(MemberFollowers::model()->with('members'),
+        $dataProvider = new CActiveDataProvider(MemberFollowers::model()->with('following'),
             array(
                 'criteria'=>$criteria,
 
@@ -276,6 +289,29 @@ class MemberController extends Controller
                 ),
             )
         );
+        $this->render('followers',array(
+            'dataProvider'=>$dataProvider
+        ));
+
+    }
+
+    public function actionMyfollowers()
+    {
+        $criteria = new CDbCriteria();
+        $criteria->condition = 'followerID=:id';
+        $criteria->params = array(':id'=>Yii::app()->user->id);
+
+        $dataProvider = new CActiveDataProvider(MemberFollowers::model()->with('followed'),
+            array(
+                'criteria'=>$criteria,
+
+                'pagination'=>array(
+                    'pageSize'=>12,
+                ),
+            )
+        );
+
+//        print_r($dataProvider);exit;
         $this->render('followers',array(
             'dataProvider'=>$dataProvider
         ));

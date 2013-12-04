@@ -19,8 +19,6 @@
 <!--</div>-->
 <div class="rightBlockMemeberInfo">
 
-    <?php //echo MemberFollowers::checkFollower($member->id) ; exit; ?>
-
 <div class="leftBar">
 <div class="memberCabinetPic">
             <a onclick="return false;" href="">  
@@ -30,21 +28,28 @@
     <div id="friendsFollowDiv">
     <?php if (Yii::app()->user->id !== $member->id && !Yii::app()->user->isGuest):?>
          <?php if (!MemberFollowers::checkFollower($member->id)): ?>
-            <div class="knopky1" style="display: block;">
+            <div class="knopky1 follow" style="display: block;">
                 <?php echo CHtml::link('Подписаться',array('member/addfollower','id'=>$member->urlID), array('id'=>'addfollower')); ?>
             </div>
-            <div class="follow" style="display: none;">
-                 Вы подписались на данного пользователя
+            <div class="knopky1 unfollow" style="display: none;">
+                <?php echo CHtml::link('Отписаться',array('member/rmfollower','id'=>$member->urlID), array('id'=>'rmfollower')); ?>
             </div>
         <?php else: ?>
-            <div class="follow" style="display: block;">
-                Вы подписаны на данного пользователя
+            <div class="knopky1 follow" style="display: none;">
+                <?php echo CHtml::link('Подписаться',array('member/addfollower','id'=>$member->urlID), array('id'=>'addfollower')); ?>
+            </div>
+            <div class="knopky1 unfollow" style="display: block;">
+                <?php echo CHtml::link('Отписаться',array('member/rmfollower','id'=>$member->urlID), array('id'=>'rmfollower')); ?>
             </div>
          <?php endif; ?>
     <?php else : ?>
 
             <div class="knopky1" style="display: block;">
                 <?php echo CHtml::link('Мои подписки',array('member/followers'), array('id'=>'followers')); ?>
+
+            </div>
+            <div class="knopky1" style="display: block;">
+                <?php echo CHtml::link('Мои подписчики',array('member/myfollowers'), array('id'=>'followers')); ?>
             </div>
     <?php endif; ?>
     </div>
@@ -312,22 +317,40 @@ if (Yii::app()->user->id == $member->id):
 else:
     Yii::app()->clientScript->registerScript('mobilePicturesScript',"
      $( '#addfollower').on('click', function(event){
-               event.preventDefault();
-               var followerUrl = $(this).attr('href');
-               var urlID = followerUrl.split('/')[3];
-                    $.ajax({
-                           type: 'POST',
-                           url: followerUrl,
-                           data: {urlID: urlID},
-                           success: function(msg){
-                                if (msg == 1){
-                                    $('.knopky1').hide();
-                                    $('.follow').show();
-                                }
-                           }
-                         });
-                    return false;
-            });
+           event.preventDefault();
+           var followerUrl = $(this).attr('href');
+           var urlID = followerUrl.split('/')[3];
+                $.ajax({
+                       type: 'POST',
+                       url: followerUrl,
+                       data: {urlID: urlID},
+                       success: function(msg){
+                            if (msg == 1){
+                                $('.follow').hide();
+                                $('.unfollow').show();
+                            }
+                       }
+                     });
+            return false;
+     });
+
+     $( '#rmfollower').on('click', function(event){
+           event.preventDefault();
+           var followerUrl = $(this).attr('href');
+           var urlID = followerUrl.split('/')[3];
+                $.ajax({
+                       type: 'POST',
+                       url: followerUrl,
+                       data: {urlID: urlID},
+                       success: function(msg){
+                            if (msg == 1){
+                                $('.unfollow').hide();
+                                $('.follow').show();
+                            }
+                       }
+                     });
+            return false;
+     });
             ", CClientScript::POS_READY);
 endif;
 ?>

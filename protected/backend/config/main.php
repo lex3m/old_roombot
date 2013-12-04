@@ -76,8 +76,8 @@ return array(
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=roombot', 
 			'emulatePrepare' => true,  
-			'username' => 'user_roombot', 
-			'password' => 'room123bot',
+			'username' => 'root',
+			'password' => 'root',
 			'charset' => 'utf8',
 			'tablePrefix'=>'kj28_',  
 		),  

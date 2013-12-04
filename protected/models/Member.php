@@ -142,7 +142,8 @@ class Member extends CActiveRecord
 		return array(
             'memberfollower' => array(self::HAS_MANY, 'MemberFollowers', 'memberID'),
 			'memberinfo' => array(self::HAS_ONE, 'Memberinfo', 'userID'),
-            'comments'=>array(self::HAS_MANY, 'Comments', 'memberID'),
+            'comments'=>array(self::HAS_MANY, 'Comments', 'memberID',  'order'=>'comments.dateTime DESC'),
+            'photos'=>array(self::HAS_MANY, 'Mobilepictures', 'companyID', 'order'=>'photos.id DESC',),
 			'countComments' => array(self::STAT, 'Comments', 'memberID','select' => 'COUNT(memberID)'), 
 			'countPhotos' => array(self::STAT, 'Mobilepictures', 'companyID','select' => 'COUNT(companyID)'), 
 		);   
