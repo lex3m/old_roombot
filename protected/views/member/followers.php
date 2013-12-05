@@ -5,7 +5,8 @@
     'dataProvider'=>$dataProvider,
     'itemView'=>'_follower',
     'summaryText' => 'Показаны {start}-{end} из {count}.',
-    'emptyText' => 'У вас еще нет подписок'
+    'emptyText' => 'У вас еще нет подписок',
+    'pagerCssClass' => 'pager-left'
 )); ?>
 
 <?php

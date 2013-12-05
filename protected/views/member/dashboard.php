@@ -42,8 +42,7 @@
                 <?php echo CHtml::link('Отписаться',array('member/rmfollower','id'=>$member->urlID), array('id'=>'rmfollower')); ?>
             </div>
          <?php endif; ?>
-    <?php else : ?>
-
+    <?php elseif (!Yii::app()->user->isGuest) : ?>
             <div class="knopky1" style="display: block;">
                 <?php echo CHtml::link('Мои подписки',array('member/followers'), array('id'=>'followers')); ?>
 
@@ -52,6 +51,14 @@
                 <?php echo CHtml::link('Мои подписчики',array('member/myfollowers'), array('id'=>'followers')); ?>
             </div>
     <?php endif; ?>
+        <div class="sidebar"><div class="sidebar-header">Following 3 people</div><div class="sidebar-body">		<ul id="followingsBox">
+                    <li class="profileThumbBox"><div class="thumbFollowUserDiv"><a href="http://www.houzz.com/pro/james-crisp/crisp-architects"><img src="http://st.houzz.com/simgs/f3f34ec40dd18df3_0-0788/james_crisp.jpg" class="hzHouzzer hzHCUserImage " data-type="profile" data-id="james_crisp"></a></div><div class="thumbFollowUserDiv"><a href="http://www.houzz.com/user/sarahsarah162"><img src="http://st.houzz.com/simgs/cfc31dd1029c764c_0-5612/sarahsarah162.jpg" class="hzHouzzer hzHCUserImage " data-type="profile" data-id="sarahsarah162"></a></div><div class="thumbFollowUserDiv"><a href="http://www.houzz.com/pro/lorismythdesign/lori-smyth-design"><img src="http://st.houzz.com/simgs/87e384c00e8e30fc_0-1500/lorismythdesign.jpg" class="hzHouzzer hzHCUserImage " data-type="profile" data-id="lorismythdesign"></a></div></li>		</ul>
+            </div>
+        </div>
+        <div class="sidebar"><div class="sidebar-header">Followed by 1 person</div><div class="sidebar-body">		<ul id="followersBox">
+                    <li class="profileThumbBox"><div class="thumbFollowUserDiv"><a href="http://www.houzz.com/pro/modern-wine-cellars/vin-de-garde-wine-cellars-inc"><img src="http://st.houzz.com/simgs/5f0371130ba01e0c_0-4652/modern_wine_cellars.jpg" class="hzHouzzer hzHCUserImage " data-type="profile" data-id="modern_wine_cellars"></a></div></li>		</ul>
+            </div>
+        </div>
     </div>
 </div>
 
