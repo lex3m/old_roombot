@@ -42,23 +42,60 @@
                 <?php echo CHtml::link('Отписаться',array('member/rmfollower','id'=>$member->urlID), array('id'=>'rmfollower')); ?>
             </div>
          <?php endif; ?>
+        <div class="followers">
+            <?php if ($member->countFollowing > 0): ?>
+                <div class="sidebar">
+                    <div class="sidebar-header">Подписки (<?php echo $member->countFollowing;?>)</div>
+                    <div class="sidebar-body">
+                        <ul id="followingsBox">
+                            <li class="profileThumbBox">
+                                <?php $i = 0;
+                                 foreach($following as $f): ?>
+                                    <div class="thumbFollowUserDiv">
+                                        <?php echo CHtml::link(CHtml::image('/images/members/avatars/'.$f->following->memberinfo->avatar, 'title'.$f->following->login, array('title'=>$f->following->login)), array('member/dashboard','id'=>$f->following->urlID)); ?>
+                                    </div>
+                                <?php $i++; if ($i == 5) break;
+                                 endforeach;?>
+                                <?php if ($member->countFollowing > 5): ?>
+                                    <?php echo CHtml::link( 'Просмотреть всех '.$member->countFollowing, array('member/following', 'id'=>$f->followed->urlID), array('class'=>'view-all') ); ?>
+                                <?php endif; ?>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ($member->countFollowed > 0): ?>
+                <div class="sidebar">
+                    <div class="sidebar-header">Подписчики (<?php echo $member->countFollowed;?>)</div>
+                    <div class="sidebar-body">
+                        <ul id="followingsBox">
+                            <li class="profileThumbBox">
+                                <?php $i = 0;
+                                foreach($followed as $f): ?>
+                                    <div class="thumbFollowUserDiv">
+                                        <?php echo CHtml::link(CHtml::image('/images/members/avatars/'.$f->followed->memberinfo->avatar, 'title'.$f->followed->login, array('title'=>$f->followed->login)), array('member/dashboard','id'=>$f->followed->urlID)); ?>
+                                    </div>
+                                    <?php $i++; if ($i == 5) break;
+                                endforeach;?>
+                                <?php if ($member->countFollowed > 5): ?>
+                                    <?php echo CHtml::link( 'Просмотреть всех '.$member->countFollowed, array('member/followed', 'id'=>$f->followed->urlID), array('class'=>'view-all') ); ?>
+
+                                <?php endif; ?>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
     <?php elseif (!Yii::app()->user->isGuest) : ?>
             <div class="knopky1" style="display: block;">
-                <?php echo CHtml::link('Мои подписки',array('member/followers'), array('id'=>'followers')); ?>
+                <?php echo CHtml::link('Мои подписки',array('member/following'), array('id'=>'followers')); ?>
 
             </div>
             <div class="knopky1" style="display: block;">
-                <?php echo CHtml::link('Мои подписчики',array('member/myfollowers'), array('id'=>'followers')); ?>
+                <?php echo CHtml::link('Мои подписчики',array('member/followed'), array('id'=>'followers')); ?>
             </div>
     <?php endif; ?>
-        <div class="sidebar"><div class="sidebar-header">Following 3 people</div><div class="sidebar-body">		<ul id="followingsBox">
-                    <li class="profileThumbBox"><div class="thumbFollowUserDiv"><a href="http://www.houzz.com/pro/james-crisp/crisp-architects"><img src="http://st.houzz.com/simgs/f3f34ec40dd18df3_0-0788/james_crisp.jpg" class="hzHouzzer hzHCUserImage " data-type="profile" data-id="james_crisp"></a></div><div class="thumbFollowUserDiv"><a href="http://www.houzz.com/user/sarahsarah162"><img src="http://st.houzz.com/simgs/cfc31dd1029c764c_0-5612/sarahsarah162.jpg" class="hzHouzzer hzHCUserImage " data-type="profile" data-id="sarahsarah162"></a></div><div class="thumbFollowUserDiv"><a href="http://www.houzz.com/pro/lorismythdesign/lori-smyth-design"><img src="http://st.houzz.com/simgs/87e384c00e8e30fc_0-1500/lorismythdesign.jpg" class="hzHouzzer hzHCUserImage " data-type="profile" data-id="lorismythdesign"></a></div></li>		</ul>
-            </div>
-        </div>
-        <div class="sidebar"><div class="sidebar-header">Followed by 1 person</div><div class="sidebar-body">		<ul id="followersBox">
-                    <li class="profileThumbBox"><div class="thumbFollowUserDiv"><a href="http://www.houzz.com/pro/modern-wine-cellars/vin-de-garde-wine-cellars-inc"><img src="http://st.houzz.com/simgs/5f0371130ba01e0c_0-4652/modern_wine_cellars.jpg" class="hzHouzzer hzHCUserImage " data-type="profile" data-id="modern_wine_cellars"></a></div></li>		</ul>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -142,11 +179,6 @@
         <?php echo $form->error($model,'name'); ?>
 </div> 
 
- 
-
-
-
-    
         <?php echo $form->fileField($model,'img',array("class"=>"vvv")); ?>
         <?php echo $form->error($model,'img'); ?>
 
@@ -177,16 +209,15 @@
 <?php endif; ?>
 <div class="span-17 last">
     <div class="items list3">
-<?php
-
- $this->widget('zii.widgets.CListView', array(
- 'viewData' => array( 'member' => $member),
- 'dataProvider'=>$dataProvider,
- 'itemView'=>'_mobilepicturesrow',
- 'ajaxUpdate'=>false,
- 'summaryText' => 'Фотографии {start}-{end} из {count}.',)); 
-?>
-</div>
+        <?php
+         $this->widget('zii.widgets.CListView', array(
+         'viewData' => array( 'member' => $member),
+         'dataProvider'=>$dataProvider,
+         'itemView'=>'_mobilepicturesrow',
+         'ajaxUpdate'=>false,
+         'summaryText' => 'Фотографии {start}-{end} из {count}.',));
+        ?>
+    </div>
 </div>
 
 </div>

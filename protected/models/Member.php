@@ -140,12 +140,13 @@ class Member extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-            'memberfollower' => array(self::HAS_MANY, 'MemberFollowers', 'memberID'),
 			'memberinfo' => array(self::HAS_ONE, 'Memberinfo', 'userID'),
-            'comments'=>array(self::HAS_MANY, 'Comments', 'memberID',  'order'=>'comments.dateTime DESC'),
-            'photos'=>array(self::HAS_MANY, 'Mobilepictures', 'companyID', 'order'=>'photos.id DESC',),
+            'comments'=>array(self::HAS_MANY, 'Comments', 'memberID',  'limit'=>5, 'order'=>'comments.dateTime DESC'),
+            'photos'=>array(self::HAS_MANY, 'Mobilepictures', 'companyID', 'limit'=>5, 'order'=>'photos.id DESC'),
 			'countComments' => array(self::STAT, 'Comments', 'memberID','select' => 'COUNT(memberID)'), 
-			'countPhotos' => array(self::STAT, 'Mobilepictures', 'companyID','select' => 'COUNT(companyID)'), 
+			'countPhotos' => array(self::STAT, 'Mobilepictures', 'companyID','select' => 'COUNT(companyID)'),
+            'countFollowing' => array(self::STAT, 'MemberFollowers', 'memberID', 'select' => 'COUNT(memberID)'),
+            'countFollowed' => array(self::STAT, 'MemberFollowers', 'followerID', 'select' => 'COUNT(followerID)'),
 		);   
 	}
 

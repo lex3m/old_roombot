@@ -33,7 +33,7 @@ class MemberController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','avatar','change', 'followers' , 'myfollowers'),
+				'actions'=>array('create','update','avatar','change', 'following' , 'followed'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -151,9 +151,12 @@ class MemberController extends Controller
           $memberCity =  Membercity::model()->with('city')->findbyPk($member->id);  
           $pic_arr=array();
           $pictures=Mobilepictures::model()->findAll('companyID=:id', array(':id'=>$member->id));
-          
-  
-          $model = new Mobilepictures('add');
+
+          $following = MemberFollowers::model()->with('following')->findAll('memberID=:id', array(':id'=>$member->id));
+          $followed = MemberFollowers::model()->with('followed')->findAll('followerID=:id', array(':id'=>$member->id));
+
+
+        $model = new Mobilepictures('add');
           if (isset($_POST['Mobilepictures'])) {
                 $model->attributes = $_POST['Mobilepictures'];
                 $img=CUploadedFile::getInstance($model,'img');
@@ -195,6 +198,8 @@ class MemberController extends Controller
             );
       $this->render('dashboard',array(   
                 'member'=>$member,
+                'following'=>$following,
+                'followed'=>$followed,
                 'pictures'=>$pictures,
                 'model'=>$model,
                 'dataProvider'=>$dataProvider,
@@ -273,12 +278,24 @@ class MemberController extends Controller
         }
     }
 
-    public function actionFollowers()
+    public function actionFollowing()
     {
+
 //        $followers = MemberFollowers::model()->with('members')->findAll('memberID=:id', array(':id'=>Yii::app()->user->id));
+
+        if (isset($_GET['id']) && !empty($_GET['id'])) {
+            $member = Member::model()->find('urlID=:id', array(':id'=>intval($_GET['id'])));
+
+        } else {
+            $member = Member::model()->find('id=:id', array(':id'=>Yii::app()->user->id));
+        }
+        $id =  $member->id;
         $criteria = new CDbCriteria();
         $criteria->condition = 'memberID=:id';
-        $criteria->params = array(':id'=>Yii::app()->user->id);
+        $criteria->params = array(':id'=>$id);
+
+        $following = MemberFollowers::model()->with('following')->findAll('memberID=:id', array(':id'=>$id));
+        $followed = MemberFollowers::model()->with('followed')->findAll('followerID=:id', array(':id'=>$id));
 
         $dataProvider = new CActiveDataProvider(MemberFollowers::model()->with('following'),
             array(
@@ -290,16 +307,29 @@ class MemberController extends Controller
             )
         );
         $this->render('followers',array(
-            'dataProvider'=>$dataProvider
+            'dataProvider'=>$dataProvider,
+            'member'=>$member,
+            'following'=>$following,
+            'followed'=>$followed,
         ));
 
     }
 
-    public function actionMyfollowers()
+    public function actionFollowed()
     {
+        if (isset($_GET['id']) && !empty($_GET['id'])) {
+            $member = Member::model()->find('urlID=:id', array(':id'=>intval($_GET['id'])));
+
+        } else {
+            $member = Member::model()->find('id=:id', array(':id'=>Yii::app()->user->id));
+        }
+        $id =  $member->id;
         $criteria = new CDbCriteria();
         $criteria->condition = 'followerID=:id';
-        $criteria->params = array(':id'=>Yii::app()->user->id);
+        $criteria->params = array(':id'=>$id);
+
+        $following = MemberFollowers::model()->with('following')->findAll('memberID=:id', array(':id'=>$id));
+        $followed = MemberFollowers::model()->with('followed')->findAll('followerID=:id', array(':id'=>$id));
 
         $dataProvider = new CActiveDataProvider(MemberFollowers::model()->with('followed'),
             array(
@@ -311,9 +341,11 @@ class MemberController extends Controller
             )
         );
 
-//        print_r($dataProvider);exit;
         $this->render('followers',array(
-            'dataProvider'=>$dataProvider
+            'dataProvider'=>$dataProvider,
+            'member'=>$member,
+            'following'=>$following,
+            'followed'=>$followed,
         ));
 
     }

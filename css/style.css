@@ -1028,8 +1028,8 @@ div.commentThumb img {
 
 .leftBar .sidebar {
     font-size: 13px;
-    border: 1px solid #d6d6d6;
-    margin-bottom: 10px;
+    border: 2px solid #002980;
+    margin-top: 10px;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
@@ -1040,20 +1040,10 @@ div.commentThumb img {
     padding: 0;
 }
 
-/*.leftBar .sidebar .sidebar-header {*/
-    /*font-size: 14px;*/
-    /*color: #1d1d1d;*/
-    /*display: block;*/
-    /*font-weight: bold;*/
-    /*padding: 5px 8px;*/
-    /*border-bottom: 1px solid #f0f0f0;*/
-    /*background: #f0f0f0;*/
-    /*border-radius: 1px 1px 0 0;*/
-/*}*/
+
 .leftBar .sidebar .sidebar-header {
-    background: url("../images/kopiryght.png") repeat-x scroll 0 0 transparent;
-    border-bottom: 1px solid #FFFFFF;
-    padding: 11px 0 0 10px;
+    border-bottom: 2px solid #002980;
+    padding: 5px 0 5px 0;
 }
 
 .leftBar .sidebar .sidebar-body ul, .sidebar .sidebar-body ol {
@@ -1366,11 +1356,15 @@ div.ideasPhotoOwnerThumb img {
 .userinfo {
     margin-bottom: 10px;
     padding: 5px;
-    width: 717px;
+    width: 700px;
     border: 1px solid #0000FF;
 }
 .userinfo h3{
     margin: 0;
+}
+
+.commentBodyText {
+    width: 700px;
 }
 /*****end UserCard*****************/
 
