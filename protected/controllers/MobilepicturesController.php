@@ -121,35 +121,37 @@ class MobilepicturesController extends Controller
         $json_data = array ('count'=>$count);
         echo json_encode($json_data); 
 
-    } 
-
-  public function actionViewinfo($id)
-    {
-
-    $model = Mobilepictures::model()->with('taglinks')->findbyPk($id);
-    $comments = Comments::model()->with('member','countlikes')->findAll('photoID=:photoID',array(':photoID'=>$model->id));
-    $member= Member::model()->findbyPK($model->companyID);  
-    $z=0;
-    $tags_arr = array();
-    $tagNameArray= array();
-    foreach ($model->taglinks as $link)
-    {
-        $tags_arr[$z] = Mobiletags::model()->findbyPk($link->tagId);
     }
-    $k=0;
-    foreach($tags_arr as $tag)
+
+    public function actionViewinfo($id)
     {
-        $tagNameArray[$k] = $tag->name;
-        $k++;
-    }
-    $this->setPageTitle('Roombot - Фото '.$model->name.'. Теги: '.implode(", ",$tagNameArray));
-    $this->render('viewinfo',array(
+
+        $model = Mobilepictures::model()->with('taglinks','member')->findbyPk($id);
+        $comments = Comments::model()->with('member','countlikes')->findAll('photoID=:photoID',array(':photoID'=>$model->id));
+        $member= Member::model()->findbyPK($model->companyID);
+        $z=0;
+        $tags_arr = array();
+        $tagNameArray= array();
+        foreach ($model->taglinks as $link)
+        {
+            $tags_arr[$z] = Mobiletags::model()->findbyPk($link->tagId);
+            $z++;
+        }
+        $k=0;
+        foreach($tags_arr as $tag)
+        {
+            $tagNameArray[$k] = $tag->name;
+            $k++;
+        }
+        $this->setPageTitle('Eropril - Фото '.$model->name.'. Теги: '.implode(", ",$tagNameArray));
+        $this->render('viewinfo',array(
             'model'=>$model,
             'tags'=>$tags_arr,
             'member'=>$member,
             'comments'=>$comments,
+            'tagNameArray'=>$tagNameArray,
         ));
-    } 
+    }
 
     public function actionGetinfo($name,$extension)
     {

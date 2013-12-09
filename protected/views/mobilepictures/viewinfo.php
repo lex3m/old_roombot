@@ -1,8 +1,9 @@
 <div class="list-bot izo-list">
-
+<h1>Просмотр изображения</h1><h2><?php echo $model->name; ?></h2>
+<span>Добавил:&nbsp;<?php echo CHtml::link($model->member->login,array('member/dashboard','id'=>$model->member->urlID));  ?></span>
 <?php //echo CHtml::link('Назад к списку',array('member/dashboard','id'=>$member->urlID));?>
-<h2><?php echo $model->name; ?></h2>
-  <script type="text/javascript">(function() {
+<?php echo $model->name; ?><br><br>
+    <script type="text/javascript">(function() {
             if (window.pluso)if (typeof window.pluso.start == "function") return;
             if (window.ifpluso==undefined) { window.ifpluso = 1;
                 var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
@@ -10,29 +11,38 @@
                 s.src = ('https:' == window.location.protocol ? 'https' : 'http')  + '://share.pluso.ru/pluso-like.js';
                 var h=d[g]('body')[0];
                 h.appendChild(s);
-            }})();</script>   
+            }})();</script>
     <div class="pluso" data-background="#000000" data-options="small,square,line,horizontal,counter,theme=04" data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email,digg,pinme,pinterest,liveinternet,linkedin,memori,webdiscover,moikrug,yandex,print"></div>
 <img class="main" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $model->image; ?>"/>
 <?php echo $model->info; ?><br>
-<?php if (!Yii::app()->user->isGuest): ?>
-	<a class="addBookmarkLink" id="<?php echo $model->id; ?>" onclick="return false;" href="#">Добавить в книгу идей</a>&nbsp;&nbsp; 
-<?php endif; ?>
+<a class="addBookmarkLink" id="<?php echo $model->id; ?>" onclick="return false;" href="#">Добавить в книгу идей</a>&nbsp;&nbsp; 
 <?php echo $model->date; ?>&nbsp;&nbsp;  
-<?php if (count($tags)>0):   ?>
+<?php if (count($tags)>0):  ?>
 Теги:&nbsp;
 <?php
-foreach ($tags as $tag)
-    {
-        echo $tag->name.'<br>';
-    }
+   echo implode(", ",$tagNameArray);
     
 ?>
 <?php endif; ?>  
 <br>
+<?php if (!Yii::app()->user->isGuest) { ?>
+    <div class="photo__footer">
+        <div class="photos__photoActions">
+            <div class="photoActions rb-button-toolbar photoActions__medium">
+                <div class="rb-button-group rb-button-group-medium">
+                    <button data-likes="<?php echo $model->countLikes; ?>" data-id="<?php echo $model->id; ?>" class="rb-button rb-button-like rb-button-medium rb-button-responsive" tabindex="0">
+                       <?php echo $model->countLikes; ?>
+                    </button>
+                    <!-- <a class="rb-button rb-button-download rb-button-medium rb-button-responsive" tabindex="0" title="Download this track (196.6MB)" download="The Labyrinth #17 - Roots of &quot;Reality&quot; Part 1 -">Загрузить</a>-->
+                    </div>
+
+            </div> </div>
+
+    </div>
+<?php } ?>
 
 <?php $this->widget('ext.timeago.JTimeAgo', array('selector' => ' .timeago',));   ?>
-  
-<?php if (count($comments)): ?> <h2>Комментарии:</h2> <?php endif; ?>
+
 <div id="commentsContainer">
     <?php foreach ($comments as $comment): ?>
         <div id="<?php echo $comment->id; ?>" class="commentBodyContent">
@@ -67,7 +77,8 @@ foreach ($tags as $tag)
         </div>
      <?php endforeach; ?>
 </div>
-<?php if (!Yii::app()->user->isGuest): ?>
+
+<?php if (!Yii::app()->user->isGuest) { ?>
 <div class="addComment">
     <div class="commentError"></div>
     <form id="commentForm" class="commentForm" enctype="multipart/form-data" method="post" action="">
@@ -207,7 +218,7 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
                              $('textarea.commentBody').val(''); 
                            }
                          });
-                    return false;
+                    return event.defaultPrevented || event.returnValue == false;
             });
             
          $('.commentDeleteIcon').live('click', function(event){  
@@ -259,7 +270,7 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
     
                            }
                     });
-             return false;
+             return event.defaultPrevented || event.returnValue == false;
          });  
          
      
@@ -281,7 +292,7 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
                     $('#tmpInfoPopupBtn').val('Создать');
                     $('#tmpInfoPopup').dialog('open');
                  }
-             return false;
+             return event.defaultPrevented || event.returnValue == false;
          });
 
          $('.addPhotoToIdeasBookBtn').live('click',function(event){
@@ -307,7 +318,24 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
                     $('#tmpInfoPopup').dialog('close');
               else window.location.href = '".Yii::app()->createUrl('ideasbook/add')."';
            });
+
+          $('button.rb-button-like').live('click',function(event){
+                 var photoID = $(this).data('id');
+                 var currentLikes = $(this).data('likes');
+                     $.ajax({
+                               type: 'POST',
+                               url: '".Yii::app()->createUrl('photolike/add')."',
+                               data: {id: photoID},
+                               success: function(msg){
+                                         var data = jQuery.parseJSON(msg);
+                                         $('button.rb-button-like').text(data.countLikes);
+                                         $('button.rb-button-like').attr('data-likes', data.countLikes);
+                               }
+                        });
+
+         });
          
 ",CClientScript::POS_READY);
-endif;
+}
+else echo 'Зарегистрируйтесь, чтобы добавить комментарии.';
 ?>

@@ -1508,3 +1508,124 @@ a.rb-ministats {
     line-height: 12px;
 }
 /*****end last  photos***********/
+
+/*********action photos***************/
+.photo__footer {
+    position: relative;
+    height: 25px;
+    padding: 10px 0 11px;
+    overflow: hidden;
+    width: 700px;
+}
+
+.photos__photoActions {
+    float: left;
+    position: relative;
+    z-index: 1;
+}
+
+.rb-button-toolbar {
+    margin: 0 0 7px;
+}
+
+.rb-button-group {
+    vertical-align: middle;
+    display: inline-block;
+    clear: both;
+}
+
+.rb-button-toolbar>.rb-button-group {
+    float: left;
+    clear: none;
+    padding-right: 5px;
+    padding-left: 5px;
+    border-left: 1px solid #f2f2f2;
+}
+
+.rb-button-toolbar>.rb-button-group:last-child {
+    padding-right: 0;
+}
+.rb-button-toolbar>.rb-button-group:first-child {
+    padding-left: 0;
+    border-left: none;
+}
+.rb-button-toolbar>.rb-button-group-medium {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.rb-button-medium.rb-button-addtogroup, .rb-button-medium.rb-button-addtoset, .rb-button-medium.rb-button-delete, .rb-button-medium.rb-button-download, .rb-button-medium.rb-button-edit, .rb-button-medium.rb-button-instagram, .rb-button-medium.rb-button-like, .rb-button-medium.rb-button-message, .rb-button-medium.rb-button-moderate, .rb-button-medium.rb-button-pc, .rb-button-medium.rb-button-reply, .rb-button-medium.rb-button-repost, .rb-button-medium.rb-button-share {
+    text-indent: 18px;
+}
+
+.rb-button-medium.rb-button-icon, .rb-button-medium.rb-button-responsive {
+    min-width: 31px;
+}
+.rb-button-toolbar>.rb-button, .rb-button-group>.rb-button {
+    float: left;
+    margin-right: 5px;
+}
+
+.rb-button-medium.rb-button-like {
+    background-image: url("../images/like_photo.png");
+    background-position:  0px 3px;
+    background-repeat: no-repeat;
+}
+
+.rb-button-medium.rb-button-download {
+    background-image: url("../images/download_photo.png");
+    background-position:  0px 3px;
+    background-repeat: no-repeat;
+}
+
+.rb-button-active, .rb-button-active:hover, .rb-button-active:focus, .rb-button-active.rb-button-focus, .rb-button-selected, .rb-button-selected:hover, .rb-button-selected:focus, .rb-button-selected.rb-button-focus {
+    text-shadow: none;
+    border: 1px solid rgb(200,200,200);
+    background-color: #eee;
+    box-shadow: 0 1px 3px rgba(0,0,0,.0),inset 0 2px 2px rgba(0,0,0,.05),inset 0 1px 1px rgba(0,0,0,.08),inset -2px 0 2px rgba(0,0,0,.03),inset 0 -1px 0 rgba(0,0,0,.02),inset 2px 0 2px rgba(0,0,0,.03);
+}
+
+.photo__footerRight {
+    position: absolute;
+    right: 0;
+    bottom: 17px;
+    z-index: 0;
+}
+.photo__photoStats {
+    float: right;
+    position: relative;
+    top: 5px;
+}
+
+.rb-ministats-medium.rb-ministats-likes.rb-ministats-selected{
+    background-image: url("../images/like_photo.png");
+    background-position:  0px 3px;
+    background-repeat: no-repeat;
+
+}
+
+.small_i{
+    background-repeat: no-repeat;
+    width: 14px;
+    height: 12px;
+    display: inline-block;
+    content: "";
+    background-position: center center;
+    background-position:  0px 3px;
+}
+.small_likes_i
+{
+    background:url("../images/like_in_main_list.png") left top;
+}
+
+.small_comments_i
+{
+    background:url("../images/comments_small.png") left top;
+
+}
+
+.small_albums_i
+{
+    background:url("../images/album_small.png") left top;
+}
+/*********end action photos*********/
