@@ -845,8 +845,6 @@ div.memberCabinetPic a img{
 }
 .rightBlockMemeberInfo {
 	width: 720px;
-	/*margin-left: 20px;
-	float: right;*/
 }
 
 #memberCommonInfo{
@@ -1246,7 +1244,6 @@ img.galleryIdeasBlockImg{
 	background-position: -240px -81px;
 	margin: 0;
 }
-
 
 
 .okDeleteIdeasPhotos {

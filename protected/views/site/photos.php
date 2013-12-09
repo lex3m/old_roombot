@@ -4,6 +4,15 @@
  */
 ?>
 
+<?php
+    Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/css/lightbox.css');
+    Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/lightbox-2.6.min.js', CClientScript::POS_END);
+
+?>
+
+<style>
+
+</style>
 <div class="list-bot izo-list">
     <h1><?php if ($query=='') { ?> Последние фотографии
     <?php } else { ?>
