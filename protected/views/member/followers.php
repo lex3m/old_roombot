@@ -2,8 +2,6 @@
 
 <?php if ($member->id==Yii::app()->user->id): ?><h1 style = "margin-bottom: 0;">Мой кабинет</h1><?php endif; ?>
 <br>
-<!--<div class="leftBar">
-<!--</div>-->
 <div class="rightBlockMemeberInfo">
 
     <div class="leftBar">
@@ -171,6 +169,7 @@ Yii::app()->clientScript->registerScript('remove-follower',"
 
      $( '.rmfollower').on('click', function(event){
            event.preventDefault();
+           alert(1);return false;
            var followerUrl = $(this).attr('href');
            var urlID = followerUrl.split('/')[3];
            var parent = $(this).parent();

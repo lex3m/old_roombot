@@ -51,9 +51,14 @@
             <?php endif; ?>
         </div>
     <?php else: ?>
-        <h3><b><?php echo CHtml::encode($data->getAttributeLabel('Пользователь')); ?>:</b>
-            <?php echo CHtml::link(CHtml::encode($data->following->login), array('member/dashboard', 'id'=>$data->following->urlID)); ?> </h3><br />
-
+        <h3>
+            <b><?php echo CHtml::encode($data->getAttributeLabel('Пользователь')); ?>:</b>
+            <?php echo CHtml::link(CHtml::encode($data->following->login), array('member/dashboard', 'id'=>$data->following->urlID)); ?>
+            <?php if ($data->memberID == Yii::app()->user->id):?>
+                <?php echo CHtml::link('<img width="21px" height="18px" src="/images/site/uncheckepicture.png" style="float:right; padding-right:5px;">', array('member/rmfollower', 'id'=>$data->following->urlID), array('class'=>'rmfollower')); ?>
+            <?php endif; ?>
+        </h3>
+        <br />
 
         <div id="commentsContainer">
             <b><?php echo CHtml::encode($data->getAttributeLabel('Последние комментарии'));  ?>:</b>
