@@ -152,8 +152,19 @@ class MemberController extends Controller
           $pic_arr=array();
           $pictures=Mobilepictures::model()->findAll('companyID=:id', array(':id'=>$member->id));
 
-          $following = MemberFollowers::model()->with('following')->findAll('memberID=:id', array(':id'=>$member->id));
-          $followed = MemberFollowers::model()->with('followed')->findAll('followerID=:id', array(':id'=>$member->id));
+          $criteria = new CDbCriteria();
+          $criteria->condition = 'memberID=:id';
+          $criteria->params = array(':id'=>$member->id);
+          $criteria->order = 't.id DESC';
+
+          $following = MemberFollowers::model()->with('following')->findAll($criteria);
+
+          $criteria = new CDbCriteria();
+          $criteria->condition = 'followerID=:id';
+          $criteria->params = array(':id'=>$member->id);
+          $criteria->order = 't.id DESC';
+
+          $followed = MemberFollowers::model()->with('followed')->findAll($criteria);
 
 
         $model = new Mobilepictures('add');
@@ -293,9 +304,10 @@ class MemberController extends Controller
         $criteria = new CDbCriteria();
         $criteria->condition = 'memberID=:id';
         $criteria->params = array(':id'=>$id);
+        $criteria->order = 't.id DESC';
 
-        $following = MemberFollowers::model()->with('following')->findAll('memberID=:id', array(':id'=>$id));
-        $followed = MemberFollowers::model()->with('followed')->findAll('followerID=:id', array(':id'=>$id));
+        $following = MemberFollowers::model()->with('following')->findAll($criteria);
+
 
         $dataProvider = new CActiveDataProvider(MemberFollowers::model()->with('following'),
             array(
@@ -306,6 +318,13 @@ class MemberController extends Controller
                 ),
             )
         );
+
+        $criteria = new CDbCriteria();
+        $criteria->condition = 'followerID=:id';
+        $criteria->params = array(':id'=>$id);
+        $criteria->order = 't.id DESC';
+        $followed = MemberFollowers::model()->with('followed')->findAll($criteria);
+
         $this->render('followers',array(
             'dataProvider'=>$dataProvider,
             'member'=>$member,
@@ -327,9 +346,9 @@ class MemberController extends Controller
         $criteria = new CDbCriteria();
         $criteria->condition = 'followerID=:id';
         $criteria->params = array(':id'=>$id);
+        $criteria->order = 't.id DESC';
 
-        $following = MemberFollowers::model()->with('following')->findAll('memberID=:id', array(':id'=>$id));
-        $followed = MemberFollowers::model()->with('followed')->findAll('followerID=:id', array(':id'=>$id));
+        $followed = MemberFollowers::model()->with('followed')->findAll($criteria);
 
         $dataProvider = new CActiveDataProvider(MemberFollowers::model()->with('followed'),
             array(
@@ -340,6 +359,14 @@ class MemberController extends Controller
                 ),
             )
         );
+
+        $id =  $member->id;
+        $criteria = new CDbCriteria();
+        $criteria->condition = 'memberID=:id';
+        $criteria->params = array(':id'=>$id);
+        $criteria->order = 't.id DESC';
+
+        $following = MemberFollowers::model()->with('following')->findAll($criteria);
 
         $this->render('followers',array(
             'dataProvider'=>$dataProvider,

@@ -138,6 +138,8 @@
         <div class="span-17 last">
             <div class="items list3">
                 <?php if (isset($_GET['id']) && !empty($_GET['id'])): ?>
+                <div class="newsFeedMainContent">
+                    <div class="followingTitle">Люди (<?php echo $dataProvider->getItemCount(); ?>)</div>
                     <?php $this->widget('zii.widgets.CListView', array(
                         'dataProvider'=>$dataProvider,
                         'itemView'=>'_follow',
@@ -145,6 +147,7 @@
                         'emptyText' => 'У вас еще нет подписок',
                         'pagerCssClass' => 'pager-left'
                     )); ?>
+                </div>
                 <?php else: ?>
                     <?php $this->widget('zii.widgets.CListView', array(
                         'dataProvider'=>$dataProvider,

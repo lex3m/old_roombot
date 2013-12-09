@@ -4,7 +4,7 @@
  * This is the model class for table "{{memberFollowers}}".
  *
  * The followings are the available columns in table '{{memberFollowers}}':
- * @property string $id
+ * @property integer $id
  * @property integer $memberID
  * @property integer $followerID
  */
@@ -52,8 +52,8 @@ class MemberFollowers extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-            'following' => array(self::BELONGS_TO, 'Member', 'followerID', 'order'=>'following.id DESC'),
-            'followed' => array(self::BELONGS_TO, 'Member', 'memberID', 'order'=>'followed.id DESC'),
+            'following' => array(self::BELONGS_TO, 'Member', 'followerID'),
+            'followed' => array(self::BELONGS_TO, 'Member', 'memberID'),
 		);
 	}
 

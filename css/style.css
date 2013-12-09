@@ -1366,6 +1366,62 @@ div.ideasPhotoOwnerThumb img {
 .commentBodyText {
     width: 700px;
 }
+
+div.newsFeedMainContent {
+    clear: both;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+div.followingTitle {
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 5px solid #edede9;
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #333;
+    text-align: left;
+    width: 700px;
+}
+
+div.followerDiv {
+    border: 1px solid #002980;
+    height: 62px;
+    width: 200px;
+    margin: 10px 20px 10px 0px;
+    padding: 5px 5px 5px 5px;
+    font-size: 13px;
+    font-weight: normal;
+    background-color: #fff;
+    float: left;
+}
+div.followerImageDiv {
+    border: 1px solid #edede9;
+    height: 60px;
+    width: 60px;
+    float: left;
+    display: inline;
+    overflow: hidden;
+}
+div.followerContentDiv {
+    float: left;
+    display: block;
+    margin-left: 7px;
+    width: 130px;
+}
+.followerImageDiv a img {
+    width: 58px;
+    height: 58px;
+    border: 1px solid white;
+}
+div.followerTextDiv {
+    height: 20px;
+    overflow: hidden;
+}
+div.followerTextDiv a {
+    font-size: 13px;
+    font-weight: bold;
+}
 /*****end UserCard*****************/
 
 /*****last photos*****************/
