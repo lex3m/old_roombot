@@ -149,14 +149,15 @@
                     )); ?>
                 </div>
                 <?php else: ?>
-                    <?php $this->widget('zii.widgets.CListView', array(
-                        'dataProvider'=>$dataProvider,
-                        'itemView'=>'_follower',
-                        'summaryText' => 'Показаны {start}-{end} из {count}.',
-                        'emptyText' => 'У вас еще нет подписок',
-                        'pagerCssClass' => 'pager-left'
-                    )); ?>
-                <?php endif; ?>
+                    <h2><?php echo (Yii::app()->controller->action->id == 'followed') ? 'Мои подписчики' : 'Мои подписки'?></h2>
+                        <?php $this->widget('zii.widgets.CListView', array(
+                            'dataProvider'=>$dataProvider,
+                            'itemView'=>'_follower',
+                            'summaryText' => 'Показаны {start}-{end} из {count}.',
+                            'emptyText' => 'У вас еще нет подписок',
+                            'pagerCssClass' => 'pager-left'
+                        )); ?>
+                    <?php endif; ?>
             </div>
         </div>
 
