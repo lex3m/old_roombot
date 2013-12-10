@@ -68,6 +68,38 @@ class Mobiletags extends CActiveRecord
 		);
 	}
 
+    /**
+     * Make items for tag menu
+     * @return array
+     */
+    public function getMenuList()
+    {
+        $items = array();
+
+        $models = $this->findAll(array('order'=>'name ASC'));
+
+        foreach ($models as $model)
+        {
+            $items[] = array(
+                'label'=>$model->name,
+                'url'=>Yii::app()->createUrl('site/photos', array('id'=>$model->id, 'name'=>$model->name_en)),
+//                'url'=>array('site/photos', array('id'=>$model->id, 'name'=>$model->name_en)),
+            );
+        }
+
+        return $items;
+    }
+
+    public static function getTagName($id)
+    {
+        $model = self::model()->findByPk($id);
+        if ($model !== NULL) {
+            return $model->name;
+        } else {
+            return false;
+        }
+
+    }
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.

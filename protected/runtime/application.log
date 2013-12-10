@@ -7662,3 +7662,69 @@ Stack trace:
 REQUEST_URI=/member/following
 HTTP_REFERER=http://roombot/member/dashboard/958918230
 ---
+2013/12/10 14:21:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "product/index".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('product/index')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/product/index
+HTTP_REFERER=http://roombot/site/index
+---
+2013/12/10 14:21:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "product/new".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('product/new')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/product/new?tag=new
+HTTP_REFERER=http://roombot/product/index
+---
+2013/12/10 14:21:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "product/index".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('product/index')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/product/index?tag=popular
+HTTP_REFERER=http://roombot/product/new?tag=new
+---
+2013/12/10 16:29:17 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "CDbCriteria.addSearchCondition".' in /home/yuriio/sites/var/www/roombot/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(173): CComponent->__set('addSearchCondit...', 'tags.id =  :tag...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionPhotos()
+#2 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#3 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): CController->run('photos')
+#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/photos')
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#8 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#9 {main}
+REQUEST_URI=/photos/125/Handmade
+HTTP_REFERER=http://roombot/photos/132/Details+in+the+interior
+---
+2013/12/10 16:29:19 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "CDbCriteria.addSearchCondition".' in /home/yuriio/sites/var/www/roombot/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(173): CComponent->__set('addSearchCondit...', 'tags.id =  :tag...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionPhotos()
+#2 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#3 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): CController->run('photos')
+#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/photos')
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#8 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#9 {main}
+REQUEST_URI=/photos/167/Patterns
+HTTP_REFERER=http://roombot/photos/125/Handmade
+---
+2013/12/10 16:53:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "photos/161/Work area".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('photos/161/Work...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/photos/161/Work+area
+HTTP_REFERER=http://roombot/photos/161/Work+area
+---

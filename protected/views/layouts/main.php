@@ -77,6 +77,12 @@
 
              </div>
          </div>
+         <div id="tags-menu">
+             <?php $this->widget('zii.widgets.CMenu', array(
+                 'items'=>Mobiletags::model()->getMenuList()
+             ));
+             ?>
+         </div>
         <?php echo $content; ?>
 
     <!-- </div>--><!-- .ipad-->

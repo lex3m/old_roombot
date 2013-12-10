@@ -18,7 +18,7 @@
     <?php } else { ?>
      Фотографии по запросу "<?php echo $query; ?>"
     <?php } ?>
-    </h1>
+    </h1> <h2><?php echo ($tagID !== '') ? 'с тэгом <i>'.Mobiletags::getTagName($tagID).'</i>' : '' ?></h2>
     <div id="lastPhotosContainer">
         <ul class="lastPhotosList rb-list-nostyle rb-clearfix">
         <?php $this->widget('zii.widgets.CListView', array(

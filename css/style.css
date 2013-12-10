@@ -152,6 +152,49 @@ top: 6px;
 .headerSearch .quicksearch__submit {
     top: 15px;
 }
+
+/*** Tags menu ***/
+#tags-menu
+{
+    background: #222;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    margin-top: -2px !important;
+    border: 1px solid #2a2a2a;
+    width: 943px;
+    margin-left:24px;
+}
+
+#tags-menu ul
+{
+    padding:6px 20px 5px 20px;
+    margin:0px;
+}
+
+#tags-menu ul li
+{
+    display: inline;
+}
+
+#tags-menu ul li a
+{
+    color:#ffffff;
+    background-color:transparent;
+    font-size:12px;
+    font-weight:bold;
+    text-decoration:none;
+    padding:5px 8px;
+}
+
+#tags-menu ul li a:hover, #tags-menu ul li.active a
+{
+    color: #000;
+    background-color:#EFF4FA;
+    text-decoration:none;
+}
+/*** end tags menu***/
+
 .quicksearch__submit {
     background: url("../images/headers_icons.png") no-repeat scroll 50% -359px rgba(0, 0, 0, 0);
     border: 0 none;

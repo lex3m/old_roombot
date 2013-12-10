@@ -152,6 +152,8 @@ class SiteController extends Controller
         $this->setPageTitle('Последние фотографии');
         if (isset($_GET['q']))
             $query = $_GET['q']; else $query='';
+        if (isset($_GET['id']) && !empty($_GET['id']))
+            $tagID = intval($_GET['id']); else $tagID='';
         $criteria = new CDbCriteria();
         $criteria->order ='id DESC';
         $criteria->alias = 'p';
@@ -160,12 +162,18 @@ class SiteController extends Controller
         $criteria->join = 'LEFT JOIN `'.Mobilelinks::model()->tableSchema->name.'` AS `l` ON `p`.`id` = `l`.`imageId`';
         $criteria->join .= 'LEFT JOIN `'.Mobiletags::model()->tableSchema->name.'` AS `tags` ON `l`.`tagId` = `tags`.`id`';
         $criteria->join .= 'LEFT JOIN `'.Member::model()->tableSchema->name.'` AS `m` ON `p`.`companyID` = `m`.`id`';
-            if($query!='')
-            {
-                $queryUpCase = ucfirst($_GET['q']);
-                $criteria->condition = 'tags.name LIKE :nameUpCase OR tags.name LIKE :nameLowerCase';
-                $criteria->params = array(':nameLowerCase'=>"%$query%", ':nameUpCase'=>"%$queryUpCase%");
-            }
+        if($query!='')
+        {
+            $queryUpCase = ucfirst($_GET['q']);
+            $criteria->condition = 'tags.name LIKE :nameUpCase OR tags.name LIKE :nameLowerCase';
+            $criteria->params = array(':nameLowerCase'=>"%$query%", ':nameUpCase'=>"%$queryUpCase%");
+        }
+        if($tagID!='')
+        {
+            $criteria->condition = 'tags.id =  :tagID';
+            $criteria->params = array(':tagID'=>$tagID);
+        }
+
         $criteria->order = 'p.id DESC';
         $photos = new CActiveDataProvider(Mobilepictures::model()->with('countComments','countIdeasBooks'),
             array(
@@ -178,6 +186,7 @@ class SiteController extends Controller
         $this->render('photos',array(
             'photos'=>$photos,
             'query'=>$query,
+            'tagID'=>$tagID,
         ));
     }
 
