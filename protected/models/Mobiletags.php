@@ -76,16 +76,26 @@ class Mobiletags extends CActiveRecord
     {
         $items = array();
 
-        $models = $this->findAll(array('order'=>'name ASC'));
+        $models = $this->findAll(array('order'=>'name ASC', 'limit'=>5));
 
         foreach ($models as $model)
         {
             $items[] = array(
                 'label'=>$model->name,
                 'url'=>Yii::app()->createUrl('site/photos', array('id'=>$model->id, 'name'=>$model->name_en)),
-//                'url'=>array('site/photos', array('id'=>$model->id, 'name'=>$model->name_en)),
             );
         }
+
+        $items2 = array() ;
+        $count = $this->count();
+        $tags= $this->findAll(array('order'=>'name ASC', 'limit'=>$count - 5, 'offset'=>5));
+
+        foreach($tags as $tag) {
+            $items2 [] = array('label'=>$tag->name, 'url'=>Yii::app()->createUrl('site/photos', array('id'=>$tag->id, 'name'=>$tag->name_en)));
+        }
+        $items['items'] =  array('label'=>'Еще...', 'url'=>'#',
+                                'items'=>$items2,
+                            );
 
         return $items;
     }

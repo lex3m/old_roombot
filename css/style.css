@@ -193,6 +193,10 @@ top: 6px;
     background-color:#EFF4FA;
     text-decoration:none;
 }
+
+.moreItems ul {
+    display: none;
+}
 /*** end tags menu***/
 
 .quicksearch__submit {

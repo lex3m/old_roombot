@@ -9,14 +9,18 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
 	<!--[if lt IE 8]>
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
-	<![endif]-->  
+	<![endif]-->
+
+<!--    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">-->
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/modernizr.custom.17475.js"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquerypp.custom.js"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.elastislide.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/elastislide.css" />
- <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/custom.css" />  
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/custom.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
     <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css" type="text/css" media="screen, projection" />
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
@@ -77,12 +81,17 @@
 
              </div>
          </div>
+
          <div id="tags-menu">
-             <?php $this->widget('zii.widgets.CMenu', array(
-                 'items'=>Mobiletags::model()->getMenuList()
+             <?php $this->widget('TagMenu',array(
+                    'lastItemCssClass'=>'moreItems',
+                    'items'=> Mobiletags::model()->getMenuList()
              ));
              ?>
          </div>
+         <?php
+              Yii::app()->clientScript->registerScript("tag-menu", " $('#tags-menu ul').menu();", CClientScript::POS_LOAD);
+         ?>
         <?php echo $content; ?>
 
     <!-- </div>--><!-- .ipad-->
@@ -91,12 +100,9 @@
 
 
 <div id="footer">
-
-
-        <div class="copirayt">
-                 <span>Разработка приложения от студии <a href="http://topsu.ru/" target="_blank">"Вершина Успеха"</a> 2013 г.</span>
-        </div>
-
+    <div class="copirayt">
+             <span>Разработка приложения от студии <a href="http://topsu.ru/" target="_blank">"Вершина Успеха"</a> 2013 г.</span>
+    </div>
 </div><!-- #footer -->
 
 
@@ -112,12 +118,14 @@
                     <ul id="carousel" class="elastislide-list">
                         <?php     
                         foreach ($photos as $photo)
-                            echo '<li data-preview="'.Yii::app()->request->baseUrl.'/images/mobile/images/'.$photo->image.'"><a href=""><img src="'.Yii::app()->request->baseUrl.'/images/mobile/images/'.$photo->image.'" alt="image04" /></a></li>';
+                            echo '<li data-preview="'.Yii::app()->request->baseUrl.'/images/mobile/images/'.$photo->image.'">
+                                    <a href=""><img src="'.Yii::app()->request->baseUrl.'/images/mobile/images/'.$photo->image.'" alt="image" /></a>
+                                  </li>' . "\n \t";
                        ?>
                     </ul>
 </div>
-    <script type="text/javascript">
-
+<?php
+Yii::app()->clientScript->registerScript('slider',"
         $( '#carousel' ).elastislide( {
             minItems : 5
         } );
@@ -125,8 +133,8 @@
         $('#carousel li a').click(function(){
             return false;
         })
-
-    </script>
+");
+?>
 <?php endif; ?>
                 
             </div>
@@ -136,6 +144,7 @@
 
         <!-- BEGIN JIVOSITE CODE {literal} -->
 <script type='text/javascript'>
+
 (function(){ var widget_id = '96364';
 var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);})();</script>
 <!-- {/literal} END JIVOSITE CODE -->  
@@ -160,8 +169,8 @@ $('button.quicksearch__submit').on('click',function(){
             location.href = url;
             return false;
         }
-     });
-    ",CClientScript::POS_READY);
+});
+",CClientScript::POS_READY);
 ?>
 </body>
 
