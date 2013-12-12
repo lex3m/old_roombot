@@ -7728,3 +7728,1029 @@ Stack trace:
 REQUEST_URI=/photos/161/Work+area
 HTTP_REFERER=http://roombot/photos/161/Work+area
 ---
+2013/12/11 09:55:16 [error] [php] Invalid argument supplied for foreach() (/home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CMenu.php:260)
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CMenu.php(156): CMenu->normalizeItems()
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(147): CMenu->init()
+#2 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(172): SiteController->createWidget()
+#3 /home/yuriio/sites/var/www/roombot/protected/views/layouts/main.php(83): SiteController->widget()
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require()
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(76): SiteController->renderFile()
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate()
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput()
+#9 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(206): CContentDecorator->run()
+#10 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(300): SiteController->endWidget()
+#11 /home/yuriio/sites/var/www/roombot/protected/views/layouts/column1.php(6): SiteController->endContent()
+#12 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require()
+#13 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#14 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(784): SiteController->renderFile()
+#15 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(190): SiteController->render()
+#16 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionPhotos()
+#17 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#18 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): SiteController->runAction()
+#19 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#20 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#21 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#22 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#23 /home/yuriio/sites/var/www/roombot/index.php(12): CWebApplication->run()
+REQUEST_URI=/photos/129/Dressing+room
+2013/12/11 12:36:08 [error] [php] Missing argument 1 for Mobiletags::getMenuList(), called in /home/yuriio/sites/var/www/roombot/protected/views/layouts/main.php on line 82 and defined (/home/yuriio/sites/var/www/roombot/protected/models/Mobiletags.php:75)
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(76): SiteController->renderFile()
+#2 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate()
+#3 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput()
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(206): CContentDecorator->run()
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(300): SiteController->endWidget()
+#6 /home/yuriio/sites/var/www/roombot/protected/views/layouts/column1.php(6): SiteController->endContent()
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require()
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#9 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(784): SiteController->renderFile()
+#10 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(33): SiteController->render()
+#11 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#12 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#13 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): SiteController->runAction()
+#14 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#15 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#16 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#17 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#18 /home/yuriio/sites/var/www/roombot/index.php(12): CWebApplication->run()
+REQUEST_URI=/
+2013/12/11 12:36:23 [error] [php] Undefined variable: limit (/home/yuriio/sites/var/www/roombot/protected/views/layouts/main.php:82)
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(76): SiteController->renderFile()
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate()
+#2 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput()
+#3 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(206): CContentDecorator->run()
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(300): SiteController->endWidget()
+#5 /home/yuriio/sites/var/www/roombot/protected/views/layouts/column1.php(6): SiteController->endContent()
+#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require()
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(784): SiteController->renderFile()
+#9 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(33): SiteController->render()
+#10 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#11 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#12 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): SiteController->runAction()
+#13 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#14 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#15 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#16 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#17 /home/yuriio/sites/var/www/roombot/index.php(12): CWebApplication->run()
+REQUEST_URI=/
+2013/12/11 13:06:09 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "CMenu.0".' in /home/yuriio/sites/var/www/roombot/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWidgetFactory.php(161): CComponent->__set('0', Array)
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'zii.widgets.CMe...', Array)
+#2 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(172): CBaseController->createWidget('zii.widgets.CMe...', Array)
+#3 /home/yuriio/sites/var/www/roombot/protected/views/layouts/main.php(90): CBaseController->widget('zii.widgets.CMe...', Array)
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require('/home/yuriio/si...')
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/yuriio/si...', Array, true)
+#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(76): CBaseController->renderFile('/home/yuriio/si...', Array, true)
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#9 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(206): COutputProcessor->run()
+#10 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#11 /home/yuriio/sites/var/www/roombot/protected/views/layouts/column1.php(6): CBaseController->endContent()
+#12 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require('/home/yuriio/si...')
+#13 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/yuriio/si...', Array, true)
+#14 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(784): CBaseController->renderFile('/home/yuriio/si...', Array, true)
+#15 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(33): CController->render('index', 'password')
+#16 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#17 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#18 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#19 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): CController->run('')
+#21 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#22 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#23 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#24 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://roombot/photos/126/Balcony+and+terrace
+---
+2013/12/11 13:06:13 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "CMenu.0".' in /home/yuriio/sites/var/www/roombot/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWidgetFactory.php(161): CComponent->__set('0', Array)
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'zii.widgets.CMe...', Array)
+#2 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(172): CBaseController->createWidget('zii.widgets.CMe...', Array)
+#3 /home/yuriio/sites/var/www/roombot/protected/views/layouts/main.php(90): CBaseController->widget('zii.widgets.CMe...', Array)
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require('/home/yuriio/si...')
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/yuriio/si...', Array, true)
+#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(76): CBaseController->renderFile('/home/yuriio/si...', Array, true)
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#9 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(206): COutputProcessor->run()
+#10 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#11 /home/yuriio/sites/var/www/roombot/protected/views/layouts/column1.php(6): CBaseController->endContent()
+#12 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require('/home/yuriio/si...')
+#13 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/yuriio/si...', Array, true)
+#14 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(784): CBaseController->renderFile('/home/yuriio/si...', Array, true)
+#15 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(33): CController->render('index', 'password')
+#16 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#17 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#18 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#19 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): CController->run('')
+#21 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#22 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#23 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#24 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://roombot/photos/126/Balcony+and+terrace
+---
+2013/12/11 13:06:15 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "CMenu.0".' in /home/yuriio/sites/var/www/roombot/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWidgetFactory.php(161): CComponent->__set('0', Array)
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'zii.widgets.CMe...', Array)
+#2 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(172): CBaseController->createWidget('zii.widgets.CMe...', Array)
+#3 /home/yuriio/sites/var/www/roombot/protected/views/layouts/main.php(90): CBaseController->widget('zii.widgets.CMe...', Array)
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require('/home/yuriio/si...')
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/yuriio/si...', Array, true)
+#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(76): CBaseController->renderFile('/home/yuriio/si...', Array, true)
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#9 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(206): COutputProcessor->run()
+#10 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#11 /home/yuriio/sites/var/www/roombot/protected/views/layouts/column1.php(6): CBaseController->endContent()
+#12 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require('/home/yuriio/si...')
+#13 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/yuriio/si...', Array, true)
+#14 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(784): CBaseController->renderFile('/home/yuriio/si...', Array, true)
+#15 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(33): CController->render('index', 'password')
+#16 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#17 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#18 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#19 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): CController->run('')
+#21 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#22 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#23 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#24 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://roombot/photos/126/Balcony+and+terrace
+---
+2013/12/11 13:06:21 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "CMenu.0".' in /home/yuriio/sites/var/www/roombot/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWidgetFactory.php(161): CComponent->__set('0', Array)
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'zii.widgets.CMe...', Array)
+#2 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(172): CBaseController->createWidget('zii.widgets.CMe...', Array)
+#3 /home/yuriio/sites/var/www/roombot/protected/views/layouts/main.php(90): CBaseController->widget('zii.widgets.CMe...', Array)
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require('/home/yuriio/si...')
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/yuriio/si...', Array, true)
+#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(76): CBaseController->renderFile('/home/yuriio/si...', Array, true)
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#9 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(206): COutputProcessor->run()
+#10 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#11 /home/yuriio/sites/var/www/roombot/protected/views/layouts/column1.php(6): CBaseController->endContent()
+#12 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require('/home/yuriio/si...')
+#13 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/yuriio/si...', Array, true)
+#14 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(784): CBaseController->renderFile('/home/yuriio/si...', Array, true)
+#15 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(33): CController->render('index', 'password')
+#16 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#17 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#18 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#19 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): CController->run('')
+#21 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#22 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#23 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#24 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://roombot/photos/126/Balcony+and+terrace
+---
+2013/12/11 13:06:35 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "CMenu.0".' in /home/yuriio/sites/var/www/roombot/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWidgetFactory.php(161): CComponent->__set('0', Array)
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'zii.widgets.CMe...', Array)
+#2 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(172): CBaseController->createWidget('zii.widgets.CMe...', Array)
+#3 /home/yuriio/sites/var/www/roombot/protected/views/layouts/main.php(90): CBaseController->widget('zii.widgets.CMe...', Array)
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require('/home/yuriio/si...')
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/yuriio/si...', Array, true)
+#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(76): CBaseController->renderFile('/home/yuriio/si...', Array, true)
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#9 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(206): COutputProcessor->run()
+#10 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#11 /home/yuriio/sites/var/www/roombot/protected/views/layouts/column1.php(6): CBaseController->endContent()
+#12 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require('/home/yuriio/si...')
+#13 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/yuriio/si...', Array, true)
+#14 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(784): CBaseController->renderFile('/home/yuriio/si...', Array, true)
+#15 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(33): CController->render('index', 'password')
+#16 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#17 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#18 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#19 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): CController->run('')
+#21 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#22 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#23 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#24 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://roombot/photos/126/Balcony+and+terrace
+---
+2013/12/11 13:07:45 [error] [php] Invalid argument supplied for foreach() (/home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CMenu.php:260)
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(147): CMenu->init()
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(172): SiteController->createWidget()
+#2 /home/yuriio/sites/var/www/roombot/protected/views/layouts/main.php(91): SiteController->widget()
+#3 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require()
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(76): SiteController->renderFile()
+#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate()
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput()
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(206): CContentDecorator->run()
+#9 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(300): SiteController->endWidget()
+#10 /home/yuriio/sites/var/www/roombot/protected/views/layouts/column1.php(6): SiteController->endContent()
+#11 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require()
+#12 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#13 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(784): SiteController->renderFile()
+#14 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(33): SiteController->render()
+#15 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#16 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#17 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): SiteController->runAction()
+#18 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#19 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#20 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#21 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#22 /home/yuriio/sites/var/www/roombot/index.php(12): CWebApplication->run()
+REQUEST_URI=/
+2013/12/11 13:07:59 [error] [php] Invalid argument supplied for foreach() (/home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CMenu.php:260)
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(147): CMenu->init()
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(172): SiteController->createWidget()
+#2 /home/yuriio/sites/var/www/roombot/protected/views/layouts/main.php(91): SiteController->widget()
+#3 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require()
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(76): SiteController->renderFile()
+#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate()
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput()
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(206): CContentDecorator->run()
+#9 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(300): SiteController->endWidget()
+#10 /home/yuriio/sites/var/www/roombot/protected/views/layouts/column1.php(6): SiteController->endContent()
+#11 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require()
+#12 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#13 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(784): SiteController->renderFile()
+#14 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(33): SiteController->render()
+#15 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#16 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#17 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): SiteController->runAction()
+#18 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#19 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#20 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#21 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#22 /home/yuriio/sites/var/www/roombot/index.php(12): CWebApplication->run()
+REQUEST_URI=/
+2013/12/11 13:08:14 [error] [php] Invalid argument supplied for foreach() (/home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CMenu.php:260)
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(147): CMenu->init()
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(172): SiteController->createWidget()
+#2 /home/yuriio/sites/var/www/roombot/protected/views/layouts/main.php(91): SiteController->widget()
+#3 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require()
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(76): SiteController->renderFile()
+#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate()
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput()
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(206): CContentDecorator->run()
+#9 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(300): SiteController->endWidget()
+#10 /home/yuriio/sites/var/www/roombot/protected/views/layouts/column1.php(6): SiteController->endContent()
+#11 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require()
+#12 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#13 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(784): SiteController->renderFile()
+#14 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(33): SiteController->render()
+#15 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#16 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#17 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): SiteController->runAction()
+#18 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#19 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#20 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#21 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#22 /home/yuriio/sites/var/www/roombot/index.php(12): CWebApplication->run()
+REQUEST_URI=/
+2013/12/11 13:08:15 [error] [php] Invalid argument supplied for foreach() (/home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CMenu.php:260)
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(147): CMenu->init()
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(172): SiteController->createWidget()
+#2 /home/yuriio/sites/var/www/roombot/protected/views/layouts/main.php(91): SiteController->widget()
+#3 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require()
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(76): SiteController->renderFile()
+#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate()
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput()
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(206): CContentDecorator->run()
+#9 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(300): SiteController->endWidget()
+#10 /home/yuriio/sites/var/www/roombot/protected/views/layouts/column1.php(6): SiteController->endContent()
+#11 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require()
+#12 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#13 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(784): SiteController->renderFile()
+#14 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(33): SiteController->render()
+#15 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#16 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#17 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): SiteController->runAction()
+#18 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#19 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#20 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#21 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#22 /home/yuriio/sites/var/www/roombot/index.php(12): CWebApplication->run()
+REQUEST_URI=/
+2013/12/11 13:08:15 [error] [php] Invalid argument supplied for foreach() (/home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CMenu.php:260)
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(147): CMenu->init()
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(172): SiteController->createWidget()
+#2 /home/yuriio/sites/var/www/roombot/protected/views/layouts/main.php(91): SiteController->widget()
+#3 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require()
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(76): SiteController->renderFile()
+#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate()
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput()
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(206): CContentDecorator->run()
+#9 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(300): SiteController->endWidget()
+#10 /home/yuriio/sites/var/www/roombot/protected/views/layouts/column1.php(6): SiteController->endContent()
+#11 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require()
+#12 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#13 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(784): SiteController->renderFile()
+#14 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(33): SiteController->render()
+#15 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#16 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#17 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): SiteController->runAction()
+#18 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#19 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#20 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#21 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#22 /home/yuriio/sites/var/www/roombot/index.php(12): CWebApplication->run()
+REQUEST_URI=/
+2013/12/11 13:08:15 [error] [php] Invalid argument supplied for foreach() (/home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CMenu.php:260)
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(147): CMenu->init()
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(172): SiteController->createWidget()
+#2 /home/yuriio/sites/var/www/roombot/protected/views/layouts/main.php(91): SiteController->widget()
+#3 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require()
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(76): SiteController->renderFile()
+#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate()
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput()
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(206): CContentDecorator->run()
+#9 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(300): SiteController->endWidget()
+#10 /home/yuriio/sites/var/www/roombot/protected/views/layouts/column1.php(6): SiteController->endContent()
+#11 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require()
+#12 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#13 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(784): SiteController->renderFile()
+#14 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(33): SiteController->render()
+#15 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#16 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#17 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): SiteController->runAction()
+#18 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#19 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#20 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#21 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#22 /home/yuriio/sites/var/www/roombot/index.php(12): CWebApplication->run()
+REQUEST_URI=/
+2013/12/11 13:10:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "product/index".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('product/index')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/product/index
+HTTP_REFERER=http://roombot/
+---
+2013/12/11 14:12:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "product/index".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('product/index')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/product/index
+HTTP_REFERER=http://roombot/site/photos
+---
+2013/12/11 14:45:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "product/new".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('product/new')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/product/new?tag=new
+HTTP_REFERER=http://roombot/
+---
+2013/12/11 15:26:10 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::fetchAll(): SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'OFFSET 5' at line 1. Выполнявшийся SQL-запрос: SELECT * FROM `kj28_mobiletags` `t` ORDER BY name ASC OFFSET 5.
+2013/12/11 15:26:10 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'OFFSET 5' at line 1. The SQL statement executed was: SELECT * FROM `kj28_mobiletags` `t` ORDER BY name ASC OFFSET 5' in /home/yuriio/sites/var/www/roombot/yii/framework/db/CDbCommand.php:541
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/db/CDbCommand.php(395): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/db/ar/CActiveRecord.php(1297): CDbCommand->queryAll()
+#2 /home/yuriio/sites/var/www/roombot/yii/framework/db/ar/CActiveRecord.php(1416): CActiveRecord->query(Object(CDbCriteria), true)
+#3 /home/yuriio/sites/var/www/roombot/protected/models/Mobiletags.php(90): CActiveRecord->findAll(Array)
+#4 /home/yuriio/sites/var/www/roombot/protected/views/layouts/main.php(86): Mobiletags->getMenuList()
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require('/home/yuriio/si...')
+#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/yuriio/si...', Array, true)
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(76): CBaseController->renderFile('/home/yuriio/si...', Array, true)
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#9 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#10 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(206): COutputProcessor->run()
+#11 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#12 /home/yuriio/sites/var/www/roombot/protected/views/layouts/column1.php(6): CBaseController->endContent()
+#13 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require('/home/yuriio/si...')
+#14 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/yuriio/si...', Array, true)
+#15 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(784): CBaseController->renderFile('/home/yuriio/si...', Array, true)
+#16 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(33): CController->render('index', 'password')
+#17 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#18 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#19 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#20 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): CController->run('')
+#22 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#23 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#24 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#25 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://roombot/
+---
+2013/12/11 15:28:19 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::fetchAll(): SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'OFFSET 5' at line 1. Выполнявшийся SQL-запрос: SELECT * FROM `kj28_mobiletags` `t` ORDER BY name ASC OFFSET 5.
+2013/12/11 15:28:19 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'OFFSET 5' at line 1. The SQL statement executed was: SELECT * FROM `kj28_mobiletags` `t` ORDER BY name ASC OFFSET 5' in /home/yuriio/sites/var/www/roombot/yii/framework/db/CDbCommand.php:541
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/db/CDbCommand.php(395): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/db/ar/CActiveRecord.php(1297): CDbCommand->queryAll()
+#2 /home/yuriio/sites/var/www/roombot/yii/framework/db/ar/CActiveRecord.php(1416): CActiveRecord->query(Object(CDbCriteria), true)
+#3 /home/yuriio/sites/var/www/roombot/protected/models/Mobiletags.php(90): CActiveRecord->findAll(Array)
+#4 /home/yuriio/sites/var/www/roombot/protected/views/layouts/main.php(86): Mobiletags->getMenuList()
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require('/home/yuriio/si...')
+#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/yuriio/si...', Array, true)
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(76): CBaseController->renderFile('/home/yuriio/si...', Array, true)
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#9 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#10 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(206): COutputProcessor->run()
+#11 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#12 /home/yuriio/sites/var/www/roombot/protected/views/layouts/column1.php(6): CBaseController->endContent()
+#13 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require('/home/yuriio/si...')
+#14 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/yuriio/si...', Array, true)
+#15 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(784): CBaseController->renderFile('/home/yuriio/si...', Array, true)
+#16 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(33): CController->render('index', 'password')
+#17 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#18 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#19 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#20 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): CController->run('')
+#22 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#23 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#24 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#25 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://roombot/
+---
+2013/12/11 15:38:48 [error] [exception.CException] exception 'CException' with message 'В классе CClientScript и его поведениях не найден метод или замыкание с именем "reqisterScript".' in /home/yuriio/sites/var/www/roombot/yii/framework/base/CComponent.php:265
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/protected/views/layouts/main.php(104): CComponent->__call('reqisterScript', Array)
+#1 /home/yuriio/sites/var/www/roombot/protected/views/layouts/main.php(104): CClientScript->reqisterScript('tagmenu', '$('#yw0').menu(...', 1)
+#2 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require('/home/yuriio/si...')
+#3 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/yuriio/si...', Array, true)
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(76): CBaseController->renderFile('/home/yuriio/si...', Array, true)
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(206): COutputProcessor->run()
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#9 /home/yuriio/sites/var/www/roombot/protected/views/layouts/column1.php(6): CBaseController->endContent()
+#10 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require('/home/yuriio/si...')
+#11 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/yuriio/si...', Array, true)
+#12 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(784): CBaseController->renderFile('/home/yuriio/si...', Array, true)
+#13 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(33): CController->render('index', 'password')
+#14 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#15 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#16 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#17 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): CController->run('')
+#19 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#20 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#21 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#22 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://roombot/site/photos
+---
+2013/12/12 12:51:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 12:52:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 12:52:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/ideasbook/index/958918230
+---
+2013/12/12 12:52:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/ideasbook/24
+---
+2013/12/12 12:52:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/mobilepictures/viewinfo/1553
+---
+2013/12/12 12:52:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 12:52:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 12:55:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 12:56:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 12:57:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 12:57:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 12:57:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 12:57:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 12:57:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 12:58:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 14:22:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/ideasbook/index/958918230
+---
+2013/12/12 14:27:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 14:28:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 14:29:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/mobilepictures/viewinfo/1562
+---
+2013/12/12 14:29:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 14:30:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 14:31:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 14:35:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 14:40:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 14:43:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/ideasbook/index/751398232
+---
+2013/12/12 14:43:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/ideasbook/17
+---
+2013/12/12 14:43:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/mobilepictures/viewinfo/1475
+---
+2013/12/12 15:20:23 [warning] [application] Не удалось присвоить небезопасный атрибут "img" класса "Mobilepictures".
+2013/12/12 15:21:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 15:50:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 15:54:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/mobilepictures/viewinfo/1569
+---
+2013/12/12 15:54:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 16:05:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 16:06:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 16:06:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 16:08:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 16:09:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 16:10:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 16:11:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 16:46:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 16:49:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 16:52:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 16:52:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 16:52:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 16:53:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/mobilepictures/viewinfo/1561
+---
+2013/12/12 17:02:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/backend.php/mobilepictures/index
+---
+2013/12/12 17:03:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/backend.php/mobilepictures/search/205
+---
+2013/12/12 17:03:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 17:03:24 [error] [php] Trying to get property of non-object (/home/yuriio/sites/var/www/roombot/protected/views/member/_follower.php:56)
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CListView.php(281): MemberController->renderFile()
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CBaseListView.php(160): CListView->renderItems()
+#2 unknown(0): CListView->renderSection()
+#3 /home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CBaseListView.php(143): preg_replace_callback()
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CBaseListView.php(128): CListView->renderContent()
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(173): CListView->run()
+#6 /home/yuriio/sites/var/www/roombot/protected/views/member/followers.php(157): MemberController->widget()
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require()
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): MemberController->renderInternal()
+#9 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(869): MemberController->renderFile()
+#10 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(782): MemberController->renderPartial()
+#11 /home/yuriio/sites/var/www/roombot/protected/controllers/MemberController.php(330): MemberController->render()
+#12 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): MemberController->actionFollowing()
+#13 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#14 /home/yuriio/sites/var/www/roombot/yii/framework/web/filters/CFilterChain.php(133): MemberController->runAction()
+#15 /home/yuriio/sites/var/www/roombot/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#16 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#17 /home/yuriio/sites/var/www/roombot/yii/framework/web/filters/CInlineFilter.php(58): MemberController->filterAccessControl()
+#18 /home/yuriio/sites/var/www/roombot/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#19 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(291): CFilterChain->run()
+#20 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): MemberController->runActionWithFilters()
+#21 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): MemberController->run()
+#22 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#23 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#24 /home/yuriio/sites/var/www/roombot/index.php(12): CWebApplication->run()
+REQUEST_URI=/member/following
+2013/12/12 17:04:39 [error] [php] Trying to get property of non-object (/home/yuriio/sites/var/www/roombot/protected/views/member/_follower.php:56)
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CListView.php(281): MemberController->renderFile()
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CBaseListView.php(160): CListView->renderItems()
+#2 unknown(0): CListView->renderSection()
+#3 /home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CBaseListView.php(143): preg_replace_callback()
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CBaseListView.php(128): CListView->renderContent()
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(173): CListView->run()
+#6 /home/yuriio/sites/var/www/roombot/protected/views/member/followers.php(157): MemberController->widget()
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require()
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): MemberController->renderInternal()
+#9 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(869): MemberController->renderFile()
+#10 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(782): MemberController->renderPartial()
+#11 /home/yuriio/sites/var/www/roombot/protected/controllers/MemberController.php(330): MemberController->render()
+#12 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): MemberController->actionFollowing()
+#13 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#14 /home/yuriio/sites/var/www/roombot/yii/framework/web/filters/CFilterChain.php(133): MemberController->runAction()
+#15 /home/yuriio/sites/var/www/roombot/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#16 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#17 /home/yuriio/sites/var/www/roombot/yii/framework/web/filters/CInlineFilter.php(58): MemberController->filterAccessControl()
+#18 /home/yuriio/sites/var/www/roombot/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#19 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(291): CFilterChain->run()
+#20 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): MemberController->runActionWithFilters()
+#21 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): MemberController->run()
+#22 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#23 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#24 /home/yuriio/sites/var/www/roombot/index.php(12): CWebApplication->run()
+REQUEST_URI=/member/following
+2013/12/12 17:05:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/958918230
+---
+2013/12/12 17:19:39 [error] [php] include(as.php): failed to open stream: No such file or directory (/home/yuriio/sites/var/www/roombot/yii/framework/YiiBase.php:421)
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/db/ar/CActiveRecord.php(386): spl_autoload_call()
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/CActiveDataProvider.php(74): model()
+#2 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(185): CActiveDataProvider->__construct()
+#3 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionPhotos()
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): SiteController->runAction()
+#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /home/yuriio/sites/var/www/roombot/index.php(12): CWebApplication->run()
+REQUEST_URI=/site/photos?Mobilepictures_page=5
+2013/12/12 17:20:01 [error] [php] include(photos.php): failed to open stream: No such file or directory (/home/yuriio/sites/var/www/roombot/yii/framework/YiiBase.php:421)
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/db/ar/CActiveRecord.php(386): spl_autoload_call()
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/CActiveDataProvider.php(74): model()
+#2 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(185): CActiveDataProvider->__construct()
+#3 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionPhotos()
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): SiteController->runAction()
+#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /home/yuriio/sites/var/www/roombot/index.php(12): CWebApplication->run()
+REQUEST_URI=/site/photos?Mobilepictures_page=5
+2013/12/12 17:20:02 [error] [php] include(photos.php): failed to open stream: No such file or directory (/home/yuriio/sites/var/www/roombot/yii/framework/YiiBase.php:421)
+Stack trace:
+#0 /home/yuriio/sites/var/www/roombot/yii/framework/db/ar/CActiveRecord.php(386): spl_autoload_call()
+#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/CActiveDataProvider.php(74): model()
+#2 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(185): CActiveDataProvider->__construct()
+#3 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionPhotos()
+#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): SiteController->runAction()
+#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /home/yuriio/sites/var/www/roombot/index.php(12): CWebApplication->run()
+REQUEST_URI=/site/photos?Mobilepictures_page=5

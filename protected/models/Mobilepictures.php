@@ -43,7 +43,7 @@ class Mobilepictures extends CActiveRecord
 			array('name, date, image, companyID', 'required','on'=>'add'),
 			array('info', 'safe','on'=>'add'),
 			array('name', 'length', 'max'=>50,'on'=>'add'),
-			array('info, image', 'length', 'max'=>100,'on'=>'add'),
+			array('info, image', 'length', 'max'=>255,'on'=>'add'),
 			array('img', 'file', 'types'=>'jpg, jpeg, png','allowEmpty'=>false,'maxSize' => 1048576, 'tooLarge'=>'Файл не может превышать 1MB', 'on'=>'add'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -75,7 +75,7 @@ class Mobilepictures extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Имя',
-			'info' => 'Информация',
+			'info' => 'Описание',
 			'date' => 'Дата',
 			'image' => 'Файл',
 			'img'=>'Фотография',

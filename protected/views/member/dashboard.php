@@ -177,6 +177,11 @@
         <p style="margin:0px;font-size:11px">*Ссылка на ваш сайти или блог(без http://)</p>
         <?php echo $form->textField($model,'name',array('size'=>34,'maxlength'=>50)); ?> 
         <?php echo $form->error($model,'name'); ?>
+
+        <?php echo $form->labelEx($model,'info'); ?>
+        <p style="margin:0px;font-size:11px">Краткое описание для фотографии</p>
+        <?php echo $form->textArea($model,'info',array('cols'=>27,'rows'=>3)); ?>
+        <?php echo $form->error($model,'info'); ?>
 </div> 
 
         <?php echo $form->fileField($model,'img',array("class"=>"vvv")); ?>

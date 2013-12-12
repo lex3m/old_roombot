@@ -174,12 +174,13 @@ class SiteController extends Controller
             $criteria->params = array(':tagID'=>$tagID);
         }
 
+        // *** Mobilepictures::model()->with('countComments','countIdeasBooks') WRONG COUNTING PAGINATION ***///
         $criteria->order = 'p.id DESC';
         $photos = new CActiveDataProvider(Mobilepictures::model()->with('countComments','countIdeasBooks'),
             array(
                 'criteria'=>$criteria,
                 'pagination'=>array(
-                    'pageSize'=>24,
+                    'pageSize'=>20,
                 ),
             )
         );

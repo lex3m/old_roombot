@@ -5,8 +5,8 @@
 ?>
 
 <?php
-    Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/css/lightbox.css');
-    Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/lightbox-2.6.min.js', CClientScript::POS_END);
+    // Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/css/lightbox.css');
+    // Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/lightbox-2.6.min.js', CClientScript::POS_END);
 
 ?>
 
@@ -18,9 +18,9 @@
     <?php } else { ?>
      Фотографии по запросу "<?php echo $query; ?>"
     <?php } ?>
-    </h1> <h2><?php echo ($tagID !== '') ? 'с тэгом <i>'.Mobiletags::getTagName($tagID).'</i>' : '' ?></h2>
+    </h1>
     <div id="lastPhotosContainer">
-        <ul class="lastPhotosList rb-list-nostyle rb-clearfix">
+        <ul class="lastPhotosList rb-list-nostyle rb-clearfix setka">
         <?php $this->widget('zii.widgets.CListView', array(
         'dataProvider'=>$photos,
         'itemView'=>'_photos',

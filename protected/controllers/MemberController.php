@@ -173,7 +173,6 @@ class MemberController extends Controller
                 $img=CUploadedFile::getInstance($model,'img');
                 $model->img=$img;
                 $model->image = $img;
-                $model->info='';
                 $model->date=date('Y-m-d');
                 $model->companyID=$member->id;
                 if ($model->validate()) 
@@ -190,9 +189,7 @@ class MemberController extends Controller
                          $this->refresh();
                     }
                 }
-              }
-              //  Yii::app()->user->setFlash('success', "Изображения были успешно загружены.");
-               // $this->refresh();
+          }
                 
             $criteria = new CDbCriteria();
             $criteria->condition = 'companyID=:id';

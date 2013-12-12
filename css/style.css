@@ -671,7 +671,7 @@ img.photo-img{
     background: url("../images/4el.png") no-repeat scroll right 0 transparent;
     border-left: 1px dotted #FFFFFF;
     float: right;
-    height: 90px;
+    height: 145px;
     margin-top: 10px;
     padding-left: 30px;
     padding-top: 42px;
@@ -1515,7 +1515,8 @@ div.followerTextDiv a {
     padding-top: 0;
 }
 .lastPhotos__item {
-    clear: both;
+    /*clear: both;*/
+    float: left;
     padding-top: 16px;
 }
 
@@ -1672,4 +1673,188 @@ a.rb-ministats {
 {
     background:url("../images/album_small.png") left top;
 }
+
+/* Galereya setka ----------------------------------------------- */
+.items {
+    overflow: hidden;
+}
+ul#yw1 {
+    display: inline-block;
+    padding: 20px;
+    position: relative;
+    text-align: center;
+    width: 650px;
+
+}
+ul.setka {
+    padding-left: 8px !important;
+    width: 710px;
+}
+#lastPhotosContainer ul.setka div#yw0.list-view div.items li.lastPhotos__item {
+    margin-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px !important;
+}
+#lastPhotosContainer ul.setka div#yw0.list-view div.items li.lastPhotos__item div.lastPhotosElement {
+    border-bottom: 1px solid #687388 !important;
+    padding-bottom: 10px !important;
+    padding-top: 0 !important;
+    margin-bottom: 8px;
+}
+
+#lastPhotosContainer ul.setka div#yw0.list-view div.items li.lastPhotos__item div.lastPhotosElement a.photoImgPreview {
+    float: none;
+    margin-right: 0 !important;
+}
+#lastPhotosContainer ul.setka div#yw0.list-view div.items li.lastPhotos__item div.lastPhotosElement a.photoImgPreview img.image__full {
+    height: 155px !important;
+    width: 155px !important; 
+}
+#lastPhotosContainer ul.setka div#yw0.list-view div.items li.lastPhotos__item div.lastPhotosElement div.rb-media-content {
+    width: 155px;
+}
+#lastPhotosContainer ul.setka div#yw0.list-view div.items li.lastPhotos__item div.lastPhotosElement div.rb-media-content h2.photoElement__title a.rb-dark-link {
+    font-size: 12px;
+}
+
+/* Spoyler ------------------------------------------------------------------------- */
+
+
+ #module{
+    background: none repeat scroll 0 0 #FFFFFF;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    display: none;
+    height: auto;
+    left: 3%;
+    overflow: auto;
+    padding: 14px 0 14px 10px;
+    position: absolute;
+    right: 30px;
+    top: 46px;
+    width: 94%;
+    z-index: 1;
+}
+#close{
+    cursor: pointer;
+    position: absolute;
+    right: 28px;
+    top: 15px;
+    z-index: 10;
+}
+
+.spoiler_container {
+
+}
+
+.spoiler-content-1 {
+    float: left;
+    margin-right: 1%;
+    overflow-x: hidden;
+    width: 70%;
+
+}
+.spoiler-content-1 img {
+
+
+}
+.gallery-sliger {
+
+}
+a.gallery-nav-left{
+    float: left;
+    top: 300px;
+    padding-right: 12px;
+    padding-top: 290px;
+    display: inline-block;
+}
+a.gallery-nav-right {
+    float: right;
+    top: 300px;
+    padding-left: 12px;
+    padding-top: 290px;
+    display: inline-block;
+}
+.usfot {
+    float: left;
+    max-width: 90%;
+    overflow: hidden;
+}
+.sotcial {
+    bottom: 0;
+    position: absolute;
+    width: 500px;
+}
+.stats-left {
+    float: left;
+}
+.sotssety {
+    background: none repeat scroll 0 0 #D8E4ED;
+    float: right;
+    padding: 0 15px;
+}
+.spoiler-content-2 {
+    float: right;
+    height: 600px;
+    overflow: hidden;
+    width: 29%;
+
+}
+.scroll-content2 {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+}
+.awtor {
+    height: 62px;
+    padding-bottom: 10px;
+}
+.awtor img {
+    float: left;
+    padding-right: 10px;
+}
+.awtor h2.photoElement__title a.rb-dark-link {
+    font-size: 14px; 
+}
+div.foto-nazwa {
+    padding-bottom: 10px;
+}
+div.spoiler-content-2 div.scroll-content2 div.info-foto div.foto-nazwa h3 {
+     margin-bottom: 7px !important;
+}
+.spoiler-content-2 p {
+    border-bottom: 1px solid #BAD5E6;
+    margin-bottom: 3px !important;
+    padding-bottom: 3px;
+}
+.spoiler-content-2 div.scroll-content2 div.foto-kommentariy div.komments-users span.user h4 {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 3px !important;
+}
+.spoiler-content-2 div.scroll-content2 div.info-foto div.foto-tegi span strong {
+    padding-right:10px;
+}
+.spoiler-content-2 div.scroll-content2 div.foto-kommentariy div.foto-kom-info {
+    background: none repeat scroll 0 0 #E2F1F9;
+    padding: 2px 15px;
+    margin: 8px 0;
+}
+.spoiler-content-2 div.scroll-content2 div.foto-kommentariy div.foto-kom-info a {
+    float: right;
+}
+
+
+/* Usercomment ----------------------------------------- */
+.napisat-komment {
+
+}
+.spoiler-content-2 div.scroll-content2 div.foto-kommentariy div.napisat-komment table.table-comment tbody tr td form#usercomment span {
+     font-weight: bold;
+}
+
+input.opublik {
+    margin-top:15px;
+}
+
 /*********end action photos*********/
