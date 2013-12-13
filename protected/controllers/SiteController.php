@@ -276,4 +276,41 @@ class SiteController extends Controller
             throw new CHttpException(404,'Страница не существует.');
         }
     }
+
+    public function actionAjaxGetPhoto()
+    {
+        if(Yii::app()->request->isAjaxRequest) {
+            $photoID = intval($_POST['photoID']);
+            $model = Mobilepictures::model()->with('taglinks','member')->findbyPk($photoID);
+            $comments = Comments::model()->with('member','countlikes')->findAll('photoID=:photoID',array(':photoID'=>$model->id));
+            $member= Member::model()->findbyPK($model->companyID);
+            $z=0;
+            $tags_arr = array();
+            $tagNameArray= array();
+            foreach ($model->taglinks as $link)
+            {
+                $tags_arr[$z] = Mobiletags::model()->findbyPk($link->tagId);
+                $z++;
+            }
+            $k=0;
+            foreach($tags_arr as $tag)
+            {
+                $tagNameArray[$k] = $tag->name;
+                $k++;
+            }
+            $this->setPageTitle('Roombot - Фото '.$model->name.'. Теги: '.implode(", ",$tagNameArray));
+
+            $this->renderPartial('photospoiler',array(
+                'model'=>$model,
+                'tags'=>$tags_arr,
+                'member'=>$member,
+                'comments'=>$comments,
+                'tagNameArray'=>$tagNameArray
+            ));
+            Yii::app()->end();
+
+        } else {
+            throw new CHttpException(400,'Некорректный запрос');
+        }
+    }
 }
