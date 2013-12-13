@@ -8485,272 +8485,309 @@ Stack trace:
 REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
 HTTP_REFERER=http://roombot/member/dashboard/958918230
 ---
-2013/12/12 15:54:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+2013/12/12 17:02:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/css/base/jquery-ui.css".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
 #3 {main}
-REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
-HTTP_REFERER=http://roombot/mobilepictures/viewinfo/1569
+REQUEST_URI=/assets/97f900df/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/126542585
 ---
-2013/12/12 15:54:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+2013/12/12 17:02:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/js/jquery-ui.min.js".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
 #3 {main}
-REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
-HTTP_REFERER=http://roombot/member/dashboard/958918230
+REQUEST_URI=/assets/97f900df/jui/js/jquery-ui.min.js
+HTTP_REFERER=http://roombot/member/dashboard/126542585
 ---
-2013/12/12 16:05:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+2013/12/12 17:02:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/css/base/jquery-ui.css".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
 #3 {main}
-REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
-HTTP_REFERER=http://roombot/member/dashboard/958918230
+REQUEST_URI=/assets/97f900df/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/126542585
 ---
-2013/12/12 16:06:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+2013/12/12 17:02:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/js/jquery-ui.min.js".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
 #3 {main}
-REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
-HTTP_REFERER=http://roombot/member/dashboard/958918230
+REQUEST_URI=/assets/97f900df/jui/js/jquery-ui.min.js
+HTTP_REFERER=http://roombot/member/dashboard/126542585
 ---
-2013/12/12 16:06:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+2013/12/12 17:33:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/css/base/jquery-ui.css".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
 #3 {main}
-REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
-HTTP_REFERER=http://roombot/member/dashboard/958918230
+REQUEST_URI=/assets/97f900df/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/126542585
 ---
-2013/12/12 16:08:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+2013/12/12 17:33:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/js/jquery-ui.min.js".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
 #3 {main}
-REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
-HTTP_REFERER=http://roombot/member/dashboard/958918230
+REQUEST_URI=/assets/97f900df/jui/js/jquery-ui.min.js
+HTTP_REFERER=http://roombot/member/dashboard/126542585
 ---
-2013/12/12 16:09:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+2013/12/12 17:39:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/css/base/jquery-ui.css".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
 #3 {main}
-REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
-HTTP_REFERER=http://roombot/member/dashboard/958918230
+REQUEST_URI=/assets/97f900df/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/126542585
 ---
-2013/12/12 16:10:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+2013/12/12 17:39:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/js/jquery-ui.min.js".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
 #3 {main}
-REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
-HTTP_REFERER=http://roombot/member/dashboard/958918230
+REQUEST_URI=/assets/97f900df/jui/js/jquery-ui.min.js
+HTTP_REFERER=http://roombot/member/dashboard/126542585
 ---
-2013/12/12 16:11:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+2013/12/12 17:40:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/css/base/jquery-ui.css".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
 #3 {main}
-REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
-HTTP_REFERER=http://roombot/member/dashboard/958918230
+REQUEST_URI=/assets/97f900df/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/126542585
 ---
-2013/12/12 16:46:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+2013/12/12 17:40:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/js/jquery-ui.min.js".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
 #3 {main}
-REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
-HTTP_REFERER=http://roombot/member/dashboard/958918230
+REQUEST_URI=/assets/97f900df/jui/js/jquery-ui.min.js
+HTTP_REFERER=http://roombot/member/dashboard/126542585
 ---
-2013/12/12 16:49:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+2013/12/12 17:41:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/css/base/jquery-ui.css".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
 #3 {main}
-REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
-HTTP_REFERER=http://roombot/member/dashboard/958918230
+REQUEST_URI=/assets/97f900df/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/126542585
 ---
-2013/12/12 16:52:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+2013/12/12 17:41:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/js/jquery-ui.min.js".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
 #3 {main}
-REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
-HTTP_REFERER=http://roombot/member/dashboard/958918230
+REQUEST_URI=/assets/97f900df/jui/js/jquery-ui.min.js
+HTTP_REFERER=http://roombot/member/dashboard/126542585
 ---
-2013/12/12 16:52:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+2013/12/12 17:41:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/css/base/jquery-ui.css".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
 #3 {main}
-REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
-HTTP_REFERER=http://roombot/member/dashboard/958918230
+REQUEST_URI=/assets/97f900df/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/126542585
 ---
-2013/12/12 16:52:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+2013/12/12 17:41:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/js/jquery-ui.min.js".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
 #3 {main}
-REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
-HTTP_REFERER=http://roombot/member/dashboard/958918230
+REQUEST_URI=/assets/97f900df/jui/js/jquery-ui.min.js
+HTTP_REFERER=http://roombot/member/dashboard/126542585
 ---
-2013/12/12 16:53:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+2013/12/12 17:43:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/css/base/jquery-ui.css".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
 #3 {main}
-REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
-HTTP_REFERER=http://roombot/mobilepictures/viewinfo/1561
+REQUEST_URI=/assets/97f900df/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/126542585
 ---
-2013/12/12 17:02:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+2013/12/12 17:43:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/js/jquery-ui.min.js".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
 #3 {main}
-REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
-HTTP_REFERER=http://roombot/backend.php/mobilepictures/index
+REQUEST_URI=/assets/97f900df/jui/js/jquery-ui.min.js
+HTTP_REFERER=http://roombot/member/dashboard/126542585
 ---
-2013/12/12 17:03:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+2013/12/12 17:44:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/css/base/jquery-ui.css".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
 #3 {main}
-REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
-HTTP_REFERER=http://roombot/backend.php/mobilepictures/search/205
+REQUEST_URI=/assets/97f900df/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/126542585
 ---
-2013/12/12 17:03:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
+2013/12/12 17:44:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/js/jquery-ui.min.js".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
 #3 {main}
-REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
-HTTP_REFERER=http://roombot/member/dashboard/958918230
+REQUEST_URI=/assets/97f900df/jui/js/jquery-ui.min.js
+HTTP_REFERER=http://roombot/member/dashboard/126542585
 ---
-2013/12/12 17:03:24 [error] [php] Trying to get property of non-object (/home/yuriio/sites/var/www/roombot/protected/views/member/_follower.php:56)
+2013/12/12 17:45:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/css/base/jquery-ui.css".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CListView.php(281): MemberController->renderFile()
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CBaseListView.php(160): CListView->renderItems()
-#2 unknown(0): CListView->renderSection()
-#3 /home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CBaseListView.php(143): preg_replace_callback()
-#4 /home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CBaseListView.php(128): CListView->renderContent()
-#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(173): CListView->run()
-#6 /home/yuriio/sites/var/www/roombot/protected/views/member/followers.php(157): MemberController->widget()
-#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require()
-#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): MemberController->renderInternal()
-#9 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(869): MemberController->renderFile()
-#10 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(782): MemberController->renderPartial()
-#11 /home/yuriio/sites/var/www/roombot/protected/controllers/MemberController.php(330): MemberController->render()
-#12 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): MemberController->actionFollowing()
-#13 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
-#14 /home/yuriio/sites/var/www/roombot/yii/framework/web/filters/CFilterChain.php(133): MemberController->runAction()
-#15 /home/yuriio/sites/var/www/roombot/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
-#16 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
-#17 /home/yuriio/sites/var/www/roombot/yii/framework/web/filters/CInlineFilter.php(58): MemberController->filterAccessControl()
-#18 /home/yuriio/sites/var/www/roombot/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
-#19 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(291): CFilterChain->run()
-#20 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): MemberController->runActionWithFilters()
-#21 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): MemberController->run()
-#22 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
-#23 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#24 /home/yuriio/sites/var/www/roombot/index.php(12): CWebApplication->run()
-REQUEST_URI=/member/following
-2013/12/12 17:04:39 [error] [php] Trying to get property of non-object (/home/yuriio/sites/var/www/roombot/protected/views/member/_follower.php:56)
-Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CListView.php(281): MemberController->renderFile()
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CBaseListView.php(160): CListView->renderItems()
-#2 unknown(0): CListView->renderSection()
-#3 /home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CBaseListView.php(143): preg_replace_callback()
-#4 /home/yuriio/sites/var/www/roombot/yii/framework/zii/widgets/CBaseListView.php(128): CListView->renderContent()
-#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(173): CListView->run()
-#6 /home/yuriio/sites/var/www/roombot/protected/views/member/followers.php(157): MemberController->widget()
-#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(126): require()
-#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/CBaseController.php(95): MemberController->renderInternal()
-#9 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(869): MemberController->renderFile()
-#10 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(782): MemberController->renderPartial()
-#11 /home/yuriio/sites/var/www/roombot/protected/controllers/MemberController.php(330): MemberController->render()
-#12 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): MemberController->actionFollowing()
-#13 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
-#14 /home/yuriio/sites/var/www/roombot/yii/framework/web/filters/CFilterChain.php(133): MemberController->runAction()
-#15 /home/yuriio/sites/var/www/roombot/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
-#16 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
-#17 /home/yuriio/sites/var/www/roombot/yii/framework/web/filters/CInlineFilter.php(58): MemberController->filterAccessControl()
-#18 /home/yuriio/sites/var/www/roombot/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
-#19 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(291): CFilterChain->run()
-#20 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): MemberController->runActionWithFilters()
-#21 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): MemberController->run()
-#22 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
-#23 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#24 /home/yuriio/sites/var/www/roombot/index.php(12): CWebApplication->run()
-REQUEST_URI=/member/following
-2013/12/12 17:05:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/437780b8/jui/css/base/jquery-ui.css".' in /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php:286
-Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/437780b8...')
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/yuriio/sites/var/www/roombot/index.php(12): CApplication->run()
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
 #3 {main}
-REQUEST_URI=/assets/437780b8/jui/css/base/jquery-ui.css
-HTTP_REFERER=http://roombot/member/dashboard/958918230
+REQUEST_URI=/assets/97f900df/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/126542585
 ---
-2013/12/12 17:19:39 [error] [php] include(as.php): failed to open stream: No such file or directory (/home/yuriio/sites/var/www/roombot/yii/framework/YiiBase.php:421)
+2013/12/12 17:45:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/js/jquery-ui.min.js".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/db/ar/CActiveRecord.php(386): spl_autoload_call()
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/CActiveDataProvider.php(74): model()
-#2 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(185): CActiveDataProvider->__construct()
-#3 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionPhotos()
-#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
-#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): SiteController->runAction()
-#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
-#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): SiteController->run()
-#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
-#9 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#10 /home/yuriio/sites/var/www/roombot/index.php(12): CWebApplication->run()
-REQUEST_URI=/site/photos?Mobilepictures_page=5
-2013/12/12 17:20:01 [error] [php] include(photos.php): failed to open stream: No such file or directory (/home/yuriio/sites/var/www/roombot/yii/framework/YiiBase.php:421)
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/97f900df/jui/js/jquery-ui.min.js
+HTTP_REFERER=http://roombot/member/dashboard/126542585
+---
+2013/12/12 17:48:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/css/base/jquery-ui.css".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/db/ar/CActiveRecord.php(386): spl_autoload_call()
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/CActiveDataProvider.php(74): model()
-#2 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(185): CActiveDataProvider->__construct()
-#3 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionPhotos()
-#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
-#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): SiteController->runAction()
-#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
-#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): SiteController->run()
-#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
-#9 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#10 /home/yuriio/sites/var/www/roombot/index.php(12): CWebApplication->run()
-REQUEST_URI=/site/photos?Mobilepictures_page=5
-2013/12/12 17:20:02 [error] [php] include(photos.php): failed to open stream: No such file or directory (/home/yuriio/sites/var/www/roombot/yii/framework/YiiBase.php:421)
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/97f900df/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/126542585
+---
+2013/12/12 17:48:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/js/jquery-ui.min.js".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
 Stack trace:
-#0 /home/yuriio/sites/var/www/roombot/yii/framework/db/ar/CActiveRecord.php(386): spl_autoload_call()
-#1 /home/yuriio/sites/var/www/roombot/yii/framework/web/CActiveDataProvider.php(74): model()
-#2 /home/yuriio/sites/var/www/roombot/protected/controllers/SiteController.php(185): CActiveDataProvider->__construct()
-#3 /home/yuriio/sites/var/www/roombot/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionPhotos()
-#4 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
-#5 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(286): SiteController->runAction()
-#6 /home/yuriio/sites/var/www/roombot/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
-#7 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(282): SiteController->run()
-#8 /home/yuriio/sites/var/www/roombot/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
-#9 /home/yuriio/sites/var/www/roombot/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#10 /home/yuriio/sites/var/www/roombot/index.php(12): CWebApplication->run()
-REQUEST_URI=/site/photos?Mobilepictures_page=5
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/97f900df/jui/js/jquery-ui.min.js
+HTTP_REFERER=http://roombot/member/dashboard/126542585
+---
+2013/12/12 17:50:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/css/base/jquery-ui.css".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/97f900df/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/126542585
+---
+2013/12/12 17:50:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/js/jquery-ui.min.js".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/97f900df/jui/js/jquery-ui.min.js
+HTTP_REFERER=http://roombot/member/dashboard/126542585
+---
+2013/12/12 17:55:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/css/base/jquery-ui.css".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/97f900df/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/126542585
+---
+2013/12/12 17:55:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/js/jquery-ui.min.js".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/97f900df/jui/js/jquery-ui.min.js
+HTTP_REFERER=http://roombot/member/dashboard/126542585
+---
+2013/12/12 17:55:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/css/base/jquery-ui.css".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/97f900df/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/126542585
+---
+2013/12/12 17:55:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/js/jquery-ui.min.js".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/97f900df/jui/js/jquery-ui.min.js
+HTTP_REFERER=http://roombot/member/dashboard/126542585
+---
+2013/12/12 17:58:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/css/base/jquery-ui.css".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/97f900df/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/126542585
+---
+2013/12/12 17:58:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/js/jquery-ui.min.js".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/97f900df/jui/js/jquery-ui.min.js
+HTTP_REFERER=http://roombot/member/dashboard/126542585
+---
+2013/12/12 17:58:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/css/base/jquery-ui.css".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/97f900df/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/126542585
+---
+2013/12/12 17:58:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/js/jquery-ui.min.js".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/97f900df/jui/js/jquery-ui.min.js
+HTTP_REFERER=http://roombot/member/dashboard/126542585
+---
+2013/12/13 09:18:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/css/base/jquery-ui.css".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/97f900df/jui/css/base/jquery-ui.css
+HTTP_REFERER=http://roombot/member/dashboard/126542585
+---
+2013/12/13 09:18:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/97f900df/jui/js/jquery-ui.min.js".' in D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\OpenServer\domains\roombot\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/97f900df...')
+#1 D:\OpenServer\domains\roombot\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\OpenServer\domains\roombot\index.php(12): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/97f900df/jui/js/jquery-ui.min.js
+HTTP_REFERER=http://roombot/member/dashboard/126542585
+---

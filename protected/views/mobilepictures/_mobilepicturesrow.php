@@ -22,15 +22,6 @@
 <div id="company_photo" style="margin-bottom:10px;" class="" name="<?php echo $data->id; ?>">
          <a href="/mobilepictures/viewinfo/<?php echo $data->id; ?>" target="_blank"><img width="100px" height="100px" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $data->image; ?>" class="photo-img"></a>
          <a href="/mobilepictures/delete" target="<?php echo $data->id; ?>" id="delete_picture" title="Удалить"><img width="12px" height="12px" src="<?php echo Yii::app()->baseUrl; ?>/images/site/delete_icon.png" style="float:left"></a>
-        <?php if (!empty($data->info)):?>
-            <div style="margin-left:20px;" class="izo-tegi">
-                <span class="tegss">Описание:</span>
-                <?php echo $data->info; ?>
-            </div>
-        <?php endif; ?>
-         <div style="margin-left:20px;" class="izo-tegi">
-             <span class="tegss">Описание:</span>
-         </div>
          <div style="margin-left:20px;" class="izo-tegi">
              <span class="tegss">Теги:</span>
              <div id="tags<?php echo $data->id; ?>" class="tag_box">

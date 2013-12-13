@@ -35,12 +35,6 @@
          <?php if (Yii::app()->user->id == $member->id): ?>
             <a href="<?php echo Yii::app()->createUrl('mobilepictures/viewinfo',array('id'=>$data->id)); ?>" target="<?php echo $data->id; ?>" id="delete_picture" title="Удалить"><img width="12px" height="12px" src="<?php echo Yii::app()->baseUrl; ?>/images/site/delete_icon.png" style="float:left"></a>
          <?php endif; ?>
-         <?php if (!empty($data->info)):?>
-             <div style="margin-left:20px;" class="izo-tegi">
-                <span class="tegss">Описание:</span>
-                <?php echo $data->info; ?>
-            </div>
-        <?php endif; ?>
          <div style="margin-left:20px;" class="izo-tegi">
              <span class="tegss">Теги:</span>
              <div id="tags<?php echo $data->id; ?>" class="tag_box">

@@ -91,10 +91,10 @@ class Mobiletags extends CActiveRecord
         $tags= $this->findAll(array('order'=>'name ASC', 'limit'=>$count - 5, 'offset'=>5));
 
         foreach($tags as $tag) {
-            $items2 [] = array('label'=>$tag->name, 'url'=>Yii::app()->createUrl('site/photos', array('id'=>$tag->id, 'name'=>$tag->name_en)));
+            $items2 [] = array('label'=>$tag->name, 'url'=>Yii::app()->createUrl('site/photos', array('id'=>$tag->id, 'name'=>$tag->name_en)));            
         }
         $items['items'] =  array('label'=>'Еще...', 'url'=>'#',
-                                'items'=>$items2,
+                                'items'=>$items2,                                
                             );
 
         return $items;

@@ -153,50 +153,72 @@ top: 6px;
     top: 15px;
 }
 
-/*** Tags menu ***/
+/* Werh tags-menu ----------------------------------------------------------- */
+
 #tags-menu
 {
-    background: #222;
+    background: none repeat scroll 0 0 #222222;
+    border: 1px solid #2A2A2A;
     border-radius: 2px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
+    height: 44px;
+    margin-left: 24px;
     margin-top: -2px !important;
-    border: 1px solid #2a2a2a;
+    position: relative;
+    text-align: center;
     width: 943px;
-    margin-left:24px;
 }
 
-#tags-menu ul
-{
-    padding:6px 20px 5px 20px;
-    margin:0px;
+#tags-menu ul.tags-menu1 {
+    display: inline-block;
+    list-style: none outside none;
+    margin: 0;
+    padding: 6px 0 0;
 }
+#tags-menu ul.tags-menu1 li {
+    display: inline-block;
+    float: left;
 
-#tags-menu ul li
-{
-    display: inline;
 }
-
-#tags-menu ul li a
-{
-    color:#ffffff;
-    background-color:transparent;
-    font-size:12px;
-    font-weight:bold;
-    text-decoration:none;
-    padding:5px 8px;
+#tags-menu ul.tags-menu1 li a {
+    color: #E3EBF2;
+    display: inline-block;
+    font-size: 14px;
+    padding: 6px 25px 15px;
 }
-
-#tags-menu ul li a:hover, #tags-menu ul li.active a
-{
-    color: #000;
-    background-color:#EFF4FA;
-    text-decoration:none;
+#tags-menu ul.tags-menu1 li a:hover, #tags-menu ul.tags-menu1 li a:active, #tags-menu ul.tags-menu1 li a:focus {
+    color: #FF4C00;
 }
-
-.moreItems ul {
+#tags-menu ul.tags-menu1 li.moreItems ul {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.79);
     display: none;
+    left: 50%;
+    list-style: none outside none;
+    margin-left: -476px;
+    padding: 8px 15px 15px;
+    position: absolute;
+    text-align: left;
+    width: 925px;
+    z-index: 9999;
 }
+#tags-menu ul.tags-menu1 li.moreItems:hover ul, #tags-menu ul.tags-menu1 li.moreItems:active ul, #tags-menu ul.tags-menu1 li.moreItems:focus ul {
+     display: block;
+}
+#tags-menu ul.tags-menu1 li.moreItems ul li {
+    display: inline-block;
+    float: left;
+
+    
+}
+#tags-menu ul.tags-menu1 li.moreItems ul li a {
+    color: #E3EBF2;
+    display: inline-block;
+    font-size: 14px;
+    padding: 6px 10px 5px; 
+}
+#tags-menu ul.tags-menu1 li.moreItems ul li a:hover,  #tags-menu ul.tags-menu1 li.moreItems ul li a:active, #tags-menu ul.tags-menu1 li.moreItems ul li a:focus {
+    color: #FF4C00;
+}
+
 /*** end tags menu***/
 
 .quicksearch__submit {
@@ -251,6 +273,7 @@ input[type="search"] {
 
 .header__logo{
 	padding: 0px 10px 0px 10px;
+    margin: 0 !important;
 }
   
 .header__applink{
@@ -1807,7 +1830,6 @@ a.gallery-nav-right {
 }
 .awtor {
     height: 62px;
-    padding-bottom: 10px;
 }
 .awtor img {
     float: left;
@@ -1815,9 +1837,6 @@ a.gallery-nav-right {
 }
 .awtor h2.photoElement__title a.rb-dark-link {
     font-size: 14px; 
-}
-div.foto-nazwa {
-    padding-bottom: 10px;
 }
 div.spoiler-content-2 div.scroll-content2 div.info-foto div.foto-nazwa h3 {
      margin-bottom: 7px !important;

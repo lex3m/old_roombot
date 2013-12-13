@@ -173,7 +173,7 @@ $(function(){
 
         <div class="rb-media-content">
                 <h2 class="photoElement__title">
-                    <a  href="<?php echo Yii::app()->createUrl('mobilepictures/viewinfo',array('id'=>$data->id)); ?>" class="rb-dark-link" title="Visit timewriter’s profile"><?php echo $data->name; ?></a>
+                    <a  href="#<?php //echo Yii::app()->createUrl('mobilepictures/viewinfo',array('id'=>$data->id)); ?>" class="rb-dark-link" title="Visit timewriter’s profile"><?php echo $data->name; ?></a>
                 </h2>
                 <a href="<?php echo Yii::app()->createUrl('member/dashboard',array('id'=>$data->memberUrlID)); ?>"><h3 class="photoElement__details rb-type-light"><?php echo $data->memberLogin; ?></h3></a>
                 <div class="photoElement__stats">

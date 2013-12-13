@@ -85,12 +85,14 @@
          <div id="tags-menu">
              <?php $this->widget('TagMenu',array(
                     'lastItemCssClass'=>'moreItems',
-                    'items'=> Mobiletags::model()->getMenuList()
+                    'items'=> Mobiletags::model()->getMenuList(),
+                    'htmlOptions'=>array('class'=>'tags-menu1'),
+
              ));
              ?>
          </div>
          <?php
-              Yii::app()->clientScript->registerScript("tag-menu", " $('#tags-menu ul').menu();", CClientScript::POS_LOAD);
+              //Yii::app()->clientScript->registerScript("tag-menu", " $('#tags-menu ul').menu();", CClientScript::POS_LOAD);
          ?>
         <?php echo $content; ?>
 
