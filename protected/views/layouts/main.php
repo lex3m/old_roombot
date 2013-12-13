@@ -92,7 +92,7 @@
              ?>
          </div>
          <?php
-              //Yii::app()->clientScript->registerScript("tag-menu", " $('#tags-menu ul').menu();", CClientScript::POS_LOAD);
+                //Yii::app()->clientScript->registerScript("tag-menu", " $('#tags-menu ul').menu();", CClientScript::POS_LOAD);
          ?>
         <?php echo $content; ?>
 
