@@ -1806,16 +1806,17 @@ a.gallery-nav-right {
 }
 .sotcial {
     bottom: 0;
-    position: absolute;
+    /*position: absolute;*/
     width: 500px;
 }
 .stats-left {
     float: left;
 }
 .sotssety {
-    background: none repeat scroll 0 0 #D8E4ED;
+    /*background: none repeat scroll 0 0 #D8E4ED;*/
     float: right;
-    padding: 0 15px;
+    /*padding: 0 15px;*/
+    margin-bottom: 2px;
 }
 .spoiler-content-2 {
     float: right;
@@ -1878,4 +1879,43 @@ input.opublik {
     margin-top:15px;
 }
 
+.graybutton {
+    padding: 3px 6px;
+
+}
+.graybutton span.addBookmarkLink {
+    float: left;
+    cursor: pointer;
+    height: 20px;
+    margin-top: 3px;
+    margin-left: 2px;
+}
+.graybuttonIcon {
+    float: left;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    margin-top: 3px;
+}
+
+.addPhotoToIdeasBookBtn, .tmpInfoBtn {
+    cursor: pointer;
+}
+
+.phtError {
+    display: none;
+    color: #ff0000;
+}
+
+div.loading {
+    background-color: #eee;
+    background-image: url('../images/loading_icon.gif');
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 1;
+}
+
+div.loading * {
+    opacity: .8;
+}
 /*********end action photos*********/

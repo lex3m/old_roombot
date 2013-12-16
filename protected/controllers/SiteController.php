@@ -281,6 +281,9 @@ class SiteController extends Controller
     {
         if(Yii::app()->request->isAjaxRequest) {
             $photoID = intval($_POST['photoID']);
+            $nextPhotoID = isset($_POST['nextPhotoID']) ? intval($_POST['nextPhotoID']) : "";
+            $prevPhotoID = isset ($_POST['prevPhotoID']) ? intval($_POST['prevPhotoID']) : "";
+
             $model = Mobilepictures::model()->with('taglinks','member')->findbyPk($photoID);
             $comments = Comments::model()->with('member','countlikes')->findAll('photoID=:photoID',array(':photoID'=>$model->id));
             $member= Member::model()->findbyPK($model->companyID);
@@ -305,8 +308,10 @@ class SiteController extends Controller
                 'tags'=>$tags_arr,
                 'member'=>$member,
                 'comments'=>$comments,
-                'tagNameArray'=>$tagNameArray
-            ));
+                'tagNameArray'=>$tagNameArray,
+                'nextPhoto'=>$nextPhotoID,
+                'prevPhoto'=>$prevPhotoID
+            ), false, true);
             Yii::app()->end();
 
         } else {

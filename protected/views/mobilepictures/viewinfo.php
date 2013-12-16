@@ -34,10 +34,9 @@
                        <?php echo $model->countLikes; ?>
                     </button>
                     <!-- <a class="rb-button rb-button-download rb-button-medium rb-button-responsive" tabindex="0" title="Download this track (196.6MB)" download="The Labyrinth #17 - Roots of &quot;Reality&quot; Part 1 -">Загрузить</a>-->
-                    </div>
-
-            </div> </div>
-
+                </div>
+            </div>
+        </div>
     </div>
 <?php } ?>
 
@@ -48,7 +47,7 @@
         <div id="<?php echo $comment->id; ?>" class="commentBodyContent">
             <div class="commentThumb">
                 <a  href="<?php echo Yii::app()->createUrl('member/dashboard',array('id'=>$comment->member->urlID)); ?>" class="userAvatar">
-                    <img src="<?php echo Yii::app()->baseUrl; ?>/images/members/avatars/<?php echo Memberinfo::model()->findbyPk($comment->member->id)->avatar; ?>"></a>
+                <img src="<?php echo Yii::app()->baseUrl; ?>/images/members/avatars/<?php echo Memberinfo::model()->findbyPk($comment->member->id)->avatar; ?>"></a>
             </div>      
             <div class="comment-actions">
                 <?php if($comment->member->id == Yii::app()->user->id): ?>

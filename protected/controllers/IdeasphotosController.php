@@ -57,7 +57,11 @@ class IdeasphotosController extends Controller
                 $json_data = array ('id'=>$ideaPhoto->id);
                 echo json_encode($json_data);
             }
+        } else {
+            $json_data = array ('id'=>'');
+            echo json_encode($json_data);
         }
+
     }
 
     public function actionDelete()
