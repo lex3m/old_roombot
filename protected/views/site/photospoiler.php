@@ -110,77 +110,87 @@
                     <?php endif;?>
                 </div>
             </div>
-            <?php if ($model->countComments > 0): ?>
-                <div class="foto-kommentariy">
+            <div class="foto-kommentariy">
+                <?php if ($model->countComments > 0): ?>
                     <div class="foto-kom-info">
-                    <span><?php echo Yii::t('app', '{n} комментарий|{n} комментария|{n} комментариев|{n} комментариев', $model->countComments); ?></span>
-                    <?php if($model->countComments > 10): ?> <a href="#">Показать все</a> <?php endif; ?>
-                </div>
-                <?php $this->widget('ext.timeago.JTimeAgo', array('selector' => ' .timeago',));   ?>
+                        <span><?php echo Yii::t('app', '{n} комментарий|{n} комментария|{n} комментариев|{n} комментариев', $model->countComments); ?></span>
+                        <?php if($model->countComments > 5): ?> <a class="showAllComments" id="<?php echo $model->id; ?>" href="#">Показать все</a> <?php endif; ?>
+                    </div>
+                    <?php $this->widget('ext.timeago.JTimeAgo', array('selector' => ' .timeago',));   ?>
                     <div class="komments-users">
                         <?php foreach ($comments as $comment): ?>
-                            <span class="user">
-                                <div class="commentThumb">
-                                    <a  href="<?php echo Yii::app()->createUrl('member/dashboard',array('id'=>$comment->member->urlID)); ?>" class="userAvatar">
-                                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/members/avatars/<?php echo$comment->member->memberinfo->avatar; ?>"></a>
+                            <div class="oneComment" id="<?php echo $comment->id; ?>">
+                                <div class="commentInfo tiny-text">
+                                        <span>
+                                            <abbr title="<?php echo $comment->dateTime;?>">
+                                                <?php echo CHtml::openTag('abbr',array('class'=>'timeago',
+                                                    'title'=>$comment->dateTime,
+                                                ));?>
+                                            </abbr>
+                                        </span>
+                                        <span class="likeContainer">&nbsp;&nbsp;&nbsp;
+                                            <a class="likeIcon"  id="<?php echo $comment->id; ?>" href="#"><img src=""><?php echo $comment->countlikes; ?></a>
+                                        </span>
                                 </div>
-                                <h4><?php echo CHtml::link($comment->member->login,array('member/dashboard',array('id'=>$comment->member->urlID)));?></h4>
-
-                                 <p><?php echo CHtml::encode($comment->content); ?></p>
-                            </span>
+                                <span class="user">
+                                    <div class="commentThumb">
+                                        <a  href="<?php echo Yii::app()->createUrl('member/dashboard',array('id'=>$comment->member->urlID)); ?>" class="userAvatar">
+                                            <img src="<?php echo Yii::app()->baseUrl; ?>/images/members/avatars/<?php echo$comment->member->memberinfo->avatar; ?>">
+                                        </a>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <?php if($comment->member->id == Yii::app()->user->id): ?>
+                                            <a id="<?php echo $comment->id; ?>" class="commentIcon commentDeleteIcon" title="Удалить комментарий">
+                                                <img class="buttonsCommentAction buttonCommentDeleteIcon" src="">
+                                            </a>
+                                            <a id="<?php echo $comment->id; ?>" class="commentIcon commentEditIcon" title="Редактировать комментарий">
+                                                <img class="buttonsCommentAction buttonCommentEditIcon" src="">
+                                            </a>
+                                        <?php endif; ?>
+                                    </div>
+                                    <h4><?php echo CHtml::link($comment->member->login,array('member/dashboard',array('id'=>$comment->member->urlID)));?></h4>
+                                    <p><?php echo CHtml::encode($comment->content); ?></p>
+                                </span>
+                            </div>
                         <?php endforeach; ?>
-
-<!--                            <span class="user user_2">-->
-<!--                                 <h4>User 102:</h4>-->
-<!--                                 <p>fkdnlv fkjvbdlkfv  kfjvkv slkjfls очень длинное описание</p>-->
-<!--                            </span>-->
-<!--                            <span class="user user_3">-->
-<!--                                 <h4>User 103:</h4>-->
-<!--                                 <p>tgkmnbl lodhvb ljp ndpfvndpf lkfnpfpvk lkfkf vlkfgmp; nldifjppeoi lfkgengkneg lefkgnelkgnkb flgnlegknmelrnfk lkbgfbm kgbngknlef ldfknlfdkbm lvkglkn lfkgvndlkfn </p>-->
-<!--                            </span>-->
-<!--                            <span class="user user_1">-->
-<!--                                 <h4>User 101:</h4>-->
-<!--                                 <p>Это супер - пупер крвсивое фотоkgndvv lk;ldfnlsj ,fjnlskfn</p>-->
-<!--                            </span>-->
-<!--                            <span class="user user_2">-->
-<!--                                 <h4>User 102:</h4>-->
-<!--                                 <p>fkdnlv fkjvbdlkfv  kfjvkv slkjfls очень длинное описание</p>-->
-<!--                            </span>-->
-<!--                            <span class="user user_3">-->
-<!--                                 <h4>User 103:</h4>-->
-<!--                                 <p>tgkmnbl lodhvb ljp ndpfvndpf lkfnpfpvk lkfkf vlkfgmp; nldifjppeoi lfkgengkneg lefkgnelkgnkb flgnlegknmelrnfk lkbgfbm kgbngknlef ldfknlfdkbm lvkglkn lfkgvndlkfn </p>-->
-<!--                            </span>-->
-<!--                            <span class="user user_1">-->
-<!--                                 <h4>User 101:</h4>-->
-<!--                                 <p>Это супер - пупер крвсивое фотоkgndvv lk;ldfnlsj ,fjnlskfn</p>-->
-<!--                            </span>-->
-<!--                            <span class="user user_2">-->
-<!--                                 <h4>User 102:</h4>-->
-<!--                                 <p>fkdnlv fkjvbdlkfv  kfjvkv slkjfls очень длинное описание</p>-->
-<!--                            </span>-->
-<!--                            <span class="user user_3">-->
-<!--                                 <h4>User 103:</h4>-->
-<!--                                 <p>tgkmnbl lodhvb ljp ndpfvndpf lkfnpfpvk lkfkf vlkfgmp; nldifjppeoi lfkgengkneg lefkgnelkgnkb flgnlegknmelrnfk lkbgfbm kgbngknlef ldfknlfdkbm lvkglkn lfkgvndlkfn </p>-->
-<!--                            </span>-->
-                </div>
-            <?php endif; ?>
-                <?php if (!Yii::app()->user->isGuest): ?>
-                    <div class="napisat-komment">
-                        <table class="table-comment">
-                            <tr>
-                                <td>
-                                    <form id="usercomment"action="fotocomment.php" method="POST" name="commentform">
-                                        <span>Напишите ваш комментарий к фото</span><br />
-                                        <textarea name="usercomment" cols="40" rows="5">
-                                        </textarea><br />
-                                        <input type="submit" name="button" value="Опубликовать" class="opublik">
-                                    </form>
-                                </td>
-                            </tr>
-                        </table>
                     </div>
+                <?php else: ?>
+                    <div class="foto-kom-info">
+                        <span>Еще нет комментариев</span>
+                    </div>
+                    <div class="komments-users">
+                    </div>
+                <?php endif; ?>
+                <?php if (!Yii::app()->user->isGuest): ?>
+<!--                    <div class="napisat-komment">-->
+<!--                        <table class="table-comment">-->
+<!--                            <tr>-->
+<!--                                <td>-->
+<!--                                    <form id="usercomment"action="fotocomment.php" method="POST" name="commentform">-->
+<!--                                        <span>Напишите ваш комментарий к фото</span><br />-->
+<!--                                        <textarea name="usercomment" cols="40" rows="5">-->
+<!--                                        </textarea><br />-->
+<!--                                        <input type="submit" name="button" value="Опубликовать" class="opublik">-->
+<!--                                    </form>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                        </table>-->
+<!--                    </div>-->
+                <div class="napisat-komment">
+                    <div class="commentError"></div>
+                    <form id="commentForm" class="commentForm" method="post" action="">
+                        <input type="hidden" name="photoID" value="<?php echo $model->id; ?>">
+                        <div class="commentBodyContainer">
+                            <textarea onkeydown="if(event.keyCode==9) return false;" class="commentBody" name="comment" maxlength="10000" cols="50" rows="3" placeholder="Напишите комментарий" style="resize: none;  overflow: hidden; word-wrap: break-word;"></textarea>
+                            <div style="clear:both"></div>
+                            <div class="addCommentExtra" style="display: block;">
+                                <input id="addCommentButton" type="button" class="rbBtn submitComment" value="Отправить">
+                            </div>
+                    </form>
+                </div>
+            </div>
                 <?php else : ?>
-                    Зарегистрируйстесь или войдите под своим аккаунтом для возможности комментирования фотографий
+                    <?php echo CHtml::link('Зарегистрируйстесь', array('companies/register'));?> или <?php echo CHtml::link('войдите', array('site/login')); ?> под своим аккаунтом для возможности комментирования фотографий
                 <?php endif; ?>
             </div>
         </div>
@@ -244,8 +254,35 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
     /************конец окна успешного добавления фотографии к книге идей****************/
 ?>
 
+<?php
+/************окно редактирования комментария*****************/
+$this->beginWidget('zii.widgets.jui.CJuiDialog', array(
+    'id'=>'edit_comment',
+    'options'=>array(
+        'autoOpen'=>false,
+        'closeOnEscape'=> 'true',
+        'width'=>'400',
+        'show'=>'show',
+        'title'=>'Редактирование комментария',
+    ),
+));
+?>
+<form id="commentFormPopup" class="commentFormPopup" enctype="multipart/form-data" method="post" action="">
+    <input type="hidden" name="photoID" value="">
+    <div class="commentBodyContainerPopup">
+        <textarea style="width:100%;height:100px;" class="commentBodyPopup" name="comment" maxlength="10000" style="resize: none; height: 32px; overflow: hidden; word-wrap: break-word;"></textarea>
+        <div style="clear:both"></div>
+        <div style="display: block;">
+            <input id="addCommentButtonPopup" type="button" class="rbBtn submitAddComment" value="Ок">
+        </div>
+    </div>
+</form>
+<?php
+$this->endWidget('zii.widgets.jui.CJuiDialog');
+/************конец окна редактирования комментария*****************/
+?>
 
-    <?php
+<?php
 Yii::app()->clientScript->registerScript('galery', "
 
 var issetIdeasBooks = true;
@@ -268,7 +305,7 @@ $('.addBookmarkLink').on ('click', function(event){
     return event.defaultPrevented || event.returnValue == false;
 });
 
-$('.addPhotoToIdeasBookBtn').live('click',function(event){
+$('.addPhotoToIdeasBookBtn').on('click',function(event){
      event.preventDefault();
      var selectedIdeasBook = $('#ideasBookList option:selected').val();
          $.ajax({
@@ -289,10 +326,67 @@ $('.addPhotoToIdeasBookBtn').live('click',function(event){
 
 });
 
-$('#tmpInfoPopupBtn').live('click',function(event){
+$('#tmpInfoPopupBtn').on('click',function(event){
   if (issetIdeasBooks)
         $('#tmpInfoPopup').dialog('close');
   else window.location.href = '".Yii::app()->createUrl('ideasbook/add')."';
 });
+
+var newComment ='';
+$('#addCommentButton').on('click', function(event){
+    if ($('.commentBody').val() == '') {
+        $('.commentError').html('Пожалуйста, напишите Ваш комментарий');
+        return false;
+    } else {
+            $.ajax({
+                   type: 'POST',
+                   url: '".Yii::app()->createUrl('comments/add')."',
+                   data: $('#commentForm').serialize(),
+                   success: function(msg){
+                   var data = jQuery.parseJSON(msg);
+
+
+            var newComment = '<div class=\"oneComment\" id=\"'+data.commentID+'\">\
+                                <div class=\"commentInfo tiny-text\">\
+                                        <span> \
+                                            <abbr class=\"timeago\" title=\"'+data.dateTime+'\">'+data.dateTime+'</abbr> \
+                                        </span> \
+                                        <span class=\"likeContainer\">&nbsp;&nbsp;&nbsp; \
+                                             <a class=\"likeIcon\"  id=\"'+data.commentID+'\" href=\"#\"><img src=\"\">0</a> \
+                                        </span> \
+                                </div>\
+                                <span class=\"user\">\
+                                    <div class=\"commentThumb\"> \
+                                       <a href=\"".Yii::app()->baseUrl."/member/dashboard/'+data.urlID+'\" class=\"userAvatar\"> \
+                                         <img src=\"".Yii::app()->baseUrl."/images/members/avatars/'+data.avatar+'\"> \
+                                       </a> \
+                                    </div> \
+                                    <div class=\"comment-actions\">\
+                                        <a id=\"'+data.commentID+'\" class=\"commentIcon commentDeleteIcon\" title=\"Удалить комментарий\">\
+                                            <img class=\"buttonsCommentAction buttonCommentDeleteIcon\" src=\"\">\
+                                        </a>\
+                                        <a id=\"'+data.commentID+'\" class=\"commentIcon commentEditIcon\" title=\"Редактировать комментарий\">\
+                                            <img class=\"buttonsCommentAction buttonCommentEditIcon\" src=\"\">\
+                                        </a>\
+                                    </div>\
+                                    <h4><a href=\"".Yii::app()->baseUrl."/member/dashboard/'+data.urlID+'\" class=\"userAvatar\">'+data.login+'</a></h4>\
+                                    <p>'+data.comment+'</p>\
+                                </span>\
+                            </div>';
+
+
+                     $('div.foto-kom-info').html(data.countComments);
+                     $('.komments-users').append(newComment);
+                     $('abbr.timeago').timeago();
+                     $('.commentError').html();
+                     $('textarea.commentBody').val('');
+                   }
+                 });
+    }
+    return event.defaultPrevented || event.returnValue == false;
+});
+
+
+
 ", CClientScript::POS_END);
 ?>

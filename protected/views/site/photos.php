@@ -7,45 +7,33 @@
 <?php
     // Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/css/lightbox.css');
     // Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/lightbox-2.6.min.js', CClientScript::POS_END);
+
+Yii::app()->clientScript->registerScript('helpers', '
+          yii = {
+              urls: {
+                  likeComment: '.CJSON::encode(Yii::app()->createUrl('commentlike/change')).',
+                  photolikeAdd: '.CJSON::encode(Yii::app()->createUrl('photolike/add')).',
+                  ajaxGetPhoto: '.CJSON::encode(Yii::app()->createUrl('site/ajaxGetPhoto')).',
+                  allcomments: '.CJSON::encode(Yii::app()->createUrl('site/allcomments')).',
+                  commentsdelete: '.CJSON::encode(Yii::app()->createUrl('comments/delete')).',
+                  commentsedit: '.CJSON::encode(Yii::app()->createUrl('comments/edit')).',
+                  base: '.CJSON::encode(Yii::app()->baseUrl).'
+              }
+          };
+      ');
+
 $galery = <<<EOL
 function showModule(){
 //    $("#module").show("slow");
 }
 
-$(function(){
-
-
-   /* $(".lastPhotos__item img").on('click', function ( e ) {
-        //e.preventDefault();
-//        $('body').css('overflow', 'hidden');
-        var photoID = $(this).parents('li').attr('id');
-        var nextPhotoID = $(this).parents('li').next().attr('id');
-        var prevPhotoID = $(this).parents('li').prev().attr('id');
-        var photoObj = {
-                            prevPhotoID: prevPhotoID,
-                            photoID: photoID,
-                            nextPhotoID: nextPhotoID
-                        };
-        console.log(photoObj);
-        $.ajax({
-            type: "POST",
-            url: "/site/ajaxGetPhoto",
-            dataType: "html",
-            data: photoObj
-        })
-        .done(function( msg ) {
-            $(".spoiler_body").html(msg);
-            $("#module").show("slow");
-        });
-
-    });*/
-});
 
 $(document).on('click','#close',function(e){
 //     $('body').css('overflow', '');
      $("#module").hide("slow");
      $("#add_toIdeasBook").dialog("close");
      $('#tmpInfoPopup').dialog('close');
+     $('#edit_comment').dialog('close');
      $('.phtError').hide();
 });
 
@@ -55,7 +43,7 @@ $(document).on('click', 'button.rb-button-like', function(event){
      var currentLikes = $(this).data('likes');
      $.ajax({
                type: 'POST',
-               url: "/photolike/add",
+               url: yii.urls.photolikeAdd,
                data: {id: photoID},
                success: function(msg){
                          var data = jQuery.parseJSON(msg);
@@ -75,10 +63,12 @@ $(document).on('click', '.lastPhotos__item img, .gallery-nav-right, .gallery-nav
                             photoID: photoID,
                             nextPhotoID: nextPhotoID
                    };
-    console.log(photoObj);
+    $("#add_toIdeasBook").dialog("close");
+    $('#tmpInfoPopup').dialog('close');
+    $('#edit_comment').dialog('close');
     $.ajax({
         type: "POST",
-        url: "/site/ajaxGetPhoto",
+        url: yii.urls.ajaxGetPhoto,
         dataType: "html",
         data: photoObj,
         beforeSend: function (){
@@ -94,6 +84,110 @@ $(document).on('click', '.lastPhotos__item img, .gallery-nav-right, .gallery-nav
     });
 
 });
+
+$(document).on('click', '.likeIcon', function(event){
+     event.preventDefault();
+     $.ajax({
+               type: 'POST',
+               url: yii.urls.likeComment,
+               data: {commentID: this.id},
+               success: function(msg){
+                    var data = jQuery.parseJSON(msg);
+                         $('#'+data.commentID+'.likeIcon').empty().append('<img src=\"\">'+data.countLikes);
+
+               }
+            });
+});
+
+$(document).on('click', '.showAllComments', function (e) {
+    e.preventDefault();
+    var photoID = $(this).attr('id');
+     $.ajax({
+                   type: 'POST',
+                   url: yii.urls.allcomments,
+                   data: {id: photoID},
+                   dataType: 'html',
+                   beforeSend: function (){
+                        $('.spoiler-content-2').addClass('loading');
+                   },
+                   complete: function() {
+                        $('.spoiler-content-2').removeClass('loading');
+                   },
+                   success: function(msg){
+                        $('.showAllComments').hide();
+                        $('.komments-users').html(msg);
+                   }
+            });
+});
+
+$(document).on('click', '.commentDeleteIcon', function(event){
+     var divLen = $("div.oneComment").length;
+
+     var id = this.id;
+     if (confirm('Вы уверены, что хочете удалить этот комментарий?')) {
+         $.ajax({
+                       type: 'POST',
+                       url: yii.urls.commentsdelete,
+                       data: {id: id},
+                       success: function(msg){
+                            if (divLen > 5) {
+                                var data = jQuery.parseJSON(msg);
+                                $('.oneComment#'+data.id).remove();
+                                $('div.foto-kom-info').html(data.countComments);
+                                if (data.showAddComments === true) {
+                                    $('div.foto-kom-info').append('<a class=\"showAllComments\" id=\"'+data.photoID+'\" href=\"\"> Показать все</a>');
+                                }
+                            } else {
+                                var photoID = $('input[name="photoID"]').val();
+                                 $.ajax({
+                                       type: 'POST',
+                                       url: yii.urls.allcomments,
+                                       data: {id: photoID, limit: 5},
+                                       dataType: 'html',
+                                       beforeSend: function (){
+                                            $('.spoiler-content-2').addClass('loading');
+                                       },
+                                       complete: function() {
+                                            $('.spoiler-content-2').removeClass('loading');
+                                       },
+                                       success: function(msg){
+                                            $('.komments-users').html(msg);
+                                       }
+                                });
+                            }
+                       }
+                 });
+     }
+});
+
+
+$(document).on('click', '.commentEditIcon', function(event){
+     $('#edit_comment').data('link', '123').dialog('open');
+     var commentContent = $('.oneComment#'+this.id+' p').text();
+     $('#edit_comment textarea').val(commentContent);
+     $('#edit_comment input[name=photoID]').val(this.id);
+});
+
+$(document).on('click', '#edit_comment #addCommentButtonPopup', function(event){
+     var idComment = $('#edit_comment input[name=photoID]').val();
+     var contentComment = $('#edit_comment textarea').val();
+     if (contentComment!='')
+     {
+         $.ajax({
+                   type: 'POST',
+                   url: yii.urls.commentsedit,
+                   data: {id: idComment, commentContent:contentComment},
+                   success: function(msg){
+                        var data = jQuery.parseJSON(msg);
+                        $('.oneComment#'+data.id+' p').empty().append(data.comment);
+                   }
+            });
+        $('#edit_comment').dialog('close');
+     } else {
+       alert('Введите комментарий');
+     }
+});
+
 EOL;
 
 Yii::app()->clientScript->registerScript('galery', $galery, CClientScript::POS_END);

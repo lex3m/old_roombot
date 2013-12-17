@@ -285,7 +285,13 @@ class SiteController extends Controller
             $prevPhotoID = isset ($_POST['prevPhotoID']) ? intval($_POST['prevPhotoID']) : "";
 
             $model = Mobilepictures::model()->with('taglinks','member')->findbyPk($photoID);
-            $comments = Comments::model()->with('member','countlikes')->findAll('photoID=:photoID',array(':photoID'=>$model->id));
+
+            $criteria = new CDbCriteria();
+            $criteria->condition = 'photoID=:photoID';
+            $criteria->params = array(':photoID'=>$model->id);
+            $criteria->limit = 5;
+            $comments = Comments::model()->with('member','countlikes')->findAll($criteria);
+
             $member= Member::model()->findbyPK($model->companyID);
             $z=0;
             $tags_arr = array();
@@ -311,6 +317,29 @@ class SiteController extends Controller
                 'tagNameArray'=>$tagNameArray,
                 'nextPhoto'=>$nextPhotoID,
                 'prevPhoto'=>$prevPhotoID
+            ), false, true);
+            Yii::app()->end();
+
+        } else {
+            throw new CHttpException(400,'Некорректный запрос');
+        }
+    }
+
+    public function actionAllcomments()
+    {
+        if (Yii::app()->request->isAjaxRequest) {
+            $photoID = $_POST['id'];
+            $criteria = new CDbCriteria();
+            $criteria->condition = 'photoID=:photoID';
+            $criteria->params = array(':photoID'=>$photoID);
+            if (isset($_POST['limit'])) {
+                $criteria->limit = intval($_POST['limit']);
+            }
+
+            $comments = Comments::model()->with('member','countlikes')->findAll($criteria);
+
+            $this->renderPartial('_allcomments',array(
+                'comments'=>$comments,
             ), false, true);
             Yii::app()->end();
 

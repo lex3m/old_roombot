@@ -1744,7 +1744,7 @@ ul.setka {
 
 
  #module{
-    background: none repeat scroll 0 0 #FFFFFF;
+    background: none repeat scroll 0 0 #EAEFEB;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     display: none;
     height: auto;
@@ -1869,7 +1869,7 @@ div.spoiler-content-2 div.scroll-content2 div.info-foto div.foto-nazwa h3 {
 
 /* Usercomment ----------------------------------------- */
 .napisat-komment {
-
+    margin-top: 10px;
 }
 .spoiler-content-2 div.scroll-content2 div.foto-kommentariy div.napisat-komment table.table-comment tbody tr td form#usercomment span {
      font-weight: bold;
@@ -1906,16 +1906,33 @@ input.opublik {
     display: none;
     color: #ff0000;
 }
+.commentError {
+    color: #ff0000;
+}
 
 div.loading {
     background-color: #eee;
     background-image: url('../images/loading_icon.gif');
+    background-size:50px 50px;
     background-position: center center;
     background-repeat: no-repeat;
     opacity: 1;
+    z-index: 999;
 }
 
 div.loading * {
     opacity: .8;
+}
+
+.commentInfo {
+    margin: 5px 0 5px 0;
+}
+.submitComment {
+    padding: 4px 10px;
+    cursor: pointer;
+}
+.comment-actions {
+    padding-right: 5px;
+    cursor: pointer;
 }
 /*********end action photos*********/

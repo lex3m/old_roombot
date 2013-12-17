@@ -16,21 +16,32 @@ class CommentsController extends Controller
         $newComment->memberID=Yii::app()->user->id;
         $newComment->photoID=$photoID;
         $newComment->dateTime = date("Y-m-d H:i:s");
-        $member=Member::model()->with('memberinfo')->findbyPk(Yii::app()->user->id);  
-        
+        $member=Member::model()->with('memberinfo')->findbyPk(Yii::app()->user->id);
         if ($newComment->save())  
         {
-            $json_data = array ('avatar'=>$member->memberinfo->avatar, 'commentID'=>$newComment->id,'comment'=>$newComment->content, 'login'=>$member->login, 'urlID'=>$member->urlID, 'dateTime'=>$newComment->dateTime);
+            $countComments = Comments::model()->count('photoID=:photoID',array(':photoID'=>$_POST['photoID']));
+            $countComments =  Yii::t('app', '{n} комментарий|{n} комментария|{n} комментариев|{n} комментариев', $countComments);
+            $json_data = array ('avatar'=>$member->memberinfo->avatar, 'commentID'=>$newComment->id,'comment'=>$newComment->content, 'login'=>$member->login, 'urlID'=>$member->urlID, 'dateTime'=>$newComment->dateTime, 'countComments'=>$countComments);
             echo json_encode($json_data);  
         }
     }
     
     public function actionDelete()
     {
-        $id=$_POST['id'];
+        $id=intval($_POST['id']);
         $comment=Comments::model()->findByPk($id);
-        if ($comment->delete())
-            echo $id;   
+        if ($comment->delete()) {
+            $countComments = Comments::model()->count('photoID=:photoID',array(':photoID'=>$comment->photoID));
+            $showAddComments = false;
+            if ($countComments > 5) {
+                $showAddComments = true;
+            }
+            $countComments =  Yii::t('app', '{n} комментарий|{n} комментария|{n} комментариев|{n} комментариев', $countComments);
+
+            $jsonData = array('id'=>$id, 'countComments'=>$countComments, 'showAddComments'=>$showAddComments, 'photoID'=>$comment->photoID);
+            echo json_encode($jsonData);
+        }
+
     }
     
     public function actionEdit()

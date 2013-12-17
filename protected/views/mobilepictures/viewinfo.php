@@ -72,7 +72,7 @@
             <span class="likeContainer">&nbsp;&nbsp;&nbsp;
                 <a class="likeIcon"  id="<?php echo $comment->id; ?>" href="#"><img src=""><?php echo $comment->countlikes; ?></a>
             </span> 
-                </div>
+        </div>
         </div>
      <?php endforeach; ?>
 </div>
@@ -226,9 +226,10 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
                            type: 'POST',
                            url: '".Yii::app()->createUrl('comments/delete')."',
                            data: {id: id},  
-                           success: function(id){
-                            $('.commentBodyContent#'+id).remove();
-                           }
+                           success: function(msg){
+                                var data = jQuery.parseJSON(msg);
+                                $('.oneComment#'+data.id).remove();
+                            }
                          });
          });  
          

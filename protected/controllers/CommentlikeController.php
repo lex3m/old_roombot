@@ -15,13 +15,13 @@ class CommentlikeController extends Controller
                         array(':commentID'=>$commentID,':memberID'=>Yii::app()->user->id));
         $countLikes= Commentlike::model()->count('commentID=:commentID', array(':commentID'=>$commentID));
         if (count($commentLike)>0)  
+        {
+            if($commentLike->delete())
             {
-                if($commentLike->delete())
-                {
-                    $json_data = array ('commentID'=>$commentLike->commentID,'countLikes'=>($countLikes-1)); 
-                    echo json_encode($json_data);
-                }
+                $json_data = array ('commentID'=>$commentLike->commentID,'countLikes'=>($countLikes-1));
+                echo json_encode($json_data);
             }
+        }
         else {
             $newCommentLike=new Commentlike('add');
             $newCommentLike->memberID=Yii::app()->user->id;
