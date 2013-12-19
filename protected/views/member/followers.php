@@ -169,10 +169,10 @@ Yii::app()->clientScript->registerScript('remove-follower',"
 
      $( '.rmfollower').on('click', function(event){
            event.preventDefault();
-           alert(1);return false;
+
            var followerUrl = $(this).attr('href');
            var urlID = followerUrl.split('/')[3];
-           var parent = $(this).parent();
+           var parent = $(this).parents('.view');
                 $.ajax({
                        type: 'POST',
                        url: followerUrl,

@@ -184,10 +184,10 @@
         <?php echo $form->error($model,'info'); ?>
 </div> 
 
-<!--        --><?php //echo $form->fileField($model,'img',array("class"=>"vvv")); ?>
-<!--        --><?php //echo $form->error($model,'img'); ?>
+        <?php echo $form->fileField($model,'img',array("class"=>"vvv")); ?>
+        <?php echo $form->error($model,'img'); ?>
 <?php
-     echo $form->labelEx($model, 'images');
+//     echo $form->labelEx($model, 'images');
     /*$this->widget('ext.xupload.XUpload', array(
         'url' => Yii::app()->createUrl("site/upload"),
         'model' => $model,
@@ -195,7 +195,7 @@
         'multiple' => true,
     ));*/
 
-     $this->widget('CMultiFileUpload', array(
+     /*$this->widget('CMultiFileUpload', array(
          'model' => $model,
          'attribute' => 'images',
          'accept' => 'jpg|jpeg|png|bmp|gif',
@@ -205,29 +205,23 @@
             'multiple' => 'multiple',
             'accept' => 'image/jpg, image/jpeg, image/png, image/bmp, image/gif'
          ),
-         'options'=>array(
 
-             'afterFileSelect'=>'function(e ,v ,m){
-                var fileSize = e.files[0].size;
+     ));*/
+//     echo $form->error($model,'images');
+/* $this->widget('application.extensions.Plupload.PluploadWidget', array(
+    'config' => array(
+        'runtimes' => 'html5',
+        'url' => '/image/upload/',
+        'max_file_size' => '1mb',
 
+    ),
+    'id' => 'uploader',
+     'model'=>$model,
+     'attribute'=>'files',
 
-
-                     if(fileSize>1*1024*1024){
-                        alert("Exceeds file upload limit(500). Uploaded 1 MB not allowed!");
-                      }
-                      else
-                      {
-                        $(".black_overlay").show();
-                        $("#audio-form").submit();
-                      }
-
-                      $("#mobilepictures-form").reset();
-                      return false;
-
-                    }',
-         ),
-     ));
+ ));*/
  ?>
+<!-- <input multiple="multiple" accept="image/jpg, image/jpeg, image/png, image/bmp, image/gif" id="Mobilepictures_images" type="file" value="" name="Mobilepictures[images][]" class="MultiFile-applied">-->
  <div class="row buttons">
         <?php echo CHtml::submitButton('Добавить изображение'); ?> 
     </div>

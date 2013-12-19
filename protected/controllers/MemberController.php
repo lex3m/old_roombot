@@ -171,19 +171,20 @@ class MemberController extends Controller
           if (isset($_POST['Mobilepictures'])) {
                 $model->attributes = $_POST['Mobilepictures'];
                 $img=CUploadedFile::getInstance($model,'img');
+
                 $model->img=$img;
                 $model->image = $img;
                 $model->date=date('Y-m-d');
                 $model->companyID=$member->id;
-                if ($model->validate()) 
+                if ($model->validate())
                 {
                     $model->image = $img->name;
-                    $userfile_extn = substr($model->image, strrpos($model->image, '.')+1); 
+                    $userfile_extn = substr($model->image, strrpos($model->image, '.')+1);
                     $model->image = Mobilepictures::generateUniqueName($userfile_extn);
-                    if ($model->save())   
+                    if ($model->save())
                     {
                          $model->img->saveAs(Yii::getPathOfAlias('webroot').'/images/mobile/images/'.$model->image);
-                         
+
                          Yii::app()->user->setFlash('success', "Изображение было успешно добавлено.");
                        //  $url = Yii::app()->createUrl('news/view',array('id'=>$model->urlID));
                          $this->refresh();

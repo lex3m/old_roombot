@@ -1881,11 +1881,11 @@ input.opublik {
     margin-top:15px;
 }
 
-.graybutton {
+.addBookmarkLink {
     padding: 3px 6px;
 
 }
-.graybutton span.addBookmarkLink {
+.addBookmarkLink span.addBookmark {
     float: left;
     cursor: pointer;
     height: 20px;

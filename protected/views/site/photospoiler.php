@@ -43,13 +43,13 @@
                                 </div>
                             </li>
                             <li title="Добавить в книгу идей. Уже есть <?php echo Yii::t('app', '{n} книга идей|{n} две книги идей|{n} книг идей|{n} книг идей', $model->countIdeasBooks); ?>" class="rb-ministats-item">
-                                <a class="graybutton" href="" id="AddToIdeabook" >
+                                <a class="addBookmarkLink" id="<?php echo $model->id; ?>" >
                                     <span class="graybuttonIcon uiButtonIconAddToIdeabook"><img height="20" width="20" src="<?php echo Yii::app()->baseUrl; ?>/images/fav.jpg"/></span>
-                                    <span class="addBookmarkLink" id="<?php echo $model->id; ?>">Добавить в книгу идей</span>
+                                    <span class="addBookmark">Добавить в книгу идей</span>
                                 </a>
                             </li>
                             <li class="rb-ministats-item">
-<!--                                <div class="pluso" data-options="small,square,line,horizontal,counter,theme=04" data-services="vkontakte,facebook,twitter,google,email"></div>-->
+                                <div class="pluso" data-options="small,square,line,horizontal,counter,theme=04" data-services="vkontakte,facebook,twitter,google,email"></div>
                             </li>
                         </ul>
                     </div>
@@ -247,7 +247,7 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
         ),
     ));
     ?>
-    <p class="tmpInfoMsg">Вы успешно добавили эту фотография в книгу идей</p>
+    <p class="tmpInfoMsg">Вы успешно добавили эту фотографию в книгу идей</p>
     <div class="form">
         <input id="tmpInfoPopupBtn" type="button" class="rbBtn tmpInfoBtn" value="Ok">
     </div><!-- form -->
@@ -310,6 +310,7 @@ $('.addBookmarkLink').on ('click', function(event){
 $('.addPhotoToIdeasBookBtn').on('click',function(event){
      event.preventDefault();
      var selectedIdeasBook = $('#ideasBookList option:selected').val();
+     if (selectedIdeasBook !== '') {
          $.ajax({
                    type: 'POST',
                    url: '".Yii::app()->createUrl('ideasphotos/add')."',
@@ -321,10 +322,13 @@ $('.addPhotoToIdeasBookBtn').on('click',function(event){
                                 $('.phtError').hide();
                                 $('#tmpInfoPopup').dialog('open');
                              } else {
-                                $('.phtError').show();
+                                $('.phtError').html('Вы добавили уже это фото в данную книгу идей.').show();
                              }
                    }
             });
+     } else {
+        $('.phtError').html('Выберите книгу идей').show();
+     }
 
 });
 
