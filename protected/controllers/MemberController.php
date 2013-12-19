@@ -170,24 +170,33 @@ class MemberController extends Controller
         $model = new Mobilepictures('add');
           if (isset($_POST['Mobilepictures'])) {
                 $model->attributes = $_POST['Mobilepictures'];
-                $img=CUploadedFile::getInstance($model,'img');
+                $images=CUploadedFile::getInstances($model,'images');
+//                print_r($images);exit;
+                $uploaded = false;
+                if (isset($images) && count($images) > 0) {
+                    foreach($images as $k => $img) {
+                        $model = new Mobilepictures('add');
+                        $model->attributes = $_POST['Mobilepictures'];
 
-                $model->img=$img;
-                $model->image = $img;
-                $model->date=date('Y-m-d');
-                $model->companyID=$member->id;
-                if ($model->validate())
-                {
-                    $model->image = $img->name;
-                    $userfile_extn = substr($model->image, strrpos($model->image, '.')+1);
-                    $model->image = Mobilepictures::generateUniqueName($userfile_extn);
-                    if ($model->save())
-                    {
-                         $model->img->saveAs(Yii::getPathOfAlias('webroot').'/images/mobile/images/'.$model->image);
+                        $model->img=$img;
+                        $model->image = $img;
+                        $model->date=date('Y-m-d');
+                        $model->companyID=$member->id;
+                        if ($model->validate()) {
+                            $model->image = $img->name;
+                            $userfile_extn = substr($model->image, strrpos($model->image, '.')+1);
+                            $model->image = Mobilepictures::generateUniqueName($userfile_extn);
+                            if ($model->save()) {
+                                 $model->img->saveAs(Yii::getPathOfAlias('webroot').'/images/mobile/images/'.$model->image);
 
-                         Yii::app()->user->setFlash('success', "Изображение было успешно добавлено.");
-                       //  $url = Yii::app()->createUrl('news/view',array('id'=>$model->urlID));
-                         $this->refresh();
+                                 $uploaded = true;
+                            }
+                        }
+                    }
+                    if ($uploaded) {
+                        Yii::app()->user->setFlash('success', "Изображение было успешно добавлено.");
+                        //  $url = Yii::app()->createUrl('news/view',array('id'=>$model->urlID));
+                        $this->refresh();
                     }
                 }
           }

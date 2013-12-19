@@ -33,7 +33,7 @@ class Mobilepictures extends CActiveRecord
 	/**
 	 * @return array validation rules for model attributes.
 	 */
-	public $img, $memberLogin, $memberUrlID, $searchQuery;
+	public $img, $memberLogin, $memberUrlID, $searchQuery, $images;
     
 	public function rules()
 	{
@@ -44,7 +44,7 @@ class Mobilepictures extends CActiveRecord
 			array('info', 'safe','on'=>'add'),
 			array('name', 'length', 'max'=>50,'on'=>'add'),
 			array('info, image', 'length', 'max'=>255,'on'=>'add'),
-			array('img', 'file', 'types'=>'jpg, jpeg, png','allowEmpty'=>false,'maxSize' => 1048576, 'tooLarge'=>'Файл не может превышать 1MB', 'on'=>'add'),
+			array('img', 'file', 'types'=>'jpg, jpeg, png, gif, bmp','allowEmpty'=>false,'maxSize' => 1048576, 'tooLarge'=>'Файл не может превышать 1MB', 'on'=>'add'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, info, date, image', 'safe', 'on'=>'search'),
