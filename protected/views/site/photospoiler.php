@@ -128,9 +128,11 @@
                                                 ));?>
                                             </abbr>
                                         </span>
-                                        <span class="likeContainer">&nbsp;&nbsp;&nbsp;
-                                            <a class="likeIcon"  id="<?php echo $comment->id; ?>" href="#"><img src=""><?php echo $comment->countlikes; ?></a>
-                                        </span>
+                                        <?php if (!Yii::app()->user->isGuest): ?>
+                                            <span class="likeContainer">&nbsp;&nbsp;&nbsp;
+                                                <a class="likeIcon"  id="<?php echo $comment->id; ?>" href="#"><img src=""><?php echo $comment->countlikes; ?></a>
+                                            </span>
+                                        <?php endif; ?>
                                 </div>
                                 <span class="user">
                                     <div class="commentThumb">
@@ -148,7 +150,7 @@
                                             </a>
                                         <?php endif; ?>
                                     </div>
-                                    <h4><?php echo CHtml::link($comment->member->login,array('member/dashboard',array('id'=>$comment->member->urlID)));?></h4>
+                                    <h4><?php echo CHtml::link($comment->member->login,array('member/dashboard', 'id'=>$comment->member->urlID));?></h4>
                                     <p><?php echo CHtml::encode($comment->content); ?></p>
                                 </span>
                             </div>

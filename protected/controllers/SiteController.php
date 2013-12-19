@@ -337,9 +337,11 @@ class SiteController extends Controller
             }
 
             $comments = Comments::model()->with('member','countlikes')->findAll($criteria);
+            $commentsCount = Comments::model()->count('photoID=:photoID', array(':photoID'=>$photoID));
 
             $this->renderPartial('_allcomments',array(
                 'comments'=>$comments,
+                'countComments'=>$commentsCount
             ), false, true);
             Yii::app()->end();
 

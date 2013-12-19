@@ -134,10 +134,8 @@ $(document).on('click', '.commentDeleteIcon', function(event){
                                 var data = jQuery.parseJSON(msg);
                                 $('.oneComment#'+data.id).remove();
                                 $('div.foto-kom-info').html(data.countComments);
-                                if (data.showAddComments === true) {
-                                    $('div.foto-kom-info').append('<a class=\"showAllComments\" id=\"'+data.photoID+'\" href=\"\"> Показать все</a>');
-                                }
                             } else {
+                                var data = jQuery.parseJSON(msg);
                                 var photoID = $('input[name="photoID"]').val();
                                  $.ajax({
                                        type: 'POST',
@@ -152,6 +150,10 @@ $(document).on('click', '.commentDeleteIcon', function(event){
                                        },
                                        success: function(msg){
                                             $('.komments-users').html(msg);
+                                            $('div.foto-kom-info').html(data.countComments);
+                                            if (data.showAddComments === true) {
+                                                $('div.foto-kom-info').append('<a class=\"showAllComments\" id=\"'+data.photoID+'\" href=\"\"> Показать все</a>');
+                                            }
                                        }
                                 });
                             }

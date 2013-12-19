@@ -1701,14 +1701,14 @@ a.rb-ministats {
 .items {
     overflow: hidden;
 }
-ul#yw1 {
-    display: inline-block;
-    padding: 20px;
-    position: relative;
-    text-align: center;
-    width: 650px;
+/*ul#yw1 {*/
+    /*display: inline-block;*/
+    /*padding: 20px;*/
+    /*position: relative;*/
+    /*text-align: center;*/
+    /*width: 650px;*/
 
-}
+/*}*/
 ul.setka {
     padding-left: 8px !important;
     width: 710px;
@@ -1760,8 +1760,10 @@ ul.setka {
 .closer{
     cursor: pointer;
     position: absolute;
-    right: 28px;
-    top: 15px;
+    /*right: 28px;*/
+    /*top: 15px;*/
+    right: 10px;
+    top: 5px;
     z-index: 10;
     width: 25px;
     height:25px;

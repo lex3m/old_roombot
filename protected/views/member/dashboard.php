@@ -184,9 +184,50 @@
         <?php echo $form->error($model,'info'); ?>
 </div> 
 
-        <?php echo $form->fileField($model,'img',array("class"=>"vvv")); ?>
-        <?php echo $form->error($model,'img'); ?>
+<!--        --><?php //echo $form->fileField($model,'img',array("class"=>"vvv")); ?>
+<!--        --><?php //echo $form->error($model,'img'); ?>
+<?php
+     echo $form->labelEx($model, 'images');
+    /*$this->widget('ext.xupload.XUpload', array(
+        'url' => Yii::app()->createUrl("site/upload"),
+        'model' => $model,
+        'attribute' => 'file',
+        'multiple' => true,
+    ));*/
 
+     $this->widget('CMultiFileUpload', array(
+         'model' => $model,
+         'attribute' => 'images',
+         'accept' => 'jpg|jpeg|png|bmp|gif',
+         'duplicate' => 'Этот файл уже выбран!',
+         'denied' => 'Недопустимый тип файла',
+         'htmlOptions' => array(
+            'multiple' => 'multiple',
+            'accept' => 'image/jpg, image/jpeg, image/png, image/bmp, image/gif'
+         ),
+         'options'=>array(
+
+             'afterFileSelect'=>'function(e ,v ,m){
+                var fileSize = e.files[0].size;
+
+
+
+                     if(fileSize>1*1024*1024){
+                        alert("Exceeds file upload limit(500). Uploaded 1 MB not allowed!");
+                      }
+                      else
+                      {
+                        $(".black_overlay").show();
+                        $("#audio-form").submit();
+                      }
+
+                      $("#mobilepictures-form").reset();
+                      return false;
+
+                    }',
+         ),
+     ));
+ ?>
  <div class="row buttons">
         <?php echo CHtml::submitButton('Добавить изображение'); ?> 
     </div>
