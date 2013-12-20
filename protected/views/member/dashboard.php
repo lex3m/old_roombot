@@ -155,10 +155,15 @@
         <div class="form width-form">
             <br>
 <?php
-    foreach(Yii::app()->user->getFlashes() as $key => $message) {
-        echo '<div style="font-weight:bold; color: red" class="flash-' . $key . '">' . $message . "</div>\n";
+    $flashMessages = Yii::app()->user->getFlashes();
+    if ($flashMessages) {
+        echo '<ul class="flashes">';
+        foreach($flashMessages as $key => $message) {
+            echo '<li><div class="flash-' . $key . '">' . $message . "</div></li>\n";
+        }
+        echo '</ul>';
     }
-?> 
+?>
 
 
 <?php if (Yii::app()->user->id == $member->id): ?>
@@ -195,7 +200,7 @@
         'multiple' => true,
     ));*/
 
-     $this->widget('CMultiFileUpload', array(
+     /*$this->widget('CMultiFileUpload', array(
          'model' => $model,
          'attribute' => 'images',
          'accept' => 'jpg|jpeg|png|bmp|gif',
@@ -206,8 +211,8 @@
             'accept' => 'image/jpg, image/jpeg, image/png, image/bmp, image/gif'
          ),
 
-     ));
-     echo $form->error($model,'images');
+     ));*/
+
 /* $this->widget('application.extensions.Plupload.PluploadWidget', array(
     'config' => array(
         'runtimes' => 'html5',
@@ -221,7 +226,8 @@
 
  ));*/
  ?>
-<!-- <input multiple="multiple" accept="image/jpg, image/jpeg, image/png, image/bmp, image/gif" id="Mobilepictures_images" type="file" value="" name="Mobilepictures[images][]" class="MultiFile-applied">-->
+ <input multiple="multiple" accept="image/jpg, image/jpeg, image/png, image/bmp, image/gif" id="Mobilepictures_images" type="file" value="" name="Mobilepictures[images][]" class="MultiFile-applied">
+     <?php echo $form->error($model,'img');?>
  <div class="row buttons">
         <?php echo CHtml::submitButton('Добавить изображение'); ?> 
     </div>

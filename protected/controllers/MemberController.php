@@ -171,8 +171,7 @@ class MemberController extends Controller
           if (isset($_POST['Mobilepictures'])) {
                 $model->attributes = $_POST['Mobilepictures'];
                 $images=CUploadedFile::getInstances($model,'images');
-//                print_r($images);exit;
-                $uploaded = false;
+                $uploaded = array();
                 if (isset($images) && count($images) > 0) {
                     foreach($images as $k => $img) {
                         $model = new Mobilepictures('add');
@@ -189,15 +188,22 @@ class MemberController extends Controller
                             if ($model->save()) {
                                  $model->img->saveAs(Yii::getPathOfAlias('webroot').'/images/mobile/images/'.$model->image);
 
-                                 $uploaded = true;
+                                 $uploaded[$img->name] = true;
                             }
+                        } else {
+                            $uploaded[$img->name] = false;
                         }
                     }
-                    if ($uploaded) {
-                        Yii::app()->user->setFlash('success', "Изображение было успешно добавлено.");
-                        //  $url = Yii::app()->createUrl('news/view',array('id'=>$model->urlID));
-                        $this->refresh();
+                    $i=0;
+                    foreach ($uploaded as $k => $upl) {
+                        if ($upl) {
+                            Yii::app()->user->setFlash('success '.$k, "Изображение ". $k . " было успешно добавлено.");
+                        } else {
+                            Yii::app()->user->setFlash('error '.$k, "Изображение ". $k . " не было добавлено.");
+                        }
+
                     }
+                    $this->refresh();
                 }
           }
                 

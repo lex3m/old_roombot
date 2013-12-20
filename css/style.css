@@ -1937,4 +1937,10 @@ div.loading * {
     padding-right: 5px;
     cursor: pointer;
 }
+.flash-success {
+    color: green;
+}
+.flash-error {
+    color: red;
+}
 /*********end action photos*********/
