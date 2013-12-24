@@ -148,7 +148,7 @@ class SiteController extends Controller
 
     public function actionPhotos()
     {
-        $this->setPageTitle(Yii::app()->name.' - Последние фотографии');
+        $this->setPageTitle(Yii::app()->name.' - свежие фотографии дизайна интерьера пользователей. Загрузи свою!');
         if (isset($_GET['q']))
             $query = $_GET['q']; else $query='';
         if (isset($_GET['id']) && !empty($_GET['id']))
@@ -156,7 +156,9 @@ class SiteController extends Controller
         $criteria = new CDbCriteria();
         $criteria->order ='id DESC';
         $criteria->alias = 'p';
-        $criteria->select = 'p.image, p.name, m.login as memberLogin, m.urlID as memberUrlID';
+        $criteria->select = 'p.id, p.image, p.name, m.login as memberLogin, m.urlID as memberUrlID';
+
+        $criteria->distinct = 'p.id';
 
         $criteria->join = 'LEFT JOIN `'.Mobilelinks::model()->tableSchema->name.'` AS `l` ON `p`.`id` = `l`.`imageId`';
         $criteria->join .= 'LEFT JOIN `'.Mobiletags::model()->tableSchema->name.'` AS `tags` ON `l`.`tagId` = `tags`.`id`';
@@ -174,7 +176,7 @@ class SiteController extends Controller
         }
 
         $criteria->order = 'p.id DESC';
-        $photos = new CActiveDataProvider(Mobilepictures::model()->with('countComments','countIdeasBooks'),
+        $photos = new CActiveDataProvider('Mobilepictures',
             array(
                 'criteria'=>$criteria,
                 'pagination'=>array(

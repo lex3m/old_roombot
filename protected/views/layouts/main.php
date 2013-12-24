@@ -107,12 +107,11 @@
     </div>
 </div><!-- #footer -->
 
-
 <?php  if (($this->uniqueid==='site')&&($this->action->Id==='index')): ?>
 <div class="gallery">
                    <?php
                     $criteria = new CDbCriteria();
-                    $criteria->condition = 'moderation=:moderation';
+//                    $criteria->condition = 'moderation=:moderation';
                     $criteria->params = array(':moderation'=>1);
                     $criteria->order ='id DESC';
                     $criteria->limit =20;
@@ -121,7 +120,7 @@
                         <?php     
                         foreach ($photos as $photo)
                             echo '<li data-preview="'.Yii::app()->request->baseUrl.'/images/mobile/images/'.$photo->image.'">
-                                    <a href=""><img src="'.Yii::app()->request->baseUrl.'/images/mobile/images/'.$photo->image.'" alt="image" /></a>
+                                    <a target="_blank" href="'.Yii::app()->createUrl('mobilepictures/viewinfo',array('id'=>$photo->id)).'" ><img src="'.Yii::app()->request->baseUrl.'/images/mobile/images/'.$photo->image.'" alt="image" /></a>
                                   </li>' . "\n \t";
                        ?>
                     </ul>
@@ -131,10 +130,6 @@ Yii::app()->clientScript->registerScript('slider',"
         $( '#carousel' ).elastislide( {
             minItems : 5
         } );
-
-        $('#carousel li a').click(function(){
-            return false;
-        })
 ");
 ?>
 <?php endif; ?>

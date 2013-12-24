@@ -1,12 +1,8 @@
-
 <li class="lastPhotos__item" id="<?php echo $data->id;?>">
     <div class="lastPhotosElement rb-media rb-border-light-bottom">
-<!--    <a class="photoImgPreview rb-media-image" target="_blank" href="--><?php //echo Yii::app()->createUrl('mobilepictures/viewinfo',array('id'=>$data->id)); ?><!--">-->
 
         <a class="photoImgPreview rb-media-image" onClick="showModule();" href="#" data-lightbox="last-photos" title="<?php echo $data->name; ?>">
-    <!--        <div class="image  left"  style="height: 120px; width: 120px;">-->
                 <img id="<?php echo $data->id;?>" class="image__full"  width="120" height="120" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $data->image; ?>">
-    <!--        </div>-->
         </a>
 
         <div class="rb-media-content">
