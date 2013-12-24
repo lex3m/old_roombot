@@ -143,7 +143,7 @@ class MobilepicturesController extends Controller
             $tagNameArray[$k] = $tag->name;
             $k++;
         }
-        $this->setPageTitle('Roombot - Фото '.$model->name.'. Теги: '.implode(", ",$tagNameArray));
+        $this->setPageTitle(Yii::app()->name . ' - Фото '.$model->name.'. Теги: '.implode(", ",$tagNameArray));
         $this->render('viewinfo',array(
             'model'=>$model,
             'tags'=>$tags_arr,

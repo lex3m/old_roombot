@@ -29,7 +29,7 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->setPageTitle('Roombot - Добавить фото своего интерьера БЕСПЛАТНО в мобильное приложение');
+		$this->setPageTitle(Yii::app()->name . ' - Добавить фото своего интерьера БЕСПЛАТНО в мобильное приложение');
 		$this->render('index', 'password');  
 	}
 	
@@ -45,7 +45,7 @@ class SiteController extends Controller
 	 */
 	public function actionError()
 	{
-	    $this->setPageTitle('Roombot - Ошибка');
+	    $this->setPageTitle(Yii::app()->name .' - Ошибка');
 		if($error=Yii::app()->errorHandler->error)
 		{
 			if(Yii::app()->request->isAjaxRequest)
@@ -86,7 +86,7 @@ class SiteController extends Controller
 	 */
 	public function actionLogin()
 	{
-	    $this->setPageTitle('Roombot - Вход');
+	    $this->setPageTitle(Yii::app()->name . ' - Вход');
 		$model=new LoginForm;
 
 		// if it is ajax validation request
@@ -148,8 +148,7 @@ class SiteController extends Controller
 
     public function actionPhotos()
     {
-
-        $this->setPageTitle('Последние фотографии');
+        $this->setPageTitle(Yii::app()->name.' - Последние фотографии');
         if (isset($_GET['q']))
             $query = $_GET['q']; else $query='';
         if (isset($_GET['id']) && !empty($_GET['id']))
@@ -241,7 +240,7 @@ class SiteController extends Controller
 
     public function actionInstruction()
     {
-        $this->setPageTitle('Инструкция');
+        $this->setPageTitle(Yii::app()->name . ' - Инструкция');
         $this->render('instruction',array());
     }
     
@@ -307,7 +306,7 @@ class SiteController extends Controller
                 $tagNameArray[$k] = $tag->name;
                 $k++;
             }
-            $this->setPageTitle('Roombot - Фото '.$model->name.'. Теги: '.implode(", ",$tagNameArray));
+            $this->setPageTitle(Yii::app()->name.' - Фото '.$model->name.'. Теги: '.implode(", ",$tagNameArray));
 
             $this->renderPartial('photospoiler',array(
                 'model'=>$model,

@@ -340,7 +340,7 @@ class CompaniesController extends Controller
 	
 	public function actionRegister()
 	{
-	    $this->setPageTitle('Roombot - Регистрация');  
+	    $this->setPageTitle(Yii::app()->name . ' - Регистрация');
 		$model=new Member('register');
         $memberinfo = new Memberinfo('register');
 		$activationKey = sha1(mt_rand(10000,99999).time().$model->email);

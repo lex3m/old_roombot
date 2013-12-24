@@ -1,13 +1,8 @@
-    <script type="text/javascript">(function() {
-            if (window.pluso)if (typeof window.pluso.start == "function") return;
-            if (window.ifpluso==undefined) { window.ifpluso = 1;
-                var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
-                s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
-                s.src = ('https:' == window.location.protocol ? 'https' : 'http')  + '://share.pluso.ru/pluso-like.js';
-                var h=d[g]('body')[0];
-                h.appendChild(s);
-            }})();
-    </script>
+<?php
+Yii::app()->clientScript->registerScript('pluso-start', "
+    pluso.start();
+", CClientScript::POS_END);
+?>
     <div class="closer">
         <img src="<?php echo Yii::app()->baseUrl; ?>/images/close.png" id="close" />
     </div>
@@ -164,20 +159,6 @@
                     </div>
                 <?php endif; ?>
                 <?php if (!Yii::app()->user->isGuest): ?>
-<!--                    <div class="napisat-komment">-->
-<!--                        <table class="table-comment">-->
-<!--                            <tr>-->
-<!--                                <td>-->
-<!--                                    <form id="usercomment"action="fotocomment.php" method="POST" name="commentform">-->
-<!--                                        <span>Напишите ваш комментарий к фото</span><br />-->
-<!--                                        <textarea name="usercomment" cols="40" rows="5">-->
-<!--                                        </textarea><br />-->
-<!--                                        <input type="submit" name="button" value="Опубликовать" class="opublik">-->
-<!--                                    </form>-->
-<!--                                </td>-->
-<!--                            </tr>-->
-<!--                        </table>-->
-<!--                    </div>-->
                 <div class="napisat-komment">
                     <div class="commentError"></div>
                     <form id="commentForm" class="commentForm" method="post" action="">
