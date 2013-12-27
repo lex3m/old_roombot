@@ -1,6 +1,6 @@
 <?php
 return array(
-    '1#Add files|0#Choose file' => '1#Добавить файлы|0#Выбрать файл',
+    '1#Add files|0#Choose file' => '1#Выбрать файлы|0#Выбрать файл',
     'File is too big' => 'Файл слишком большой',
     'File is too small' => 'Файл слишком маленький',
     'Filetype not allowed' => 'Запрещённый тип файла',
@@ -10,6 +10,9 @@ return array(
     "Error" => 'Ошибка',
     "Start" => 'Загрузить',
     "Cancel" => 'Отменить',
-    "Delete" => 'Удалить'
+    "Delete" => 'Удалить',
+    "Start upload"=>'Начать загрузку',
+    "Cancel upload"=>'Отменить загрузку',
+    'Add photos'=>'Добавить фотографии'
 
 );

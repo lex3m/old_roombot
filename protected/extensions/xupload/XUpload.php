@@ -75,6 +75,10 @@ class XUpload extends CJuiInputWidget {
     public $showForm = true;
 
     /**
+     * @var string accept files at input
+     */
+    public $accept;
+    /**
      * Publishes the required assets
      */
     public function init() {
@@ -128,6 +132,8 @@ class XUpload extends CJuiInputWidget {
                  $this -> attribute = "[]" . $this -> name;
              }*/
         }
+
+        $htmlOptions["accept"] = $this->accept;
 
         $this -> render($this->formView, compact('htmlOptions'));
 

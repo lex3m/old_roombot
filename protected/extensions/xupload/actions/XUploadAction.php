@@ -48,7 +48,7 @@ class XUploadAction extends CAction {
      * @var string
      * @since 0.5
      */
-    public $formClass = 'xupload.models.XUploadForm';
+    public $formClass = 'ext.xupload.models.XUploadForm';
 
     /**
      * Name of the model attribute referring to the uploaded file.

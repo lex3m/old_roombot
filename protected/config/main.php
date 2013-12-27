@@ -11,7 +11,7 @@ return array(
 
 	// preloading 'log' component
 	'preload'=>array('log'),
-    'sourceLanguage' => 'ru',
+    'sourceLanguage' => 'en',
     'language' => 'ru',
    // 'homeUrl'=>array('site/index'),
 	// autoloading model and component classes
@@ -133,6 +133,7 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'email'=>'roombot.site@gmail.com',   
+		'email'=>'roombot.site@gmail.com',
+        'pathToImg'=>'/../images/mobile/images/', //real path to files
 	),
 );

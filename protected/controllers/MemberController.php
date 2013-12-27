@@ -2,6 +2,20 @@
 
 class MemberController extends Controller
 {
+
+    /**
+     * Use XUpload action to upload files
+     */
+    /*public function actions()
+    {
+         return array(
+              'upload'=>array(
+                  'class'=>'ext.xupload.actions.XUploadAction',
+                  'path' =>Yii::app() -> getBasePath() . "/../images/mobile/images",
+                  'publicPath' => Yii::app() -> getBaseUrl() . "/images/mobile/images",
+              ),
+          );
+    }*/
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
@@ -33,7 +47,7 @@ class MemberController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','avatar','change', 'following' , 'followed'),
+				'actions'=>array('create','update','avatar','change', 'following' , 'followed', 'uploadUserPhotos'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -45,6 +59,112 @@ class MemberController extends Controller
 			),
 		);
 	}
+
+    public function actionUploadUserPhotos()
+    {
+        Yii::import( "ext.xupload.models.XUploadForm" );
+        //Here we define the paths where the files will be stored temporarily
+        $path = realpath( Yii::app() -> getBasePath() . Yii::app()->params['pathToImg'] )."/";
+        if (!is_dir($path.'/thumbs')) {
+            mkdir($path.'/thumbs');
+            chmod($path.'/thumbs', 0777);
+        }
+        $thumbsPath = realpath( Yii::app() -> getBasePath() . Yii::app()->params['pathToImg']."/thumbs/" )."/";
+
+        $publicPath = Yii::app( )->getBaseUrl( )."/images/mobile/images/tmp/";
+        $publicThumbsPath = Yii::app( )->getBaseUrl( )."/images/mobile/images/tmp/thumbs/";
+
+        //This is for IE which doens't handle 'Content-type: application/json' correctly
+        header( 'Vary: Accept' );
+        if( isset( $_SERVER['HTTP_ACCEPT'] )
+            && (strpos( $_SERVER['HTTP_ACCEPT'], 'application/json' ) !== false) ) {
+            header( 'Content-type: application/json' );
+        } else {
+            header( 'Content-type: text/plain' );
+        }
+
+        //Here we check if we are deleting and uploaded file
+        if( isset( $_GET["_method"] ) ) {
+            if( $_GET["_method"] == "delete" ) {
+                if( $_GET["file"][0] !== '.' ) {
+                    $file = $path.$_GET["file"];
+                    if( is_file( $file ) ) {
+                        unlink( $file );
+                    }
+                }
+                echo json_encode( true );
+            }
+        } else {
+            $model = new XUploadForm;
+            $model->file = CUploadedFile::getInstance( $model, 'file' );
+            //We check that the file was successfully uploaded
+            if( $model->file !== null ) {
+                //Grab some data
+                $model->mime_type = $model->file->getType( );
+                $model->size = $model->file->getSize( );
+                $model->name = $model->file->getName( );
+                //(optional) Generate a random name for our file
+                $filename = md5( Yii::app( )->user->id.microtime( ).$model->name);
+                $filename .= ".".strtolower($model->file->getExtensionName( ));
+                if( $model->validate( ) ) {
+
+                    //Move our file to our temporary dir
+                    $model->file->saveAs( $path.$filename );
+                    chmod( $path.$filename, 0777 );
+                    //here you can also generate the image versions you need
+                    //using something like PHPThumb
+                    Yii::import('ext.image.Image');
+                    $image = new Image($path.$filename);
+                    //Resize large pictures
+                    if($image->width>1000)
+                        $image->resize(1000, NULL);
+                    $resizedImage = $image->save($path.$filename);
+
+                    $image->resize(150,150);
+                    $resizedImageThumb = $image->save($thumbsPath.$filename);
+                    chmod( $thumbsPath.$filename, 0777 );
+
+                    if ($resizedImage && $resizedImageThumb) {
+                        $member = Member::model()->findByPk(Yii::app()->user->id);
+                        $mobilePicture = new Mobilepictures('upload');
+                        $mobilePicture->image = $filename;
+                        $mobilePicture->name = 'Фото пользователя '.$member->login;
+                        $mobilePicture->date = date('Y-m-d');
+                        $mobilePicture->companyID = $member->id;
+                        if ($mobilePicture->save()) {
+                            echo json_encode( array( array(
+                                "name" => $model->name,
+                                "type" => $model->mime_type,
+                                "size" => $model->size,
+                                "url" => $publicPath.$filename,
+                                "thumbnail_url" => $publicThumbsPath.$filename,
+                                "delete_url" => $this->createUrl( $this->action->id, array(
+                                    "_method" => "delete",
+                                    "file" => $filename
+                                ) ),
+                                "delete_type" => "POST"
+                            ) ) );
+                        } else {
+                            echo json_encode( array(
+                                array( "error" => $model->getErrors( 'upload' ),
+                                ) ) );
+                        }
+                    }
+
+                } else {
+                    //If the upload failed for some reason we log some data and let the widget know
+                    echo json_encode( array(
+                        array( "error" => $model->getErrors( 'file' ),
+                        ) ) );
+                    Yii::log( "XUploadAction: ".CVarDumper::dumpAsString( $model->getErrors( ) ),
+                        CLogger::LEVEL_ERROR, "ext.xupload.actions.XUploadAction"
+                    );
+                }
+            } else {
+                throw new CHttpException( 500, "Невозможно загрузить файл" );
+            }
+        }
+    }
 
 	/**
 	 * Displays a particular model.
@@ -146,7 +266,7 @@ class MemberController extends Controller
 	 */
 	public function actionDashboard($id)
 	{  
-		$this->setPageTitle('Roombot - Кабинет');    
+		$this->setPageTitle(Yii::app()->name . ' - Кабинет');
           $member = Member::model()->with('memberinfo','countComments','countPhotos')->find('urlID=:id', array(':id'=>$id));
           $memberCity =  Membercity::model()->with('city')->findbyPk($member->id);  
           $pic_arr=array();
@@ -166,9 +286,11 @@ class MemberController extends Controller
 
           $followed = MemberFollowers::model()->with('followed')->findAll($criteria);
 
-
-        $model = new Mobilepictures('add');
+          Yii::import( "ext.xupload.models.XUploadForm" );
+          $photos = new XUploadForm;
+          $model = new Mobilepictures('add');
           if (isset($_POST['Mobilepictures'])) {
+              print_r($_POST);exit;
                 $model->attributes = $_POST['Mobilepictures'];
                 $images=CUploadedFile::getInstances($model,'images');
                 $uploaded = array();
@@ -194,7 +316,6 @@ class MemberController extends Controller
                             $uploaded[$img->name] = false;
                         }
                     }
-                    $i=0;
                     foreach ($uploaded as $k => $upl) {
                         if ($upl) {
                             Yii::app()->user->setFlash('success '.$k, "Изображение ". $k . " было успешно добавлено.");
@@ -220,7 +341,8 @@ class MemberController extends Controller
                         ),
                     )
             );
-      $this->render('dashboard',array(   
+      $this->render('dashboard',array(
+                'photos'=>$photos,
                 'member'=>$member,
                 'following'=>$following,
                 'followed'=>$followed,

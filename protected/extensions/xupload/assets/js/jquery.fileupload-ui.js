@@ -45,23 +45,23 @@
             autoUpload: false,
             // The following option limits the number of files that are
             // allowed to be uploaded using this widget:
-            maxNumberOfFiles: undefined,
+            maxNumberOfFiles: 20, //max files to unload in same time
             // The maximum allowed file size:
-            maxFileSize: undefined,
+            maxFileSize: 10000000, // 10MB
             // The minimum allowed file size:
             minFileSize: undefined,
             // The regular expression for allowed file types, matches
             // against either file type or file name:
-            acceptFileTypes:  /.+$/i,
+            acceptFileTypes:  /^image\/(gif|jpeg|png)$/,
             // The regular expression to define for which files a preview
             // image is shown, matched against the file type:
             previewSourceFileTypes: /^image\/(gif|jpeg|png)$/,
             // The maximum file size of images that are to be displayed as preview:
-            previewSourceMaxFileSize: 5000000, // 5MB
+            previewSourceMaxFileSize: 10000000, // 10MB
             // The maximum width of the preview images:
-            previewMaxWidth: 80,
+            previewMaxWidth: 150,
             // The maximum height of the preview images:
-            previewMaxHeight: 80,
+            previewMaxHeight:150,
             // By default, preview images are displayed as canvas elements
             // if supported by the browser. Set the following option to false
             // to always display preview images as img elements:
@@ -140,6 +140,7 @@
             done: function (e, data) {
                 var that = $(this).data('fileupload'),
                     template;
+                console.log(data.context);
                 if (data.context) {
                     data.context.each(function (index) {
                         var file = ($.isArray(data.result) &&

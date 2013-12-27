@@ -18,12 +18,15 @@
             <td colspan="2"></td>
         {% } %}
         <td class="delete">
-            <button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}">
+            <!--<button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}">
                 <i class="icon-trash icon-white"></i>
                 <span>{%=locale.fileupload.destroy%}</span>
-            </button>
-            <?php if ($this->multiple) : ?><input type="checkbox" name="delete" value="1">
-            <?php else: ?><input type="hidden" name="delete" value="1">
+            </button>-->
+            <img width="21px" height="18px" src="/images/site/checkepicture.png" style="float:left; padding-right:5px;">
+            <?php if ($this->multiple) : ?>
+<!--                <input type="checkbox" name="delete" value="1">-->
+            <?php else: ?>
+                <input type="hidden" name="delete" value="1">
             <?php endif; ?>
         </td>
     </tr>

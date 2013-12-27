@@ -1,24 +1,7 @@
 <div class="list-bot">
 <?php if ($member->id==Yii::app()->user->id): ?><h1 style = "margin-bottom: 0;">Мой кабинет</h1><?php endif; ?>
 <br>
-<!--<div class="leftBar">
-<div class="memberCabinetPic">
-            <a onclick="return false;" href="">  
-            <img id="mainMemberCabinetPic" src="<?php echo Yii::app()->baseUrl; ?>/images/members/avatars/<?php echo $member->memberinfo->avatar;?>"/>
-        </a>
-</div>
-<!--<div id="friendsFollowDiv">  
-    <a class="specialBtn whiteBtn Btnfollow" href="" onclick="" onmouseover="" onmouseout="" title="Follow" id="">
-        <span id="" class="label">Follow</span>
-        <span id="followButton_coffeewithanarchitect_icon__" class="whitebuttonIcon  buttonIconAddToIdeabook">
-        
-        </span>
-    </a>                  
-    <input id="followOp_coffeewithanarchitect" type="hidden" value="f">
-</div>-->
-<!--</div>-->
 <div class="rightBlockMemeberInfo">
-
 <div class="leftBar">
 <div class="memberCabinetPic">
             <a onclick="return false;" href="">  
@@ -168,89 +151,83 @@
 
 <?php if (Yii::app()->user->id == $member->id): ?>
 <div class="block-a">
- <div class="width-form1">
-<?php 
- $form=$this->beginWidget('CActiveForm', array(
-    'id'=>'mobilepictures-form',
-    'enableAjaxValidation'=>false,
-    'htmlOptions' => array('enctype' => 'multipart/form-data'), // ADD THIS
-)); ?>
+    <div class="width-form1">
+    <?php
+     $form=$this->beginWidget('CActiveForm', array(
+        'id'=>'mobilepictures-form',
+        'enableAjaxValidation'=>false,
+        'htmlOptions' => array('enctype' => 'multipart/form-data'), // ADD THIS
+    )); ?>
 
 
-<div class="row width-form">
-        <?php echo $form->labelEx($model,'name'); ?>
-        <p style="margin:0px;font-size:11px">*Ссылка на ваш сайти или блог(без http://)</p>
-        <?php echo $form->textField($model,'name',array('size'=>34,'maxlength'=>50)); ?> 
-        <?php echo $form->error($model,'name'); ?>
+    <div class="row width-form">
+            <?php /*echo $form->labelEx($model,'name'); */?><!--
+            <p style="margin:0px;font-size:11px">*Ссылка на ваш сайти или блог(без http://)</p>
+            <?php /*echo $form->textField($model,'name',array('size'=>34,'maxlength'=>50)); */?>
+            --><?php /*echo $form->error($model,'name'); */?>
 
-        <?php echo $form->labelEx($model,'info'); ?>
-        <p style="margin:0px;font-size:11px">Краткое описание для фотографии</p>
-        <?php echo $form->textArea($model,'info',array('cols'=>27,'rows'=>3)); ?>
-        <?php echo $form->error($model,'info'); ?>
-</div> 
+            <?php /*echo $form->labelEx($model,'info'); */?><!--
+            <p style="margin:0px;font-size:11px">Краткое описание для фотографии</p>
+            <?php /*echo $form->textArea($model,'info',array('cols'=>27,'rows'=>3)); */?>
+            --><?php /*echo $form->error($model,'info'); */?>
+        <?php
+            echo $form->labelEx($model, 'images');
+        ?>
+        <p style="margin:0px;font-size:11px">*Фото размером до 10 Мб и количество не более 20 единиц за одну загрузку</p>
+        <?php
+        $this->widget( 'ext.xupload.XUpload', array(
+                'url' => Yii::app( )->createUrl( "member/uploadUserPhotos"),
+                //our XUploadForm
+                'model' => $photos,
+                //We set this for the widget to be able to target our own form
+                'htmlOptions' => array('id'=>'mobilepictures-form'),
+                'attribute' => 'file',
+                'multiple' => true,
+                'accept' => 'image/jpg, image/jpeg, image/png, image/gif',
+                'options' => array(
+                    'stop'=>'js:function(event, files, index, xhr, handler, callBack) {
+                         //setTimeout( location.reload(), 2000 );
+                         var seconds = 3; //wait 3 seconds after uploading
+                         var interval = setInterval( function() {
+                            seconds = seconds - 1;
+                            $(".upload-timer").html("Ожидайте " + seconds + " сек для завершения загрузки");
+                            if (seconds == 0) {
+                                clearInterval(interval);
+                            }
+                         },  1000);
 
-<!--        --><?php //echo $form->fileField($model,'img',array("class"=>"vvv")); ?>
-<!--        --><?php //echo $form->error($model,'img'); ?>
-<?php
-     echo $form->labelEx($model, 'images');
-    /*$this->widget('ext.xupload.XUpload', array(
-        'url' => Yii::app()->createUrl("site/upload"),
-        'model' => $model,
-        'attribute' => 'file',
-        'multiple' => true,
-    ));*/
+                         setTimeout( function(){ location.reload() }, 3000 );
+                    }',
+                ),
+            )
+        );
 
-     /*$this->widget('CMultiFileUpload', array(
-         'model' => $model,
-         'attribute' => 'images',
-         'accept' => 'jpg|jpeg|png|bmp|gif',
-         'duplicate' => 'Этот файл уже выбран!',
-         'denied' => 'Недопустимый тип файла',
-         'htmlOptions' => array(
-            'multiple' => 'multiple',
-            'accept' => 'image/jpg, image/jpeg, image/png, image/bmp, image/gif'
-         ),
-
-     ));*/
-
-/* $this->widget('application.extensions.Plupload.PluploadWidget', array(
-    'config' => array(
-        'runtimes' => 'html5',
-        'url' => '/image/upload/',
-        'max_file_size' => '1mb',
-
-    ),
-    'id' => 'uploader',
-     'model'=>$model,
-     'attribute'=>'files',
-
- ));*/
- ?>
- <input multiple="multiple" accept="image/jpg, image/jpeg, image/png, image/bmp, image/gif" id="Mobilepictures_images" type="file" value="" name="Mobilepictures[images][]" class="MultiFile-applied">
-     <?php echo $form->error($model,'img');?>
- <div class="row buttons">
-        <?php echo CHtml::submitButton('Добавить изображение'); ?> 
+        ?>
+<!--        <div class="row buttons">-->
+<!--            --><?php //echo CHtml::submitButton('Добавить изображения'); ?>
+<!--        </div>-->
     </div>
 
-<?php $this->endWidget(); ?>
+    <!--        --><?php //echo $form->fileField($model,'img',array("class"=>"vvv")); ?>
+    <!--        --><?php //echo $form->error($model,'img'); ?>
+    <!-- <input multiple="multiple" accept="image/jpg, image/jpeg, image/png, image/bmp, image/gif" id="Mobilepictures_images" type="file" value="" name="Mobilepictures[images][]" class="MultiFile-applied">-->
+
+
+    <?php $this->endWidget(); ?>
+    </div>
 </div>
-<div id="poisk">
-     <form id="poisk11" action=" " name="poiskroomb" method="post">
-     
-     
-         <div class="poisks">
-             <span class="nazwa1">Поиск</span><br />         
-             <input id="infowvod" type="text" size="30" maxlength="50" name="wvod">
-         </div>
-         <div class="buttons2">
-             <?php echo CHtml::submitButton('Найти', array('id' => 'poiskknopka', 'name' => 'button'));  ?>
-            
-         </div>
-         
-         
-     </form>
-</div>
-   
+<div class="block-a">
+    <div id="poisk">
+        <form id="poisk11" action=" " name="poiskroomb" method="post">
+            <div class="poisks">
+                <span class="nazwa1">Поиск</span><br />
+                <input id="infowvod" type="text" size="30" maxlength="50" name="wvod">
+            </div>
+            <div class="buttons2">
+                <?php echo CHtml::submitButton('Найти', array('id' => 'poiskknopka', 'name' => 'button'));  ?>
+            </div>
+        </form>
+    </div>
 </div>
 <?php endif; ?>
 <div class="span-17 last">
@@ -400,6 +377,7 @@ if (Yii::app()->user->id == $member->id):
         ",CClientScript::POS_READY);
 else:
     Yii::app()->clientScript->registerScript('mobilePicturesScript',"
+
      $( '#addfollower').on('click', function(event){
            event.preventDefault();
            var followerUrl = $(this).attr('href');

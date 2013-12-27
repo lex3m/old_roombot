@@ -22,7 +22,7 @@ class XUploadForm extends CFormModel
         public function rules()
         {
                 return array(
-                        array('file', 'file'),
+                        array('file', 'file', 'types'=>'jpg, jpeg, png, gif','allowEmpty'=>false,'maxSize' => 10*1024*1024, 'tooLarge'=>'Файл не может превышать 10MB'),
                 );
         }
 

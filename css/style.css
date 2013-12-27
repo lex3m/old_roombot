@@ -572,8 +572,10 @@ div.list-bot .aktiwaciya-otwet a{
 }
 
 .width-form1{
-    width: 340px;
+    width: 700px;
+    border: 1px dotted #FFFFFF;
     float: left;
+    padding: 5px 0 5px 10px;
 }
 
 .list-bot .form form .row label{
@@ -691,12 +693,12 @@ img.photo-img{
 }
 
 #poisk{
-    background: url("../images/4el.png") no-repeat scroll right 0 transparent;
-    border-left: 1px dotted #FFFFFF;
-    float: right;
-    height: 145px;
+    background: url("../images/4el.png") no-repeat scroll left 0 transparent;
+    background-position-x: 430px;
+    /*float: right;*/
+    height: 70px;
     margin-top: 10px;
-    padding-left: 30px;
+    padding-left: 215px;
     padding-top: 42px;
 }
 .poisks{
@@ -729,8 +731,9 @@ input#infowvod {
     width: 170px;
 }
 .buttons2{
-    float: right;
-    margin-top: 25px;
+    float: left;
+    margin-top: 28px;
+    margin-left: 10px;
     width: 80px;
 }
 .buttons2 input#poiskknopka{
@@ -738,7 +741,7 @@ input#infowvod {
     border: 2px solid #002980;
     border-radius: 5px 5px 5px 5px;
     color: #002980;
-    float: right;
+    float: left;
     font-weight: bold;
     padding: 1px 10px 3px;
 }
@@ -811,7 +814,7 @@ span#name_picture{
     margin-bottom: 10px;
 }
 #company_photo{
-    min-height: 130px;
+    min-height: 160px;
 }
 .izo-tegi{
     margin-bottom: 20px;
@@ -1730,7 +1733,7 @@ ul.setka {
     margin-right: 0 !important;
 }
 #lastPhotosContainer ul.setka div#yw0.list-view div.items li.lastPhotos__item div.lastPhotosElement a.photoImgPreview img.image__full {
-    height: 155px !important;
+    /*height: 155px !important;*/
     width: 155px !important; 
 }
 #lastPhotosContainer ul.setka div#yw0.list-view div.items li.lastPhotos__item div.lastPhotosElement div.rb-media-content {

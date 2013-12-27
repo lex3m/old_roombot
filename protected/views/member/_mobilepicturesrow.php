@@ -29,7 +29,7 @@
 
 <div id="company_photo" style="margin-bottom:10px;" class="" name="<?php echo $data->id; ?>">
          <a href="/mobilepictures/viewinfo/<?php echo $data->id; ?>" target="_blank">
-             <img width="100px" height="100px" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $data->image; ?>" class="photo-img">
+             <img width="150px" height="150px" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $data->image; ?>" class="photo-img">
          </a>
          
          <?php if (Yii::app()->user->id == $member->id): ?>
