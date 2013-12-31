@@ -30,12 +30,12 @@ class MobilepicturesController extends Controller
         return array(
             array('allow',  // allow all users to perform 'index' and 'view' actions
                 'actions'=>array('getpreviousphotos','getcount','pricelists','index','view','register','registersuccess','activation',
-                'viewinfo','dashboard','profile','news','tenders','consultants','addtag','tagsdelete','editpicturename',
+                'viewinfo','dashboard','profile','news','tenders','consultants',
                 'vacancies','offers','photos','products','add_product','getnamesarray','getinfo','getinitinfo','search'),      
                 'users'=>array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions'=>array('create','update','delete'), 
+                'actions'=>array('create','update','delete', 'rotate', 'addtag','tagsdelete','editpicturename', 'editpictureinfo'),
                 'users'=>array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -78,6 +78,20 @@ class MobilepicturesController extends Controller
                 echo json_encode($json_data);
                }
           }
+    }
+
+    public function actionEditpictureinfo()
+    {
+        if (isset($_POST['id'])&&isset($_POST['info']))
+        {
+            $img = Mobilepictures::model()->findbyPk($_POST['id']);
+            $img->info = $_POST['info'];
+            if ($img->save())
+            {
+                $json_data = array ('id'=>$img->id,'info'=>$img->info);
+                echo json_encode($json_data);
+            }
+        }
     }
 
     public function actionAddtag()
@@ -331,13 +345,45 @@ class MobilepicturesController extends Controller
         if (isset($_POST['id']))
           {
            $image = Mobilepictures::model()->findbyPk($_POST['id']);
-           if ($image->companyID == Yii::app()->user->id)
+               if ($image->companyID == Yii::app()->user->id)
                {
-               if ($image->delete())
-                  unlink(Yii::getPathOfAlias('webroot').'/images/mobile/images/'.$image->image);
-                  echo $image->id;
+                   if ($image->delete())
+                   {
+                      if (is_file(realpath( Yii::app() -> getBasePath() . Yii::app()->params['pathToImg']."/thumbs/" )."/".$image->image))
+                        unlink(Yii::getPathOfAlias('webroot').'/images/mobile/images/thumbs/'.$image->image);
+                      unlink(Yii::getPathOfAlias('webroot').'/images/mobile/images/'.$image->image);
+
+                      echo $image->id;
+                   }
                }
           } 
+    }
+
+    public function actionRotate()
+    {
+
+        if (isset($_POST['id']))
+        {
+            $img = Mobilepictures::model()->findbyPk($_POST['id']);
+            $path = realpath( Yii::app() -> getBasePath() . Yii::app()->params['pathToImg'] )."/";
+            $thumbpath = realpath( Yii::app() -> getBasePath() . Yii::app()->params['pathToImg']."/thumbs/" )."/";
+            if ($img->companyID == Yii::app()->user->id)
+            {
+                Yii::import('ext.image.Image');
+                $image = new Image($path.$img->image);
+                $image->rotate(90);
+
+                $thumb = new Image($thumbpath.$img->image);
+                $thumb->rotate(90);
+                if ($image->save() && $thumb->save()) {
+                    $im = '<img width="150px" height="100px" src="/images/mobile/images/'.$img->image.'" class="photo-img">';
+                    $json_data = array ('image'=> $im, 'id'=>$img->id);
+                    echo json_encode($json_data); ;
+                }
+                else
+                    echo 'error with rotating image';
+            }
+        }
     }
    /*
      * Updates a particular model.
@@ -371,7 +417,7 @@ class MobilepicturesController extends Controller
           {
           $company = Companies::model()->findbyPk($member->id);
           $pic_arr=array();
-          $pictures=Mobilepictures::model()->findAll('companyID=:id', array(':id'=>$company->id));
+          $pictures=Mobilepictures::model()->findAll('companyID=:id', array(':id'=>$member->id));
           
   
           $tag = Mobiletags::model()->with('imagelinks')->find('name LIKE :name', array(':name'=>'%'.$query.'%'));
@@ -386,7 +432,7 @@ class MobilepicturesController extends Controller
                    
                 $criteria = new CDbCriteria();
                 $criteria->condition = 'companyID=:id';
-                $criteria->params = array(':id'=>$company->id); 
+                $criteria->params = array(':id'=>$member->id);
                 $criteria->addInCondition('t.id',$photosIds);
                 $criteria->order ='id DESC';
                 $dataProvider = new CActiveDataProvider(Mobilepictures::model()->with('taglinks'), 

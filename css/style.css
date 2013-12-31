@@ -803,7 +803,7 @@ span#site-user{
     font-weight: bold;
     padding-left: 110px;
 }
-span#name_picture{
+span.name_picture{
     color: #002980;
     font-size: 20px;
     font-weight: bold;
@@ -814,7 +814,7 @@ span#name_picture{
     margin-bottom: 10px;
 }
 #company_photo{
-    min-height: 160px;
+    min-height: 120px;
 }
 .izo-tegi{
     margin-bottom: 20px;
@@ -860,7 +860,12 @@ a.a-teg{
 a.a-teg:hover{
    background: url("../images/dobawit_teg_active.png") no-repeat scroll 0 0 transparent;
 }
-
+.info_box {
+    width: 450px;
+}
+#picture_info_textArea {
+    resize: none;
+}
 
 /* Footer
 -----------------------------------------------------------------------------*/
@@ -1946,4 +1951,38 @@ div.loading * {
 .flash-error {
     color: red;
 }
+.bar, .progress-bar {
+    background-color: green;
+    height: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+.fileupload-buttonbar {
+    background: url("/images/knopka_srednyaya_left2.png") no-repeat scroll left 0 transparent;
+    height: 36px;
+    margin-top: 25px;
+    padding-left: 22px;
+}
+.fileupload-buttonbar .span7 {
+    width: 430px;
+    float: right;
+}
+.fileupload-buttonbar .span5 {
+    width: 240px;
+    float: left;
+}
+.btn-primary.start {
+    background: url("/images/knopka_srednyaya_right2.png") no-repeat scroll right 0 transparent;
+    border: medium none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    color: #002980;
+    cursor: pointer;
+    height: 36px;
+    margin: 0;
+    padding-right: 23px;
+    text-transform: uppercase;
+}
+
 /*********end action photos*********/

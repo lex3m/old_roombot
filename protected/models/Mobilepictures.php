@@ -40,7 +40,7 @@ class Mobilepictures extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-            array('name, date, image, companyID', 'required','on'=>'upload'),
+            array('date, image, companyID', 'required','on'=>'upload'),
 			array('name, date, image, companyID', 'required','on'=>'add'),
 			array('info', 'safe','on'=>'add'),
 			array('name', 'length', 'max'=>50,'on'=>'add'),

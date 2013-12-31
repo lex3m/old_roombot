@@ -71,8 +71,8 @@ class MemberController extends Controller
         }
         $thumbsPath = realpath( Yii::app() -> getBasePath() . Yii::app()->params['pathToImg']."/thumbs/" )."/";
 
-        $publicPath = Yii::app( )->getBaseUrl( )."/images/mobile/images/tmp/";
-        $publicThumbsPath = Yii::app( )->getBaseUrl( )."/images/mobile/images/tmp/thumbs/";
+        $publicPath = Yii::app( )->getBaseUrl( )."/images/mobile/images/";
+        $publicThumbsPath = Yii::app( )->getBaseUrl( )."/images/mobile/images/thumbs/";
 
         //This is for IE which doens't handle 'Content-type: application/json' correctly
         header( 'Vary: Accept' );
@@ -115,6 +115,9 @@ class MemberController extends Controller
                     //using something like PHPThumb
                     Yii::import('ext.image.Image');
                     $image = new Image($path.$filename);
+                    //Rotate image if need
+                    if($image->width < $image->height)
+                        $image->rotate(270);
                     //Resize large pictures
                     if($image->width>1000)
                         $image->resize(1000, NULL);
@@ -128,7 +131,7 @@ class MemberController extends Controller
                         $member = Member::model()->findByPk(Yii::app()->user->id);
                         $mobilePicture = new Mobilepictures('upload');
                         $mobilePicture->image = $filename;
-                        $mobilePicture->name = 'Фото пользователя '.$member->login;
+                        $mobilePicture->name = ''; //'Фото пользователя '.$member->login;
                         $mobilePicture->date = date('Y-m-d');
                         $mobilePicture->companyID = $member->id;
                         if ($mobilePicture->save()) {
@@ -269,7 +272,7 @@ class MemberController extends Controller
 		$this->setPageTitle(Yii::app()->name . ' - Кабинет');
           $member = Member::model()->with('memberinfo','countComments','countPhotos')->find('urlID=:id', array(':id'=>$id));
           $memberCity =  Membercity::model()->with('city')->findbyPk($member->id);  
-          $pic_arr=array();
+
           $pictures=Mobilepictures::model()->findAll('companyID=:id', array(':id'=>$member->id));
 
           $criteria = new CDbCriteria();
@@ -289,67 +292,29 @@ class MemberController extends Controller
           Yii::import( "ext.xupload.models.XUploadForm" );
           $photos = new XUploadForm;
           $model = new Mobilepictures('add');
-          if (isset($_POST['Mobilepictures'])) {
-              print_r($_POST);exit;
-                $model->attributes = $_POST['Mobilepictures'];
-                $images=CUploadedFile::getInstances($model,'images');
-                $uploaded = array();
-                if (isset($images) && count($images) > 0) {
-                    foreach($images as $k => $img) {
-                        $model = new Mobilepictures('add');
-                        $model->attributes = $_POST['Mobilepictures'];
-
-                        $model->img=$img;
-                        $model->image = $img;
-                        $model->date=date('Y-m-d');
-                        $model->companyID=$member->id;
-                        if ($model->validate()) {
-                            $model->image = $img->name;
-                            $userfile_extn = substr($model->image, strrpos($model->image, '.')+1);
-                            $model->image = Mobilepictures::generateUniqueName($userfile_extn);
-                            if ($model->save()) {
-                                 $model->img->saveAs(Yii::getPathOfAlias('webroot').'/images/mobile/images/'.$model->image);
-
-                                 $uploaded[$img->name] = true;
-                            }
-                        } else {
-                            $uploaded[$img->name] = false;
-                        }
-                    }
-                    foreach ($uploaded as $k => $upl) {
-                        if ($upl) {
-                            Yii::app()->user->setFlash('success '.$k, "Изображение ". $k . " было успешно добавлено.");
-                        } else {
-                            Yii::app()->user->setFlash('error '.$k, "Изображение ". $k . " не было добавлено.");
-                        }
-
-                    }
-                    $this->refresh();
-                }
-          }
                 
-            $criteria = new CDbCriteria();
-            $criteria->condition = 'companyID=:id';
-            $criteria->params = array(':id'=>$member->id); 
-            $criteria->order ='id DESC';  
-            $dataProvider = new CActiveDataProvider(Mobilepictures::model()->with('taglinks','countComments'), 
+          $criteria = new CDbCriteria();
+          $criteria->condition = 'companyID=:id';
+          $criteria->params = array(':id'=>$member->id);
+          $criteria->order ='id DESC';
+          $dataProvider = new CActiveDataProvider(Mobilepictures::model()->with('taglinks','countComments'),
                     array(
                         'criteria'=>$criteria,
-                        
+
                         'pagination'=>array(
                             'pageSize'=>12,
                         ),
                     )
-            );
-      $this->render('dashboard',array(
-                'photos'=>$photos,
-                'member'=>$member,
-                'following'=>$following,
-                'followed'=>$followed,
-                'pictures'=>$pictures,
-                'model'=>$model,
-                'dataProvider'=>$dataProvider,
-                'memberCity'=>$memberCity ));
+          );
+          $this->render('dashboard',array(
+                    'photos'=>$photos,
+                    'member'=>$member,
+                    'following'=>$following,
+                    'followed'=>$followed,
+                    'pictures'=>$pictures,
+                    'model'=>$model,
+                    'dataProvider'=>$dataProvider,
+                    'memberCity'=>$memberCity ));
 	}
 
 	/**

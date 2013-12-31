@@ -4,20 +4,24 @@
             $checkImage='uncheckepicture.png';
 ?>
 
+<div class="user-photo" name="<?php echo $data->id; ?>">
+    <div class="info-userfoto">
+        <?php if (Yii::app()->user->id == $member->id): ?>
+             <img width="21px" height="18px" src="/images/site/<?php echo $checkImage; ?>" style="float:left; padding-right:5px;">
+             <span id="moderat">
+                 <?php if ($data->moderation==0)
+                            echo 'Фото на модерации';
+                    else
+                            echo 'Фото прошло модерацию';?>
+             </span>
+        <?php endif; ?>
+        <span id="site-user">Сайт:</span>
+        <span class="name_picture" id="picture-<?php echo $data->id; ?>"><?php echo $data->name; ?></span>
+            <?php if (Yii::app()->user->id == $member->id):?>
+               <span id="name_picture" data-id="<?php echo $data->id; ?>" data-name="<?php echo $data->name; ?>"><img class="buttonsCommentAction buttonCommentEditIcon" style="padding-top: 0px; margin-top: -5px; cursor:pointer;" src=""></span>
+            <?php endif; ?>
 
-<div class="info-userfoto">
-    <?php if (Yii::app()->user->id == $member->id): ?>
-         <img width="21px" height="18px" src="/images/site/<?php echo $checkImage; ?>" style="float:left; padding-right:5px;">
-         <span id="moderat">
-             <?php if ($data->moderation==0) 
-                        echo 'Фото на модерации';
-                else 
-                        echo 'Фото прошло модерацию';?>
-         </span>
-     <?php endif; ?>
-     <span id="site-user">Сайт:</span>
-     <span id="name_picture" name="912" class="name_picture_id_912"><?php echo $data->name; ?></span>
-     </div>
+    </div>
      <div class="daty"><?php echo $data->date; ?>
          &nbsp;|&nbsp;
          <?php if ($data->countComments==0) { ?>
@@ -27,40 +31,39 @@
          <?php } ?>
     </div>
 
-<div id="company_photo" style="margin-bottom:10px;" class="" name="<?php echo $data->id; ?>">
-         <a href="/mobilepictures/viewinfo/<?php echo $data->id; ?>" target="_blank">
-             <img width="150px" height="150px" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $data->image; ?>" class="photo-img">
-         </a>
-         
-         <?php if (Yii::app()->user->id == $member->id): ?>
-            <a href="<?php echo Yii::app()->createUrl('mobilepictures/viewinfo',array('id'=>$data->id)); ?>" target="<?php echo $data->id; ?>" id="delete_picture" title="Удалить"><img width="12px" height="12px" src="<?php echo Yii::app()->baseUrl; ?>/images/site/delete_icon.png" style="float:left"></a>
-         <?php endif; ?>
-        <div style="margin-left:20px;" class="izo-tegi">
-            <?php if(!empty($data->info)): ?>
-                <span class="tegss">Описание:</span>
-                <div id="tags" class="tag_box">
+    <div id="company_photo" style="margin-bottom:10px;" class="" >
+             <a href="<?php echo Yii::app()->createUrl('mobilepictures/viewinfo',array('id'=>$data->id)); ?>" target="<?php echo $data->id; ?>" id="rotate_picture" title="Повернуть фото"><img width="15px" height="15px" src="<?php echo Yii::app()->baseUrl; ?>/images/rotate.png" style="float:left; margin-right: 5px;"></a>
+             <a id="img-<?php echo $data->id; ?>" href="/mobilepictures/viewinfo/<?php echo $data->id; ?>" target="_blank">
+                 <img width="150px" height="100px" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $data->image; ?>" class="photo-img">
+             </a>
+
+             <?php if (Yii::app()->user->id == $member->id): ?>
+                <a href="<?php echo Yii::app()->createUrl('mobilepictures/viewinfo',array('id'=>$data->id)); ?>" target="<?php echo $data->id; ?>" id="delete_picture" title="Удалить"><img width="12px" height="12px" src="<?php echo Yii::app()->baseUrl; ?>/images/site/delete_icon.png" style="float:left"></a>
+             <?php endif; ?>
+            <div style="margin-left:20px;" class="izo-tegi">
+                <span class="tegss">Описание:</span> <span id="picture_info" data-id="<?php echo $data->id; ?>" ><img class="buttonsCommentAction buttonCommentEditIcon" style="padding-top: 0px; margin-top: -5px; cursor:pointer;" src=""></span>
+                <div id="info-<?php echo $data->id;?>" class="info_box">
                   <?php echo $data->info; ?>
                 </div>
-            <?php endif; ?>
-        </div>
-         <div style="margin-left:20px;" class="izo-tegi">
-             <span class="tegss">Теги:</span>
-             <div id="tags<?php echo $data->id; ?>" class="tag_box">
-                <?php foreach ($data->taglinks as $m) { 
-                    $tag=Mobiletags::model()->findByPk($m->tagId);?>
-                     <div style="margin-bottom:10px;" id="taglinkk<?php echo $m->id; ?>">
-                         <?php echo $tag->name; ?>
-                         <?php if (Yii::app()->user->id == $member->id): ?>
-                            <a href="/mobilepictures/delete" target="<?php echo $m->id; ?>" id="delete_tag" title="Удалить"><img width="12px" height="12px" src="<?php echo Yii::app()->baseUrl; ?>/images/site/delete_icon.png" style="float:right" id="<?php echo $m->id; ?>" /></a>
-                         <?php endif; ?>
-                     </div>
-                <?php } ?>
+            </div>
+             <div style="margin-left:20px;" class="izo-tegi">
+                 <span class="tegss">Теги:</span>
+                 <div id="tags<?php echo $data->id; ?>" class="tag_box">
+                    <?php foreach ($data->taglinks as $m) {
+                        $tag=Mobiletags::model()->findByPk($m->tagId);?>
+                         <div style="margin-bottom:10px;" id="taglinkk<?php echo $m->id; ?>">
+                             <?php echo $tag->name; ?>
+                             <?php if (Yii::app()->user->id == $member->id): ?>
+                                <a href="/mobilepictures/delete" target="<?php echo $m->id; ?>" id="delete_tag" title="Удалить"><img width="12px" height="12px" src="<?php echo Yii::app()->baseUrl; ?>/images/site/delete_icon.png" style="float:right" id="<?php echo $m->id; ?>" /></a>
+                             <?php endif; ?>
+                         </div>
+                    <?php } ?>
+                 </div>
              </div>
-         </div>
-         <?php if (Yii::app()->user->id == $member->id): ?>
-         <div class="izo-tegi2">
-              <a href="#" id="<?php echo $data->id; ?>" name="new_tag" class="a-teg">Добавить теги</a>
-         </div>
-         <?php endif; ?>
+             <?php if (Yii::app()->user->id == $member->id): ?>
+             <div class="izo-tegi2">
+                  <a href="#" id="<?php echo $data->id; ?>" name="new_tag" class="a-teg">Добавить теги</a>
+             </div>
+             <?php endif; ?>
      </div>
-     
+</div>

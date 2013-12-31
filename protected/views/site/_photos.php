@@ -2,7 +2,12 @@
     <div class="lastPhotosElement rb-media rb-border-light-bottom">
 
         <a class="photoImgPreview rb-media-image" onClick="showModule();" href="#" data-lightbox="last-photos" title="<?php echo $data->name; ?>">
+            <?php if (is_file(realpath( Yii::app() -> getBasePath() . Yii::app()->params['pathToImg']."/thumbs/" )."/".$data->image)):?>
+                <img id="<?php echo $data->id;?>" class="image__full"  width="120" height="120" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/thumbs/<?php echo $data->image; ?>">
+            <?php else: ?>
                 <img id="<?php echo $data->id;?>" class="image__full"  width="120" height="120" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $data->image; ?>">
+            <?php endif;?>
+
         </a>
 
         <div class="rb-media-content">

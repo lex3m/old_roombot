@@ -186,7 +186,6 @@
                 'accept' => 'image/jpg, image/jpeg, image/png, image/gif',
                 'options' => array(
                     'stop'=>'js:function(event, files, index, xhr, handler, callBack) {
-                         //setTimeout( location.reload(), 2000 );
                          var seconds = 3; //wait 3 seconds after uploading
                          var interval = setInterval( function() {
                             seconds = seconds - 1;
@@ -197,6 +196,8 @@
                          },  1000);
 
                          setTimeout( function(){ location.reload() }, 3000 );
+
+                         $(window).scrollTop(0);
                     }',
                 ),
             )
@@ -274,6 +275,7 @@ if (Yii::app()->user->id == $member->id):
             'closeOnEscape'=> 'true',
             'width'=>'400',
             'show'=>'show',
+            'resizable' => 'false'
         ), 
     )); 
     
@@ -282,20 +284,50 @@ if (Yii::app()->user->id == $member->id):
            'width'=>50, 
            'maxlength'=>50)); 
     echo '<br><br>';
-    echo CHtml::button('Да', array('id'=>'confirm_name_picture','name'));    
+    echo CHtml::button('Да', array('id'=>'confirm_name_picture','name'));
+    $this->endWidget('zii.widgets.jui.CJuiDialog');
+
+
+    $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
+        'id'=>'change_picture_info',
+        // additional javascript options for the dialog plugin
+        'options'=>array(
+            'autoOpen'=>false,
+            'closeOnEscape'=> 'true',
+            'width'=>'400',
+            'show'=>'show',
+            'resizable' => 'false'
+        ),
+    ));
+
+    echo CHtml::textArea('Text', '',
+        array('id'=>'picture_info_textArea',
+            'cols'=>50,
+            'rows'=>5,
+            'maxlength'=>255
+            ));
+    echo '<br><br>';
+    echo CHtml::button('Да', array('id'=>'confirm_picture_info','name'));
     $this->endWidget('zii.widgets.jui.CJuiDialog');
     
     
         Yii::app()->clientScript->registerScript('mobilePicturesScript',"
         
         $( 'span#name_picture').on('click', function(event){
-            var name;
-            name = $(this).attr('name');
+            var id = $(this).attr('data-id');
+            var name = $(this).attr('data-name');
              $('#change_name_picture').dialog('option','title', 'Изменить название');
                     $('#change_name_picture').dialog('open');
-                    $( 'input#confirm_name_picture').attr('name',name); 
-            });
-            
+                    $( 'input#confirm_name_picture').attr('name',id);
+                    $( 'input#name_picture_textField').val(name);
+        });
+
+        $('#change_name_picture').keypress(function(e) {
+              if (e.keyCode == 13) {
+                  $(this).find('#confirm_name_picture').trigger('click');
+              }
+        });
+
         $( 'input#confirm_name_picture').on('click', function(event){
                 picturename = $('input[id=\'name_picture_textField\']').val(); 
                 pictureid = $(this).attr('name'); 
@@ -307,13 +339,56 @@ if (Yii::app()->user->id == $member->id):
                              
                               $('#change_name_picture').dialog('close'); 
                               json = jQuery.parseJSON(msg);
-                              $('span.name_picture_id_'+json.id).text(json.name); 
+                              $('#picture-'+json.id).text(json.name);
                               $('input[id=\'name_picture_textField\']').val('');  
                            }
                          });
                     return false;
             });
-            
+
+            $( 'span#picture_info').on('click', function(event){
+                var id = $(this).attr('data-id');
+                var name = $.trim($('#info-'+id).html());
+                 $('#change_picture_info').dialog('option','title', 'Изменить описание (макс 255 символов)');
+                        $('#change_picture_info').dialog('open');
+                        $( 'input#confirm_picture_info').attr('name',id);
+                        $( 'textarea#picture_info_textArea').val(name);
+            });
+
+            $( 'input#confirm_picture_info').on('click', function(event){
+                pictureinfo = $('textarea[id=\'picture_info_textArea\']').val();
+                pictureid = $(this).attr('name');
+                    $.ajax({
+                           type: 'POST',
+                           url: '".Yii::app()->createUrl('mobilepictures/editpictureinfo')."',
+                           data: {id: pictureid, info: pictureinfo},
+                           success: function(msg){
+
+                              $('#change_picture_info').dialog('close');
+                              json = jQuery.parseJSON(msg);
+                              $('#info-'+json.id).html(json.info);
+                              $('input[id=\'picture_info_textArea\']').html('');
+                           }
+                         });
+                    return false;
+            });
+
+            $( 'a#rotate_picture').on('click', function(event){
+                    var id;
+                    id = $(this).attr('target');
+
+                    $.ajax({
+                           type: 'POST',
+                           url: '".Yii::app()->createUrl('mobilepictures/rotate')."',
+                           data: 'id='+id,
+                           success: function(msg){
+                             var obj = $.parseJSON(msg);
+                             $('#img-'+obj.id).html(obj.image);
+                           }
+                         });
+                    return false;
+            });
+
             
             $( 'a#delete_picture').on('click', function(event){
                     var id;
@@ -327,7 +402,8 @@ if (Yii::app()->user->id == $member->id):
                            }
                          }); 
                     return false;
-            });  
+            });
+
             $( 'a[name=\'new_tag\']').on('click', function(event){
                    id = $(this).attr('id'); 
                     $('#add_tag').dialog('option','title', 'Добавить тег');

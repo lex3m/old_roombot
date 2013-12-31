@@ -235,7 +235,7 @@
                         .find('.bar').css(
                             'width',
                             progress + '%'
-                        );
+                        ).html(progress + '%');
                 }
             },
             // Callback for global upload progress events:
@@ -253,10 +253,10 @@
                 globalProgressNode
                     .find('.progress')
                     .attr('aria-valuenow', progress)
-                    .find('.bar').css(
+                    .find('.progress-bar').css(
                         'width',
                         progress + '%'
-                    );
+                    ).html(progress + '%');
             },
             // Callback for uploads start, equivalent to the global ajaxStart event:
             start: function (e) {
