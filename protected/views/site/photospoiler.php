@@ -21,7 +21,7 @@ Yii::app()->clientScript->registerScript('pluso-start', "
                 </a>
             <?php endif; ?>
             <div class="usfot">
-                <img class="image__full" height="580" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $model->image; ?>" />
+                <img class="image__full" height="580" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $model->image; echo '?' . time() ?>" />
             </div>
         </div>
 

@@ -148,6 +148,8 @@ class SiteController extends Controller
 
     public function actionPhotos()
     {
+        header("Cache-Control: no-store, no-cache, must-revalidate");
+        header("Expires: " . date("r"));
         $this->setPageTitle(Yii::app()->name.' - свежие фотографии дизайна интерьера пользователей. Загрузи свою!');
         if (isset($_GET['q']))
             $query = $_GET['q']; else $query='';

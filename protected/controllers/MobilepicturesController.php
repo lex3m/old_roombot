@@ -139,7 +139,8 @@ class MobilepicturesController extends Controller
 
     public function actionViewinfo($id)
     {
-
+        header("Cache-Control: no-store, no-cache, must-revalidate");
+        header("Expires: " . date("r"));
         $model = Mobilepictures::model()->with('taglinks','member')->findbyPk($id);
         $comments = Comments::model()->with('member','countlikes')->findAll('photoID=:photoID',array(':photoID'=>$model->id));
         $member= Member::model()->findbyPK($model->companyID);
@@ -366,17 +367,49 @@ class MobilepicturesController extends Controller
         {
             $img = Mobilepictures::model()->findbyPk($_POST['id']);
             $path = realpath( Yii::app() -> getBasePath() . Yii::app()->params['pathToImg'] )."/";
+            if (!is_dir($path.'/thumbs')) {
+                mkdir($path.'/thumbs');
+                chmod($path.'/thumbs', 0777);
+            }
             $thumbpath = realpath( Yii::app() -> getBasePath() . Yii::app()->params['pathToImg']."/thumbs/" )."/";
+
             if ($img->companyID == Yii::app()->user->id)
             {
                 Yii::import('ext.image.Image');
                 $image = new Image($path.$img->image);
-                $image->rotate(90);
 
-                $thumb = new Image($thumbpath.$img->image);
-                $thumb->rotate(90);
-                if ($image->save() && $thumb->save()) {
-                    $im = '<img width="150px" height="100px" src="/images/mobile/images/'.$img->image.'" class="photo-img">';
+                $image->rotate(90)->quality(99);
+                if (is_file(realpath( Yii::app() -> getBasePath() . Yii::app()->params['pathToImg']."/thumbs/" )."/".$img->image))
+                    $thumb = new Image($thumbpath.$img->image);
+                /*Fix for older images*/
+                else {
+                    if($image->width>1000)
+                        $image->resize(150,150);
+                    $image->save($thumbpath.$img->image);
+                    $thumb = new Image($thumbpath.$img->image);
+                }
+                $thumb->rotate(90)->quality(99);
+
+                $imageExploded = explode('.', $img->image);
+                $imgName = $imageExploded[0];
+                $imgExt = $imageExploded[1];
+                $extArr = array('jpg', 'jpeg');
+
+                /*Workaround jpg extension, rotate original image but save with another name*/
+                /*if (in_array($imgExt, $extArr)) {
+                    $newImg = 'rotated_' . $imgName;
+                    $newImgName = $newImg . '.' .$imgExt;
+                    $imag = $image->save($path.$newImgName);
+                    $thmb =  $thumb->save($thumbpath.$newImgName);
+                } else {
+                    $newImgName = $img->image;
+                    $imag = $image->save();
+                    $thmb =  $thumb->save();
+                }*/
+
+
+                if ( $image->save() && $thumb->save()) {
+                    $im = '<img height="100px" src="'. Yii::app()->baseUrl.'/images/mobile/images/thumbs/' .$img->image. '?iid='.$img->id.'" class="photo-img">';
                     $json_data = array ('image'=> $im, 'id'=>$img->id);
                     echo json_encode($json_data); ;
                 }

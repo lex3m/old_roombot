@@ -3,7 +3,9 @@
 <span>Добавил:&nbsp;<?php echo CHtml::link($model->member->login,array('member/dashboard','id'=>$model->member->urlID));  ?></span><br/>
 <?php //echo CHtml::link('Назад к списку',array('member/dashboard','id'=>$member->urlID));?>
 <?php // echo $model->name; ?><!--<br>-->
-<?php if (!empty($model->info)): ?><span>Описание: </span> <?php echo $model->info; ?><?php endif;?>
+<div class="photo-description">
+    <?php if (!empty($model->info)): ?><span>Описание: </span> <?php echo $model->info; ?><?php endif;?>
+</div>
 <br>
     <script type="text/javascript">(function() {
             if (window.pluso)if (typeof window.pluso.start == "function") return;
@@ -15,7 +17,7 @@
                 h.appendChild(s);
             }})();</script>
     <div class="pluso" data-background="#000000" data-options="small,square,line,horizontal,counter,theme=04" data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email,digg,pinme,pinterest,liveinternet,linkedin,memori,webdiscover,moikrug,yandex,print"></div>
-<img class="main" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $model->image; ?>"/><br/>
+<img class="main" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $model->image; echo '?' . time() ?>"/><br/>
 <a class="addBookmarkLink" id="<?php echo $model->id; ?>" onclick="return false;" href="#">Добавить в книгу идей</a>&nbsp;&nbsp; 
 <?php echo $model->date; ?>&nbsp;&nbsp;  
 <?php if (count($tags)>0):  ?>

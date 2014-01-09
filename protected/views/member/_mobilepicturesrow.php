@@ -18,7 +18,7 @@
         <span id="site-user">Сайт:</span>
         <span class="name_picture" id="picture-<?php echo $data->id; ?>"><?php echo $data->name; ?></span>
             <?php if (Yii::app()->user->id == $member->id):?>
-               <span id="name_picture" data-id="<?php echo $data->id; ?>" data-name="<?php echo $data->name; ?>"><img class="buttonsCommentAction buttonCommentEditIcon" style="padding-top: 0px; margin-top: -5px; cursor:pointer;" src=""></span>
+               <span id="name_picture" data-id="<?php echo $data->id; ?>"><img class="buttonsCommentAction buttonCommentEditIcon" style="padding-top: 0px; margin-top: -5px; cursor:pointer;" src=""></span>
             <?php endif; ?>
 
     </div>
@@ -34,7 +34,11 @@
     <div id="company_photo" style="margin-bottom:10px;" class="" >
              <a href="<?php echo Yii::app()->createUrl('mobilepictures/viewinfo',array('id'=>$data->id)); ?>" target="<?php echo $data->id; ?>" id="rotate_picture" title="Повернуть фото"><img width="15px" height="15px" src="<?php echo Yii::app()->baseUrl; ?>/images/rotate.png" style="float:left; margin-right: 5px;"></a>
              <a id="img-<?php echo $data->id; ?>" href="/mobilepictures/viewinfo/<?php echo $data->id; ?>" target="_blank">
-                 <img width="150px" height="100px" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $data->image; ?>" class="photo-img">
+                 <?php if (is_file(realpath( Yii::app() -> getBasePath() . Yii::app()->params['pathToImg']."/thumbs/" )."/".$data->image)): ?>
+                    <img height="100px" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/thumbs/<?php echo $data->image; echo '?' . time() ?>" class="photo-img">
+                 <?php else :?>
+                     <img height="100px" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $data->image; echo '?' . time() ?>" class="photo-img">
+                 <?php endif; ?>
              </a>
 
              <?php if (Yii::app()->user->id == $member->id): ?>

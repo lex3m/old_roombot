@@ -513,7 +513,7 @@ input[type="search"] {
 /* Whod / Registraciya / form
 -------------------------------------------------- */
 .list-bot{
-    padding: 0 0 0 150px;
+    padding: 0 85px 0 150px;
 }
 .list-bot h1{
     color: #002980;
@@ -687,6 +687,7 @@ img.photo-img{
     float: left;
     margin-right: 10px;
     padding: 8px;
+    max-width: 150px;
 }
  form#mobilepictures-form input#Mobilepictures_img.vvv{
   
@@ -1725,6 +1726,7 @@ ul.setka {
     margin-left: 10px;
     padding-right: 10px;
     padding-top: 10px !important;
+    height: 210px;
 }
 #lastPhotosContainer ul.setka div#yw0.list-view div.items li.lastPhotos__item div.lastPhotosElement {
     border-bottom: 1px solid #687388 !important;

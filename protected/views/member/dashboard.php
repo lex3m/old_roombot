@@ -315,7 +315,7 @@ if (Yii::app()->user->id == $member->id):
         
         $( 'span#name_picture').on('click', function(event){
             var id = $(this).attr('data-id');
-            var name = $(this).attr('data-name');
+            var name = $.trim($('#picture-'+id).html());
              $('#change_name_picture').dialog('option','title', 'Изменить название');
                     $('#change_name_picture').dialog('open');
                     $( 'input#confirm_name_picture').attr('name',id);
@@ -374,8 +374,7 @@ if (Yii::app()->user->id == $member->id):
             });
 
             $( 'a#rotate_picture').on('click', function(event){
-                    var id;
-                    id = $(this).attr('target');
+                    var id = $(this).attr('target');
 
                     $.ajax({
                            type: 'POST',
@@ -385,7 +384,8 @@ if (Yii::app()->user->id == $member->id):
                              var obj = $.parseJSON(msg);
                              $('#img-'+obj.id).html(obj.image);
                            }
-                         });
+                    });
+
                     return false;
             });
 

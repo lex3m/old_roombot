@@ -80,7 +80,28 @@ class Member extends CActiveRecord
             array('password, password_repeat', 'required', 'on'=>'changing_password2'),
             array('type, salt, role, email, urlID, aktivation_key', 'safe', 'on'=>'changing_password2'),
             array('password','length','min'=>6,'message'=>'Minimum 6 characters', 'on'=>'changing_password2'),
-            array('password', 'compare' , 'compareAttribute' => 'password_repeat','on'=>'changing_password2'),  
+            array('password', 'compare' , 'compareAttribute' => 'password_repeat','on'=>'changing_password2'),
+
+            //авторизация через соцсети в мобильном приложении
+            array('urlID, activate_type, role, email, aktivation_key,  type, unique_id, login, password, date, salt', 'required', 'on'=>'vk'),
+            array('unique_id','unique', 'on'=>'vk'),
+            array('password', 'length', 'max'=>50, 'on'=>'vk'),
+            array('unique_id, login', 'length', 'max'=>50, 'on'=>'vk'),
+            array('password', 'length', 'max'=>80, 'on'=>'vk'),
+
+            array('urlID, activate_type, role, email, aktivation_key,  type, unique_id, login, password, date, salt', 'required', 'on'=>'facebook'),
+            array('unique_id','unique', 'on'=>'facebook'),
+            array('email','email', 'on'=>'facebook'),
+            array('password', 'length', 'max'=>50, 'on'=>'facebook'),
+            array('unique_id, login', 'length', 'max'=>50, 'on'=>'facebook'),
+            array('password', 'length', 'max'=>80, 'on'=>'facebook'),
+
+            array('urlID, activate_type, role, email, aktivation_key,  type, unique_id, login, password, date, salt', 'required', 'on'=>'mobile_via_email'),
+            array('unique_id','unique', 'on'=>'mobile_via_email'),
+            array('email','email', 'on'=>'mobile_via_email'),
+            array('password', 'length', 'max'=>50, 'on'=>'mobile_via_email'),
+            array('unique_id, login', 'length', 'max'=>50, 'on'=>'mobile_via_email'),
+            array('password', 'length', 'max'=>80, 'on'=>'mobile_via_email'),
 		);  
 	} 
 	

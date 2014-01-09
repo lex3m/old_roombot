@@ -72,7 +72,7 @@ return array(
 		'image'=>array(
           'class'=>'application.extensions.image.CImageComponent',
             // GD or ImageMagick
-            'driver'=>'GD',
+            'driver'=>'ImageMagick',
             // ImageMagick setup path
             'params'=>array('directory'=>'/opt/local/bin'),
         ), 

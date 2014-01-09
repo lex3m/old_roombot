@@ -268,7 +268,9 @@ class MemberController extends Controller
 	 * Lists all models.
 	 */
 	public function actionDashboard($id)
-	{  
+	{
+        header("Cache-Control: no-store, no-cache, must-revalidate");
+        header("Expires: " . date("r"));
 		$this->setPageTitle(Yii::app()->name . ' - Кабинет');
           $member = Member::model()->with('memberinfo','countComments','countPhotos')->find('urlID=:id', array(':id'=>$id));
           $memberCity =  Membercity::model()->with('city')->findbyPk($member->id);  
