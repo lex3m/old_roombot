@@ -123,7 +123,7 @@ class MemberController extends Controller
                         $image->resize(1000, NULL);
                     $resizedImage = $image->save($path.$filename);
 
-                    $image->resize(150,150);
+                    $image->resize(200,150);
                     $resizedImageThumb = $image->save($thumbsPath.$filename);
                     chmod( $thumbsPath.$filename, 0777 );
 

@@ -1726,7 +1726,7 @@ ul.setka {
     margin-left: 10px;
     padding-right: 10px;
     padding-top: 10px !important;
-    height: 210px;
+    height: 190px;
 }
 #lastPhotosContainer ul.setka div#yw0.list-view div.items li.lastPhotos__item div.lastPhotosElement {
     border-bottom: 1px solid #687388 !important;
@@ -1740,8 +1740,10 @@ ul.setka {
     margin-right: 0 !important;
 }
 #lastPhotosContainer ul.setka div#yw0.list-view div.items li.lastPhotos__item div.lastPhotosElement a.photoImgPreview img.image__full {
-    /*height: 155px !important;*/
-    width: 155px !important; 
+    height: 100px !important;
+    max-width: 150px !important;
+    display: block;
+    margin: 0px auto 5px;
 }
 #lastPhotosContainer ul.setka div#yw0.list-view div.items li.lastPhotos__item div.lastPhotosElement div.rb-media-content {
     width: 155px;

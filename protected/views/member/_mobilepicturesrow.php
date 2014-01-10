@@ -32,7 +32,9 @@
     </div>
 
     <div id="company_photo" style="margin-bottom:10px;" class="" >
-             <a href="<?php echo Yii::app()->createUrl('mobilepictures/viewinfo',array('id'=>$data->id)); ?>" target="<?php echo $data->id; ?>" id="rotate_picture" title="Повернуть фото"><img width="15px" height="15px" src="<?php echo Yii::app()->baseUrl; ?>/images/rotate.png" style="float:left; margin-right: 5px;"></a>
+             <?php if (Yii::app()->user->id == $member->id): ?>
+                <a href="<?php echo Yii::app()->createUrl('mobilepictures/viewinfo',array('id'=>$data->id)); ?>" target="<?php echo $data->id; ?>" id="rotate_picture" title="Повернуть фото"><img width="15px" height="15px" src="<?php echo Yii::app()->baseUrl; ?>/images/rotate.png" style="float:left; margin-right: 5px;"></a>
+             <?php endif ;?>
              <a id="img-<?php echo $data->id; ?>" href="/mobilepictures/viewinfo/<?php echo $data->id; ?>" target="_blank">
                  <?php if (is_file(realpath( Yii::app() -> getBasePath() . Yii::app()->params['pathToImg']."/thumbs/" )."/".$data->image)): ?>
                     <img height="100px" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/thumbs/<?php echo $data->image; echo '?' . time() ?>" class="photo-img">
@@ -45,7 +47,7 @@
                 <a href="<?php echo Yii::app()->createUrl('mobilepictures/viewinfo',array('id'=>$data->id)); ?>" target="<?php echo $data->id; ?>" id="delete_picture" title="Удалить"><img width="12px" height="12px" src="<?php echo Yii::app()->baseUrl; ?>/images/site/delete_icon.png" style="float:left"></a>
              <?php endif; ?>
             <div style="margin-left:20px;" class="izo-tegi">
-                <span class="tegss">Описание:</span> <span id="picture_info" data-id="<?php echo $data->id; ?>" ><img class="buttonsCommentAction buttonCommentEditIcon" style="padding-top: 0px; margin-top: -5px; cursor:pointer;" src=""></span>
+                <span class="tegss">Описание:</span> <span id="picture_info" data-id="<?php echo $data->id; ?>" ><?php if (Yii::app()->user->id == $member->id): ?><img class="buttonsCommentAction buttonCommentEditIcon" style="padding-top: 0px; margin-top: -5px; cursor:pointer;" src=""></span><?php endif;?>
                 <div id="info-<?php echo $data->id;?>" class="info_box">
                   <?php echo $data->info; ?>
                 </div>
