@@ -116,8 +116,8 @@ class MemberController extends Controller
                     Yii::import('ext.image.Image');
                     $image = new Image($path.$filename);
                     //Rotate image if need
-                    if($image->width < $image->height)
-                        $image->rotate(270);
+                    /*if($image->width < $image->height)
+                        $image->rotate(270);*/
                     //Resize large pictures
                     if($image->width>1000)
                         $image->resize(1000, NULL);

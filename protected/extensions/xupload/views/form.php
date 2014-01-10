@@ -3,15 +3,7 @@
 <div class="row">
 	<div class="span7">
 		<!-- The fileinput-button span is used to style the file input field as button -->
-		<span class="btn btn-success fileinput-button" style="background: none repeat scroll 0 0 #FFFFFF;
-border: 2px solid #002980;
-border-radius: 5px;
-color: #002980;
-display: inline-block;
-font-size: 14px;
-font-weight: bold;
-margin-right: 20px;
-padding: 2px 15px 3px;">
+		<span class="btn btn-success fileinput-button">
             <i class="icon-plus icon-white"></i>
             <span><?php echo $this->t('1#Add files|0#Choose file', $this->multiple); ?></span>
 			<?php
@@ -35,25 +27,6 @@ padding: 2px 15px 3px;">
             <i class="icon-upload icon-white"></i>
             <span><?php echo $this->t('Add photos');?></span>
         </button>
-       <!-- <button type="reset" class="btn btn-warning cancel" style='
-                                                            border: medium none;
-                                                            display: inline-block;
-                                                            font-size: 14px;
-                                                            font-weight: bold;
-                                                            color: #002980;
-                                                            cursor: pointer;
-                                                            height: 36px;
-                                                            margin: 0;
-                                                            padding-right: 23px;
-                                                            text-transform: uppercase;'>
-            <i class="icon-ban-circle icon-white"></i>
-            <span><?php /*echo $this->t('Cancel upload');*/?></span>
-        </button>-->
-        <!--<button type="button" class="btn btn-danger delete">
-                <i class="icon-trash icon-white"></i>
-                <span><?php /*echo $this->t('Delete');*/?></span>
-            </button>-->
-        <!--		<input type="checkbox" class="toggle">-->
     </div>
     <div class="span7">
         <div class="fileupload-progress fade">

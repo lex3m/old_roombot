@@ -186,7 +186,7 @@
                 'accept' => 'image/jpg, image/jpeg, image/png, image/gif',
                 'options' => array(
                     'stop'=>'js:function(event, files, index, xhr, handler, callBack) {
-                         var seconds = 3; //wait 3 seconds after uploading
+                         var seconds = 1; //wait 1 seconds after uploading
                          var interval = setInterval( function() {
                             seconds = seconds - 1;
                             $(".upload-timer").html("Ожидайте " + seconds + " сек для завершения загрузки");
@@ -195,7 +195,7 @@
                             }
                          },  1000);
 
-                         setTimeout( function(){ location.reload() }, 3000 );
+                         setTimeout( function(){ location.reload() }, 1000 );
 
                          $(window).scrollTop(0);
                     }',
