@@ -2,10 +2,7 @@
 
 class MobileController extends Controller
 {
-
-
-
-        public function actionCheckregister($id)
+    public function actionCheckregister($id)
     {
         $checkDoubleMobileUser  = Member::model()->find('name=:name',array(':name'=>$id));
         if (count( $checkDoubleMobileUser)!=0)
@@ -167,10 +164,10 @@ class MobileController extends Controller
         }
     }
 
-    public function actionFBHandleUserEntry($name, $email)
+    public function actionFBHandleUserEntry($name, $uid)
     {
         $response = array("success" => 0);
-        $user = Member::model()->find('email=:email',array(':email'=>$email));
+        $user = Member::model()->find('unique_id=:unique_id',array(':unique_id'=>$uid));
         $number_of_rows = count($user);
         if ($number_of_rows > 0) {
             $response["success"] = 1;
@@ -181,7 +178,7 @@ class MobileController extends Controller
             $response["user"]["updated_at"] = '';
             echo json_encode($response);
         } else {
-            $uuid = uniqid('', true);
+            $uuid = $uid;
             $password = uniqid('',true);
             $salt = 12345;
             $newUser = new Member('facebook');
@@ -190,7 +187,7 @@ class MobileController extends Controller
             $newUser->salt=$salt;
             $newUser->password=$password;
             $newUser->date = date("Y-m-d");
-            $newUser->email = $email;
+            $newUser->email = $uuid.'@fb.com';
             $newUser->role='user';
             $newUser->aktivation_key=1;
             $newUser->urlID=777777777777;
@@ -265,15 +262,38 @@ class MobileController extends Controller
         $memberInfo->avatar = "user_da.gif";
         $memberInfo->cityIsSet = 0;
         if ($memberInfo->save())
-            {
-                if (($userEmail!='vk')||($userEmail!='fb')){
-                    $email = Yii::app()->email;
-                    $email->to =  $userEmail;
-                    $email->from=Yii::app()->params['email'];
-                    $email->subject = "Поздравляем вас с регистрацией! ".Yii::app()->name;
-                    $email->message = "Спасибо за регистрацию на сайте <a href=\"".Yii::app()->getBaseUrl(true)."\">".Yii::app()->getBaseUrl(true)."</a>. Теперь вы можете отслеживать наши самые актуальные новости. Добавлять обьявления и фотографии и многое другое!";
-                    $email->Send();
-                }
+        {
+            if (($userEmail!='vk')||($userEmail!='fb')){
+                $email = Yii::app()->email;
+                $email->to =  $userEmail;
+                $email->from=Yii::app()->params['email'];
+                $email->subject = "Поздравляем вас с регистрацией! ".Yii::app()->name;
+                $email->message = "Спасибо за регистрацию на сайте <a href=\"".Yii::app()->getBaseUrl(true)."\">".Yii::app()->getBaseUrl(true)."</a>. Теперь вы можете отслеживать наши самые актуальные новости. Добавлять обьявления и фотографии и многое другое!";
+                $email->Send();
             }
-     }
+        }
+    }
+
+    public function actionLike($pictureid, $typelogin,$key)
+    {
+        if ($typelogin=="email")
+            $user = Member::model()->find('email=:email',array(':email'=>$key));
+        else if ($typelogin=="social")
+            $user = Member::model()->find('unique_id=:uid',array(':uid'=>$key));
+        $picture = Mobilepictures::model()->find('image=:image',array(':image'=>$pictureid));
+        $checkPhotoLikes = Photolike::model()->find('photoID=:photoID AND memberID=:memberID',array(':photoID'=>$picture->id,':memberID'=>$user->id));
+        if (count($checkPhotoLikes)==0)
+        {
+            $photoLike = new Photolike;
+            $photoLike->memberID=$user->id;
+            $photoLike->photoID=$picture->id;
+            $photoLike->save();
+        }
+        else
+            $checkPhotoLikes->delete();
+        $countLikes = Photolike::model()->count('photoID=:photoID',array(':photoID'=>$picture->id));
+        $json_data = array ('countLikes'=>$countLikes);
+        echo json_encode($json_data);
+
+    }
 }

@@ -24,20 +24,20 @@ class WebUser extends CWebUser {
   }
   
   function getUrlID(){
-    $user = $this->loadUser(Yii::app()->user->id);
+     $user = $this->loadUser(Yii::app()->user->id);
      return $user->urlID;
   }  
  
   // Load user model.
   protected function loadUser($id=null)
-    {
+  {
         if($this->_model===null)
         {
             if($id!==null)
                 $this->_model=Member::model()->findByPk($id);
         }
         return $this->_model;
-    }
+  }
     
     function getUserRole(){
         $user = $this->loadUser(Yii::app()->user->id);

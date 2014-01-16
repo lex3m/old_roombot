@@ -182,19 +182,36 @@ class MemberController extends Controller
     
     public function actionChange()
     {
+
         $member = Member::model()->findbyPk(Yii::app()->user->id);
+        $member->scenario='change';
+
         $memberinfo = Memberinfo::model()->findbyPk(Yii::app()->user->id);
         $memberinfo->scenario='change';
-        if(isset($_POST['Memberinfo']))
-        {
-            $memberinfo->attributes=$_POST['Memberinfo'];
-            if($memberinfo->validate())
-                if($memberinfo->save()){
-                    Yii::app()->user->setFlash('success', "Изменения успешно сохранены.");
-                    $url=Yii::app()->createUrl('member/dashboard',array('id'=>$member->urlID));
-                    $this->redirect($url);
+
+        if (isset($_POST['Member'])) {
+
+
+            $member->attributes = $_POST['Member'];
+
+            if ($member->validate()) {
+
+                if($member->save()) {
+                    if(isset($_POST['Memberinfo']))
+                    {
+                        $memberinfo->attributes=$_POST['Memberinfo'];
+                        if ($memberinfo->validate()){
+                            if ($memberinfo->save()){
+                                Yii::app()->user->setFlash('success', "Изменения успешно сохранены.");
+                                $url=Yii::app()->createUrl('member/dashboard',array('id'=>$member->urlID));
+                                $this->redirect($url);
+                            }
+                        }
+                    }
                 }
+            }
         }
+
         $this->render('change',array(
             'memberinfo'=>$memberinfo,
             'member'=>$member,

@@ -10,7 +10,7 @@
  * @property string $aktivation_key
  * @property string $salt
  * @property string $email
- *
+ * @property string $unique_id
  * The followings are the available model relations:
  * @property UserInfo $userInfo
  */
@@ -44,8 +44,12 @@ class Member extends CActiveRecord
 	public $urlID;
 	public $countphotos;
     public $rulles;
-    //public $id;
-	
+    public $unique_id;
+
+    public $role;
+    public $type;
+    public $activate_type;
+
 	public function rules()
 	{
 		// NOTE: you should only define rules for those attributes that
@@ -61,17 +65,25 @@ class Member extends CActiveRecord
 			array('password, type, password_repeat, role, aktivation_key, email, date, login, rulles', 'required', 'on'=>'register'),
 			array('type', 'numerical', 'integerOnly'=>true, 'on'=>'register'),
 			array('password, aktivation_key', 'length', 'max'=>255, 'on'=>'register'),
-			array('login', 'length', 'max'=>25, 'on'=>'register'),
+			array('login', 'length', 'max'=>50, 'on'=>'register'),
 			array('login', 'length', 'min'=>6, 'on'=>'register'),
 			array('login',  'unique', 'on'=>'register'),  
-			array('email', 'length', 'max'=>50, 'on'=>'register'),   array('password, password_repeat', 'length', 'min' => 6,'max'=>25),  
+			array('email', 'length', 'max'=>50, 'on'=>'register'),
+            array('password, password_repeat', 'length', 'min' => 6,'max'=>25, 'on'=>'register'),
 			array('password','length','min'=>6,'message'=>'Minimum 6 characters', 'on'=>'register'),
 			array('password', 'compare' , 'compareAttribute' => 'password_repeat','on'=>'register'),
 			array('email','unique', 'on'=>'register'), 
 			array('email','email', 'on'=>'register'),
 			array('urlID','safe', 'on'=>'register'),
-			
-			array('aktivation_key', 'safe', 'on'=>'activation'),  
+
+            array('login, email', 'required', 'on'=>'change'),
+            array('login, email', 'length', 'max'=>50, 'on'=>'change'),
+            array('login, email',  'unique', 'on'=>'change'),
+            array('login', 'length', 'min'=>6, 'on'=>'change'),
+            array('email', 'email', 'on'=>'change'),
+            array('password, role, aktivation_key, salt, urlID, type, activate_type, date, unique_id', 'safe', 'on'=>'change'),
+
+            array('aktivation_key', 'safe', 'on'=>'activation'),
 			 
 			//когда посылаем email
             array('password, type, activate_type, password, role, email, urlID, salt, aktivation_key', 'safe', 'on'=>'changing_password'),
@@ -102,8 +114,17 @@ class Member extends CActiveRecord
             array('password', 'length', 'max'=>50, 'on'=>'mobile_via_email'),
             array('unique_id, login', 'length', 'max'=>50, 'on'=>'mobile_via_email'),
             array('password', 'length', 'max'=>80, 'on'=>'mobile_via_email'),
+
+            //правила для авторизации через ВК
+            array('unique_id','required', 'on'=>'vkAuth'),
+            array('unique_id','unique', 'on'=>'vkAuth'),
+            array('unique_id', 'length', 'max'=>50, 'on'=>'vkAuth'),
 		);  
-	} 
+	}
+
+    public function onAfterConstruct() {
+
+    }
 	
 	public function validatePassword($password)
 	{
@@ -124,34 +145,117 @@ class Member extends CActiveRecord
 	{
 		return uniqid('',true);
 	}
-	
-	
+
+    /**
+     * Generate a random password for users from social networks
+     * @param int $length password length
+     * @return string random password
+     */
+    public function generateRandomPassword($length = 7)
+    {
+        $chars = array_merge(range(0,9), range('a','z'), range('A','Z'));
+        shuffle($chars);
+        $password = implode(array_slice($chars, 0, $length));
+        return $password;
+    }
+
+    /**
+     * Make full name for user
+     * @param $firstName
+     * @param $lastName
+     * @return string
+     */
+    public function getFullName($firstName, $lastName)
+    {
+        return $firstName . ' ' . $lastName;
+    }
+
+    /**
+     * @return string current date
+     */
+    public function getCurrentDate()
+    {
+        return date("Y-m-d");
+    }
+
+    /**
+     * Make a translit for user login
+     * @param $str
+     * @return string
+     */
+    public function translit($str) {
+        $translit = array(
+            'А' => 'a', 'Б' => 'b', 'В' => 'v', 'Г' => 'g', 'Д' => 'd', 'Е' => 'e', 'Ё' => 'yo', 'Ж' => 'zh', 'З' => 'z',
+            'И' => 'i', 'Й' => 'i', 'К' => 'k', 'Л' => 'l', 'М' => 'm', 'Н' => 'n', 'О' => 'o', 'П' => 'p', 'Р' => 'r',
+            'С' => 's', 'Т' => 't', 'У' => 'u', 'Ф' => 'f', 'Х' => 'h', 'Ц' => 'ts', 'Ч' => 'ch', 'Ш' => 'sh', 'Щ' => 'sch',
+            'Ъ' => '', 'Ы' => 'y', 'Ь' => '', 'Э' => 'e', 'Ю' => 'yu', 'Я' => 'ya',
+            'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'yo', 'ж' => 'zh', 'з' => 'z',
+            'и' => 'i', 'й' => 'i', 'к' => 'k', 'л' => 'l', 'м' => 'm', 'н' => 'n', 'о' => 'o', 'п' => 'p', 'р' => 'r',
+            'с' => 's', 'т' => 't', 'у' => 'u', 'ф' => 'f', 'х' => 'h', 'ц' => 'ts', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'sch',
+            'ъ' => '', 'ы' => 'y', 'ь' => '', 'э' => 'e', 'ю' => 'yu', 'я' => 'ya',
+            ' ' => '-', '!' => '', '?' => '', '('=> '', ')' => '', '#' => '', ',' => '', '№' => '',' - '=>'-','/'=>'-', '  '=>'-',
+            'A' => 'a', 'B' => 'b', 'C' => 'c', 'D' => 'd', 'E' => 'e', 'F' => 'f', 'G' => 'g', 'H' => 'h', 'I' => 'i', 'J' => 'j', 'K' => 'k', 'L' => 'l', 'M' => 'm', 'N' => 'n',
+            'O' => 'o', 'P' => 'p', 'Q' => 'q', 'R' => 'r', 'S' => 's', 'T' => 't', 'U' => 'u', 'V' => 'v', 'W' => 'w', 'X' => 'x', 'Y' => 'y', 'Z' => 'z'
+        );
+        return strtr($str, $translit);
+    }
+
 	protected function beforeSave()
 	{
 	    if(parent::beforeSave())
 	    {
-		if($this->isNewRecord)
-		{
-		    $salt = self::generateSalt();
-		    $this->password = self::hashPassword($this->password, $salt);
-		    $this->salt = $salt;
-		    $this->urlID = $this->generateUrlID();
-		}
-		return true;
+            if($this->isNewRecord || $this->scenario == 'initMember')
+            {
+                $salt = self::generateSalt();
+                $this->password = self::hashPassword($this->password, $salt);
+                $this->salt = $salt;
+                $this->urlID = $this->generateUrlID();
+            }
+                return true;
 	    }
 	    else
-		return false;
-	} 
-	
-	public function generateUrlID() {
-                do {
-                        mt_srand();
-                        $id = mt_rand(100000000, 999999999);
-                        $results = Member::model()->findAll('urlID=:urlID', array(':urlID'=>$id));
-                        $count = count ( $results );
-                } while ($count > 0);
-                return $id;
+		    return false;
+	}
+
+    /**
+     * @return int url id
+     */
+    public function generateUrlID() {
+        do {
+            mt_srand();
+            $id = mt_rand(100000000, 999999999);
+            $results = $this->findAll('urlID=:urlID', array(':urlID'=>$id));
+            $count = count ( $results );
+        } while ($count > 0);
+        return $id;
+    }
+
+
+    /**
+     * Set default values for register member from social networks
+     * @param $id
+     * @param $params array of user params
+     * @return bool
+     */
+    public function setInitMember($id, $params)
+    {
+        $user = $this->findByPk($id);
+        $user->scenario = 'initMember';
+
+        if (!empty($params)) {
+            $user->login          = $this->translit($params['last_name']) . $user->unique_id;
+            $user->password       = $this->generateRandomPassword();
+            $user->date           = $this->getCurrentDate();
+            $user->email          = $user->unique_id . '@vk.com'; //fucking VK doesn't give user email
         }
+
+        $user->role = 'user';
+        $user->aktivation_key = 1;
+        $user->type = 1;
+        $user->activate_type = 1;
+        $user->save();
+        return true;
+    }
 
 	/**
 	 * @return array relational rules.

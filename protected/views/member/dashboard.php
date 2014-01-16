@@ -5,7 +5,7 @@
 <div class="leftBar">
 <div class="memberCabinetPic">
             <a onclick="return false;" href="">  
-            <img id="mainMemberCabinetPic" src="<?php echo Yii::app()->baseUrl; ?>/images/members/avatars/<?php echo $member->memberinfo->avatar;?>"/>
+            <img height="150px" id="mainMemberCabinetPic" src="<?php echo Yii::app()->baseUrl; ?>/images/members/avatars/<?php echo $member->memberinfo->avatar;?>"/>
         </a>
 </div>
     <div id="friendsFollowDiv">
@@ -93,34 +93,39 @@
     </div>
     <div style="margin-bottom: 0px"></div>
     <div id="memberDescriptionInfo" class="kabinet-colonka-right">
+        <?php if ($member->memberinfo->showEmail==1): ?>
+            <span class="zagolowok-info">Email:</span>
+            <?php echo $member->email; ?>
+            <br>
+        <?php endif; ?>
+        <?php if (!empty($member->memberinfo->fio)): ?>
+            <span class="zagolowok-info">ФИО:</span>
+            <?php echo $member->memberinfo->fio; ?>
+            <br>
+        <?php endif; ?>
+        <?php if ($member->memberinfo->website!=""): ?>
+            <span class="zagolowok-info">Сайт:</span>
+            <?php echo $member->memberinfo->website; ?>
+            <br>
+        <?php endif; ?>
+        <?php if ($member->memberinfo->phone!=""): ?>
+            <span class="zagolowok-info">Телефон:</span>
+            <?php echo $member->memberinfo->phone; ?>
+            <br>
+        <?php endif; ?>
+        <?php if ($member->memberinfo->about!=""): ?>
+            <div id="memberAbout">
+                <span class="zagolowok-info">Краткая информация:</span>
+                <?php echo $member->memberinfo->about; ?>
+            </div>
+            <br>
+        <?php endif; ?>
         <?php if ($member->memberinfo->cityIsSet==1): ?>
             <span class="zagolowok-info">Город:</span>
                 <?php echo $memberCity->city->cityName; ?>, &nbsp<?php echo Countries::model()->findbyPk($memberCity->city->countryID)->countryName; ?>
                 <br>
         <?php endif; ?>
-        
-        <?php if ($member->memberinfo->showEmail==1): ?>
-            <span class="zagolowok-info">Email:</span>
-                <?php echo $member->email; ?>
-                <br>
-        <?php endif; ?>
-        <?php if ($member->memberinfo->website!=""): ?>
-            <span class="zagolowok-info">Сайт:</span>
-               <?php echo $member->memberinfo->website; ?>
-               <br>
-        <?php endif; ?>
-        <?php if ($member->memberinfo->phone!=""): ?>
-            <span class="zagolowok-info">Телефон:</span>
-               <?php echo $member->memberinfo->phone; ?>
-               <br>
-        <?php endif; ?> 
-        <?php if ($member->memberinfo->about!=""): ?>
-            <div id="memberAbout">
-                <span class="zagolowok-info">Краткая информация:</span>
-               <?php echo $member->memberinfo->about; ?>
-            </div>  
-            <br>
-        <?php endif; ?>
+
 		<div class="knopky3">
            <?php echo CHtml::link('Книги идей',array('ideasbook/index','id'=>$member->urlID)); ?>
         <?php if (Yii::app()->user->id == $member->id): ?>

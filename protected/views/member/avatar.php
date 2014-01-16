@@ -3,7 +3,7 @@
 <br>
 <div class="memberCabinetPic">
             <a onclick="return false;" href="">  
-            <img id="mainMemberCabinetPic" src="<?php echo Yii::app()->baseUrl; ?>/images/members/avatars/<?php echo $member->memberinfo->avatar;?>"/>
+            <img height="150px" id="mainMemberCabinetPic" src="<?php echo Yii::app()->baseUrl; ?>/images/members/avatars/<?php echo $member->memberinfo->avatar;?>"/>
         </a>
 </div>
 <div class="changeMemberAvatar" style="margin-left: 50px; float: left;">

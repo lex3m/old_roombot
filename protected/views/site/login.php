@@ -12,8 +12,6 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 <div class="list-bot">
 <h1>Авторизация</h1>
 
-
-
 <div class="form">
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'login-form',
@@ -23,7 +21,11 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 	),
 )); ?>
 
-
+    <?php if(Yii::app()->user->hasFlash('error')): ?>
+        <div class="flash-error">
+            <?php echo Yii::app()->user->getFlash('error'); ?>
+        </div>
+    <?php endif; ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'email'); ?>
@@ -51,12 +53,14 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 
 <?php $this->endWidget(); ?>
 </div><!-- form -->
+<div class="social networks">
+    <?php if(Yii::app()->user->isGuest) $this->widget('AuthVK'); ?>
+</div><!-- end social networks-->
 <div class="ne-vhod">
      У Вас еще нет своего кабинета? <br />В этом случае Вам нужно зарегистрироваться.<br />
      <div class="knopka-srednyaya">
          <a href="/companies/register" class="knopo4ka">Зарегистрироваться</a>
-     </div>    
-     
+     </div>
     <?php echo CHtml::link('Забыли пароль?',array("site/password")); ?>
 </div>
 

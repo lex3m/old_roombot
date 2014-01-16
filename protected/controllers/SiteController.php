@@ -86,59 +86,132 @@ class SiteController extends Controller
 	 */
 	public function actionLogin()
 	{
-	    $this->setPageTitle(Yii::app()->name . ' - Вход');
-		$model=new LoginForm;
+        if (Yii::app()->user->isGuest) {
+           /* $client_id = '4111118'; // ID приложения
 
-		// if it is ajax validation request
-		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
+            $client_secret = 'ITcj5PaMbd7NA1q2vjJo'; // Защищённый ключ
 
-		// collect user input data
-		if(isset($_POST['LoginForm']))
-		{
-			$model->attributes=$_POST['LoginForm'];
-			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login()) 
-				{
+            $redirect_uri = 'http://roombot/site/login'; // Адрес сайта
 
-				$user = Member::model()->find('id=:userID', array(':userID'=>Yii::app()->user->getId()));
-				if (isset($user->email))
-				switch ($user->type)  {  
-				  case '1': 
-					    if ($user->activate_type==1)
-					    {
-					      $url = Yii::app()->createUrl('member/dashboard',array('id'=>$user->urlID));
-					      $this->redirect($url);  
-					    }
-					    else
-					    {
-					      Yii::app()->user->logout(); 
-					      $url = Yii::app()->createUrl('companies/notactivepage',array());
-					      $this->redirect($url);
-					    }
-					    break; 
-                  default:  
-                      if ($user->activate_type==1)
-                        {
-                          $url = Yii::app()->createUrl('member/dashboard',array('id'=>$user->urlID));
-                          $this->redirect($url);  
-                        }
-                        else
-                        {
-                          Yii::app()->user->logout(); 
-                          $url = Yii::app()->createUrl('companies/notactivepage',array());
-                          $this->redirect($url);
-                        }
-                        break;
-				   
-				  }  
-				}
-		}
-		// display the login form
-		$this->render('login',array('model'=>$model));
+            $url = 'http://oauth.vk.com/authorize';
+
+            $result = false;
+
+            $params = array(
+                'client_id'     => $client_id,
+                'redirect_uri'  => $redirect_uri,
+                'response_type' => 'code'
+            );
+
+            $link = '<p><a href="' . $url . '?' . urldecode(http_build_query($params)) . '">Аутентификация через ВКонтакте</a></p>';
+
+           $params = array(
+                'client_id' => $client_id,
+                'client_secret' => $client_secret,
+                'code' => $_GET['code'],
+                'redirect_uri' => $redirect_uri
+            );
+
+            $token = json_decode(file_get_contents('https://oauth.vk.com/access_token' . '?' . urldecode(http_build_query($params))), true);
+
+            if (isset($token['access_token'])) {
+                $params = array(
+                    'uids'         => $token['user_id'],
+                    'fields'       => 'uid,first_name,last_name,screen_name,sex,bdate,photo_big',
+                    'access_token' => $token['access_token']
+                );
+
+                $userInfo = json_decode(file_get_contents('https://api.vk.com/method/users.get' . '?' . urldecode(http_build_query($params))), true);
+
+                if ($userInfo['response'][0]['uid'] > 0) {
+
+                    $userInfo = $userInfo['response'][0];
+                    $result = true;
+                }
+
+            }
+
+            if ($result) {
+                $model = new LoginForm();
+                $res = $model->loginVK($userInfo['uid'], $userInfo['uid'].'@vk.com' ,$userInfo['first_name'] .'_'. $userInfo['last_name'], $userInfo['photo_big']);
+                if ($res['success'] === true) {
+                    $url = Yii::app()->createUrl('member/dashboard',array('id'=>$res["user"]["urlid"]));
+                    $this->redirect($url);
+                } else {
+                    $model->addError('email', 'Ошибка при авторизации');
+                }
+            }*/
+
+            $this->setPageTitle(Yii::app()->name . ' - Вход');
+            $model=new LoginForm;
+
+           //if Auth with VK
+           if (isset($_GET['code'])) {
+                $vkLogin = new AuthVKModel();
+                $vkLogin->getAuthData($_GET['code']);
+                if ($vkLogin->validate() && $vkLogin->login()) {
+                    $url = Yii::app()->createUrl('member/dashboard',array('id'=>Yii::app()->user->urlID));
+                    $this->redirect($url);
+                }
+                else {
+                    Yii::app()->user->setFlash('error','Ошибка авторизации через ВК, повторите Ваш запрос позже или используйте другой сервис авторизации.');
+                }
+           }
+
+            // if it is ajax validation request
+            if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
+            {
+                echo CActiveForm::validate($model);
+                Yii::app()->end();
+            }
+
+           // collect user input data
+           if(isset($_POST['LoginForm']))
+           {
+                $model->attributes=$_POST['LoginForm'];
+                // validate user input and redirect to the previous page if valid
+                if($model->validate() && $model->login())
+                    {
+
+                    $user = Member::model()->find('id=:userID', array(':userID'=>Yii::app()->user->getId()));
+                    if (isset($user->email))
+                    switch ($user->type)  {
+                      case '1':
+                            if ($user->activate_type==1)
+                            {
+                              $url = Yii::app()->createUrl('member/dashboard',array('id'=>$user->urlID));
+                              $this->redirect($url);
+                            }
+                            else
+                            {
+                              Yii::app()->user->logout();
+                              $url = Yii::app()->createUrl('companies/notactivepage',array());
+                              $this->redirect($url);
+                            }
+                            break;
+                      default:
+                          if ($user->activate_type==1)
+                            {
+                              $url = Yii::app()->createUrl('member/dashboard',array('id'=>$user->urlID));
+                              $this->redirect($url);
+                            }
+                            else
+                            {
+                              Yii::app()->user->logout();
+                              $url = Yii::app()->createUrl('companies/notactivepage',array());
+                              $this->redirect($url);
+                            }
+                            break;
+
+                      }
+                    }
+           }
+            // display the login form
+            $this->render('login',array('model'=>$model));
+        } else {
+            $url = Yii::app()->createUrl('member/dashboard',array('id'=>Yii::app()->user->urlID));
+            $this->redirect($url);
+        }
 	}
 	
 	public function actionRegistration()
@@ -202,7 +275,7 @@ class SiteController extends Controller
             $model->attributes=$_POST['Passwordform'];
             // validate user input and redirect to the previous page if valid
             if($model->validate()) 
-                {
+            {
                      
                     $activationKey = sha1(mt_rand(10000,99999).time().$model->email);  
                     $activationLink = Yii::app()->createAbsoluteUrl('site/change_password', array('act_key'=>$activationKey));
@@ -222,7 +295,7 @@ class SiteController extends Controller
                           Yii::app()->user->setFlash('send_letter_for_password',"Указаное письмо отправлено вам на почту.");
                       }
                       $this->redirect('send_letter_success'); 
-                }
+            }
         }
         $this->render('password',array(
             'model'=>$model, 

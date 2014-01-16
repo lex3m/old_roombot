@@ -37,7 +37,13 @@ class Memberinfo extends CActiveRecord
 	 */
 	public $image;
     public $showEmail;
-     
+    public $cityIsSet;
+    public $website;
+    public $phone;
+    public $fio;
+    public $avatar;
+
+
 	public function rules()
 	{
 		// NOTE: you should only define rules for those attributes that
@@ -48,15 +54,21 @@ class Memberinfo extends CActiveRecord
 			array('avatar', 'length', 'max'=>20),
 			
             array('userID, avatar, cityIsSet', 'required', 'on'=>'change'),
-            array('website, phone, about, showEmail', 'safe', 'on'=>'change'),
+            array('website, phone, about, showEmail, fio', 'safe', 'on'=>'change'),
             array('userID', 'numerical', 'integerOnly'=>true, 'on'=>'change'),  
             array('avatar', 'length', 'max'=>20, 'on'=>'change'), 
             
 			array('image', 'file', 'types'=>'jpg, jpeg','maxSize' => 1000000, 'on'=>'change_avatar'),
+
+            array('avatar', 'length', 'max'=>20, 'on'=>'set_avatar'),
 			//array('image, userID, avatar, cityID', 'safe', 'on'=>'change_avatar'),    
 
 			
 			array('userID, avatar, cityID', 'safe', 'on'=>'search'),
+
+            array('userID, fio, avatar', 'required', 'on' => 'vkAuth'),
+            array('userID', 'numerical', 'integerOnly'=>true, 'on'=>'vkAuth'),
+            array('fio', 'length', 'max' => 255, 'on' => 'vkAuth'),
 		);
 	}
 
@@ -81,26 +93,71 @@ class Memberinfo extends CActiveRecord
 		return array(
 			'userID' => 'User',
 			'avatar' => 'Avatar',
-			'cityID' => 'City',
-			'image' => '',
+			'cityIsSet' => 'Город',
 			'website'=>'Сайт',
 			'phone'=>'Телефон',
 			'about'=>'Краткая информация',
 			'showEmail'=>'Показывать Email',
+            'fio' => 'ФИО'
 		);
 	}
     
     
     public function generateUniqueAvatarName() {  
-                do {
-                        mt_srand();
-                        $id = mt_rand(10000000000, 99999999999);
-                        $id.='.jpg';  
-                        $results = Memberinfo::model()->findAll('avatar=:avatar', array(':avatar'=>$id));
-                        $count = count ($results);
-                } while ($count > 0);
-                return $id;
+        do {
+                mt_srand();
+                $id = mt_rand(10000000000, 99999999999);
+                $id.='.jpg';
+                $results = $this->findAll('avatar=:avatar', array(':avatar'=>$id));
+                $count = count ($results);
+        } while ($count > 0);
+        return $id;
+    }
+
+    /**
+     * Use curl to save user vk avatar
+     * @param $avatar
+     * @return string saved avatar name
+     */
+    public function saveUserAvatar($avatar) {
+        $ch = curl_init($avatar);
+
+        $ava  =  $this->generateUniqueAvatarName();
+
+        $fp = fopen(Yii::app()->baseUrl.'images/members/avatars/'.$ava, 'wb');
+
+        curl_setopt($ch, CURLOPT_FILE, $fp);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_exec($ch);
+        curl_close($ch);
+
+        fclose($fp);
+
+        return $ava;
+    }
+
+    /**
+     * Set default memberinfo
+     */
+    public function setInitMemberInfo($userID, $userEmail){
+        $memberInfo = new Memberinfo('register');
+        $memberInfo->userID = $userID;
+        $memberInfo->avatar = "user_da.gif";
+        $memberInfo->cityIsSet = 0;
+        if ($memberInfo->save())
+        {
+            if (($userEmail!='vk')||($userEmail!='fb')){
+                $email = Yii::app()->email;
+                $email->to =  $userEmail;
+                $email->from=Yii::app()->params['email'];
+                $email->subject = "Поздравляем вас с регистрацией! ".Yii::app()->name;
+                $email->message = "Спасибо за регистрацию на сайте <a href=\"".Yii::app()->getBaseUrl(true)."\">".Yii::app()->getBaseUrl(true)."</a>. Теперь вы можете отслеживать наши самые актуальные новости. Добавлять обьявления и фотографии и многое другое!";
+                $email->send();
+            }
         }
+    }
+
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
