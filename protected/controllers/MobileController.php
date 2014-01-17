@@ -2,6 +2,9 @@
 
 class MobileController extends Controller
 {
+
+
+
     public function actionCheckregister($id)
     {
         $checkDoubleMobileUser  = Member::model()->find('name=:name',array(':name'=>$id));
@@ -288,11 +291,15 @@ class MobileController extends Controller
             $photoLike->memberID=$user->id;
             $photoLike->photoID=$picture->id;
             $photoLike->save();
+            $isVoted=true;
         }
         else
+        {
             $checkPhotoLikes->delete();
+            $isVoted=false;
+        }
         $countLikes = Photolike::model()->count('photoID=:photoID',array(':photoID'=>$picture->id));
-        $json_data = array ('countLikes'=>$countLikes);
+        $json_data = array ('countLikes'=>$countLikes,'isVoted'=>$isVoted);
         echo json_encode($json_data);
 
     }

@@ -5,7 +5,7 @@
  * It contains the authentication method that checks if the provided
  * data can identity the user.
  */
-class VKUserIdentity extends CUserIdentity
+class FBUserIdentity extends CUserIdentity
 {
     private $_id;
     private $_urlID;
@@ -17,11 +17,11 @@ class VKUserIdentity extends CUserIdentity
 
     }
     
-    public function authenticate($vkModel = null)
+    public function authenticate($fbModel = null)
     {
         $criteria = new CDbCriteria;
         $criteria->condition = 'unique_id=:uid';
-        $criteria->params = array(':uid'=>$vkModel->uid);
+        $criteria->params = array(':uid'=>$fbModel->id);
 		$user = Member::model()->find($criteria);
 
 		if( $user !== null ) {
@@ -30,23 +30,23 @@ class VKUserIdentity extends CUserIdentity
         } else {
             /* Work with our Member and MemberInfo models */
             $newMember = new Member;
-            $newMember->scenario = 'vkAuth';
-            $newMember->unique_id = $vkModel->uid;
+            $newMember->scenario = 'fbAuth';
+            $newMember->unique_id = $fbModel->id;
             $newMember->save();
 
             $userParams = array(
-                'first_name' => $vkModel->first_name,
-                'last_name' => $vkModel->last_name,
-                'photo_big' => $vkModel->photo_big,
+                'first_name' => $fbModel->first_name,
+                'last_name' => $fbModel->last_name,
+                'picture' => $fbModel->picture,
             );
 
             $newMember->setInitMember($newMember->id, $userParams); //Set User data
 
             $memberInfo = new Memberinfo;
-            $memberInfo->scenario = 'vkAuth';
+            $memberInfo->scenario = 'fbAuth';
             $memberInfo->userID = $newMember->id;
-            $memberInfo->fio = $newMember->getFullName($vkModel->first_name, $vkModel->last_name);
-            $memberInfo->avatar = $memberInfo->saveUserAvatar($vkModel->photo_big);
+            $memberInfo->fio = $newMember->getFullName($fbModel->first_name, $fbModel->last_name);
+            $memberInfo->avatar = $memberInfo->saveUserAvatar($fbModel->picture);
 //            $memberInfo->avatar = 'user_da.gif';
             $memberInfo->save();
             /* End work with models */

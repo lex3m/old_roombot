@@ -69,6 +69,10 @@ class Memberinfo extends CActiveRecord
             array('userID, fio, avatar', 'required', 'on' => 'vkAuth'),
             array('userID', 'numerical', 'integerOnly'=>true, 'on'=>'vkAuth'),
             array('fio', 'length', 'max' => 255, 'on' => 'vkAuth'),
+
+            array('userID, fio, avatar', 'required', 'on' => 'fbAuth'),
+            array('userID', 'numerical', 'integerOnly'=>true, 'on'=>'fbAuth'),
+            array('fio', 'length', 'max' => 255, 'on' => 'fbAuth'),
 		);
 	}
 
@@ -120,19 +124,11 @@ class Memberinfo extends CActiveRecord
      * @return string saved avatar name
      */
     public function saveUserAvatar($avatar) {
-        $ch = curl_init($avatar);
 
+        $img = file_get_contents($avatar);
         $ava  =  $this->generateUniqueAvatarName();
-
-        $fp = fopen(Yii::app()->baseUrl.'images/members/avatars/'.$ava, 'wb');
-
-        curl_setopt($ch, CURLOPT_FILE, $fp);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_exec($ch);
-        curl_close($ch);
-
-        fclose($fp);
+        $file = Yii::app()->baseUrl.'images/members/avatars/'.$ava;
+        file_put_contents($file, $img);
 
         return $ava;
     }

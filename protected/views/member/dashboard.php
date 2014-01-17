@@ -81,8 +81,6 @@
     <?php endif; ?>
     </div>
 </div>
-
-
     <div id="memberCommonInfo">
     <h2><?php echo $member->login; ?></h2>
        <div class="memberCountComments">
@@ -141,6 +139,19 @@
 
  <div class="span-17 last">
         <div class="form width-form">
+            <br>
+            <!-- Put this script tag to the <head> of your page -->
+            <script type="text/javascript" src="//vk.com/js/api/openapi.js?105"></script>
+
+            <script type="text/javascript">
+                VK.init({apiId: 4111118, onlyWidgets: true});
+            </script>
+
+            <!-- Put this div tag to the place, where the Poll block will be -->
+            <div id="vk_poll"></div>
+            <script type="text/javascript">
+                VK.Widgets.Poll("vk_poll", {width: "500"}, "119467387_ad82d127491b1f09bc");
+            </script>
             <br>
 <?php
     $flashMessages = Yii::app()->user->getFlashes();

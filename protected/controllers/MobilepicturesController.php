@@ -55,12 +55,40 @@ class MobilepicturesController extends Controller
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
      */
-    public function actionView($name,$extension)
+    public function actionView($logintype, $key, $image)
     {
-        $img = Mobilepictures::model()->find('image=:image', array(':image'=>$name.'.'.$extension));
+        if ($logintype=="email")
+        {
+            $user = Member::model()->find('email=:email',array(':email'=>$key));
+            $userExist=true;
+        }
+        else if ($logintype=="social")
+        {
+            $user = Member::model()->find('unique_id=:uid',array(':uid'=>$key));
+            $userExist=true;
+        }
+        else if ($logintype=="none")
+            $userExist=false;
+        $img = Mobilepictures::model()->with('countLikes', 'countComments')->find('image=:image', array(':image'=>$image));
+        if ($userExist)
+        {
+            $checkPhotoLikes = Photolike::model()->find('photoID=:photoID AND memberID=:memberID',array(':photoID'=>$img->id,':memberID'=>$user->id));
+            if (count($checkPhotoLikes)==0)
+                $isVoted=false;
+            else
+                $isVoted=true;
+        }
+        else
+            $isVoted="undefined";
+
         if ($img)
-            $json_data = array ('name'=>$img->name,'info'=>$img->info,'date'=>$img->date);
-                echo json_encode($json_data);
+            $json_data = array ('name'=>$img->name,
+                'info'=>$img->info,
+                'date'=>$img->date,
+                'countLikes'=>$img->countLikes,
+                'isVoted'=>$isVoted,
+                'countComments'=>$img->countComments);
+        echo json_encode($json_data);
 
     }
 
@@ -390,10 +418,10 @@ class MobilepicturesController extends Controller
                 }
                 $thumb->rotate(90)->quality(99);
 
-                $imageExploded = explode('.', $img->image);
+                /*$imageExploded = explode('.', $img->image);
                 $imgName = $imageExploded[0];
                 $imgExt = $imageExploded[1];
-                $extArr = array('jpg', 'jpeg');
+                $extArr = array('jpg', 'jpeg');*/
 
                 /*Workaround jpg extension, rotate original image but save with another name*/
                 /*if (in_array($imgExt, $extArr)) {

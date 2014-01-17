@@ -37,7 +37,11 @@ class AuthVKModel extends CModel {
             'redirect_uri' => $vkUser->redirect_uri
         );
 
-        $this->token = json_decode(file_get_contents($vkUser->urlAccessToken . '?' . urldecode(http_build_query($this->params))), true);
+        $file = @file_get_contents($vkUser->urlAccessToken . '?' . urldecode(http_build_query($this->params)));
+        if ($file)
+            $this->token = json_decode($file, true);
+        else
+            throw new CHttpException(401,'Неавторизированный запрос');
 
         if (isset($this->token['access_token'])) {
             $this->params = array(
@@ -52,7 +56,8 @@ class AuthVKModel extends CModel {
                 $authData = $userInfo['response'][0];
             }
 
-        }
+        }  else
+            throw new CHttpException(400,'Неправильный запрос');
 
         $this->uid = $authData['uid'];
         $this->first_name = $authData['first_name'];

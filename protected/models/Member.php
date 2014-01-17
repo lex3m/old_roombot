@@ -119,6 +119,11 @@ class Member extends CActiveRecord
             array('unique_id','required', 'on'=>'vkAuth'),
             array('unique_id','unique', 'on'=>'vkAuth'),
             array('unique_id', 'length', 'max'=>50, 'on'=>'vkAuth'),
+
+            //правила для авторизации через FB
+            array('unique_id','required', 'on'=>'fbAuth'),
+            array('unique_id','unique', 'on'=>'fbAuth'),
+            array('unique_id', 'length', 'max'=>50, 'on'=>'fbAuth'),
 		);  
 	}
 
@@ -246,7 +251,6 @@ class Member extends CActiveRecord
             $user->login          = $this->translit($params['last_name']) . $user->unique_id;
             $user->password       = $this->generateRandomPassword();
             $user->date           = $this->getCurrentDate();
-            $user->email          = $user->unique_id . '@vk.com'; //fucking VK doesn't give user email
         }
 
         $user->role = 'user';

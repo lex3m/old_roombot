@@ -87,66 +87,12 @@ class SiteController extends Controller
 	public function actionLogin()
 	{
         if (Yii::app()->user->isGuest) {
-           /* $client_id = '4111118'; // ID приложения
-
-            $client_secret = 'ITcj5PaMbd7NA1q2vjJo'; // Защищённый ключ
-
-            $redirect_uri = 'http://roombot/site/login'; // Адрес сайта
-
-            $url = 'http://oauth.vk.com/authorize';
-
-            $result = false;
-
-            $params = array(
-                'client_id'     => $client_id,
-                'redirect_uri'  => $redirect_uri,
-                'response_type' => 'code'
-            );
-
-            $link = '<p><a href="' . $url . '?' . urldecode(http_build_query($params)) . '">Аутентификация через ВКонтакте</a></p>';
-
-           $params = array(
-                'client_id' => $client_id,
-                'client_secret' => $client_secret,
-                'code' => $_GET['code'],
-                'redirect_uri' => $redirect_uri
-            );
-
-            $token = json_decode(file_get_contents('https://oauth.vk.com/access_token' . '?' . urldecode(http_build_query($params))), true);
-
-            if (isset($token['access_token'])) {
-                $params = array(
-                    'uids'         => $token['user_id'],
-                    'fields'       => 'uid,first_name,last_name,screen_name,sex,bdate,photo_big',
-                    'access_token' => $token['access_token']
-                );
-
-                $userInfo = json_decode(file_get_contents('https://api.vk.com/method/users.get' . '?' . urldecode(http_build_query($params))), true);
-
-                if ($userInfo['response'][0]['uid'] > 0) {
-
-                    $userInfo = $userInfo['response'][0];
-                    $result = true;
-                }
-
-            }
-
-            if ($result) {
-                $model = new LoginForm();
-                $res = $model->loginVK($userInfo['uid'], $userInfo['uid'].'@vk.com' ,$userInfo['first_name'] .'_'. $userInfo['last_name'], $userInfo['photo_big']);
-                if ($res['success'] === true) {
-                    $url = Yii::app()->createUrl('member/dashboard',array('id'=>$res["user"]["urlid"]));
-                    $this->redirect($url);
-                } else {
-                    $model->addError('email', 'Ошибка при авторизации');
-                }
-            }*/
 
             $this->setPageTitle(Yii::app()->name . ' - Вход');
             $model=new LoginForm;
 
            //if Auth with VK
-           if (isset($_GET['code'])) {
+           if (isset($_GET['code']) && isset($_GET['vk'])) {
                 $vkLogin = new AuthVKModel();
                 $vkLogin->getAuthData($_GET['code']);
                 if ($vkLogin->validate() && $vkLogin->login()) {
@@ -157,6 +103,19 @@ class SiteController extends Controller
                     Yii::app()->user->setFlash('error','Ошибка авторизации через ВК, повторите Ваш запрос позже или используйте другой сервис авторизации.');
                 }
            }
+
+            //if Auth with VK
+            if (isset($_GET['code']) && isset($_GET['fb'])) {
+                $fbLogin = new AuthFBModel();
+                $fbLogin->getAuthData($_GET['code']);
+                if ($fbLogin->validate() && $fbLogin->login()) {
+                    $url = Yii::app()->createUrl('member/dashboard',array('id'=>Yii::app()->user->urlID));
+                    $this->redirect($url);
+                }
+                else {
+                    Yii::app()->user->setFlash('error','Ошибка авторизации через FB, повторите Ваш запрос позже или используйте другой сервис авторизации.');
+                }
+            }
 
             // if it is ajax validation request
             if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')

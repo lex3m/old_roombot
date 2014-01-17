@@ -1,18 +1,18 @@
 <?php
 
-class AuthVK extends CWidget
+class AuthFB extends CWidget
 {
-    public $client_id = '4111118'; // ID приложения
+    public $client_id = '1414095988833822'; // ID приложения
 
-    public $client_secret = 'ITcj5PaMbd7NA1q2vjJo'; // Защищённый ключ
+    public $client_secret = 'cc1323f6d565671af2083b98ff10a14f'; // Защищённый ключ
 
-    public $redirect_uri = 'site/login/vk' ; // Адрес сайта для редиректа
+    public $redirect_uri = 'site/login/fb' ; // Адрес сайта для редиректа
 
-    public $urlAuthorize = 'http://oauth.vk.com/authorize'; //Сервис авторизации VK
-    public $urlAccessToken = 'https://oauth.vk.com/access_token'; //Получение токена
-    public $urlApiGetUsers = 'https://api.vk.com/method/users.get'; //API VK Users
+    public $urlAuthorize = 'https://www.facebook.com/dialog/oauth'; //Сервис авторизации FB
+    public $urlAccessToken = 'https://graph.facebook.com/oauth/access_token'; //Получение токена
+    public $urlApiGetUsers = 'https://graph.facebook.com/me'; //API FB Users
 
-    public $fields = 'uid,first_name,last_name,photo_big'; //получаемые поля в токене
+    public $fields = 'id,first_name,last_name,picture'; //получаемые поля в токене
 
     public $response_type = 'code';
 
@@ -29,6 +29,7 @@ class AuthVK extends CWidget
                 'response_type' => $this->response_type,
             ),
             'url' => $this->urlAuthorize,
+
         );
 
         parent::init();
@@ -36,7 +37,7 @@ class AuthVK extends CWidget
 
     public function run()
     {
-        $this->render('authVK', $this->params);
+        $this->render('authFB', $this->params);
     }
 
     public function setParams($params)
