@@ -50,6 +50,10 @@ class AuthVKModel extends CModel {
                 'access_token' => $this->token['access_token']
             );
 
+            $session = new CHttpSession;
+            $session->open();
+            $session['vk_access_token'] = $this->token['access_token'];
+
             $userInfo = json_decode(file_get_contents($vkUser->urlApiGetUsers . '?' . urldecode(http_build_query($this->params))), true);
 
             if ($userInfo['response'][0]['uid'] > 0) {

@@ -205,6 +205,14 @@ class Member extends CActiveRecord
         return strtr($str, $translit);
     }
 
+    public static function getUserIDByUnique($uid) {
+        $user = Member::model()->find('unique_id=:uid', array(':uid'=>$uid));
+        if ($user !== null)
+            return $user->urlID;
+        else
+            return null;
+    }
+
 	protected function beforeSave()
 	{
 	    if(parent::beforeSave())

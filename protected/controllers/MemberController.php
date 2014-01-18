@@ -293,54 +293,99 @@ class MemberController extends Controller
 	 */
 	public function actionDashboard($id)
 	{
-        header("Cache-Control: no-store, no-cache, must-revalidate");
-        header("Expires: " . date("r"));
-		$this->setPageTitle(Yii::app()->name . ' - Кабинет');
-          $member = Member::model()->with('memberinfo','countComments','countPhotos')->find('urlID=:id', array(':id'=>$id));
-          $memberCity =  Membercity::model()->with('city')->findbyPk($member->id);  
 
-          $pictures=Mobilepictures::model()->findAll('companyID=:id', array(':id'=>$member->id));
 
-          $criteria = new CDbCriteria();
-          $criteria->condition = 'memberID=:id';
-          $criteria->params = array(':id'=>$member->id);
-          $criteria->order = 't.id DESC';
+        $this->setPageTitle(Yii::app()->name . ' - Кабинет');
+        $member = Member::model()->with('memberinfo','countComments','countPhotos')->find('urlID=:id', array(':id'=>$id));
 
-          $following = MemberFollowers::model()->with('following')->findAll($criteria);
+        $session = new CHttpSession;
+        if (isset($session['vk_access_token']) && !empty($member->unique_id)) {
+            //Get API User Friends
+            $getFriendsUrl = "https://api.vk.com/method/friends.getAppUsers?access_token=".$session['vk_access_token'];
+            $vkUserFriends = json_decode(file_get_contents($getFriendsUrl), true);
+            if (isset($vkUserFriends['response'])) {
+                $uids = implode(',', $vkUserFriends['response']);
+            }
+            $getFriendsInfoUrl = "https://api.vk.com/method/users.get?uids=".$uids."&fields=first_name,last_name,photo&access_token=".$session['vk_access_token'];
+            $vkUserFriendsInfo = json_decode(file_get_contents($getFriendsInfoUrl), true);
+            if (isset($vkUserFriends['response'])) {
+                $vkUserFriendsInfo = $vkUserFriendsInfo['response'];
 
-          $criteria = new CDbCriteria();
-          $criteria->condition = 'followerID=:id';
-          $criteria->params = array(':id'=>$member->id);
-          $criteria->order = 't.id DESC';
+                $userFriends = array();
+                $i = 0;
+                foreach ($vkUserFriendsInfo as $friend) {
+                    foreach ($friend as $key => $value) {
+                        $userFriends[$i]['name'] = $friend['first_name'] .' '. $friend['last_name'];
+                        $userFriends[$i]['photo'] = $friend['photo'];
+                        $userFriends[$i]['urlID'] = Member::getUserIDByUnique($friend['uid']);
+                    }
+                    $i++;
+                }
+            }
+            //Get API User Photos
+            $vkUserPhotosUrl = "https://api.vk.com/method/photos.getAll?no_service_albums=0&extended=0&photo_sizes=0&count=120&access_token=".$session['vk_access_token'];
+            $vkUserPhotos = json_decode(file_get_contents($vkUserPhotosUrl), true);
+            if (isset($vkUserPhotos['response'])) {
+                $vkUserPhotos = $vkUserPhotos['response'];
+                array_shift($vkUserPhotos);
+                $userPhotos = array();
+                $i = 0;
+                foreach($vkUserPhotos as $photo) {
+                    $userPhotos[$i]['photo_id'] = $photo['pid'];
+                    $userPhotos[$i]['src'] = $photo['src'];
+                    $userPhotos[$i]['src_big'] = $photo['src_big'];
+                    $i++;
+                }
+            }
+        }
 
-          $followed = MemberFollowers::model()->with('followed')->findAll($criteria);
+        $memberCity =  Membercity::model()->with('city')->findbyPk($member->id);
 
-          Yii::import( "ext.xupload.models.XUploadForm" );
-          $photos = new XUploadForm;
-          $model = new Mobilepictures('add');
-                
-          $criteria = new CDbCriteria();
-          $criteria->condition = 'companyID=:id';
-          $criteria->params = array(':id'=>$member->id);
-          $criteria->order ='id DESC';
-          $dataProvider = new CActiveDataProvider(Mobilepictures::model()->with('taglinks','countComments'),
-                    array(
-                        'criteria'=>$criteria,
+        $pictures=Mobilepictures::model()->findAll('companyID=:id', array(':id'=>$member->id));
 
-                        'pagination'=>array(
-                            'pageSize'=>12,
-                        ),
-                    )
-          );
-          $this->render('dashboard',array(
-                    'photos'=>$photos,
-                    'member'=>$member,
-                    'following'=>$following,
-                    'followed'=>$followed,
-                    'pictures'=>$pictures,
-                    'model'=>$model,
-                    'dataProvider'=>$dataProvider,
-                    'memberCity'=>$memberCity ));
+        $criteria = new CDbCriteria();
+        $criteria->condition = 'memberID=:id';
+        $criteria->params = array(':id'=>$member->id);
+        $criteria->order = 't.id DESC';
+
+        $following = MemberFollowers::model()->with('following')->findAll($criteria);
+
+        $criteria = new CDbCriteria();
+        $criteria->condition = 'followerID=:id';
+        $criteria->params = array(':id'=>$member->id);
+        $criteria->order = 't.id DESC';
+
+        $followed = MemberFollowers::model()->with('followed')->findAll($criteria);
+
+        Yii::import( "ext.xupload.models.XUploadForm" );
+        $photos = new XUploadForm;
+        $model = new Mobilepictures('add');
+
+        $criteria = new CDbCriteria();
+        $criteria->condition = 'companyID=:id';
+        $criteria->params = array(':id'=>$member->id);
+        $criteria->order ='id DESC';
+        $dataProvider = new CActiveDataProvider(Mobilepictures::model()->with('taglinks','countComments'),
+                array(
+                    'criteria'=>$criteria,
+
+                    'pagination'=>array(
+                        'pageSize'=>12,
+                    ),
+                )
+        );
+        $this->render('dashboard',array(
+                'photos'=>$photos,
+                'member'=>$member,
+                'following'=>$following,
+                'followed'=>$followed,
+                'pictures'=>$pictures,
+                'model'=>$model,
+                'dataProvider'=>$dataProvider,
+                'memberCity'=>$memberCity,
+                'userFriends' => isset($userFriends) ? $userFriends : '',
+                'userPhotos' => isset($userPhotos) ? $userPhotos : '',
+        ));
 	}
 
 	/**

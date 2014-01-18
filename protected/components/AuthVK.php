@@ -27,6 +27,7 @@ class AuthVK extends CWidget
                 'client_id'     => $this->client_id,
                 'redirect_uri'  => $this->redirect_uri,
                 'response_type' => $this->response_type,
+                'scope'=>'friends,photos,offline'
             ),
             'url' => $this->urlAuthorize,
         );

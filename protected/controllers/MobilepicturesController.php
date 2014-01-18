@@ -35,7 +35,7 @@ class MobilepicturesController extends Controller
                 'users'=>array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions'=>array('create','update','delete', 'rotate', 'addtag','tagsdelete','editpicturename', 'editpictureinfo'),
+                'actions'=>array('create','update','delete', 'rotate', 'addtag','tagsdelete','editpicturename', 'editpictureinfo', 'addpicture'),
                 'users'=>array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -93,7 +93,31 @@ class MobilepicturesController extends Controller
     }
 
 
-     
+    public function actionAddpicture()
+    {
+        if(Yii::app()->request->isAjaxRequest) {
+            if (isset($_POST['id']) && isset($_POST['src'])) {
+                $img = file_get_contents($_POST['src']);
+                $model = new Memberinfo();
+                $ava  =  $model->generateUniqueAvatarName();
+                $mobilePicture = new Mobilepictures('upload');
+                $mobilePicture->image = $ava;
+                $mobilePicture->name = ''; //'Фото пользователя '.$member->login;
+                $mobilePicture->date = date('Y-m-d');
+                $mobilePicture->companyID = Yii::app()->user->id;
+                if ($mobilePicture->save()) {
+                    $file = Yii::app()->baseUrl.'images/mobile/images/'.$ava;
+                    if (file_put_contents($file, $img))
+                        echo 1;
+                }
+
+
+            }
+         } else {
+            throw new CHttpException(400, 'Неправильный запрос');
+        }
+
+    }
     public function actionEditpicturename()
     {
         if (isset($_POST['id'])&&isset($_POST['name']))
@@ -167,8 +191,6 @@ class MobilepicturesController extends Controller
 
     public function actionViewinfo($id)
     {
-        header("Cache-Control: no-store, no-cache, must-revalidate");
-        header("Expires: " . date("r"));
         $model = Mobilepictures::model()->with('taglinks','member')->findbyPk($id);
         $comments = Comments::model()->with('member','countlikes')->findAll('photoID=:photoID',array(':photoID'=>$model->id));
         $member= Member::model()->findbyPK($model->companyID);

@@ -62,7 +62,6 @@
                                 endforeach;?>
                                 <?php if ($member->countFollowed > 5): ?>
                                     <?php echo CHtml::link( 'Просмотреть всех '.$member->countFollowed, array('member/followed', 'id'=>$f->followed->urlID), array('class'=>'view-all') ); ?>
-
                                 <?php endif; ?>
                             </li>
                         </ul>
@@ -78,6 +77,25 @@
             <div class="knopky1" style="display: block;">
                 <?php echo CHtml::link('Мои подписчики',array('member/followed'), array('id'=>'followers')); ?>
             </div>
+
+        <?php if (isset($userFriends) && !empty($userFriends)): ?>
+            <div class="userFriends">
+                <div class="sidebar">
+                    <div class="sidebar-header">Друзья из ВК (<?php echo count($userFriends);?>)</div>
+                    <div class="sidebar-body">
+                        <ul id="followingsBox">
+                            <li class="profileThumbBox">
+                                <?php foreach($userFriends as $friend): ?>
+                                    <div class="thumbFollowUserDiv">
+                                        <?php echo CHtml::link(CHtml::image($friend['photo'], $friend['photo'], array('title'=>$friend['name'])), array('member/dashboard','id'=>$friend['urlID'])); ?>
+                                    </div>
+                                <?php endforeach;?>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
     <?php endif; ?>
     </div>
 </div>
@@ -136,8 +154,18 @@
     </div>
 </div>
 
-
  <div class="span-17 last">
+ <?php if (Yii::app()->user->id == $member->id): ?>
+     <?php if (isset($userFriends) && !empty($userFriends)): ?>
+         Фото из ВК (чтобы увидеть добавленные фото обновите страницу)<br/>
+         <?php foreach($userPhotos as $photo):?>
+             <?php echo CHtml::image($photo['src'], $photo['photo_id'], array('height'=>100, 'width'=>100)); ?>
+             <?php echo CHtml::link('<img height="20" width="20" src="/images/fav.jpg">', '#', array('data-id'=>$photo['photo_id'],'class'=>'add_to_photos', 'data-src'=>$photo['src_big'])); ?>
+         <?php endforeach; ?>
+         <br/>
+         <?php echo CHtml::button('Обновить',array('id'=>'refresh_page', 'style'=>'display:none;', 'onClick'=>'window.location.reload()')); ?>
+     <?php endif; ?>
+ <?php endif; ?>
         <div class="form width-form">
             <br>
             <!-- Put this script tag to the <head> of your page -->
@@ -163,7 +191,6 @@
         echo '</ul>';
     }
 ?>
-
 
 <?php if (Yii::app()->user->id == $member->id): ?>
 <div class="block-a">
@@ -325,9 +352,29 @@ if (Yii::app()->user->id == $member->id):
     echo '<br><br>';
     echo CHtml::button('Да', array('id'=>'confirm_picture_info','name'));
     $this->endWidget('zii.widgets.jui.CJuiDialog');
-    
-    
-        Yii::app()->clientScript->registerScript('mobilePicturesScript',"
+
+    Yii::app()->clientScript->registerScript('mobilePicturesScript',"
+
+        $( 'a.add_to_photos').on('click', function(event){
+            var id = $(this).attr('data-id');
+            var src = $(this).attr('data-src');
+            var that = $(this);
+            var img = '".CHtml::image('/images/site/checkepicture.png','',array('width'=>21,'height'=>18))."';
+            $.ajax({
+                   type: 'POST',
+                   url: '".Yii::app()->createUrl('mobilepictures/addpicture')."',
+                   data: {id: id, src: src},
+                   success: function(msg){
+                     if (msg) {
+                        that.html(img);
+                        $('#refresh_page').show();
+                     }
+                   }
+            });
+            return false;
+
+        });
+
         
         $( 'span#name_picture').on('click', function(event){
             var id = $(this).attr('data-id');
