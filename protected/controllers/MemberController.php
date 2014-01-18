@@ -107,25 +107,32 @@ class MemberController extends Controller
                 $filename = md5( Yii::app( )->user->id.microtime( ).$model->name);
                 $filename .= ".".strtolower($model->file->getExtensionName( ));
                 if( $model->validate( ) ) {
+                    // For .gif do not need to resize image
+                    if ($model->mime_type == 'image/gif') {
+                        copy($model->file->getTempName(), $path.$filename);
+                        chmod( $path.$filename, 0777 );
+                        $resizedImage = true;
+                        $resizedImageThumb = true;
+                    } else {
+                        //Move our file to our temporary dir
+                        $model->file->saveAs( $path.$filename );
+                        chmod( $path.$filename, 0777 );
+                        //here you can also generate the image versions you need
+                        //using something like PHPThumb
+                        Yii::import('ext.image.Image');
+                        $image = new Image($path.$filename);
+                        //Rotate image if need
+                        /*if($image->width < $image->height)
+                            $image->rotate(270);*/
+                        //Resize large pictures
+                        if($image->width>1000)
+                            $image->resize(1000, NULL);
+                        $resizedImage = $image->save($path.$filename);
 
-                    //Move our file to our temporary dir
-                    $model->file->saveAs( $path.$filename );
-                    chmod( $path.$filename, 0777 );
-                    //here you can also generate the image versions you need
-                    //using something like PHPThumb
-                    Yii::import('ext.image.Image');
-                    $image = new Image($path.$filename);
-                    //Rotate image if need
-                    /*if($image->width < $image->height)
-                        $image->rotate(270);*/
-                    //Resize large pictures
-                    if($image->width>1000)
-                        $image->resize(1000, NULL);
-                    $resizedImage = $image->save($path.$filename);
-
-                    $image->resize(200,150);
-                    $resizedImageThumb = $image->save($thumbsPath.$filename);
-                    chmod( $thumbsPath.$filename, 0777 );
+                        $image->resize(200,150);
+                        $resizedImageThumb = $image->save($thumbsPath.$filename);
+                        chmod( $thumbsPath.$filename, 0777 );
+                    }
 
                     if ($resizedImage && $resizedImageThumb) {
                         $member = Member::model()->findByPk(Yii::app()->user->id);
@@ -140,7 +147,7 @@ class MemberController extends Controller
                                 "type" => $model->mime_type,
                                 "size" => $model->size,
                                 "url" => $publicPath.$filename,
-                                "thumbnail_url" => $publicThumbsPath.$filename,
+                                "thumbnail_url" => is_file($publicThumbsPath.$filename) ? $publicThumbsPath.$filename : $publicPath.$filename ,
                                 "delete_url" => $this->createUrl( $this->action->id, array(
                                     "_method" => "delete",
                                     "file" => $filename
