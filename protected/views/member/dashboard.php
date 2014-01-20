@@ -155,32 +155,39 @@
 </div>
 
  <div class="span-17 last">
- <?php if (Yii::app()->user->id == $member->id): ?>
-     <?php if (isset($userFriends) && !empty($userFriends)): ?>
-         Фото из ВК (чтобы увидеть добавленные фото обновите страницу)<br/>
-         <?php foreach($userPhotos as $photo):?>
-             <?php echo CHtml::image($photo['src'], $photo['photo_id'], array('height'=>100, 'width'=>100)); ?>
-             <?php echo CHtml::link('<img height="20" width="20" src="/images/fav.jpg">', '#', array('data-id'=>$photo['photo_id'],'class'=>'add_to_photos', 'data-src'=>$photo['src_big'])); ?>
-         <?php endforeach; ?>
-         <br/>
-         <?php echo CHtml::button('Обновить',array('id'=>'refresh_page', 'style'=>'display:none;', 'onClick'=>'window.location.reload()')); ?>
-     <?php endif; ?>
- <?php endif; ?>
         <div class="form width-form">
-            <br>
-            <!-- Put this script tag to the <head> of your page -->
-            <script type="text/javascript" src="//vk.com/js/api/openapi.js?105"></script>
+            <?php if (Yii::app()->user->id == $member->id): ?>
+                <div class="showVkPhotos">
+                    <div class="knopky1">
+                        <a href="#">Показать фото из ВКонтакте</a>
+                    </div>
+                </div>
+                <div class='vkUserPhotos' style="display:none;">
+                    <?php if (isset($userFriends) && !empty($userFriends)): ?>
+                        Фото из ВК (чтобы увидеть добавленные фото обновите страницу)<br/>
+                        <?php foreach($userPhotos as $photo):?>
+                            <?php echo CHtml::image($photo['src'], $photo['photo_id'], array('height'=>100, 'width'=>100)); ?>
+                            <?php echo CHtml::link('<img height="20" width="20" src="/images/fav.jpg">', '#', array('data-id'=>$photo['photo_id'],'class'=>'add_to_photos', 'data-src'=>$photo['src_big'])); ?>
+                        <?php endforeach; ?>
+                        <br/>
+                        <?php echo CHtml::button('Обновить',array('id'=>'refresh_page', 'style'=>'display:none;', 'onClick'=>'window.location.reload()')); ?>
+                    <?php endif; ?>
+                </div>
+                <br>
+                <!-- Put this script tag to the <head> of your page -->
+                <script type="text/javascript" src="//vk.com/js/api/openapi.js?105"></script>
 
-            <script type="text/javascript">
-                VK.init({apiId: 4111118, onlyWidgets: true});
-            </script>
+                <script type="text/javascript">
+                    VK.init({apiId: 4111118, onlyWidgets: true});
+                </script>
 
-            <!-- Put this div tag to the place, where the Poll block will be -->
-            <div id="vk_poll"></div>
-            <script type="text/javascript">
-                VK.Widgets.Poll("vk_poll", {width: "500"}, "119467387_ad82d127491b1f09bc");
-            </script>
-            <br>
+                <!-- Put this div tag to the place, where the Poll block will be -->
+                <div id="vk_poll"></div>
+                <script type="text/javascript">
+                    VK.Widgets.Poll("vk_poll", {width: "500"}, "119467387_ad82d127491b1f09bc");
+                </script>
+                <br>
+            <?php endif; ?>
 <?php
     $flashMessages = Yii::app()->user->getFlashes();
     if ($flashMessages) {
@@ -355,22 +362,36 @@ if (Yii::app()->user->id == $member->id):
 
     Yii::app()->clientScript->registerScript('mobilePicturesScript',"
 
+        $('.showVkPhotos').on('click', function (e) {
+            e.preventDefault();
+            $('.vkUserPhotos').toggle(300);
+        });
+
         $( 'a.add_to_photos').on('click', function(event){
-            var id = $(this).attr('data-id');
-            var src = $(this).attr('data-src');
+            event.preventDefault();
             var that = $(this);
+            var id = that.attr('data-id');
+            var src = that.attr('data-src');
+
+            //Prevent more than 1 adding photos
+            that.removeClass('add_to_photos');
+            that.attr('data-id', null);
+            that.attr('data-src', null);
+
             var img = '".CHtml::image('/images/site/checkepicture.png','',array('width'=>21,'height'=>18))."';
-            $.ajax({
-                   type: 'POST',
-                   url: '".Yii::app()->createUrl('mobilepictures/addpicture')."',
-                   data: {id: id, src: src},
-                   success: function(msg){
-                     if (msg) {
-                        that.html(img);
-                        $('#refresh_page').show();
-                     }
-                   }
-            });
+            if (id > 0 && src != '') {
+                $.ajax({
+                       type: 'POST',
+                       url: '".Yii::app()->createUrl('mobilepictures/addpicture')."',
+                       data: {id: id, src: src},
+                       success: function(msg){
+                         if (msg) {
+                            that.html(img);
+                            $('#refresh_page').show();
+                         }
+                       }
+                });
+            }
             return false;
 
         });

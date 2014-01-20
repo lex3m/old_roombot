@@ -11,6 +11,8 @@ class AuthVK extends CWidget
     public $urlAuthorize = 'http://oauth.vk.com/authorize'; //Сервис авторизации VK
     public $urlAccessToken = 'https://oauth.vk.com/access_token'; //Получение токена
     public $urlApiGetUsers = 'https://api.vk.com/method/users.get'; //API VK Users
+    public $urlApiGetAppUsers = 'https://api.vk.com/method/friends.getAppUsers'; // API user friends in app
+    public $urlApiGetUserPhotos = 'https://api.vk.com/method/photos.getAll';
 
     public $fields = 'uid,first_name,last_name,photo_big'; //получаемые поля в токене
 

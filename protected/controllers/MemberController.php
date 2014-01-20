@@ -298,45 +298,11 @@ class MemberController extends Controller
         $this->setPageTitle(Yii::app()->name . ' - Кабинет');
         $member = Member::model()->with('memberinfo','countComments','countPhotos')->find('urlID=:id', array(':id'=>$id));
 
+        //Get VK User friends and photos
         $session = new CHttpSession;
         if (isset($session['vk_access_token']) && !empty($member->unique_id)) {
-            //Get API User Friends
-            $getFriendsUrl = "https://api.vk.com/method/friends.getAppUsers?access_token=".$session['vk_access_token'];
-            $vkUserFriends = json_decode(file_get_contents($getFriendsUrl), true);
-            if (isset($vkUserFriends['response'])) {
-                $uids = implode(',', $vkUserFriends['response']);
-            }
-            $getFriendsInfoUrl = "https://api.vk.com/method/users.get?uids=".$uids."&fields=first_name,last_name,photo&access_token=".$session['vk_access_token'];
-            $vkUserFriendsInfo = json_decode(file_get_contents($getFriendsInfoUrl), true);
-            if (isset($vkUserFriends['response'])) {
-                $vkUserFriendsInfo = $vkUserFriendsInfo['response'];
-
-                $userFriends = array();
-                $i = 0;
-                foreach ($vkUserFriendsInfo as $friend) {
-                    foreach ($friend as $key => $value) {
-                        $userFriends[$i]['name'] = $friend['first_name'] .' '. $friend['last_name'];
-                        $userFriends[$i]['photo'] = $friend['photo'];
-                        $userFriends[$i]['urlID'] = Member::getUserIDByUnique($friend['uid']);
-                    }
-                    $i++;
-                }
-            }
-            //Get API User Photos
-            $vkUserPhotosUrl = "https://api.vk.com/method/photos.getAll?no_service_albums=0&extended=0&photo_sizes=0&count=120&access_token=".$session['vk_access_token'];
-            $vkUserPhotos = json_decode(file_get_contents($vkUserPhotosUrl), true);
-            if (isset($vkUserPhotos['response'])) {
-                $vkUserPhotos = $vkUserPhotos['response'];
-                array_shift($vkUserPhotos);
-                $userPhotos = array();
-                $i = 0;
-                foreach($vkUserPhotos as $photo) {
-                    $userPhotos[$i]['photo_id'] = $photo['pid'];
-                    $userPhotos[$i]['src'] = $photo['src'];
-                    $userPhotos[$i]['src_big'] = $photo['src_big'];
-                    $i++;
-                }
-            }
+           $userFriends = AuthVKModel::getVkUserFriends($session['vk_access_token']);
+           $userPhotos = AuthVKModel::getVkUserPhotos($session['vk_access_token']);
         }
 
         $memberCity =  Membercity::model()->with('city')->findbyPk($member->id);

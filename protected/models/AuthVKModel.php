@@ -69,6 +69,67 @@ class AuthVKModel extends CModel {
         $this->photo_big = $authData['photo_big'];
     }
 
+    public static function getVkUserFriends($token)
+    {
+        //Get API User Friends
+        $vkUser = new AuthVK();
+        $getFriendsUrl = $vkUser->urlApiGetAppUsers . "?access_token=".$token;
+        $vkUserFriends = json_decode(file_get_contents($getFriendsUrl), true);
+        if (isset($vkUserFriends['response'])) {
+            $uids = implode(',', $vkUserFriends['response']);
+        }
+        $params = array(
+            'uids'         => $uids,
+            'fields'       => "first_name,last_name,photo",
+            'access_token' => $token
+        );
+        $getFriendsInfoUrl = $vkUser->urlApiGetUsers."?". urldecode(http_build_query($params));
+        $vkUserFriendsInfo = json_decode(file_get_contents($getFriendsInfoUrl), true);
+        if (isset($vkUserFriends['response'])) {
+            $vkUserFriendsInfo = $vkUserFriendsInfo['response'];
+
+            $userFriends = array();
+            $i = 0;
+            foreach ($vkUserFriendsInfo as $friend) {
+                foreach ($friend as $key => $value) {
+                    $userFriends[$i]['name'] = $friend['first_name'] .' '. $friend['last_name'];
+                    $userFriends[$i]['photo'] = $friend['photo'];
+                    $userFriends[$i]['urlID'] = Member::getUserIDByUnique($friend['uid']);
+                }
+                $i++;
+            }
+        }
+        return $userFriends;
+    }
+
+    public static function getVkUserPhotos($token)
+    {
+        $vkUser = new AuthVK();
+        //Get API User Photos
+        $params = array(
+            'no_service_albums' => 0,
+            'extended'          => 0,
+            'photo_sizes'       => 0,
+            'count'             => 60,
+            'access_token' => $token
+        );
+        $vkUserPhotosUrl = $vkUser->urlApiGetUserPhotos . "?" . urldecode(http_build_query($params));
+        $vkUserPhotos = json_decode(file_get_contents($vkUserPhotosUrl), true);
+        if (isset($vkUserPhotos['response'])) {
+            $vkUserPhotos = $vkUserPhotos['response'];
+            array_shift($vkUserPhotos); //remove first element, it contents service info
+            $userPhotos = array();
+            $i = 0;
+            foreach($vkUserPhotos as $photo) {
+                $userPhotos[$i]['photo_id'] = $photo['pid'];
+                $userPhotos[$i]['src'] = $photo['src'];
+                $userPhotos[$i]['src_big'] = $photo['src_big'];
+                $i++;
+            }
+        }
+        return $userPhotos;
+    }
+
     public function login() {
         $identity = new VKUserIdentity();
         if ($identity->authenticate($this)) {
