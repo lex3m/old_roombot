@@ -293,16 +293,13 @@ class MemberController extends Controller
 	 */
 	public function actionDashboard($id)
 	{
-
-
         $this->setPageTitle(Yii::app()->name . ' - Кабинет');
         $member = Member::model()->with('memberinfo','countComments','countPhotos')->find('urlID=:id', array(':id'=>$id));
 
         //Get VK User friends and photos
-        $session = new CHttpSession;
-        if (isset($session['vk_access_token']) && !empty($member->unique_id)) {
-           $userFriends = AuthVKModel::getVkUserFriends($session['vk_access_token']);
-           $userPhotos = AuthVKModel::getVkUserPhotos($session['vk_access_token']);
+        if (Yii::app()->user->hasState('vk_access_token')) {
+            $userFriends = AuthVKModel::getVkUserFriends(Yii::app()->user->getState('vk_access_token'));
+            $userPhotos = AuthVKModel::getVkUserPhotos(Yii::app()->user->getState('vk_access_token'));
         }
 
         $memberCity =  Membercity::model()->with('city')->findbyPk($member->id);

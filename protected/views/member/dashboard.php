@@ -157,22 +157,24 @@
  <div class="span-17 last">
         <div class="form width-form">
             <?php if (Yii::app()->user->id == $member->id): ?>
-                <div class="showVkPhotos">
-                    <div class="knopky1">
-                        <a href="#">Показать фото из ВКонтакте</a>
-                    </div>
-                </div>
-                <div class='vkUserPhotos' style="display:none;">
+
                     <?php if (isset($userFriends) && !empty($userFriends)): ?>
-                        Фото из ВК (чтобы увидеть добавленные фото обновите страницу)<br/>
-                        <?php foreach($userPhotos as $photo):?>
-                            <?php echo CHtml::image($photo['src'], $photo['photo_id'], array('height'=>100, 'width'=>100)); ?>
-                            <?php echo CHtml::link('<img height="20" width="20" src="/images/fav.jpg">', '#', array('data-id'=>$photo['photo_id'],'class'=>'add_to_photos', 'data-src'=>$photo['src_big'])); ?>
-                        <?php endforeach; ?>
-                        <br/>
-                        <?php echo CHtml::button('Обновить',array('id'=>'refresh_page', 'style'=>'display:none;', 'onClick'=>'window.location.reload()')); ?>
+                        <div class="showVkPhotos">
+                            <div class="knopky1">
+                                <a href="#">Показать фото из ВКонтакте</a>
+                            </div>
+                        </div>
+                        <div class='vkUserPhotos' style="display:none;">
+                            Вы можете добавлять свои фотографии прямо из ВКонтакте! (чтобы увидеть добавленные фото обновите страницу)<br/>
+                            <?php foreach($userPhotos as $photo):?>
+                                <?php echo CHtml::image($photo['src'], $photo['photo_id'], array('height'=>100, 'width'=>100)); ?>
+                                <?php echo CHtml::link('<img height="20" width="20" src="/images/fav.jpg">', '#', array('data-id'=>$photo['photo_id'],'class'=>'add_to_photos', 'data-src'=>$photo['src_big'])); ?>
+                            <?php endforeach; ?>
+                            <br/>
+                            <?php echo CHtml::button('Обновить',array('id'=>'refresh_page', 'style'=>'display:none;', 'onClick'=>'window.location.reload()')); ?>
+                        </div>
                     <?php endif; ?>
-                </div>
+
                 <br>
                 <!-- Put this script tag to the <head> of your page -->
                 <script type="text/javascript" src="//vk.com/js/api/openapi.js?105"></script>
