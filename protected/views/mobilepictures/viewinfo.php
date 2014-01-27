@@ -238,7 +238,7 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
                            data: {id: id},  
                            success: function(msg){
                                 var data = jQuery.parseJSON(msg);
-                                $('.oneComment#'+data.id).remove();
+                                $('.commentBodyContent#'+data.id).remove();
                             }
                          });
          });  
