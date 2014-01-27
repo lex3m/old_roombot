@@ -20,11 +20,25 @@ class FBUserIdentity extends CUserIdentity
     public function authenticate($fbModel = null)
     {
         $criteria = new CDbCriteria;
-        $criteria->condition = 'unique_id=:uid';
-        $criteria->params = array(':uid'=>$fbModel->id);
-		$user = Member::model()->find($criteria);
+        $criteria->condition = 'fb=:fb';
+        $criteria->params = array(':fb'=>$fbModel->link);
 
-		if( $user !== null ) {
+        $userInfo = Memberinfo::model()->find($criteria);
+        if ($userInfo !== null) {
+            $user = Member::model()->findByPk($userInfo->userID);
+            if( $user !== null ) {
+                $this->_isAuth = true;
+            }
+        } else {
+            $criteria->condition = 'unique_id=:uid';
+            $criteria->params = array(':uid'=>$fbModel->id);
+            $user = Member::model()->find($criteria);
+            if( $user !== null ) {
+                $this->_isAuth = true;
+            }
+        }
+
+        if( $this->_isAuth == true ) {
 			$this->_id = $user->id;
             $this->_urlID = $user->urlID;
         } else {

@@ -22,11 +22,11 @@
      
      
          <div class="poisks">
-             <span class="nazwa1">Поиск</span><br />         
+             <span class="nazwa1">Search</span><br />
              <input id="infowvod" type="text" size="30" maxlength="50" name="wvod">
          </div>
          <div class="buttons2">
-             <?php echo CHtml::submitButton('Найти', array('id' => 'poiskknopka', 'name' => 'button'));  ?>
+             <?php echo CHtml::submitButton('Search', array('id' => 'poiskknopka', 'name' => 'button'));  ?>
             
          </div>
          
@@ -70,9 +70,9 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
     ), 
 )); 
 
-echo CHtml::dropDownList('tags_array','',CHtml::listData(Mobiletags::model()->findAll(), 'id', 'name'));
+echo CHtml::dropDownList('tags_array','',CHtml::listData(Mobiletags::model()->findAll(), 'id', 'name_en'));
 echo '<br><br>';
-echo CHtml::button('Да', array('id'=>'confirm_tag_option','name'));    
+echo CHtml::button('Yes', array('id'=>'confirm_tag_option','name'));
 $this->endWidget('zii.widgets.jui.CJuiDialog');
 
 
@@ -92,7 +92,7 @@ echo CHtml::textField('Text', '',
        'width'=>50, 
        'maxlength'=>50)); 
 echo '<br><br>';
-echo CHtml::button('Да', array('id'=>'confirm_name_picture','name'));    
+echo CHtml::button('Yes', array('id'=>'confirm_name_picture','name'));
 $this->endWidget('zii.widgets.jui.CJuiDialog');
 
 
@@ -101,7 +101,7 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
     $( 'span#name_picture').on('click', function(event){
         var name;
         name = $(this).attr('name');
-         $('#change_name_picture').dialog('option','title', 'Изменить название');
+         $('#change_name_picture').dialog('option','title', 'Change name');
                 $('#change_name_picture').dialog('open');
                 $( 'input#confirm_name_picture').attr('name',name); 
         });
@@ -140,7 +140,7 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
         });  
         $( 'a[name=\'new_tag\']').on('click', function(event){
                id = $(this).attr('id'); 
-                $('#add_tag').dialog('option','title', 'Добавить тег');
+                $('#add_tag').dialog('option','title', 'Add tag');
                 $('#add_tag').dialog('open');
                 $( 'input#confirm_tag_option').attr('name',id); 
                 return false;
@@ -179,7 +179,7 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
                       if ($('#infowvod').val() != '')
                         window.location = '".Yii::app()->baseUrl."/mobilepictures/search/query/'+$('#infowvod').val();
                       else {
-                          alert('Введите в это поле, что вы хотите найти.');
+                          alert('Input here your search request.');
                       }     
                 return false;});
     ",CClientScript::POS_READY);

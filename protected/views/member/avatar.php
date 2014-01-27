@@ -1,5 +1,5 @@
 <div class="list-bot">
-<h1>Изменение аватара</h1>
+<h1><?php echo Yii::t("memberInfo", 'Change avatar')?> </h1>
 <br>
 <div class="memberCabinetPic">
             <a onclick="return false;" href="">  
@@ -27,7 +27,7 @@ echo $form->error($memberinfo, 'image');
 </div>
 <br>
 <div class="row buttons">
-        <?php echo CHtml::submitButton('Изменить аватар',array('class'=>'rbBtn submitAvatar')); ?>   
+        <?php echo CHtml::submitButton( Yii::t("memberInfo", 'Change avatar'),array('class'=>'rbBtn submitAvatar')); ?>
 </div>
 <?php
 $this->endWidget();

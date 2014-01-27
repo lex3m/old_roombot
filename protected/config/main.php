@@ -19,7 +19,7 @@ return array(
 		'application.models.*',
 		'application.components.*',
 		'application.helpers.*',
-	),
+    ),
 	
 	
 
@@ -75,16 +75,27 @@ return array(
             'driver'=>'ImageMagick',
             // ImageMagick setup path
             'params'=>array('directory'=>'/opt/local/bin'),
-        ), 
+        ),
+        'request'=>array(
+            'enableCookieValidation'=>true,
+        ),
 		'urlManager'=>array(
+            'class'=>'application.components.UrlManager',
 			'urlFormat'=>'path',
 			'showScriptName'=>false,
-            'caseSensitive'=>false, 
+            'caseSensitive'=>false,
 			'rules'=>array(
+                '<language:(ru|en)>/photos/<id:\d+>/<name:.*?>'=>'/site/photos',
+                '<language:(ru|en)>/<action:(login|logout)>/*' => 'site/<action>',
+                '<language:(ru|en)>/<controller:\w+>/<id:\d+>'=>'<controller>/view',
+                '<language:(ru|en)>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+                '<language:(ru|en)>/<controller:\w+>/<action:\w+>/*'=>'<controller>/<action>',
+
                 '/photos/<id:\d+>/<name:.*?>'=>'site/photos',
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+                '<action:(login|logout)>/*' => 'site/<action>',
+                '<controller:\w+>/<id:\d+>'=>'<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+                '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
 		'authManager' => array(
@@ -135,5 +146,6 @@ return array(
 		// this is used in contact page
 		'email'=>'roombot.site@gmail.com',
         'pathToImg'=>'/../images/mobile/images/', //real path to files
+        'languages'=>array('ru'=>'Русский', 'en'=>'English'),
 	),
 );

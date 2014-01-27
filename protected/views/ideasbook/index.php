@@ -1,8 +1,8 @@
 <div class="list-bot izo-list">
-<h1><?php if ($member->id==Yii::app()->user->id) echo'Мои книги идей'; else  echo 'Книги идей пользователя '.$member->login; ?></h1>
+<h1><?php if ($member->id==Yii::app()->user->id) echo'My ideabooks'; else  echo 'Ideabooks of user '.$member->login; ?></h1>
 <br>
-    <?php if ($member->id==Yii::app()->user->id):?> <div class="addIdeaBookLink"><?php echo CHtml::link('Создать новую книгу идей',array('ideasbook/add')); ?></div><?php endif; ?>
-    <?php if ((count($ideasbooks)==0)&&($member->id!=Yii::app()->user->id)): ?><p>У этого пользователя пока нет книг идей</p><?php endif;  ?>
+    <?php if ($member->id==Yii::app()->user->id):?> <div class="addIdeaBookLink"><?php echo CHtml::link('Create new ideabook',array('ideasbook/add')); ?></div><?php endif; ?>
+    <?php if ((count($ideasbooks)==0)&&($member->id!=Yii::app()->user->id)): ?><p>This user don't have any ideabooks</p><?php endif;  ?>
     <?php foreach ($ideasbooks as $ideabook): ?>
     <div class="myIdeasBookBlock" id="<?php echo $ideabook->id; ?>">      
                             <a href="<?php echo Yii::app()->createUrl('ideasbook/view',array('id'=>$ideabook->id)); ?>">
@@ -30,7 +30,7 @@
                                 <div class="ideasBookDesc">
                                     <span class="ideasBookDescTitle"><?php echo $ideabook->name; ?></span> 
                                     <div style="display: none;" class="ideasBookDescription"><?php echo $ideabook->description; ?></div> 
-                                    <div class="ideasBookDescTitlePhotoCount"><?php echo Yii::t('app', '{n} фотография|{n} фотографии|{n} фотографий|{n} фотографий', $ideabook->countIdeaPhotos);?></div>
+                                    <div class="ideasBookDescTitlePhotoCount"><?php echo Yii::t('app', '{n} photo|{n} photos', $ideabook->countIdeaPhotos);?></div>
                                </div>
                            </div>
     </div>
@@ -45,7 +45,7 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
         'closeOnEscape'=> 'true',
         'width'=>'400',
         'show'=>'show',
-        'title'=>'Редактирование книги идей',
+        'title'=>'Edit ideabook',
     ), 
 ));  
 ?>
@@ -58,7 +58,7 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
                 <textarea style="width:100%;height:100px;"  name="description" maxlength="10000" style="resize: none; height: 32px; overflow: hidden; word-wrap: break-word;"></textarea>
                 <div style="clear:both"></div>
                 <div style="display: block;">     
-                    <input id="editIdeaBookButtonPopup" type="button" class="rbBtn submitEditIdeasBook" value="Сохранить">  
+                    <input id="editIdeaBookButtonPopup" type="button" class="rbBtn submitEditIdeasBook" value="Save">
                 </div>       
             </div>
 </form>  
@@ -72,13 +72,13 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
         'closeOnEscape'=> 'true',
         'width'=>'400',
         'show'=>'show',
-        'title'=>'Удаление книги идей',
+        'title'=>'Delete ideabook',
     ), 
 ));  
 ?>
-   <p>Вы точно хотите удалить эту книгу идей?</p>
-   <input id="" type="button" class="rbBtn okDeleteIdeasBook" value="Ок">
-   <input id="" type="button" class="rbBtn cancelDeleteIdeasBook" value="Отмена">       
+   <p>Are you really want to delete this ideabook?</p>
+   <input id="" type="button" class="rbBtn okDeleteIdeasBook" value="Yes">
+   <input id="" type="button" class="rbBtn cancelDeleteIdeasBook" value="Cancel">
 <?php
 $this->endWidget('zii.widgets.jui.CJuiDialog'); 
 

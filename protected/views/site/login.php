@@ -10,7 +10,7 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 ?>
 
 <div class="list-bot">
-<h1>Авторизация</h1>
+<h1>Log in</h1>
 
 <div class="auth-form">
     <div class="form">
@@ -49,23 +49,23 @@ $this->pageTitle=Yii::app()->name . ' - Login';
         </div>
 
         <div class="row buttons">
-            <?php echo CHtml::submitButton('Войти'); ?>
+            <?php echo CHtml::submitButton('Log in'); ?>
         </div>
 
     <?php $this->endWidget(); ?>
     </div><!-- form -->
     <div class="social networks">
-        <span>Вы также можете войти через соцальные сети</span>
+        <span>Authorize with social networks and start using our site</span>
         <?php if(Yii::app()->user->isGuest) $this->widget('AuthVK'); ?>
         <?php if(Yii::app()->user->isGuest) $this->widget('AuthFB'); ?>
     </div><!-- end social networks-->
 </div>
 <div class="ne-vhod">
-     У Вас еще нет своего кабинета? <br />В этом случае Вам нужно зарегистрироваться.<br />
+     Do not have your  account?<br /> In this case you need to create your account now!<br />
      <div class="knopka-srednyaya">
-         <a href="/companies/register" class="knopo4ka">Зарегистрироваться</a>
+         <a href="/companies/register" class="knopo4ka">Sign up</a>
      </div>
-    <?php echo CHtml::link('Забыли пароль?',array("site/password")); ?>
+    <?php //echo CHtml::link('Forget password?',array("site/password")); ?>
 </div>
     <script type="text/javascript" src="//vk.com/js/api/openapi.js?105"></script>
 

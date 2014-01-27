@@ -20,11 +20,26 @@ class VKUserIdentity extends CUserIdentity
     public function authenticate($vkModel = null)
     {
         $criteria = new CDbCriteria;
-        $criteria->condition = 'unique_id=:uid';
-        $criteria->params = array(':uid'=>$vkModel->uid);
-		$user = Member::model()->find($criteria);
+        $criteria->condition = 'vk = :vks OR vk = :vk';
+        $criteria->params = array(':vks'=>'https://vk.com/'.$vkModel->screen_name,
+                                  ':vk'=>'http://vk.com/'.$vkModel->screen_name);
 
-		if( $user !== null ) {
+        $userInfo = Memberinfo::model()->find($criteria);
+        if ($userInfo !== null) {
+            $user = Member::model()->findByPk($userInfo->userID);
+            if( $user !== null ) {
+                $this->_isAuth = true;
+            }
+        } else {
+            $criteria->condition = 'unique_id=:uid';
+            $criteria->params = array(':uid'=>$vkModel->uid);
+            $user = Member::model()->find($criteria);
+            if( $user !== null ) {
+                $this->_isAuth = true;
+            }
+        }
+
+		if( $this->_isAuth == true ) {
 			$this->_id = $user->id;
             $this->_urlID = $user->urlID;
         } else {

@@ -9,7 +9,7 @@
         background-position: 0 -49px;
     }
 </style>
-<a href="<?php echo $url . '?'. urldecode(http_build_query($buttonParams)); ?>">
+<a href="<?php echo $url . '?'. urldecode(http_build_query($buttonParams)); ?>" title="Vkontakte">
     <div class="auth-vkontakte-button"></div>
 </a>
 

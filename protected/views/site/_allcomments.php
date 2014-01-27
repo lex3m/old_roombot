@@ -23,10 +23,10 @@
                 </div>
                 <div class="comment-actions">
                     <?php if($comment->member->id == Yii::app()->user->id): ?>
-                        <a id="<?php echo $comment->id; ?>" class="commentIcon commentDeleteIcon" title="Удалить комментарий">
+                        <a id="<?php echo $comment->id; ?>" class="commentIcon commentDeleteIcon" title="<?php echo Yii::t('sitePhotos', 'Delete comment');?>">
                             <img class="buttonsCommentAction buttonCommentDeleteIcon" src="">
                         </a>
-                        <a id="<?php echo $comment->id; ?>" class="commentIcon commentEditIcon" title="Редактировать комментарий">
+                        <a id="<?php echo $comment->id; ?>" class="commentIcon commentEditIcon" title="<?php echo Yii::t('sitePhotos', 'Edit comment');?>">
                             <img class="buttonsCommentAction buttonCommentEditIcon" src="">
                         </a>
                     <?php endif; ?>

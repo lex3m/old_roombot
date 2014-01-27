@@ -13,7 +13,7 @@
         background-position: -113px -49px;
     }
 </style>
-<a href="<?php echo $url . '?'. urldecode(http_build_query($buttonParams)); ?>">
+<a href="<?php echo $url . '?'. urldecode(http_build_query($buttonParams)); ?>" title="Facebook">
     <div class="facebook-login-button"></div>
 </a>
 

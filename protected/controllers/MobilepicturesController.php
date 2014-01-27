@@ -35,7 +35,7 @@ class MobilepicturesController extends Controller
                 'users'=>array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions'=>array('create','update','delete', 'rotate', 'addtag','tagsdelete','editpicturename', 'editpictureinfo', 'addpicture'),
+                'actions'=>array('create','update','delete', 'rotate', 'addtag', 'getTags', 'tagsdelete','editpicturename', 'editpictureinfo', 'addpicture'),
                 'users'=>array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -114,7 +114,7 @@ class MobilepicturesController extends Controller
 
             }
          } else {
-            throw new CHttpException(400, 'Неправильный запрос');
+            throw new CHttpException(400);
         }
 
     }
@@ -146,28 +146,64 @@ class MobilepicturesController extends Controller
         }
     }
 
+    public function actionGetTags()
+    {
+
+        if (isset($_POST['id'])) {
+            echo CHtml::checkBoxList('tags[]',
+                array_keys(CHtml::listData(Mobilelinks::model()->findAll('imageId=:imd', array('imd'=>$_POST['id'])), 'tagId' , 'tagId')),
+                CHtml::listData(Mobiletags::model()->findAll(), 'id', (Yii::app()->language == 'en') ? 'name_en' : 'name'),
+                array('separator'=>'', 'template'=>'<span class="checkbox-columns">{input} {label}</span>')
+            );
+        }
+
+    }
+
+
     public function actionAddtag()
     {
-       if (isset($_POST['id'])&&isset($_POST['select']))
-          {
-              $searchtaglink = Mobilelinks::model()->find(array(
-                'condition'=>'tagId=:tagId AND imageId = :imageId',
-                'params'=>array(':tagId'=>$_POST['select'], ':imageId'=>$_POST['id'])));
-                if (isset($searchtaglink->id))
-                echo 'isset'; 
-            else
-                {
+       if (isset($_POST['id'])&&is_array($_POST['select']))
+       {
+           $json_data = array();
+
+           $tags = array();
+           $criteria = new CDbCriteria();
+           $criteria->select = 'tagId';
+           $criteria->condition = 'imageId = :imgId';
+           $criteria->params = array('imgId' => $_POST['id']);
+
+           $allTags = Mobilelinks::model()->findAll($criteria);
+           foreach ($allTags as $tag) {
+               array_push($tags, $tag->tagId);
+           }
+
+           $newTags = array_diff($_POST['select'], $tags); //compare to find new tags
+           $oldTags = array_diff($tags, $_POST['select']); //compare to find old tags
+
+           foreach ($newTags as $value) {
               $taglink = new Mobilelinks();
-              $taglink->tagId = $_POST['select'];
+              $taglink->tagId = $value;
               $taglink->imageId = $_POST['id'];
-              if ($taglink->save())
-              {
-                  $tag=Mobiletags::model()->findbyPk($taglink->tagId);
-                  $json_data = array ('tagname'=>$tag->name,'taglinkid'=>$taglink->id,'pictureid'=>$taglink->imageId);
-                  echo json_encode($json_data); 
-                }    
-          }      
-          }
+              $taglink->save();
+           }
+
+           foreach ($oldTags as $value) {
+               $taglink = new Mobilelinks();
+               $taglink->deleteAllByAttributes(array('tagId' => $value));
+           }
+
+           $criteria = new CDbCriteria();
+           $criteria->condition = 'imageId = :imgId';
+           $criteria->params = array('imgId' => $_POST['id']);
+
+           $taglink = new Mobilelinks();
+           $allNewTags = $taglink->with('tag')->findAll($criteria);
+
+           foreach ($allNewTags as $tag)
+                $json_data[] = array ('tagname'=>(Yii::app()->language == 'en') ? $tag->tag->name_en : $tag->tag->name,'taglinkid'=>$tag->id,'pictureid'=>$tag->imageId);
+
+           echo json_encode($json_data);
+       }
     }
     
     public function actionTagsdelete()
@@ -192,30 +228,34 @@ class MobilepicturesController extends Controller
     public function actionViewinfo($id)
     {
         $model = Mobilepictures::model()->with('taglinks','member')->findbyPk($id);
-        $comments = Comments::model()->with('member','countlikes')->findAll('photoID=:photoID',array(':photoID'=>$model->id));
-        $member= Member::model()->findbyPK($model->companyID);
-        $z=0;
-        $tags_arr = array();
-        $tagNameArray= array();
-        foreach ($model->taglinks as $link)
-        {
-            $tags_arr[$z] = Mobiletags::model()->findbyPk($link->tagId);
-            $z++;
+        if ($model !== null) {
+            $comments = Comments::model()->with('member','countlikes')->findAll('photoID=:photoID',array(':photoID'=>$model->id));
+            $member= Member::model()->findbyPK($model->companyID);
+            $z=0;
+            $tags_arr = array();
+            $tagNameArray= array();
+            foreach ($model->taglinks as $link)
+            {
+                $tags_arr[$z] = Mobiletags::model()->findbyPk($link->tagId);
+                $z++;
+            }
+            $k=0;
+            foreach($tags_arr as $tag)
+            {
+                $tagNameArray[$k] = (Yii::app()->language == 'en') ? $tag->name_en : $tag->name;
+                $k++;
+            }
+            $this->setPageTitle(Yii::app()->name . ' - ' .Yii::t('sitePhotos', 'Photo').$model->name.'.' . Yii::t('sitePhotos', 'Tags') . ':' .implode(", ",$tagNameArray));
+            $this->render('viewinfo',array(
+                'model'=>$model,
+                'tags'=>$tags_arr,
+                'member'=>$member,
+                'comments'=>$comments,
+                'tagNameArray'=>$tagNameArray,
+            ));
+        } else {
+            throw new CHttpException(404, 'Page not found');
         }
-        $k=0;
-        foreach($tags_arr as $tag)
-        {
-            $tagNameArray[$k] = $tag->name;
-            $k++;
-        }
-        $this->setPageTitle(Yii::app()->name . ' - Фото '.$model->name.'. Теги: '.implode(", ",$tagNameArray));
-        $this->render('viewinfo',array(
-            'model'=>$model,
-            'tags'=>$tags_arr,
-            'member'=>$member,
-            'comments'=>$comments,
-            'tagNameArray'=>$tagNameArray,
-        ));
     }
 
     public function actionGetinfo($name,$extension)
@@ -501,9 +541,16 @@ class MobilepicturesController extends Controller
           $company = Companies::model()->findbyPk($member->id);
           $pic_arr=array();
           $pictures=Mobilepictures::model()->findAll('companyID=:id', array(':id'=>$member->id));
-          
-  
-          $tag = Mobiletags::model()->with('imagelinks')->find('name LIKE :name', array(':name'=>'%'.$query.'%'));
+
+          $criteria = new CDbCriteria();
+          if (Yii::app()->language == 'en')
+              $criteria->condition = 'name_en LIKE :name';
+          else
+              $criteria->condition = 'name LIKE :name';
+          $criteria->params = array(':name'=>'%'.$query.'%');
+
+          $tag = Mobiletags::model()->with('imagelinks')->find($criteria);
+
           if (count($tag)>0)
              {
               $i=0;
@@ -534,13 +581,13 @@ class MobilepicturesController extends Controller
                     'dataProvider'=>$dataProvider, ));
               }
             else {
-                 Yii::app()->user->setFlash('flash-error', "По вашему запросу изображений не найдено.");  
+                 Yii::app()->user->setFlash('flash-error', Yii::t('sitePhotos', 'There are no photos by your request. We are sorry'));
                  $this->redirect(Yii::app()->createUrl('member/dashboard',array('id'=>Yii::app()->user->urlID)));
             }
           }  
         else
             {
-               throw new CHttpException(404,'Старница не найдена'); 
+               throw new CHttpException(404);
             }
     }
    

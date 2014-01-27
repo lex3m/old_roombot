@@ -20,7 +20,7 @@ class CommentsController extends Controller
         if ($newComment->save())  
         {
             $countComments = Comments::model()->count('photoID=:photoID',array(':photoID'=>$_POST['photoID']));
-            $countComments =  Yii::t('app', '{n} комментарий|{n} комментария|{n} комментариев|{n} комментариев', $countComments);
+            $countComments =  Yii::t('sitePhotos', '{n} comment|{n} comments', $countComments);
             $json_data = array ('avatar'=>$member->memberinfo->avatar, 'commentID'=>$newComment->id,'comment'=>$newComment->content, 'login'=>$member->login, 'urlID'=>$member->urlID, 'dateTime'=>$newComment->dateTime, 'countComments'=>$countComments);
             echo json_encode($json_data);  
         }
@@ -36,7 +36,7 @@ class CommentsController extends Controller
             if ($countComments > 5) {
                 $showAddComments = true;
             }
-            $countComments =  Yii::t('app', '{n} комментарий|{n} комментария|{n} комментариев|{n} комментариев', $countComments);
+            $countComments =  Yii::t('sitePhotos', '{n} comment|{n} comments', $countComments);
 
             $jsonData = array('id'=>$id, 'countComments'=>$countComments, 'showAddComments'=>$showAddComments, 'photoID'=>$comment->photoID);
             echo json_encode($jsonData);

@@ -30,17 +30,17 @@ Yii::app()->clientScript->registerScript('pluso-start', "
                 <?php if (!Yii::app()->user->isGuest):?>
                     <div class="userStats">
                         <ul class="rb-ministats-group">
-                            <li title="Поставить лайк. Количество лайков - <?php echo $model->countLikes; ?>" class="rb-ministats-item">
+                            <li title="<?php echo Yii::t('sitePhotos', 'Like photo. Count of likes');?> - <?php echo $model->countLikes; ?>" class="rb-ministats-item">
                                 <div class="rb-button-group rb-button-group-medium">
                                     <button id="likePhoto" data-likes="0" data-id="<?php echo $model->id?>" class="rb-button rb-button-like rb-button-medium rb-button-responsive" tabindex="0">
                                         <?php echo $model->countLikes; ?>
                                     </button>
                                 </div>
                             </li>
-                            <li title="Добавить в книгу идей. Уже есть <?php echo Yii::t('app', '{n} книга идей|{n} две книги идей|{n} книг идей|{n} книг идей', $model->countIdeasBooks); ?>" class="rb-ministats-item">
+                            <li title="<?php echo Yii::t('sitePhotos', 'Add to ideabook. Aready in'); ?> -  <?php echo Yii::t('sitePhotos', '{n} ideabook| {n} ideabooks', $model->countIdeasBooks); ?>" class="rb-ministats-item">
                                 <a class="addBookmarkLink" id="<?php echo $model->id; ?>" >
                                     <span class="graybuttonIcon uiButtonIconAddToIdeabook"><img height="20" width="20" src="<?php echo Yii::app()->baseUrl; ?>/images/fav.jpg"/></span>
-                                    <span class="addBookmark">Добавить в книгу идей</span>
+                                    <span class="addBookmark"><?php echo Yii::t('sitePhotos', 'Add to Ideabook');?></span>
                                 </a>
                             </li>
                             <li class="rb-ministats-item">
@@ -51,13 +51,13 @@ Yii::app()->clientScript->registerScript('pluso-start', "
                 <?php else: ?>
                     <div class="userStats">
                         <ul class="rb-ministats-group">
-                            <li title="<?php echo Yii::t('app', '{n} комментарий|{n} комментария|{n} комментариев|{n} комментариев', $model->countComments); ?>" class="rb-ministats-item">
+                            <li title="<?php echo Yii::t('sitePhotos', '{n} comment|{n} comments', $model->countComments); ?>" class="rb-ministats-item">
                                 <a href="<?php echo Yii::app()->createUrl('mobilepictures/viewinfo',array('id'=>$model->id)); ?>" class="rb-ministats rb-ministats-small rb-ministats-comments">
                                     <span class="small_comments_i small_i"></span>
                                     <span ><?php echo $model->countComments;  ?> &nbsp;&nbsp;|&nbsp;&nbsp;</span>
                                 </a>
                             </li>
-                            <li title="<?php echo Yii::t('app', '{n} книга идей|{n} две книги идей|{n} книг идей|{n} книг идей', $model->countIdeasBooks); ?>" class="rb-ministats-item">
+                            <li title="<?php echo Yii::t('sitePhotos', '{n} ideabook| {n} ideabooks', $model->countIdeasBooks); ?>" class="rb-ministats-item">
                                 <span class="rb-ministats rb-ministats-small rb-ministats-ideasbooks">
                                     <span class="small_albums_i small_i"></span>
                                     <span><?php echo $model->countIdeasBooks; ?>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
@@ -87,7 +87,7 @@ Yii::app()->clientScript->registerScript('pluso-start', "
             <div class="awtor">
                 <img id="mainMemberCabinetPic"  src="<?php echo Yii::app()->baseUrl; ?>/images/members/avatars/<?php echo $model->member->memberinfo->avatar; ?>" width="45" height="55">
                 <h2 class="photoElement__title">
-                    <?php echo CHtml::link($model->name ,array('mobilepictures/viewinfo','id'=>$model->id), array('target'=>'_blank', 'class'=>'rb-dark-link', 'title'=>'Просмотр фотографии'));  ?>
+                    <?php echo CHtml::link($model->name ,array('mobilepictures/viewinfo','id'=>$model->id), array('target'=>'_blank', 'class'=>'rb-dark-link', 'title'=>Yii::t('sitePhotos', 'Show photo')));  ?>
                 </h2>
                 <?php echo CHtml::link(CHtml::tag('h3',array('class'=>'photoElement__details rb-type-light'),$model->member->login),array('member/dashboard','id'=>$model->member->urlID), array('target'=>'_blank'));  ?>
             </div>
@@ -100,7 +100,7 @@ Yii::app()->clientScript->registerScript('pluso-start', "
                 </div>
                 <div class="foto-tegi">
                     <?php if (count($tags)>0):  ?>
-                        <span><strong>Теги:</strong></span>
+                        <span><strong><?php echo Yii::t('sitePhotos', 'Tags');?>:</strong></span>
                         <?php echo implode(", ",$tagNameArray); ?>
                     <?php endif;?>
                 </div>
@@ -108,8 +108,8 @@ Yii::app()->clientScript->registerScript('pluso-start', "
             <div class="foto-kommentariy">
                 <?php if ($model->countComments > 0): ?>
                     <div class="foto-kom-info">
-                        <span><?php echo Yii::t('app', '{n} комментарий|{n} комментария|{n} комментариев|{n} комментариев', $model->countComments); ?></span>
-                        <?php if($model->countComments > 5): ?> <a class="showAllComments" id="<?php echo $model->id; ?>" href="#">Показать все</a> <?php endif; ?>
+                        <span><?php echo Yii::t('sitePhotos', '{n} comment|{n} comments', $model->countComments); ?></span>
+                        <?php if($model->countComments > 5): ?> <a class="showAllComments" id="<?php echo $model->id; ?>" href="#"><?php echo Yii::t('sitePhotos', 'Show all comments');?></a> <?php endif; ?>
                     </div>
                     <?php $this->widget('ext.timeago.JTimeAgo', array('selector' => ' .timeago',));   ?>
                     <div class="komments-users">
@@ -137,10 +137,10 @@ Yii::app()->clientScript->registerScript('pluso-start', "
                                     </div>
                                     <div class="comment-actions">
                                         <?php if($comment->member->id == Yii::app()->user->id): ?>
-                                            <a id="<?php echo $comment->id; ?>" class="commentIcon commentDeleteIcon" title="Удалить комментарий">
+                                            <a id="<?php echo $comment->id; ?>" class="commentIcon commentDeleteIcon" title="<?php echo Yii::t('sitePhotos', 'Delete comment');?>">
                                                 <img class="buttonsCommentAction buttonCommentDeleteIcon" src="">
                                             </a>
-                                            <a id="<?php echo $comment->id; ?>" class="commentIcon commentEditIcon" title="Редактировать комментарий">
+                                            <a id="<?php echo $comment->id; ?>" class="commentIcon commentEditIcon" title="<?php echo Yii::t('sitePhotos', 'Edit comment');?>">
                                                 <img class="buttonsCommentAction buttonCommentEditIcon" src="">
                                             </a>
                                         <?php endif; ?>
@@ -153,7 +153,7 @@ Yii::app()->clientScript->registerScript('pluso-start', "
                     </div>
                 <?php else: ?>
                     <div class="foto-kom-info">
-                        <span>Еще нет комментариев</span>
+                        <span><?php echo Yii::t('sitePhotos', 'No comments yet');?></span>
                     </div>
                     <div class="komments-users">
                     </div>
@@ -164,16 +164,16 @@ Yii::app()->clientScript->registerScript('pluso-start', "
                     <form id="commentForm" class="commentForm" method="post" action="">
                         <input type="hidden" name="photoID" value="<?php echo $model->id; ?>">
                         <div class="commentBodyContainer">
-                            <textarea onkeydown="if(event.keyCode==9) return false;" class="commentBody" name="comment" maxlength="10000" cols="50" rows="3" placeholder="Напишите комментарий" style="resize: none;  overflow: hidden; word-wrap: break-word;"></textarea>
+                            <textarea onkeydown="if(event.keyCode==9) return false;" class="commentBody" name="comment" maxlength="10000" cols="50" rows="3" placeholder="<?php echo Yii::t('sitePhotos', 'Leave your comment');?>" style="resize: none;  overflow: hidden; word-wrap: break-word;"></textarea>
                             <div style="clear:both"></div>
                             <div class="addCommentExtra" style="display: block;">
-                                <input id="addCommentButton" type="button" class="rbBtn submitComment" value="Отправить">
+                                <input id="addCommentButton" type="button" class="rbBtn submitComment" value="<?php echo Yii::t('sitePhotos','Submit');?>">
                             </div>
                     </form>
                 </div>
             </div>
                 <?php else : ?>
-                    <?php echo CHtml::link('Зарегистрируйстесь', array('companies/register'));?> или <?php echo CHtml::link('войдите', array('site/login')); ?> под своим аккаунтом для возможности комментирования фотографий
+                    <?php echo CHtml::link(Yii::t('sitePhotos','Sign up'), array('companies/register'));?> <?php echo Yii::t('siteIndex','or'); ?> <?php echo CHtml::link(Yii::t('sitePhotos','log in'), array('site/login'));?> <?php echo Yii::t('sitePhotos','in your account to comment photos');?>
                 <?php endif; ?>
             </div>
         </div>
@@ -187,7 +187,7 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
         'closeOnEscape'=> 'true',
         'width'=>'400',
         'show'=>'show',
-        'title'=>'Добавление фотографии в книгу идей',
+        'title'=>Yii::t('sitePhotos', 'Add photo to ideabook'),
     ),
 ));
 ?>
@@ -201,11 +201,11 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
         <div class="row">
             <?php echo CHtml::dropDownList('ideasBookList', '',
                 CHtml::listData(Ideasbook::model()->findAll('memberID=:m',array(':m'=>Yii::app()->user->id)), 'id', 'name'),
-                array('empty' => '(Выберите книгу идей)'));  ?>
+                array('empty' => Yii::t('sitePhotos', 'Choose your ideabook') ));  ?>
         </div>
-        <input id="" type="button" class="rbBtn addPhotoToIdeasBookBtn" value="Добавить">
+        <input id="" type="button" class="rbBtn addPhotoToIdeasBookBtn" value="<?php  echo Yii::t('sitePhotos', 'Add'); ?>">
         <div class="phtError">
-            Вы добавили уже это фото в данную книгу идей.
+            <?php  echo Yii::t('sitePhotos', 'You have already added this photo to ideabook.') ?>
         </div>
         <?php $this->endWidget(); ?>
     </div><!-- form -->
@@ -224,11 +224,13 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
             'closeOnEscape'=> 'true',
             'width'=>'400',
             'show'=>'show',
-            'title'=>'Добавление фотографии в книгу идей',
+            'title'=>Yii::t('sitePhotos', 'Add photo to ideabook'),
         ),
     ));
     ?>
-    <p class="tmpInfoMsg">Вы успешно добавили эту фотографию в книгу идей</p>
+    <p class="tmpInfoMsg">
+        <?php  echo Yii::t('sitePhotos', 'You have successfully added this photo to ideabook') ?>
+    </p>
     <div class="form">
         <input id="tmpInfoPopupBtn" type="button" class="rbBtn tmpInfoBtn" value="Ok">
     </div><!-- form -->
@@ -246,7 +248,7 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
         'closeOnEscape'=> 'true',
         'width'=>'400',
         'show'=>'show',
-        'title'=>'Редактирование комментария',
+        'title'=>Yii::t('sitePhotos', 'Edit comment'),
     ),
 ));
 ?>
@@ -264,7 +266,22 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
 $this->endWidget('zii.widgets.jui.CJuiDialog');
 /************конец окна редактирования комментария*****************/
 ?>
-
+<?php
+Yii::app()->clientScript->registerScript('messages', '
+translate = {
+    message: {
+        deleteComment: "'.Yii::t('sitePhotos', 'Delete comment').'",
+        editComment: "'.Yii::t('sitePhotos', 'Edit comment').'",
+        emptyIdeabook: "'.Yii::t('sitePhotos', 'You do not have any ideabook.').'",
+        createIdeabook: "'.Yii::t('sitePhotos', 'Create').'",
+        inIdeabook: "'.Yii::t('sitePhotos', 'You have already added this photo to ideabook.').'",
+        chooseIdeabook: "'.Yii::t('sitePhotos', 'Choose your ideabook').'",
+        leaveComment: "'.Yii::t('sitePhotos', 'Leave your comment').'",
+    }
+};
+');
+?>
+<?php $this->widget('ext.timeago.JTimeAgo', array('selector' => ' .timeago',));   ?>
 <?php
 Yii::app()->clientScript->registerScript('galery', "
 
@@ -281,8 +298,8 @@ $('.addBookmarkLink').on ('click', function(event){
     else
     {
         issetIdeasBooks = false;
-        $('p.tmpInfoMsg').text('У вас пока нет ни одной книг идей.');
-        $('#tmpInfoPopupBtn').val('Создать');
+        $('p.tmpInfoMsg').text(translate.message.emptyIdeabook);
+        $('#tmpInfoPopupBtn').val(translate.message.createIdeabook);
         $('#tmpInfoPopup').dialog('open');
     }
     return event.defaultPrevented || event.returnValue == false;
@@ -303,12 +320,12 @@ $('.addPhotoToIdeasBookBtn').on('click',function(event){
                                 $('.phtError').hide();
                                 $('#tmpInfoPopup').dialog('open');
                              } else {
-                                $('.phtError').html('Вы добавили уже это фото в данную книгу идей.').show();
+                                $('.phtError').html(translate.message.inIdeabook).show();
                              }
                    }
             });
      } else {
-        $('.phtError').html('Выберите книгу идей').show();
+        $('.phtError').html(translate.message.chooseIdeabook).show();
      }
 
 });
@@ -322,7 +339,7 @@ $('#tmpInfoPopupBtn').on('click',function(event){
 var newComment ='';
 $('#addCommentButton').on('click', function(event){
     if ($('.commentBody').val() == '') {
-        $('.commentError').html('Пожалуйста, напишите Ваш комментарий');
+        $('.commentError').html(translate.message.leaveComment);
         return false;
     } else {
             $.ajax({
@@ -349,10 +366,10 @@ $('#addCommentButton').on('click', function(event){
                                        </a> \
                                     </div> \
                                     <div class=\"comment-actions\">\
-                                        <a id=\"'+data.commentID+'\" class=\"commentIcon commentDeleteIcon\" title=\"Удалить комментарий\">\
+                                        <a id=\"'+data.commentID+'\" class=\"commentIcon commentDeleteIcon\" title=\"'+translate.message.deleteComment+'\">\
                                             <img class=\"buttonsCommentAction buttonCommentDeleteIcon\" src=\"\">\
                                         </a>\
-                                        <a id=\"'+data.commentID+'\" class=\"commentIcon commentEditIcon\" title=\"Редактировать комментарий\">\
+                                        <a id=\"'+data.commentID+'\" class=\"commentIcon commentEditIcon\" title=\"'+translate.message.editComment+'\">\
                                             <img class=\"buttonsCommentAction buttonCommentEditIcon\" src=\"\">\
                                         </a>\
                                     </div>\

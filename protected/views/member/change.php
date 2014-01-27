@@ -1,5 +1,5 @@
 <div class="list-bot">
-<h1 style = "margin-bottom: 0;">Изменение информации</h1>
+<h1 style = "margin-bottom: 0;"><?php echo Yii::t("memberInfo", 'Change account')?></h1>
 <br>
 <?php $form=$this->beginWidget('CActiveForm', array(
     'id'=>'member-form',
@@ -57,13 +57,13 @@
         <div class="labelFormField">
         <?php echo $form->labelEx($memberinfo,'about',array('class'=>'labelForm')); ?>
         </div>
-        <?php echo $form->textArea($memberinfo,'about',array('cols'=>50,'rows'=>'4','placeholder'=>'Напишите что-нибудь о себе')); ?>
+        <?php echo $form->textArea($memberinfo,'about',array('cols'=>50,'rows'=>'4','placeholder'=>'Write something about you')); ?>
         <?php echo $form->error($memberinfo,'about'); ?>
     </div>  
     <br>
 
     <div id="memberChangeInfoSaveButton" class="row buttons">
-        <?php echo CHtml::submitButton('Сохранить',array('class'=>'rbBtn')); ?>
+        <?php echo CHtml::submitButton(Yii::t("memberInfo", 'Save'),array('class'=>'rbBtn')); ?>
     </div>
 
 <?php $this->endWidget(); ?>

@@ -21,6 +21,13 @@ class SiteController extends Controller
 		);
 	}
 
+    public function filters()
+    {
+        return array(
+            'ajaxOnly + ajaxGetPhoto'
+        );
+    }
+
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
@@ -29,7 +36,7 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->setPageTitle(Yii::app()->name . ' - Добавить фото своего интерьера БЕСПЛАТНО в мобильное приложение');
+		$this->setPageTitle(Yii::app()->name . ' - '. Yii::t('siteIndex', 'FREE add a photo of the interior in the mobile app'));
 		$this->render('index', 'password');  
 	}
 	
@@ -100,7 +107,7 @@ class SiteController extends Controller
                     $this->redirect($url);
                 }
                 else {
-                    Yii::app()->user->setFlash('error','Ошибка авторизации через ВК, повторите Ваш запрос позже или используйте другой сервис авторизации.');
+                    Yii::app()->user->setFlash('error', Yii::t('sitePhotos', 'Error authorization on vkontakte, try again or use another service'));
                 }
            }
 
@@ -113,7 +120,7 @@ class SiteController extends Controller
                     $this->redirect($url);
                 }
                 else {
-                    Yii::app()->user->setFlash('error','Ошибка авторизации через FB, повторите Ваш запрос позже или используйте другой сервис авторизации.');
+                    Yii::app()->user->setFlash('error', Yii::t('sitePhotos', 'Error authorization on facebook, try again or use another service'));
                 }
             }
 
@@ -180,9 +187,7 @@ class SiteController extends Controller
 
     public function actionPhotos()
     {
-        header("Cache-Control: no-store, no-cache, must-revalidate");
-        header("Expires: " . date("r"));
-        $this->setPageTitle(Yii::app()->name.' - свежие фотографии дизайна интерьера пользователей. Загрузи свою!');
+        $this->setPageTitle(Yii::app()->name.' - '. Yii::t('sitePhotos', 'recent photos of users interior design. Upload your own!'));
         if (isset($_GET['q']))
             $query = $_GET['q']; else $query='';
         if (isset($_GET['id']) && !empty($_GET['id']))
@@ -200,7 +205,7 @@ class SiteController extends Controller
         if($query!='')
         {
             $queryUpCase = ucfirst($_GET['q']);
-            $criteria->condition = 'tags.name LIKE :nameUpCase OR tags.name LIKE :nameLowerCase';
+            $criteria->condition = 'tags.name LIKE :nameUpCase OR tags.name LIKE :nameLowerCase OR tags.name_en LIKE :nameUpCase OR tags.name LIKE :nameLowerCase';
             $criteria->params = array(':nameLowerCase'=>"%$query%", ':nameUpCase'=>"%$queryUpCase%");
         }
         if($tagID!='')
@@ -277,7 +282,7 @@ class SiteController extends Controller
 
     public function actionInstruction()
     {
-        $this->setPageTitle(Yii::app()->name . ' - Инструкция');
+        $this->setPageTitle(Yii::app()->name . ' - ' . Yii::t('siteIndex', 'User manual'));
         $this->render('instruction',array());
     }
     
@@ -300,7 +305,7 @@ class SiteController extends Controller
                      
                       $member->aktivation_key = 1;     
                       $member->save(false);
-                      Yii::app()->user->setFlash('register-success',"Ваш пароль был успешно изменен.");
+                      Yii::app()->user->setFlash('register-success', Yii::t('siteIndex', 'Your password successfully changed'));
                       $this->redirect('login'); 
                 }
         }
@@ -309,7 +314,7 @@ class SiteController extends Controller
             ));
         }
         {
-            throw new CHttpException(404,'Страница не существует.');
+            throw new CHttpException(404);
         }
     }
 
@@ -340,10 +345,10 @@ class SiteController extends Controller
             $k=0;
             foreach($tags_arr as $tag)
             {
-                $tagNameArray[$k] = $tag->name;
+                $tagNameArray[$k] = (Yii::app()->language == 'en') ? $tag->name_en : $tag->name;
                 $k++;
             }
-            $this->setPageTitle(Yii::app()->name.' - Фото '.$model->name.'. Теги: '.implode(", ",$tagNameArray));
+            $this->setPageTitle(Yii::app()->name . ' - ' .Yii::t('sitePhotos', 'Photo').$model->name.'.' . Yii::t('sitePhotos', 'Tags') . ':' .implode(", ",$tagNameArray));
 
             $this->renderPartial('photospoiler',array(
                 'model'=>$model,
@@ -357,7 +362,7 @@ class SiteController extends Controller
             Yii::app()->end();
 
         } else {
-            throw new CHttpException(400,'Некорректный запрос');
+            throw new CHttpException(400,'Bad request');
         }
     }
 
@@ -382,7 +387,7 @@ class SiteController extends Controller
             Yii::app()->end();
 
         } else {
-            throw new CHttpException(400,'Некорректный запрос');
+            throw new CHttpException(400,'Bad request');
         }
     }
 }

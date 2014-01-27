@@ -8,7 +8,7 @@
                 <img src="<?php echo Yii::app()->baseUrl; ?>/images/members/avatars/<?php echo $ideasBook->memberinfo->avatar; ?>">
             </a>
            </div>
-            пользователя
+            from user
             <a href="<?php echo Yii::app()->createUrl('member/dashboard',array('id'=>$ideasBook->member->urlID))?>">
                 <?php echo $ideasBook->member->login;  ?>
             </a>
@@ -24,7 +24,7 @@
                 <div class="ideasPhotosPanel">
                     <div class="ideasPhotosActions">
                         <?php if($ideasBook->member->id == Yii::app()->user->id): ?>
-                            <a id="<?php echo $ideasPhoto->id; ?>" class="ideasPhotosIcon  ideasPhotosDeleteIcon" title="Удалить">
+                            <a id="<?php echo $ideasPhoto->id; ?>" class="ideasPhotosIcon  ideasPhotosDeleteIcon" title="Delete">
                                         <img class="buttonsIdeasPhotosAction buttonIdeasPhotosDeleteIcon" src="">
                                         </a>
                         <?php endif; ?>
@@ -32,7 +32,7 @@
                     <div class="ideasPhotosDesc">
                         <span class="ideasPhotosDescTitle"><?php echo $ideasPhoto->photozz->name; ?></span>
                         <?php $photoOwnerMember = Member::model()->findbyPk($ideasPhoto->photozz->companyID); ?>
-                        <div class="ideasPhotoOwner">от
+                        <div class="ideasPhotoOwner">from user
                             <div class="ideasPhotoOwnerThumb">
                                 <a href="<?php echo Yii::app()->createUrl('member/dashboard',array('id'=>$photoOwnerMember->urlID))?>" class="userAvatar">
                                     <img src="<?php echo Yii::app()->baseUrl; ?>/images/members/avatars/<?php echo $photoOwnerMember->memberinfo->avatar; ?>"></a>
@@ -42,7 +42,7 @@
                            </a>
                         </div>
                         <?php $comments= Comments::model()->count('photoID=:photoID',array(':photoID'=>$ideasPhoto->photozz->id));  ?>
-                        <div class="ideasPhotosDescTitlePhotoCount"><?php echo Yii::t('app', '{n} комментарий|{n} комментария|{n} комментариев|{n} комментариев', $comments);?></div>
+                        <div class="ideasPhotosDescTitlePhotoCount"><?php echo Yii::t('app', '{n} comment|{n} comments', $comments);?></div>
                     </div>
                 </div>
             </div>
@@ -59,13 +59,13 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
 'closeOnEscape'=> 'true',
 'width'=>'400',
 'show'=>'show',
-'title'=>'Удаление фотографии из книги идей',
+'title'=>'Deleting photo from ideabook',
 ),
 ));
 ?>
-<p>Вы точно хотите удалить эту фотографию из книги идей?</p>
-<input id="" type="button" class="rbBtn okDeleteideasPhotos" value="Ок">
-<input id="" type="button" class="rbBtn cancelDeleteideasPhotos" value="Отмена">
+    <p>Are you sure to want delete this photo from ideabook?</p>
+<input id="" type="button" class="rbBtn okDeleteideasPhotos" value="ОK">
+<input id="" type="button" class="rbBtn cancelDeleteideasPhotos" value="Cancel">
 <?php
 $this->endWidget('zii.widgets.jui.CJuiDialog');
 

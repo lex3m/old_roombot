@@ -6,6 +6,7 @@ class AuthVKModel extends CModel {
     public $first_name;
     public $last_name;
     public $photo_big;
+    public $screen_name;
 
     private $token;
     private $params = array();
@@ -24,6 +25,7 @@ class AuthVKModel extends CModel {
             'first_name'=>'Имя',
             'last_name'=>'Фамилия',
             'photo_big'=>'Аватар',
+            'screen_name'=>'Страница пользователя'
         );
     }
 
@@ -65,6 +67,7 @@ class AuthVKModel extends CModel {
         $this->first_name = $authData['first_name'];
         $this->last_name = $authData['last_name'];
         $this->photo_big = $authData['photo_big'];
+        $this->screen_name = $authData['screen_name'];
     }
 
     public static function getVkUserFriends($token)

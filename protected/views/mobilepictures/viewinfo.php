@@ -1,10 +1,15 @@
+<style>
+    img.mainn {
+        cursor: crosshair;
+    }
+</style>
 <div class="list-bot izo-list">
-<h1>Просмотр изображения</h1><h2><?php echo $model->name; ?></h2>
-<span>Добавил:&nbsp;<?php echo CHtml::link($model->member->login,array('member/dashboard','id'=>$model->member->urlID));  ?></span><br/>
+<h1>View photo</h1><h2><?php echo $model->name; ?></h2>
+<span>Uploaded by:&nbsp;<?php echo CHtml::link($model->member->login,array('member/dashboard','id'=>$model->member->urlID));  ?></span><br/>
 <?php //echo CHtml::link('Назад к списку',array('member/dashboard','id'=>$member->urlID));?>
 <?php // echo $model->name; ?><!--<br>-->
 <div class="photo-description">
-    <?php if (!empty($model->info)): ?><span>Описание: </span> <?php echo $model->info; ?><?php endif;?>
+    <?php if (!empty($model->info)): ?><span>Description: </span> <?php echo $model->info; ?><?php endif;?>
 </div>
 <br>
     <script type="text/javascript">(function() {
@@ -17,11 +22,13 @@
                 h.appendChild(s);
             }})();</script>
     <div class="pluso" data-background="#000000" data-options="small,square,line,horizontal,counter,theme=04" data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email,digg,pinme,pinterest,liveinternet,linkedin,memori,webdiscover,moikrug,yandex,print"></div>
-<img class="main" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $model->image; echo '?' . time() ?>"/><br/>
-<a class="addBookmarkLink" id="<?php echo $model->id; ?>" onclick="return false;" href="#">Добавить в книгу идей</a>&nbsp;&nbsp; 
+<img class="mainn" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $model->image; echo '?' . time() ?>"/><br/>
+<?php if (!Yii::app()->user->isGuest) { ?>
+<a class="addBookmarkLink" id="<?php echo $model->id; ?>" onclick="return false;" href="#">Add to ideabook</a>&nbsp;&nbsp;
+<?php  } ?>
 <?php echo $model->date; ?>&nbsp;&nbsp;  
 <?php if (count($tags)>0):  ?>
-Теги:&nbsp;
+Tags:&nbsp;
 <?php
    echo implode(", ",$tagNameArray);
     
@@ -86,10 +93,10 @@
     <form id="commentForm" class="commentForm" enctype="multipart/form-data" method="post" action="">
         <input type="hidden" name="photoID" value="<?php echo $model->id; ?>">
             <div class="commentBodyContainer">
-                <textarea style="width:100%;" class="commentBody" name="comment" maxlength="10000" placeholder="Напишите комментарий" style="resize: none; height: 32px; overflow: hidden; word-wrap: break-word;"></textarea>
+                <textarea style="width:100%;" class="commentBody" name="comment" maxlength="10000" placeholder="Leave your comment" style="resize: none; height: 32px; overflow: hidden; word-wrap: break-word;"></textarea>
             <div style="clear:both"></div>
             <div class="addCommentExtra" style="display: block;">     
-                <input id="addCommentButton" type="button" class="rbBtn submitAddComment" value="Отправить">
+                <input id="addCommentButton" type="button" class="rbBtn submitAddComment" value="Submit">
             </div>   
     </form>
     </div>
@@ -104,7 +111,7 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
         'closeOnEscape'=> 'true',
         'width'=>'400',
         'show'=>'show',
-        'title'=>'Редактирование комментария',
+        'title'=>'Edit comment',
     ), 
 ));  
 ?>
@@ -130,7 +137,7 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
         'closeOnEscape'=> 'true',
         'width'=>'400',
         'show'=>'show',
-        'title'=>'Добавление фотографии в книгу идей',      
+        'title'=>'Add photo to ideabook',
     ), 
 ));  
 ?>
@@ -144,9 +151,9 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
     <div class="row">
         <?php echo CHtml::dropDownList('ideasBookList', '', 
               CHtml::listData(Ideasbook::model()->findAll('memberID=:m',array(':m'=>Yii::app()->user->id)), 'id', 'name'),  
-              array('empty' => '(Выберите книгу идей)'));  ?>
+              array('empty' => '(Choose your ideabook)'));  ?>
     </div>
-     <input id="" type="button" class="rbBtn addPhotoToIdeasBookBtn" value="Добавить">  
+     <input id="" type="button" class="rbBtn addPhotoToIdeasBookBtn" value="Add">
 <?php $this->endWidget(); ?>
 </div><!-- form -->
 
@@ -162,11 +169,11 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
         'closeOnEscape'=> 'true',
         'width'=>'400',
         'show'=>'show',
-        'title'=>'Добавление фотографии в книгу идей',
+        'title'=>'Adding photo to ideabook',
     ),
 ));
 ?>
-<p class="tmpInfoMsg">Вы успешно добавили эту фотография в книгу идей</p>
+<p class="tmpInfoMsg">You successfully added this photo to ideabook</p>
 <div class="form">
     <input id="tmpInfoPopupBtn" type="button" class="rbBtn tmpInfoBtn" value="Ok">
 </div><!-- form -->
@@ -337,8 +344,18 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
                         });
 
          });
+
+         $('img.mainn').on('click', function ( e ) {
+         console.log(e);
+         console.log($(this));
+
+             alert(e.pageX +', '+ e.pageY);
+             var x = e.pageX - this.offsetLeft;
+             var y = e.pageY - this.offsetTop;
+             alert(x +', '+ y);
+         });
          
 ",CClientScript::POS_READY);
 }
-else echo 'Зарегистрируйтесь, чтобы добавить комментарии.';
+else echo 'Sign up or login to leave your comment.';
 ?>

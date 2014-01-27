@@ -294,14 +294,14 @@ class Member extends CActiveRecord
 	{
 		return array(  
 			'id' => 'ID',
-			'password' => 'Пароль',
-			'password_repeat' => 'Повторите пароль',
+			'password' => Yii::t('siteLogin', 'Password'),
+			'password_repeat' => Yii::t('siteLogin', 'Password confirm') ,
 			'role' => 'Role',
 			'aktivation_key' => 'Aktivation Key',
 			'salt' => 'Salt',
 			'email' => 'Email',
 			'date' => 'Дата регистрации',
-			'login' => 'Логин',
+			'login' => Yii::t('siteLogin', 'Nickname') ,
             'rules'=>'Правила пользования'
 		);
 	}

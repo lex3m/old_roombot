@@ -32,6 +32,11 @@ Yii::app()->clientScript->registerScript('helpers', '
                   commentsdelete: '.CJSON::encode(Yii::app()->createUrl('comments/delete')).',
                   commentsedit: '.CJSON::encode(Yii::app()->createUrl('comments/edit')).',
                   base: '.CJSON::encode(Yii::app()->baseUrl).'
+              },
+              messages: {
+                deleteComment: "'.Yii::t('sitePhotos', 'Are you really want to delete this comment?').'",
+                showAll: "'.Yii::t('sitePhotos', 'Show all comments').'",
+                inputComment: "'.Yii::t('sitePhotos', 'Input your comment').'",
               }
           };
       ');
@@ -138,7 +143,7 @@ $(document).on('click', '.commentDeleteIcon', function(event){
      var divLen = $("div.oneComment").length;
 
      var id = this.id;
-     if (confirm('Вы уверены, что хочете удалить этот комментарий?')) {
+     if (confirm( yii.messages.deleteComment )) {
          $.ajax({
                        type: 'POST',
                        url: yii.urls.commentsdelete,
@@ -166,7 +171,7 @@ $(document).on('click', '.commentDeleteIcon', function(event){
                                             $('.komments-users').html(msg);
                                             $('div.foto-kom-info').html(data.countComments);
                                             if (data.showAddComments === true) {
-                                                $('div.foto-kom-info').append('<a class=\"showAllComments\" id=\"'+data.photoID+'\" href=\"\"> Показать все</a>');
+                                                $('div.foto-kom-info').append('<a class=\"showAllComments\" id=\"'+data.photoID+'\" href=\"\"> yii.messages.showAll</a>');
                                             }
                                        }
                                 });
@@ -200,7 +205,7 @@ $(document).on('click', '#edit_comment #addCommentButtonPopup', function(event){
             });
         $('#edit_comment').dialog('close');
      } else {
-       alert('Введите комментарий');
+       alert(yii.messages.inputComment);
      }
 });
 
@@ -213,11 +218,11 @@ Yii::app()->clientScript->registerScript('galery', $galery, CClientScript::POS_E
 ?>
 
 <div class="list-bot izo-list">
-    <h1> Последние фотографии </h1>
+    <h1> <?php echo Yii::t('sitePhotos', 'Last photos');?> </h1>
     <?php if(!empty($_GET['id'])): ?>
-    <h2> с тегом <i><?php echo Mobiletags::getTagName(intval($_GET['id']));?></i></h2>
+    <h2>  <?php echo Yii::t('sitePhotos', 'with tag');?> <i><?php echo Mobiletags::getTagName(intval($_GET['id']));?></i></h2>
     <?php elseif(!empty($query)): ?>
-    <h2> по запросу "<?php echo $query; ?>" </h2>
+    <h2> <?php echo Yii::t('sitePhotos', 'by query');?> "<?php echo $query; ?>" </h2>
     <?php endif; ?>
 
     <div id="lastPhotosContainer">
@@ -226,7 +231,8 @@ Yii::app()->clientScript->registerScript('galery', $galery, CClientScript::POS_E
         'dataProvider'=>$photos,
         'itemView'=>'_photos',
         'ajaxUpdate'=>false,
-        'summaryText' => 'Фотографии {start}-{end} из {count}.',));
+        'summaryText' => Yii::t('sitePhotos', 'Photos {start}-{end} from {count}.'),
+        ));
         ?>
        <ul>
     </div>

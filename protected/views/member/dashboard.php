@@ -1,5 +1,6 @@
+
 <div class="list-bot">
-<?php if ($member->id==Yii::app()->user->id): ?><h1 style = "margin-bottom: 0;">Мой кабинет</h1><?php endif; ?>
+<?php if ($member->id==Yii::app()->user->id): ?><h1 style = "margin-bottom: 0;">Dashboard</h1><?php endif; ?>
 <br>
 <div class="rightBlockMemeberInfo">
 <div class="leftBar">
@@ -12,23 +13,23 @@
     <?php if (Yii::app()->user->id !== $member->id && !Yii::app()->user->isGuest):?>
          <?php if (!MemberFollowers::checkFollower($member->id)): ?>
             <div class="knopky1 follow" style="display: block;">
-                <?php echo CHtml::link('Подписаться',array('member/addfollower','id'=>$member->urlID), array('id'=>'addfollower')); ?>
+                <?php echo CHtml::link('Follow',array('member/addfollower','id'=>$member->urlID), array('id'=>'addfollower')); ?>
             </div>
             <div class="knopky1 unfollow" style="display: none;">
-                <?php echo CHtml::link('Отписаться',array('member/rmfollower','id'=>$member->urlID), array('id'=>'rmfollower')); ?>
+                <?php echo CHtml::link('Unfollow',array('member/rmfollower','id'=>$member->urlID), array('id'=>'rmfollower')); ?>
             </div>
         <?php else: ?>
             <div class="knopky1 follow" style="display: none;">
-                <?php echo CHtml::link('Подписаться',array('member/addfollower','id'=>$member->urlID), array('id'=>'addfollower')); ?>
+                <?php echo CHtml::link('Follow',array('member/addfollower','id'=>$member->urlID), array('id'=>'addfollower')); ?>
             </div>
             <div class="knopky1 unfollow" style="display: block;">
-                <?php echo CHtml::link('Отписаться',array('member/rmfollower','id'=>$member->urlID), array('id'=>'rmfollower')); ?>
+                <?php echo CHtml::link('Unfollow',array('member/rmfollower','id'=>$member->urlID), array('id'=>'rmfollower')); ?>
             </div>
          <?php endif; ?>
         <div class="followers">
             <?php if ($member->countFollowing > 0): ?>
                 <div class="sidebar">
-                    <div class="sidebar-header">Подписки (<?php echo $member->countFollowing;?>)</div>
+                    <div class="sidebar-header">Following (<?php echo $member->countFollowing;?>)</div>
                     <div class="sidebar-body">
                         <ul id="followingsBox">
                             <li class="profileThumbBox">
@@ -40,7 +41,7 @@
                                 <?php $i++; if ($i == 5) break;
                                  endforeach;?>
                                 <?php if ($member->countFollowing > 5): ?>
-                                    <?php echo CHtml::link( 'Просмотреть всех '.$member->countFollowing, array('member/following', 'id'=>$f->followed->urlID), array('class'=>'view-all') ); ?>
+                                    <?php echo CHtml::link( 'Show all '.$member->countFollowing, array('member/following', 'id'=>$f->followed->urlID), array('class'=>'view-all') ); ?>
                                 <?php endif; ?>
                             </li>
                         </ul>
@@ -49,7 +50,7 @@
             <?php endif; ?>
             <?php if ($member->countFollowed > 0): ?>
                 <div class="sidebar">
-                    <div class="sidebar-header">Подписчики (<?php echo $member->countFollowed;?>)</div>
+                    <div class="sidebar-header">Followed by (<?php echo $member->countFollowed;?>)</div>
                     <div class="sidebar-body">
                         <ul id="followingsBox">
                             <li class="profileThumbBox">
@@ -61,7 +62,7 @@
                                     <?php $i++; if ($i == 5) break;
                                 endforeach;?>
                                 <?php if ($member->countFollowed > 5): ?>
-                                    <?php echo CHtml::link( 'Просмотреть всех '.$member->countFollowed, array('member/followed', 'id'=>$f->followed->urlID), array('class'=>'view-all') ); ?>
+                                    <?php echo CHtml::link( 'Show all '.$member->countFollowed, array('member/followed', 'id'=>$f->followed->urlID), array('class'=>'view-all') ); ?>
                                 <?php endif; ?>
                             </li>
                         </ul>
@@ -71,17 +72,17 @@
         </div>
     <?php elseif (!Yii::app()->user->isGuest) : ?>
             <div class="knopky1" style="display: block;">
-                <?php echo CHtml::link('Мои подписки',array('member/following'), array('id'=>'followers')); ?>
+                <?php echo CHtml::link('Following',array('member/following'), array('id'=>'followers')); ?>
 
             </div>
             <div class="knopky1" style="display: block;">
-                <?php echo CHtml::link('Мои подписчики',array('member/followed'), array('id'=>'followers')); ?>
+                <?php echo CHtml::link('Followed',array('member/followed'), array('id'=>'followers')); ?>
             </div>
 
         <?php if (isset($userFriends) && !empty($userFriends)): ?>
             <div class="userFriends">
                 <div class="sidebar">
-                    <div class="sidebar-header">Друзья из ВК (<?php echo count($userFriends);?>)</div>
+                    <div class="sidebar-header">Friends from VK (<?php echo count($userFriends);?>)</div>
                     <div class="sidebar-body">
                         <ul id="followingsBox">
                             <li class="profileThumbBox">
@@ -98,13 +99,14 @@
         <?php endif; ?>
     <?php endif; ?>
     </div>
+
 </div>
     <div id="memberCommonInfo">
     <h2><?php echo $member->login; ?></h2>
        <div class="memberCountComments">
-           Фотографии: <?php echo $member->countPhotos; ?>
+           Photos: <?php echo $member->countPhotos; ?>
            &nbsp;|&nbsp;
-           Комментарии: <?php echo $member->countComments; ?>
+           Comments: <?php echo $member->countComments; ?>
        </div>
     </div>
     <div style="margin-bottom: 0px"></div>
@@ -115,63 +117,77 @@
             <br>
         <?php endif; ?>
         <?php if (!empty($member->memberinfo->fio)): ?>
-            <span class="zagolowok-info">ФИО:</span>
+            <span class="zagolowok-info">Full name:</span>
             <?php echo $member->memberinfo->fio; ?>
             <br>
         <?php endif; ?>
         <?php if ($member->memberinfo->website!=""): ?>
-            <span class="zagolowok-info">Сайт:</span>
+            <span class="zagolowok-info">Site:</span>
             <?php echo $member->memberinfo->website; ?>
             <br>
         <?php endif; ?>
         <?php if ($member->memberinfo->phone!=""): ?>
-            <span class="zagolowok-info">Телефон:</span>
+            <span class="zagolowok-info">Phone number:</span>
             <?php echo $member->memberinfo->phone; ?>
             <br>
         <?php endif; ?>
         <?php if ($member->memberinfo->about!=""): ?>
             <div id="memberAbout">
-                <span class="zagolowok-info">Краткая информация:</span>
+                <span class="zagolowok-info">About:</span>
                 <?php echo $member->memberinfo->about; ?>
             </div>
             <br>
         <?php endif; ?>
         <?php if ($member->memberinfo->cityIsSet==1): ?>
-            <span class="zagolowok-info">Город:</span>
+            <span class="zagolowok-info">City:</span>
                 <?php echo $memberCity->city->cityName; ?>, &nbsp<?php echo Countries::model()->findbyPk($memberCity->city->countryID)->countryName; ?>
                 <br>
         <?php endif; ?>
 
 		<div class="knopky3">
-           <?php echo CHtml::link('Книги идей',array('ideasbook/index','id'=>$member->urlID)); ?>
+           <?php echo CHtml::link('Ideabooks',array('ideasbook/index','id'=>$member->urlID)); ?>
         <?php if (Yii::app()->user->id == $member->id): ?>
             
-            <?php echo CHtml::link('Изменить профайл',array('member/change')); ?>
+            <?php echo CHtml::link('Change account',array('member/change')); ?>
             
-            <?php echo CHtml::link('Сменить аватар',array('member/avatar')); ?>
+            <?php echo CHtml::link('Change avatar',array('member/avatar')); ?>
 		</div>
+        <div class="knopky1">
+            <?php echo CHtml::link('Change social accounts',array('member/social')); ?>
+        </div>
         <?php endif; ?>
     </div>
 </div>
 
  <div class="span-17 last">
         <div class="form width-form">
+            <?php
+            $flashMessages = Yii::app()->user->getFlashes();
+            if ($flashMessages) {
+                echo '<ul class="flashes">';
+                foreach($flashMessages as $key => $message) {
+                    echo '<li><div class="flash-' . $key . '">' . $message . "</div></li>\n";
+                }
+                echo '</ul>';
+            }
+            ?>
+
             <?php if (Yii::app()->user->id == $member->id): ?>
 
-                    <?php if (isset($userFriends) && !empty($userFriends)): ?>
+                    <?php if (isset($userPhotos) && !empty($userPhotos)): ?>
                         <div class="showVkPhotos">
                             <div class="knopky1">
-                                <a href="#">Показать фото из ВКонтакте</a>
+                                <a href="#">Show photos from VKontakte</a>
                             </div>
                         </div>
                         <div class='vkUserPhotos' style="display:none;">
-                            Вы можете добавлять свои фотографии прямо из ВКонтакте! (чтобы увидеть добавленные фото обновите страницу)<br/>
+                            You can add your photos from your Vkontakte account (please refresh page after adding photos)<br/>
                             <?php foreach($userPhotos as $photo):?>
                                 <?php echo CHtml::image($photo['src'], $photo['photo_id'], array('height'=>100, 'width'=>100)); ?>
                                 <?php echo CHtml::link('<img height="20" width="20" src="/images/fav.jpg">', '#', array('data-id'=>$photo['photo_id'],'class'=>'add_to_photos', 'data-src'=>$photo['src_big'])); ?>
                             <?php endforeach; ?>
                             <br/>
-                            <?php echo CHtml::button('Обновить',array('id'=>'refresh_page', 'style'=>'display:none;', 'onClick'=>'window.location.reload()')); ?>
+                            <?php echo CHtml::button('Refresh',array('id'=>'refresh_page', 'style'=>'display:none;', 'onClick'=>'window.location.reload()')); ?>
                         </div>
                     <?php endif; ?>
 
@@ -190,17 +206,6 @@
                 </script>
                 <br>
             <?php endif; ?>
-<?php
-    $flashMessages = Yii::app()->user->getFlashes();
-    if ($flashMessages) {
-        echo '<ul class="flashes">';
-        foreach($flashMessages as $key => $message) {
-            echo '<li><div class="flash-' . $key . '">' . $message . "</div></li>\n";
-        }
-        echo '</ul>';
-    }
-?>
-
 <?php if (Yii::app()->user->id == $member->id): ?>
 <div class="block-a">
     <div class="width-form1">
@@ -225,7 +230,7 @@
         <?php
             echo $form->labelEx($model, 'images');
         ?>
-        <p style="margin:0px;font-size:11px">*Фото размером до 10 Мб и количество не более 20 единиц за одну загрузку</p>
+        <p style="margin:0px;font-size:11px">*Photos with size less 10 Mb and 20 photos per one uploading</p>
         <?php
         $this->widget( 'ext.xupload.XUpload', array(
                 'url' => Yii::app( )->createUrl( "member/uploadUserPhotos"),
@@ -273,11 +278,11 @@
     <div id="poisk">
         <form id="poisk11" action=" " name="poiskroomb" method="post">
             <div class="poisks">
-                <span class="nazwa1">Поиск</span><br />
+                <span class="nazwa1">Search</span><br />
                 <input id="infowvod" type="text" size="30" maxlength="50" name="wvod">
             </div>
             <div class="buttons2">
-                <?php echo CHtml::submitButton('Найти', array('id' => 'poiskknopka', 'name' => 'button'));  ?>
+                <?php echo CHtml::submitButton('Search', array('id' => 'poiskknopka', 'name' => 'button'));  ?>
             </div>
         </form>
     </div>
@@ -291,7 +296,7 @@
          'dataProvider'=>$dataProvider,
          'itemView'=>'_mobilepicturesrow',
          'ajaxUpdate'=>false,
-         'summaryText' => 'Фотографии {start}-{end} из {count}.',));
+         'summaryText' => 'Photos {start}-{end} from {count}.',));
         ?>
     </div>
 </div>
@@ -307,15 +312,20 @@ if (Yii::app()->user->id == $member->id):
         // additional javascript options for the dialog plugin
         'options'=>array(
             'autoOpen'=>false,
+            'resizable'=>false,
             'closeOnEscape'=> 'true',
             'width'=>'400',
+            'height'=>'470',
             'show'=>'show',
-        ), 
+        ),
+
     )); 
-    
-    echo CHtml::dropDownList('tags_array','',CHtml::listData(Mobiletags::model()->findAll(), 'id', 'name'));
-    echo '<br><br>';
-    echo CHtml::button('Да', array('id'=>'confirm_tag_option','name'));    
+    echo '<div class="photo_tags">';
+    echo '</div>';
+//    echo CHtml::dropDownList('tags_array','',CHtml::listData(Mobiletags::model()->findAll(), 'id', 'name_en'));
+    echo '<br>';
+    echo '<br>';
+    echo CHtml::button('Save', array('id'=>'confirm_tag_option','name'));
     $this->endWidget('zii.widgets.jui.CJuiDialog');
     
     
@@ -336,7 +346,7 @@ if (Yii::app()->user->id == $member->id):
            'width'=>50, 
            'maxlength'=>50)); 
     echo '<br><br>';
-    echo CHtml::button('Да', array('id'=>'confirm_name_picture','name'));
+    echo CHtml::button('Yes', array('id'=>'confirm_name_picture','name'));
     $this->endWidget('zii.widgets.jui.CJuiDialog');
 
 
@@ -359,7 +369,7 @@ if (Yii::app()->user->id == $member->id):
             'maxlength'=>255
             ));
     echo '<br><br>';
-    echo CHtml::button('Да', array('id'=>'confirm_picture_info','name'));
+    echo CHtml::button('Yes', array('id'=>'confirm_picture_info','name'));
     $this->endWidget('zii.widgets.jui.CJuiDialog');
 
     Yii::app()->clientScript->registerScript('mobilePicturesScript',"
@@ -402,7 +412,7 @@ if (Yii::app()->user->id == $member->id):
         $( 'span#name_picture').on('click', function(event){
             var id = $(this).attr('data-id');
             var name = $.trim($('#picture-'+id).html());
-             $('#change_name_picture').dialog('option','title', 'Изменить название');
+             $('#change_name_picture').dialog('option','title', 'Change name');
                     $('#change_name_picture').dialog('open');
                     $( 'input#confirm_name_picture').attr('name',id);
                     $( 'input#name_picture_textField').val(name);
@@ -435,7 +445,7 @@ if (Yii::app()->user->id == $member->id):
             $( 'span#picture_info').on('click', function(event){
                 var id = $(this).attr('data-id');
                 var name = $.trim($('#info-'+id).html());
-                 $('#change_picture_info').dialog('option','title', 'Изменить описание (макс 255 символов)');
+                 $('#change_picture_info').dialog('option','title', 'Change description (max 255 symbols)');
                         $('#change_picture_info').dialog('open');
                         $( 'input#confirm_picture_info').attr('name',id);
                         $( 'textarea#picture_info_textArea').val(name);
@@ -491,26 +501,44 @@ if (Yii::app()->user->id == $member->id):
             });
 
             $( 'a[name=\'new_tag\']').on('click', function(event){
-                   id = $(this).attr('id'); 
-                    $('#add_tag').dialog('option','title', 'Добавить тег');
+                    $('#add_tag').dialog('close');
+                    id = $(this).attr('id');
+                    $('#add_tag').dialog('option','title', 'Add tags');
                     $('#add_tag').dialog('open');
-                    $( 'input#confirm_tag_option').attr('name',id); 
+                    $('input#confirm_tag_option').attr('name',id);
+                    $.ajax({
+                       type: 'POST',
+                       dataType: 'html',
+                       url: '".Yii::app()->createUrl('mobilepictures/getTags')."',
+                       data: {id: id},
+                       success: function(msg){
+                          $('.photo_tags').html(msg);
+                       }
+                     });
                     return false;
             });
             $( '#confirm_tag_option').on('click', function(event){
-                select = $('select[name=\'tags_array\']').val();  
-                    $.ajax({
-                           type: 'POST',
-                           url: '".Yii::app()->createUrl('mobilepictures/addtag')."',
-                           data: {id: id, select: select},  
-                           success: function(msg){
-                            
-                              $('#add_tag').dialog('close'); 
-                              json = jQuery.parseJSON(msg);
-                              $('div#tags'+json.pictureid).append('<div id=\'taglinkk'+json.taglinkid+'\' style=\'margin-bottom:10px;\'>'+json.tagname+'<a id=\'delete_tag\' target=\'20\' href=\'/mobilepictures/delete\'><img id=\''+json.taglinkid+'\' style=\'float:right\' width=\'12px\' height=\'12px\' src=\'".Yii::app()->baseUrl."/images/site/delete_icon.png\'></a></div>'); 
-                           }
-                         });
-                    return false;
+                //select = $('select[name=\'tags_array\']').val();
+
+                var values = new Array();
+                $.each( $('input[name=\'tags[]\']:checked'), function() {
+                    values.push($(this).val());
+                });
+
+                $.ajax({
+                       type: 'POST',
+                       url: '".Yii::app()->createUrl('mobilepictures/addtag')."',
+                       data: {id: id, select: values},
+                       success: function(msg){
+                          $('#add_tag').dialog('close');
+                          json = jQuery.parseJSON(msg);
+                          $('div#tags'+id).html('');
+                          $.each (json, function(i) {
+                            $('div#tags'+json[i].pictureid).append('<div id=\'taglinkk'+json[i].taglinkid+'\' style=\'margin-bottom:10px;\'>'+json[i].tagname+'<a id=\'delete_tag\' target=\'20\' href=\'/mobilepictures/delete\'><img id=\''+json[i].taglinkid+'\' style=\'float:right\' width=\'12px\' height=\'12px\' src=\'".Yii::app()->baseUrl."/images/site/delete_icon.png\'></a></div>');
+                          })
+                       }
+                     });
+                return false;
             });
             
             $( 'a#delete_tag').live('click', function(){
@@ -531,7 +559,7 @@ if (Yii::app()->user->id == $member->id):
                           if ($('#infowvod').val() != '')
                             window.location = '".Yii::app()->baseUrl."/mobilepictures/search/query/'+$('#infowvod').val();
                           else {
-                              alert('Введите в это поле, что вы хотите найти.');
+                              alert('Put in this field your search request.');
                           }     
                     return false;});
 

@@ -6,6 +6,7 @@ class AuthFBModel extends CModel {
     public $first_name;
     public $last_name;
     public $picture;
+    public $link;
 
     private $token = null;
     private $params = array();
@@ -23,7 +24,8 @@ class AuthFBModel extends CModel {
             'id'=>'Уникальный идентификатор',
             'first_name'=>'Имя',
             'last_name'=>'Фамилия',
-            'picture'=>'Аватар'
+            'picture'=>'Аватар',
+            'link' => 'Страница пользователя'
         );
     }
 
@@ -60,6 +62,7 @@ class AuthFBModel extends CModel {
         $this->first_name = $authData['first_name'];
         $this->last_name = $authData['last_name'];
         $this->picture = 'https://graph.facebook.com/'.$authData['id'].'/picture?type=large';
+        $this->link = $authData['link'];
     }
 
     public function login() {

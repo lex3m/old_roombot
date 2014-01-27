@@ -52,7 +52,7 @@ class Mobiletags extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-        'imagelinks'=>array(self::HAS_MANY, 'Mobilelinks', 'tagId'),
+            'imagelinks'=>array(self::HAS_MANY, 'Mobilelinks', 'tagId'),
         );
     }
 
@@ -81,7 +81,7 @@ class Mobiletags extends CActiveRecord
         foreach ($models as $model)
         {
             $items[] = array(
-                'label'=>$model->name,
+                'label'=> (Yii::app()->language == 'en') ? $model->name_en : $model->name,
                 'url'=>Yii::app()->createUrl('site/photos', array('id'=>$model->id, 'name'=>$model->name_en)),
             );
         }
@@ -91,9 +91,9 @@ class Mobiletags extends CActiveRecord
         $tags= $this->findAll(array('order'=>'name ASC', 'limit'=>$count - 5, 'offset'=>5));
 
         foreach($tags as $tag) {
-            $items2 [] = array('label'=>$tag->name, 'url'=>Yii::app()->createUrl('site/photos', array('id'=>$tag->id, 'name'=>$tag->name_en)));            
+            $items2 [] = array('label'=>(Yii::app()->language == 'en') ? $tag->name_en : $tag->name, 'url'=>Yii::app()->createUrl('site/photos', array('id'=>$tag->id, 'name'=>$tag->name_en)));
         }
-        $items['items'] =  array('label'=>'Еще...', 'url'=>'#',
+        $items['items'] =  array('label'=>Yii::t('mainLayout', 'More...'), 'url'=>'#',
                                 'items'=>$items2,                                
                             );
 
@@ -104,7 +104,7 @@ class Mobiletags extends CActiveRecord
     {
         $model = self::model()->findByPk($id);
         if ($model !== NULL) {
-            return $model->name;
+            return (Yii::app()->language == 'en') ? $model->name_en : $model->name;
         } else {
             return false;
         }

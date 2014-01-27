@@ -18,13 +18,13 @@
                 <div class="photoElement__stats">
                     <div class="userStats">
                         <ul class="rb-ministats-group">
-                            <li title="<?php echo Yii::t('app', '{n} комментарий|{n} комментария|{n} комментариев|{n} комментариев', $data->countComments); ?>" class="rb-ministats-item">
+                            <li title="<?php echo Yii::t('sitePhoto', '{n} comment|{n} comments', $data->countComments); ?>" class="rb-ministats-item">
                                 <a href="<?php echo Yii::app()->createUrl('mobilepictures/viewinfo',array('id'=>$data->id)); ?>" class="rb-ministats rb-ministats-small rb-ministats-comments">
                                     <span class="small_comments_i small_i"></span>
                                     <span ><?php echo $data->countComments;  ?> &nbsp;&nbsp;|&nbsp;&nbsp;</span>
                                       </a>
                             </li>
-                            <li title="<?php echo Yii::t('app', '{n} книга идей|{n} две книги идей|{n} книг идей|{n} книг идей', $data->countIdeasBooks); ?>" class="rb-ministats-item">
+                            <li title="<?php echo Yii::t('app', '{n} ideabook|{n} ideabooks', $data->countIdeasBooks); ?>" class="rb-ministats-item">
                                 <span class="rb-ministats rb-ministats-small rb-ministats-ideasbooks">
                                     <span class="small_albums_i small_i"></span>
                                     <span><?php echo $data->countIdeasBooks; ?>&nbsp;&nbsp;|&nbsp;&nbsp;</span>

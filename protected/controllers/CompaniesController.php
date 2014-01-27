@@ -369,26 +369,21 @@ class CompaniesController extends Controller
 					  $email = Yii::app()->email;
 					  $email->to = $model->email;
 					  $email->from=Yii::app()->params['email'];
-					  $email->subject = "Поздравляем вас с регистрацией! ".Yii::app()->name;
-					  $email->message = "Спасибо за регистрацию вашей компании. Теперь вы можете отслеживать наши самые актуальные новости. Добавлять обьявления и фотографии и многое другое!";
-					  if(!$email->Send()) {
-					       
-					  }else {
-					      
-					  }
-					   
+					  $email->subject = Yii::t('siteLogin', 'Successful registration')." ".Yii::app()->name;
+					  $email->message = Yii::t('siteLogin', 'Thank you for registering your company. Now you can track our most current news. Add announcements and photos and much more!');
+
 					  
 					  $activationLink = Yii::app()->createAbsoluteUrl('companies/activation', array('act_key'=>$activationKey));
 					  $email = Yii::app()->email;
 					  $email->to = $model->email; 
-					  $email->subject = "Активация аккаунта на Потолок-портал";
+					  $email->subject = Yii::t('siteLogin', 'Activation').' '. Yii::app()->name;
 					  $email->from=Yii::app()->params['email'];
-					  $email->message = "Спасибо за регистрацию. Пройдите по следующему адресу, чтобы активировать ваш аккаунт <a href=\"".$activationLink."\">".$activationLink."</a>";  
+					  $email->message = Yii::t('siteLogin', 'Thank you for registering. Go to the following link to activate your account ') ."<a href=\"".$activationLink."\">".$activationLink."</a>";
 					  
 					  if(!$email->Send()) {
-					      Yii::app()->user->setFlash('register-success',"Произошел сбой отправки email на вашу почту. Пожалуйста повторите процедуру регистрации.");
+					      Yii::app()->user->setFlash('register-success', Yii::t('siteLogin', "Failed to send email to your mail. Please re-registration procedure."));
 					  }else {
-					      Yii::app()->user->setFlash('register-success',"Спасибо за регистрацию. На указанный email было отправленно письмо для подтверждения регистрации!");
+					      Yii::app()->user->setFlash('register-success', Yii::t('siteLogin', "Thank you for registering. To this email has been sent an email to confirm your registration!"));
 					  }
 			    $this->redirect('Registersuccess'); 	
 			    }

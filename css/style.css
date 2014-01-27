@@ -110,7 +110,7 @@ input {
 
 .headerSearch .quicksearch {
 position: absolute;
-padding: 0 0 0 20px;
+padding: 0 0 0 10px;
 width: 255px;
 z-index: 1;
 -webkit-transition: width .28s ease;
@@ -2040,4 +2040,10 @@ div.loading * {
     font-size: 13px;
     font-weight: bold;
     color: red;
+}
+
+span.checkbox-columns {
+    float:left;
+    margin-bottom: 5px;
+    width: 50%;
 }

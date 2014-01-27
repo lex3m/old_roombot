@@ -1,5 +1,5 @@
 <div class="list-bot">
-<h1>Регистрация компании</h1>
+<h1>Sign up</h1>
 <div class="form smail">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -37,14 +37,14 @@
         <?php echo $form->error($model,'password_repeat'); ?>  
     </div>
 
-    <div class="row">
-        Вы должны согласиться с <a href="<?php echo Yii::app()->createUrl('site/rules'); ?>">правилами сайта</a>:<br>
-        Я согласен&nbsp;<?php echo $form->checkBox($model,'rulles',  array()); ?>
-        <?php echo $form->error($model,'rulles'); ?>
-    </div>
+<!--    <div class="row">-->
+<!--        You should agree with <a href="--><?php //echo Yii::app()->createUrl('site/rules'); ?><!--">site rules</a>:<br>-->
+<!--        I accept&nbsp;--><?php //echo $form->checkBox($model,'rulles',  array()); ?>
+<!--        --><?php //echo $form->error($model,'rulles'); ?>
+<!--    </div>-->
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Зарегистрироваться'); ?>
+		<?php echo CHtml::submitButton('Sign up'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

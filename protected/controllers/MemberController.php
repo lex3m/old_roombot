@@ -3,19 +3,6 @@
 class MemberController extends Controller
 {
 
-    /**
-     * Use XUpload action to upload files
-     */
-    /*public function actions()
-    {
-         return array(
-              'upload'=>array(
-                  'class'=>'ext.xupload.actions.XUploadAction',
-                  'path' =>Yii::app() -> getBasePath() . "/../images/mobile/images",
-                  'publicPath' => Yii::app() -> getBaseUrl() . "/images/mobile/images",
-              ),
-          );
-    }*/
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
@@ -47,7 +34,7 @@ class MemberController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','avatar','change', 'following' , 'followed', 'uploadUserPhotos'),
+				'actions'=>array('create','update','avatar','change', 'following' , 'followed', 'uploadUserPhotos', 'social'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -171,7 +158,7 @@ class MemberController extends Controller
                     );
                 }
             } else {
-                throw new CHttpException( 500, "Невозможно загрузить файл" );
+                throw new CHttpException( 500, Yii::t('member', 'Upload failed') );
             }
         }
     }
@@ -209,7 +196,7 @@ class MemberController extends Controller
                         $memberinfo->attributes=$_POST['Memberinfo'];
                         if ($memberinfo->validate()){
                             if ($memberinfo->save()){
-                                Yii::app()->user->setFlash('success', "Изменения успешно сохранены.");
+                                Yii::app()->user->setFlash('success', Yii::t('member', Yii::t('member', 'Changes successfully saved.')));
                                 $url=Yii::app()->createUrl('member/dashboard',array('id'=>$member->urlID));
                                 $this->redirect($url);
                             }
@@ -293,12 +280,12 @@ class MemberController extends Controller
 	 */
 	public function actionDashboard($id)
 	{
-        $this->setPageTitle(Yii::app()->name . ' - Кабинет');
+        $this->setPageTitle(Yii::app()->name . ' - ' .Yii::t('member', 'Dashboard'));
         $member = Member::model()->with('memberinfo','countComments','countPhotos')->find('urlID=:id', array(':id'=>$id));
 
         //Get VK User friends and photos
         if (Yii::app()->user->hasState('vk_access_token')) {
-            $userFriends = AuthVKModel::getVkUserFriends(Yii::app()->user->getState('vk_access_token'));
+//            $userFriends = AuthVKModel::getVkUserFriends(Yii::app()->user->getState('vk_access_token'));
             $userPhotos = AuthVKModel::getVkUserPhotos(Yii::app()->user->getState('vk_access_token'));
         }
 
@@ -371,7 +358,7 @@ class MemberController extends Controller
         
         $member=Member::model()->with('memberinfo')->findbyPk(Yii::app()->user->id);
         $memberinfo = Memberinfo::model()->findbyPk(Yii::app()->user->id);
-        $memberinfo->scenario = 'change_avatar';
+            $memberinfo->scenario = 'change_avatar';
         $oldImage = $memberinfo->avatar;
         if(isset($_POST['Memberinfo'])){  
             $memberinfo->attributes=$_POST['Memberinfo'];
@@ -511,7 +498,29 @@ class MemberController extends Controller
 
     }
 
-	/**
+    /**
+     * linking with social accounts
+     */
+    public function actionSocial()
+    {
+        $memberinfo = Memberinfo::model()->findbyPk(Yii::app()->user->id);
+        $memberinfo->scenario = 'social';
+        if (isset($_POST['Memberinfo'])) {
+            $memberinfo->attributes = $_POST['Memberinfo'];
+            if ($memberinfo->validate()) {
+                if ($memberinfo->save()){
+                    Yii::app()->user->setFlash('success', Yii::t('member', Yii::t('member', 'Changes successfully saved.')));
+                    $url=Yii::app()->createUrl('member/dashboard',array('id'=>$memberinfo->user->urlID));
+                    $this->redirect($url);
+                }
+            }
+        }
+
+        $this->render('social', array(
+            'memberinfo'=>$memberinfo,
+        ));
+    }
+    /**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded

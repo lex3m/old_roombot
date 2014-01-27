@@ -12,7 +12,7 @@ class AuthFB extends CWidget
     public $urlAccessToken = 'https://graph.facebook.com/oauth/access_token'; //Получение токена
     public $urlApiGetUsers = 'https://graph.facebook.com/me'; //API FB Users
 
-    public $fields = 'id,first_name,last_name,picture'; //получаемые поля в токене
+    public $fields = 'id,first_name,last_name,picture,link'; //получаемые поля в токене
 
     public $response_type = 'code';
 

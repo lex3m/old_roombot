@@ -1,5 +1,4 @@
 <?php
-
 class MobileController extends Controller
 {
 
@@ -302,5 +301,115 @@ class MobileController extends Controller
         $json_data = array ('countLikes'=>$countLikes,'isVoted'=>$isVoted);
         echo json_encode($json_data);
 
+    }
+
+    public function actionGetTagName($id, $lang)
+    {
+        $tag = Mobiletags::model()->findByPk($id);
+        if ($lang=="ru")
+            $tagName = $tag->name;
+        else
+            $tagName = $tag->name_en;
+        $json_data = array ('tagName'=>$tagName);
+        echo json_encode($json_data);
+    }
+
+
+
+    public function actionGetComments($logintype, $key, $image)
+    {
+        if ($logintype=="email")
+        {
+            $user = Member::model()->find('email=:email',array(':email'=>$key));
+            $userExist=true;
+        }
+        else if ($logintype=="social")
+        {
+            $user = Member::model()->find('unique_id=:uid',array(':uid'=>$key));
+            $userExist=true;
+        }
+        else if ($logintype=="none")
+            $userExist=false;
+        $img = Mobilepictures::model()->with('countLikes', 'countComments')->find('image=:image', array(':image'=>$image));
+        if ($userExist)
+        {
+            $checkPhotoLikes = Photolike::model()->find('photoID=:photoID AND memberID=:memberID',array(':photoID'=>$img->id,':memberID'=>$user->id));
+            if (count($checkPhotoLikes)==0)
+                $isVoted=false;
+            else
+                $isVoted=true;
+        }
+        else
+            $isVoted="undefined";
+        $comments = Comments::model()->findAll('photoID=:photoID',array(':photoID'=>$img->id));
+        $i=0;
+        $commentNameArray=array();
+        $commentAvatarArray=array();
+        $commentTextArray=array();
+        foreach($comments as $comment){
+            $commentNameArray[$i] = Member::model()->findByPk($comment->memberID)->login;
+            $avatar = Memberinfo::model()->find('userID=:userID',array(':userID'=>$comment->memberID));
+            if (count($avatar)==0)
+                $commentAvatarArray[$i] = "user_da.gif";
+            else
+                $commentAvatarArray[$i] = $avatar->avatar;
+            $commentTextArray[$i]=$comment->content;
+            $i++;
+        }
+        if ($img)
+            $json_data = array ('name'=>$img->name,
+                'info'=>$img->info,
+                'date'=>$img->date,
+                'countLikes'=>$img->countLikes,
+                'isVoted'=>$isVoted,
+                'countComments'=>$img->countComments,
+                'commentNameArray'=>$commentNameArray,
+                'commentTextArray'=>$commentTextArray,
+                'commentAvatarArray'=>$commentAvatarArray);
+        echo json_encode($json_data);
+    }
+
+    public function actionComment($logintype, $key, $photoId, $comment_text)
+    {
+        if (strpos($comment_text,'questionmark') !== false)
+            $comment_text = str_replace('questionmark', "?", $comment_text);
+        if (strpos($comment_text,'ampersandmark') !== false)
+            $comment_text = str_replace('ampersandmark', "&", $comment_text);
+        if ($logintype=="email")
+        {
+            $user = Member::model()->find('email=:email',array(':email'=>$key));
+            $userExist=true;
+        }
+        else if ($logintype=="social")
+        {
+            $user = Member::model()->find('unique_id=:uid',array(':uid'=>$key));
+            $userExist=true;
+        }
+        else
+        {
+            $json_data = array ('error'=>'true','error_type'=>'no user found');
+            echo json_encode($json_data);
+            return;
+        }
+        $photo = Mobilepictures::model()->find('image=:image', array(':image'=>$photoId));
+        $memberinfo = Memberinfo::model()->find('userID=:userID',array(':userID'=>$user->id));
+        if (count($memberinfo)==0)
+            $avatar = "user_da.gif";
+        else
+            $avatar = $memberinfo->avatar;
+        $comment = new Comments;
+        $comment->content = $comment_text;
+        $comment->memberID = $user->id;
+        $comment->dateTime=date("Y-m-d H:i:s");
+        $comment->photoID = $photo->id;
+        $comment->save();
+        $savedComment=Comments::model()->findbyPk($comment->id);
+
+        $json_data = array ('error'=>'false',
+            'error_type'=>'no user found',
+            'comment_text'=>$savedComment->content,
+            'comment_login'=>$user->login,
+            'comment_avatar'=>$avatar);
+        echo json_encode($json_data);
     }
 }

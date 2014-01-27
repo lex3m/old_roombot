@@ -80,7 +80,7 @@ class Mobilepictures extends CActiveRecord
 			'date' => 'Дата',
 			'image' => 'Файл',
 			'img'=>'Фотография',
-            'images'=>'Фотографии',
+            'images'=> Yii::t('sitePhotos', 'Photos'),
 		);
 	}
     

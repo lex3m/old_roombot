@@ -43,6 +43,8 @@ class Memberinfo extends CActiveRecord
     public $fio;
     public $avatar;
 
+    public $vk;
+    public $fb;
 
 	public function rules()
 	{
@@ -73,6 +75,10 @@ class Memberinfo extends CActiveRecord
             array('userID, fio, avatar', 'required', 'on' => 'fbAuth'),
             array('userID', 'numerical', 'integerOnly'=>true, 'on'=>'fbAuth'),
             array('fio', 'length', 'max' => 255, 'on' => 'fbAuth'),
+
+            array('vk, fb', 'url', 'on' => 'social'),
+            array('vk, fb', 'unique', 'on' => 'social'),
+            array('vk, fb', 'length', 'max' => 70, 'on' => 'social'),
 		);
 	}
 
@@ -84,7 +90,7 @@ class Memberinfo extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'user' => array(self::BELONGS_TO, 'Members', 'userID'),
+			'user' => array(self::BELONGS_TO, 'Member', 'userID'),
 			'city' => array(self::BELONGS_TO, 'Cities', 'cityID'),
 		);
 	}
@@ -96,13 +102,15 @@ class Memberinfo extends CActiveRecord
 	{
 		return array(
 			'userID' => 'User',
-			'avatar' => 'Avatar',
+			'avatar' => Yii::t('memberInfo', 'Avatar'),
 			'cityIsSet' => 'Город',
-			'website'=>'Сайт',
-			'phone'=>'Телефон',
-			'about'=>'Краткая информация',
-			'showEmail'=>'Показывать Email',
-            'fio' => 'ФИО'
+			'website'=> Yii::t('memberInfo','Site'),
+			'phone'=> Yii::t('memberInfo','Phone number'),
+			'about'=> Yii::t('memberInfo','About'),
+			'showEmail'=> Yii::t('memberInfo','Show email?'),
+            'fio' => Yii::t('memberInfo', 'Full name'),
+            'vk' => 'Vkontakte',
+            'fb' => 'Facebook'
 		);
 	}
     
@@ -147,8 +155,8 @@ class Memberinfo extends CActiveRecord
                 $email = Yii::app()->email;
                 $email->to =  $userEmail;
                 $email->from=Yii::app()->params['email'];
-                $email->subject = "Поздравляем вас с регистрацией! ".Yii::app()->name;
-                $email->message = "Спасибо за регистрацию на сайте <a href=\"".Yii::app()->getBaseUrl(true)."\">".Yii::app()->getBaseUrl(true)."</a>. Теперь вы можете отслеживать наши самые актуальные новости. Добавлять обьявления и фотографии и многое другое!";
+                $email->subject = Yii::t('member', 'Successful registration on ').' '.Yii::app()->name;
+                $email->message = Yii::t('member', 'Thank you for your registering on site').' '."<a href=\"".Yii::app()->getBaseUrl(true)."\">".Yii::app()->getBaseUrl(true)."</a>." .Yii::t('member', 'Now you can see our actual news and add your photos!');
                 $email->send();
             }
         }

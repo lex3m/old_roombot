@@ -36,7 +36,7 @@
              <div class="header__left left">
                  <h1 class="header__logo left">
                           <a class="header__logo" href="<?php if(Yii::app()->user->isGuest) echo Yii::app()->getHomeUrl(); else echo $this->createUrl('member/dashboard',array('id'=>Yii::app()->user->urlID)); ?>">
-                             <img style="padding-left: 5px;" src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo_r.png"  width="120" height="44" alt="На главную" title="Roombot" />
+                             <img style="padding-left: 5px;" src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo_r.png"  width="120" height="44" alt="<?php echo Yii::t('mainLayout', 'on main'); ?>" title="<?php echo Yii::app()->name;?>" />
                          </a>
 
                  </h1>
@@ -45,38 +45,43 @@
                          <a href="<?php if(Yii::app()->user->isGuest) echo Yii::app()->getHomeUrl(); else echo $this->createUrl('member/dashboard',array('id'=>Yii::app()->user->urlID)); ?>" class="header__mainMenu-home" title="Home">Главная
                          </a>
                          </li>-->
-                         <li class="header__explore-wrapper"><a href="<?php echo Yii::app()->createUrl('site/photos');?>" class="header__mainMenu-explore">Фотографии</a>
+                         <li class="header__explore-wrapper"><a href="<?php echo Yii::app()->createUrl('site/photos');?>" class="header__mainMenu-explore"><?php echo Yii::t('mainLayout', 'Photos'); ?></a>
                          </li>
                          </ul> </nav>
                          <div class="headerSearch left" role="search">
                              <form class="quicksearch rb-border-box">
-                                 <input class="quicksearch__input input g-all-transitions-300" placeholder="Искать" type="search" name="q" autocomplete="off" aria-label="Search" aria-autocomplete="list" aria-owns="searchMenuList">
-                                <button class="quicksearch__submit submit" type="submit">Искать</button>
+                                 <input class="quicksearch__input input g-all-transitions-300" placeholder="<?php echo Yii::t('mainLayout', 'Search'); ?>" type="search" name="q" autocomplete="off" aria-label="Search" aria-autocomplete="list" aria-owns="searchMenuList">
+                                <button class="quicksearch__submit submit" type="submit"><?php echo Yii::t('mainLayout', 'Search'); ?></button>
                             </form>
                          </div>
              </div>
              <div class="header__right right">
+                 <div  id="language-selector" style="float:left; margin:5px;">
+                     <?php
+                        $this->widget('LanguageSelector');
+                     ?>
+                 </div>
                  <div class="header__applink">
                      <a class="" target="_blank" href="https://play.google.com/store/apps/details?id=com.platon.roombot&hl=ru">
                          <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/app.png"  width="40" height="40" alt="Google play" title="Google play" />
                     </a>
                  </div>
                  <div class="header__loginMenu left">
-                     <?php echo CHtml::link('Инструкция',array('site/instruction'),array('class'=>'header__login')); ?>
+                     <?php echo CHtml::link(Yii::t('mainLayout', 'Instruction'), array('site/instruction'),array('class'=>'header__login')); ?>
                      <?php if(Yii::app()->user->isGuest)
-                         echo CHtml::link('Войти',array('site/login'),array('class'=>'header__login'));
+                         echo CHtml::link(Yii::t('mainLayout', 'Log in'),array('site/login'),array('class'=>'header__login'));
                      else
-                         echo CHtml::link('Выйти',array('site/logout'),array('class'=>'header__login'));
+                         echo CHtml::link(Yii::t('mainLayout', 'Log out'),array('site/logout'),array('class'=>'header__login'));
                      ?>
-                     <?php if(Yii::app()->user->isGuest) : ?> или <?php endif; ?>
+                     <?php if(Yii::app()->user->isGuest) : ?><?php echo Yii::t('mainLayout', 'or'); ?>  <?php endif; ?>
                      <button
                      <?php if(Yii::app()->user->isGuest) { ?>
                          onclick="window.location.href = '<?php echo  Yii::app()->createUrl('companies/register'); ?>';"
                      <?php } else { ?>
                          onclick="window.location.href = '<?php echo  Yii::app()->createUrl('member/dashboard',array('id'=>Yii::app()->user->urlID)); ?>';"
                      <?php } ?>
-                         style="margin-left:15px;" class="rb-button rb-button-medium signupButton rb-button-cta" title="Зарегистрироваться" tabindex="0">
-                         <?php if(Yii::app()->user->isGuest) { echo 'Зарегистрироваться'; } else { echo 'Мой кабинет';  } ?>
+                         style="margin-left:15px;" class="rb-button rb-button-medium signupButton rb-button-cta" title="<?php echo Yii::t('mainLayout', 'Sign up');?>" tabindex="0">
+                         <?php if(Yii::app()->user->isGuest) { echo Yii::t('mainLayout', 'Sign up'); } else { echo Yii::t('mainLayout', 'Dashboard');  } ?>
                      </button>
                  </div>
 
@@ -104,7 +109,7 @@
 
 <div id="footer">
     <div class="copirayt">
-             <span>Разработка приложения от студии <a href="http://topsu.ru/" target="_blank">"Вершина Успеха"</a> 2013 г.</span>
+             <span><?php echo Yii::t('mainLayout', 'Developed by'); ?> <a href="http://topsu.ru/" target="_blank">"Вершина успеха"</a> <?php echo date('Y'); ?> </span>
     </div>
 </div><!-- #footer -->
 
