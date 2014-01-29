@@ -149,34 +149,43 @@ class ManagememberController extends Controller {
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
     }
-    
-    public function actionGetlastmonthusercount($startdate, $enddate) {
-        $date = new DateTime("1899-12-31");
+
+
+    private function resetArray(&$item)
+    {
+        $item = 0;
+    }
+
+    public function actionGetlastmonthusercount($startdate, $enddate, $lastdays) {
+
         $arrayStartDate= explode(".", $startdate, 2);
         $dayStartDate = $arrayStartDate[0];
         $monthStartDate = $arrayStartDate[1];
-        
+
         $arrayEndDate= explode(".", $enddate, 2);
         $dayEndDate = $arrayEndDate[0];
         $monthEndDate = $arrayEndDate[1];
-        
 
-     //   $startDate = new DateTime("2013-".$monthStartDate."-".$dayStartDate);
-     //   $endDate = new DateTime("2013-".$monthEndDate."-".$dayEndDate);
+        $days = explode(',', $lastdays);
+
+        if ($monthStartDate == 12 && $monthEndDate == 1) {
+            $startYear = date('Y') - 1;
+        } else {
+            $startYear = date('Y');
+        }
+
         $format='Y-m-d';
         $step="+1 day";
         $dates = array();
-        $current = strtotime("2013-".$monthStartDate."-".$dayStartDate);
-        $last = strtotime("2013-".$monthEndDate."-".$dayEndDate);
+        $current = strtotime($startYear."-".$monthStartDate."-".$dayStartDate);
+        $last = strtotime(date('Y')."-".$monthEndDate."-".$dayEndDate);
     
         while( $current <= $last ) { 
     
             $dates[] = date($format, $current);
             $current = strtotime($step, $current);
         }
-        $dateArrayForRequest = implode(",",$dates);
-    
-    /*echo count($dates);*/
+
         $criteria = new CDbCriteria();
         $criteria->select = 'count(*) AS cnt, date';
         $criteria->addInCondition('date',$dates);
@@ -184,16 +193,21 @@ class ManagememberController extends Controller {
         $countUsersByDateArray = Member::model()->findAll($criteria);
         $i=0;
         $countUsersByDateForJsonArray=array();
-        $datesForJsonArray=array();
+
         foreach ($countUsersByDateArray as $countUsersByDate)
-            {
-                $countUsersByDateForJsonArray[$countUsersByDate->date]=$countUsersByDate->cnt;
-       //         $datesForJsonArray[$i]=$countUsersByDate->date;
-                $i++;
-            }
-            
-        $json_array = json_encode($countUsersByDateForJsonArray);  
-        print_r($json_array);  
+        {
+            $date = explode('-', $countUsersByDate->date);
+            $date = $date[2].'.'.$date[1];
+            $countUsersByDateForJsonArray[$date]=$countUsersByDate->cnt;
+            $i++;
+        }
+        $days = array_flip($days);
+        array_walk($days, array($this, 'resetArray'));
+        $result = array_merge($days, $countUsersByDateForJsonArray);
+
+        $json_array = json_encode(array_values($result));
+
+        echo $json_array;
     }
 
     /**

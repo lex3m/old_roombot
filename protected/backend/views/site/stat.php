@@ -20,135 +20,84 @@ $cs->registerScriptFile('/js/chartsjs/'.'Chart.js');
         var date;
         //перебрать все даты за последний месяц и внести в массив (8.11 - 8.10)
         var todayDay = new Date().getDate();
-        var lastMonth = new Date().getMonth(); //0 first index of object Month January
-        
-        var dateArray = 
-        {
-              "1": "31",
-              "2": "28",
-              "3": "31",
-              "4": "30", 
-              "5": "31", 
-              "6": "30", 
-              "7": "31", 
-              "8": "31", 
-              "9": "30", 
-              "10": "31", 
-              "11": "30", 
-              "12": "31",                                   
-        };
-        // alert(today)
-        $.each( dateArray, function( key, value ) {        
-            if (key == lastMonth) {
-                dayOfMonths = value; 
+        var lastMonth = new Date().getMonth() + 1; //0 first index of object Month January
+        var year = new Date().getFullYear();
+
+        function daysInMonth(month,year) {
+            return new Date(year, month, 0).getDate();
+        }
+
+        function getPrevMonth(month) {
+            if (month == 1) {
+                month = 12;
+            } else  {
+                month = month - 1;
             }
-        });
-      
-   
-                
-        for (var i = dayOfMonths; i > 0; i--) {
+
+            return month < 10 ? '0'+month : month;
+        }
+
+        daysOfMonth = daysInMonth(lastMonth, year);
+
+        if (lastMonth < 10)
+            lastMonth = '0'+lastMonth;
+
+        for (var i = daysOfMonth; i >= 0; i--) {
             
             var dayDiff = todayDay - i;
             
             if (dayDiff < 0) {
-                var dm = parseInt(dayOfMonths);
+                var dm = parseInt(daysOfMonth);
                 var day =  dm + dayDiff; 
-                var dayMonth = day + '.' + lastMonth;
+                var dayMonth = day + '.' + getPrevMonth(lastMonth);
                 lastDaysArray.push(dayMonth);
             } else if (dayDiff == 0) {
-                var nextMonth = lastMonth+1;
-                var dayMonth = 1 + '' + nextMonth;
+                var dayMonth = daysInMonth(getPrevMonth(lastMonth), year) + '.' + getPrevMonth(lastMonth);
                 lastDaysArray.push(dayMonth);
             } else {
-                var nextMonth = lastMonth+1; 
-                var dayMonth = dayDiff + '.' + nextMonth;
+                if (dayDiff < 10)
+                    dayDiff = '0'+dayDiff;
+                var dayMonth = dayDiff + '.' + lastMonth;
                 lastDaysArray.push(dayMonth);
             }
-                // console.log(todayDay - i)                
-        } 
-          
+        }
+
         var lastDaysString = lastDaysArray.toString(); 
-        var startDate=lastDaysArray[0];
+        var startDate = lastDaysArray[0];
         var endDate = lastDaysArray[lastDaysArray.length-1];
         var datesAjaxResponse;
         $.ajax({
             url: '<?php echo $this->createUrl("managemember/getLastMonthUserCount"); ?>', 
             async:false,           
-            data : "startdate="+startDate+"&enddate="+endDate,                    
+            data : "startdate="+startDate+"&enddate="+endDate+"&lastdays="+lastDaysString,
             success: function (data, textStatus) { 
                 datesAjaxResponse = data;
-                }
+            }
         });
-        
-        
-        
-        var day, month;
-        var currentYear = new Date().getFullYear(); 
-     
-var obj = $.parseJSON(datesAjaxResponse);
-var datesResponseArray=new Array();
-var countUsersResponseArray=new Array();
-var z;
-var finishArray = new Array();
-z=0;
-$.each(obj, function(k, v) {
-	datesResponseArray[z] = k;
-	countUsersResponseArray[z] = v;
-        z++;
-}); 
-        for (i=0;i<lastDaysArray.length;i++){
-            arr=lastDaysArray[i].split(".");
-            day=arr[0];
-	    if (day<10) day="0"+day;		
-            month=arr[1];
-            fullDate = currentYear+"-"+month+"-"+day;
-          var f=inArrayById(datesResponseArray, fullDate);
- 	  if (f>-1) 
-			finishArray[i]= countUsersResponseArray[f];
-          else
-			finishArray[i]= 0;
-        }
 
-	function inArrayById(array, value) {
-            var checkIndex=-1;
-	    $.each(array, function(i, element) { 
-		if(element == value){
-		    checkIndex = i;
-		}
-	    });
-	    return checkIndex;
-	}
-        
+        var countData = $.parseJSON(datesAjaxResponse);
+
         var lineChartData = {
-            labels : lastDaysArray,
-            /*[8.10,9.10,10.10,11.10,12.10,13.10,14.10,15.10,16.10,17.10,18.10,19.10,20.10,21.10,22.10,23.10,24.10,25.10,26.10,27.10,28.10,29.10,30
-.10,111,1.11,2.11,3.11,4.11,5.11,6.11,7.11],*/
+        labels : lastDaysArray,
             datasets : [
                 {
                     fillColor : "rgba(151,187,205,0.5)",
                     strokeColor : "rgba(151,187,205,1)",
                     pointColor : "rgba(151,187,205,1)",
                     pointStrokeColor : "#fff",
-                    data: finishArray,
+                    data: countData
                 },
-              /*  {
-                    fillColor : "rgba(151,187,205,0.5)",
-                    strokeColor : "rgba(151,187,205,1)",
-                    pointColor : "rgba(151,187,205,1)",
-                    pointStrokeColor : "#fff",
-                    data : [28,48,40,19,96,27,100]
-                }*/
             ]
             
         }
-var maxValue=50;
-var steps = new Number(maxValue);
-var stepWidth = new Number(1);
-if (maxValue > 10) {
-    stepWidth = Math.floor(maxValue / 10);
-    steps = Math.ceil(maxValue / stepWidth);
-}
-       var myLine = new Chart(document.getElementById("canvas").getContext("2d"))
+        var maxValue=50;
+        var steps = new Number(maxValue);
+        var stepWidth = new Number(1);
+        if (maxValue > 10) {
+            stepWidth = Math.floor(maxValue / 10);
+            steps = Math.ceil(maxValue / stepWidth);
+        }
+        var myLine = new Chart(document.getElementById("canvas").getContext("2d"))
         .Line(lineChartData, { 
            scaleOverride: true, scaleSteps: steps, scaleStepWidth: stepWidth, scaleStartValue: 0,
             });

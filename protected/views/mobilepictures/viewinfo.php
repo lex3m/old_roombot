@@ -1,5 +1,5 @@
 <style>
-    img.mainn {
+    img.main {
         cursor: crosshair;
     }
 </style>
@@ -22,7 +22,7 @@
                 h.appendChild(s);
             }})();</script>
     <div class="pluso" data-background="#000000" data-options="small,square,line,horizontal,counter,theme=04" data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email,digg,pinme,pinterest,liveinternet,linkedin,memori,webdiscover,moikrug,yandex,print"></div>
-<img class="mainn" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $model->image; echo '?' . time() ?>"/><br/>
+<img class="main" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $model->image; echo '?' . time() ?>"/><br/>
 <?php if (!Yii::app()->user->isGuest) { ?>
 <a class="addBookmarkLink" id="<?php echo $model->id; ?>" onclick="return false;" href="#">Add to ideabook</a>&nbsp;&nbsp;
 <?php  } ?>
@@ -345,14 +345,31 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 
          });
 
-         $('img.mainn').on('click', function ( e ) {
-         console.log(e);
-         console.log($(this));
+         $('img.main').on('click', function ( e ) {
+             console.log(e);
+             console.log($(this));
 
-             alert(e.pageX +', '+ e.pageY);
+//             alert(e.pageX +', '+ e.pageY);
              var x = e.pageX - this.offsetLeft;
              var y = e.pageY - this.offsetTop;
-             alert(x +', '+ y);
+//             alert(x +', '+ y);
+             var coord = {x: x, y: y};
+
+             var height = this.height;
+             var width = this.width;
+
+             var imgHeight = this.naturalHeight;
+             var imgWidth = this.naturalWidth;
+
+             var dX = imgHeight / height;
+             var dY = imgWidth / width;
+
+             var imgX = Math.round(dX * x);
+             var imgY = Math.round(dY * y);
+             //831.260 383.36
+             console.log(coord);
+             console.log(imgX, imgY);
+             
          });
          
 ",CClientScript::POS_READY);

@@ -172,7 +172,7 @@
 
             <?php if (Yii::app()->user->id == $member->id): ?>
 
-                    <?php if (isset($userFriends) && !empty($userFriends)): ?>
+                    <?php if (isset($userPhotos) && !empty($userPhotos)): ?>
                         <div class="showVkPhotos">
                             <div class="knopky1">
                                 <a href="#">Показать фото из ВКонтакте</a>

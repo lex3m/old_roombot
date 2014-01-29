@@ -375,9 +375,9 @@ class MobilepicturesController extends Controller
        $lastImageID = $lastImage->id;
        $lang=Yii::app()->request->getParam('lang'); 
        if ($lang=="en")
-      $tags = Mobiletags::model()->findAll(array('order'=>'name_en'));
+          $tags = Mobiletags::model()->findAll(array('order'=>'name_en'));
        else
-      $tags = Mobiletags::model()->findAll(array('order'=>'name'));
+          $tags = Mobiletags::model()->findAll(array('order'=>'name'));
          
         foreach ($tags as $tag)
         {

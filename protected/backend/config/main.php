@@ -47,7 +47,7 @@ return array(
 	'components'=>array(
 		'user'=>array(
             // enable cookie-based authentication
-            //'allowAutoLogin'=>true,
+            'allowAutoLogin'=>true,
             'class' => 'WebUser',
         ),
         'chartjs' => array('class' => 'chartjs.components.ChartJs'),
