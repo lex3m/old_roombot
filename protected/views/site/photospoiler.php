@@ -1,24 +1,16 @@
-<script type="text/javascript">
-    //USAGE: $("#form").serializefiles();
-    (function($) {
-        $.fn.serializefiles = function() {
-            var obj = $(this);
-            /* ADD FILE TO PARAM AJAX */
-            var formData = new FormData();
-            $.each($(obj).find("input[type='file']"), function(i, tag) {
-                $.each($(tag)[0].files, function(i, file) {
-                    formData.append(tag.name, file);
-                });
-            });
-            var params = $(obj).serializeArray();
-            $.each(params, function (i, val) {
-                formData.append(val.name, val.value);
-            });
-            return formData;
-        };
-    })(jQuery);
-</script>
 <?php
+Yii::app()->clientScript->registerScript('helper-messages', '
+          yii = {
+              messages: {
+                submit: "'.Yii::t('sitePhotos', 'Submit').'",
+                eprice: "'.Yii::t('sitePhotos', 'Estimated price').'",
+                aptag: "'.Yii::t('sitePhotos', 'Add photo tag').'",
+                eptag: "'.Yii::t('sitePhotos', 'Edit photo tag').'",
+                confirm: "'.Yii::t('sitePhotos', 'Are you sure want to delete this tag?').'",
+              }
+          };
+      ');
+
 Yii::app()->clientScript->registerScript('pluso-start', "
     pluso.start();
 ", CClientScript::POS_END);
@@ -34,7 +26,7 @@ if (Yii::app()->user->id == $model->member->id):
             'show'=>'show',
             'hide'=>'explode',
             'resizable'=>false,
-            'title'=>'Add photo tag',
+            'title'=> Yii::t('sitePhotos','Add photo tag'),
         ),
     ));
     ?>
@@ -42,29 +34,29 @@ if (Yii::app()->user->id == $model->member->id):
         <input type="hidden" name="photoID" value="<?php echo $model->id;?>">
         <div class="tagBodyContainerPopup">
             <div class="row-form">
-                <b>Tag name</b> (max 100 chars) <span style="color: red">*</span>
+                <b><?php echo Yii::t('sitePhotos','Tag name');?> </b> (<?php echo Yii::t('sitePhotos','max 100 chars');?>) <span style="color: red">*</span>
                 <input type="text" class="tagBodyPopup" id="name" name="name" maxlength="100" style="width:365px"/> </br>
             </div>
             <div class="row-form">
-                <b>Description</b> (max 255 chars) <span style="color: red">*</span>
+                <b><?php echo Yii::t('sitePhotos','Description');?> </b> ( <?php echo Yii::t('sitePhotos','max 255 chars');?>) <span style="color: red">*</span>
                 <textarea style="resize: none; height: 80px;  width: 365px; overflow: hidden; word-wrap: break-word;" class="tagBodyPopup" id="description" name="description" maxlength="255" ></textarea> </br>
             </div>
             <div class="row-form">
-                <b>Image</b> (Allowed .jpg, .png, .gif extensions)
+                <b><?php echo Yii::t('sitePhotos','Image');?></b> (<?php echo Yii::t('sitePhotos', 'Allowed .jpg, .png, .gif extensions')?>)
                 <?php echo CHtml::activeFileField(new Phototag(), 'image', array('id'=>'image','class'=>'tagBodyPopup', 'accept'=>'image/jpg, image/jpeg, image/png, image/gif')); ?>
             </div>
             <div class="row-form">
-                <b>Link to product</b> (e.g. http://example.com/product)
+                <b><?php echo Yii::t('sitePhotos','Link to product');?></b> (http://example.com/product)
                 <input type="text" class="tagBodyPopup" id="image_link" name="image_link" maxlength="2048" style="width:365px"/> </br>
             </div>
             <div class="row-form">
-                <b>Estimated price</b>
+                <b><?php echo Yii::t('sitePhotos','Estimated price');?></b>
                 $ <input type="text" class="tagBodyPopup" id="price" name="price" maxlength="6" size="6"/> </br>
             </div>
             <span class="phtError"></span>
             <div style="clear:both"></div>
             <div style="display: block;" class="confirmDialog">
-                <input style="cursor: pointer;" id="addTagButtonPopup" type="button" class="rbBtn submitAddTag" value="Confirm">
+                <input style="cursor: pointer;" id="addTagButtonPopup" type="button" class="rbBtn submitAddTag" value="<?php echo Yii::t('sitePhotos','Submit');?>">
             </div>
         </div>
         <input type="hidden" name="tid" value="">
@@ -82,7 +74,6 @@ if (Yii::app()->user->id == $model->member->id):
         $('img.image__full').on('click', function ( e ) {
 
             var that = $(this).parent();
-
             x = e.clientX;
             y = e.clientY;
             $('.phtError').hide();
@@ -96,9 +87,9 @@ if (Yii::app()->user->id == $model->member->id):
             $('input[name=\"tid\"]').val('');
             $('#image').val('');
             $('.submitAddTag').remove();
-            var button = '<input style=\"cursor: pointer;\" type=\"button\" class=\"rbBtn submitAddTag\" value=\"Confirm\" id=\"addTagButtonPopup\">';
+            var button = '<input style=\"cursor: pointer;\" type=\"button\" class=\"rbBtn submitAddTag\" value=\"'+yii.messages.submit+'\" id=\"addTagButtonPopup\">';
             $('.confirmDialog').html(button);
-            $('#photoTag').dialog('option', 'title', 'Add photo tag');
+            $('#photoTag').dialog('option', 'title', yii.messages.aptag);
 
             $('#photoTag').dialog('open');
 
@@ -152,7 +143,7 @@ if (Yii::app()->user->id == $model->member->id):
                                 }
                                 var price = $('#price').val();
                                 if (price != '') {
-                                   price = 'Estimated price $ <span class=\"imageTagPopupPriceNotLinked\">'+price+'</span>';
+                                   price = 'yii.messages.eprice $ <span class=\"imageTagPopupPriceNotLinked\">'+price+'</span>';
                                 }
                                 var image = '';
                                 if (msg.image !== null) {
@@ -223,12 +214,12 @@ if (Yii::app()->user->id == $model->member->id):
                                 $('.imageTagPopup').hide();
                                 $('input[name=\"tid\"]').val(tagId);
                                 $('.submitAddTag').remove();
-                                var button = '<input style=\"cursor: pointer;\" type=\"button\" class=\"rbBtn submitAddTag\" value=\"Confirm\" id=\"editTagButtonPopup\">';
+                                var button = '<input style=\"cursor: pointer;\" type=\"button\" class=\"rbBtn submitAddTag\" value=\"'+yii.messages.submit+'\" id=\"editTagButtonPopup\">';
                                 $('.confirmDialog').html(button);
                                 $('.phtError').hide();
                                 $('.tagBodyPopup').removeClass( 'ui-state-error' );
                                 $('#tagFormPopup').show();
-                                $('#photoTag').dialog('option', 'title', 'Edit photo tag');
+                                $('#photoTag').dialog('option', 'title', yii.messages.eptag);
                                 $('#photoTag').dialog('open');
                             } else {
                                 alert('error handling here');
@@ -276,7 +267,7 @@ if (Yii::app()->user->id == $model->member->id):
                                 if (price == '' || price == 0)
                                     p.html('');
                                 else
-                                    p.html('Estimated price $ <span class=\"imageTagPopupPriceNotLinked\">'+price+'</span>');
+                                    p.html('yii.messages.eprice $ <span class=\"imageTagPopupPriceNotLinked\">'+price+'</span>');
 
                                 if (link !== '') {
                                     n.attr('href', link);
@@ -305,7 +296,7 @@ if (Yii::app()->user->id == $model->member->id):
         });
        $(document).on('click', '.buttonTagDeleteIcon', function ( e ) {
              var tagId = $(this).parent().attr('id');
-             if (confirm('Are you sure want to delete this tag?')) {
+             if (confirm(yii.messages.confirm)) {
                 $.ajax({
                        type: 'POST',
                        url: '".Yii::app()->createUrl('phototag/delete')."',
@@ -379,7 +370,7 @@ endif;
                                     </div>
                                     <div class="imageTagPopupBottom">
                                         <?php if ($pt->price > 0): ?>
-                                            Estimated price $<span class="imageTagPopupPriceNotLinked"><?php echo $pt->price;?></span>
+                                           <?php echo Yii::t('sitePhotos', 'Estimated price');?> $<span class="imageTagPopupPriceNotLinked"><?php echo $pt->price;?></span>
                                         <?php endif; ?>
                                     </div>
                                 </div>

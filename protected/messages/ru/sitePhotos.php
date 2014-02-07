@@ -34,6 +34,17 @@ return array(
     'Photos' => 'Фото',
     'There are no photos by your request. We are sorry'=>"По вашему запросу изображений не найдено.",
     'Error authorization on vkontakte, try again or use another service' => 'Ошибка авторизации через ВК, повторите Ваш запрос позже или используйте другой сервис авторизации.',
-    'Error authorization on facebook, try again or use another service'=>'Ошибка авторизации через FB, повторите Ваш запрос позже или используйте другой сервис авторизации.'
+    'Error authorization on facebook, try again or use another service'=>'Ошибка авторизации через FB, повторите Ваш запрос позже или используйте другой сервис авторизации.',
+    'Add photo tag' => 'Добавить ярлык к фото',
+    'Tag name' => 'Имя ярлыка',
+    'Description' => 'Описание',
+    'max 100 chars' => 'макс. 100 символов',
+    'max 255 chars' => 'макс. 255 символов',
+    'Image' => 'Изображение',
+    'Allowed .jpg, .png, .gif extensions' => 'Поддерживаемые типы .jpg, .png, .gif',
+    'Link to product' => 'Ссылка на продукт',
+    'Estimated price' => 'Примерная стоимость',
+    'Edit photo tag' => 'Редактировать ярлык к фото',
+    'Are you sure want to delete this tag?' => 'Вы уверены, что хотите удалить этот ярлык?'
 
 );

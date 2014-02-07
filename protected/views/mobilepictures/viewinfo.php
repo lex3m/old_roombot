@@ -1,23 +1,3 @@
-<script type="text/javascript">
-    //USAGE: $("#form").serializefiles();
-    (function($) {
-        $.fn.serializefiles = function() {
-            var obj = $(this);
-            /* ADD FILE TO PARAM AJAX */
-            var formData = new FormData();
-            $.each($(obj).find("input[type='file']"), function(i, tag) {
-                $.each($(tag)[0].files, function(i, file) {
-                    formData.append(tag.name, file);
-                });
-            });
-            var params = $(obj).serializeArray();
-            $.each(params, function (i, val) {
-                formData.append(val.name, val.value);
-            });
-            return formData;
-        };
-    })(jQuery);
-</script>
 <?php
 Yii::app()->clientScript->registerScript('user-tags', "
         $('.img-tags').addClass('animated swing');
@@ -399,10 +379,6 @@ if (Yii::app()->user->id == $model->member->id):
     ",CClientScript::POS_READY);
 endif;
 ?>
-
-<style>
-
-</style>
 <div class="list-bot izo-list">
 <h1>View photo</h1><h2><?php echo $model->name; ?></h2>
 <span>Uploaded by:&nbsp;<?php echo CHtml::link($model->member->login,array('member/dashboard','id'=>$model->member->urlID));  ?></span><br/>
