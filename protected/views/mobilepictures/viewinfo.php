@@ -1,7 +1,407 @@
+<script type="text/javascript">
+    //USAGE: $("#form").serializefiles();
+    (function($) {
+        $.fn.serializefiles = function() {
+            var obj = $(this);
+            /* ADD FILE TO PARAM AJAX */
+            var formData = new FormData();
+            $.each($(obj).find("input[type='file']"), function(i, tag) {
+                $.each($(tag)[0].files, function(i, file) {
+                    formData.append(tag.name, file);
+                });
+            });
+            var params = $(obj).serializeArray();
+            $.each(params, function (i, val) {
+                formData.append(val.name, val.value);
+            });
+            return formData;
+        };
+    })(jQuery);
+</script>
+<?php
+Yii::app()->clientScript->registerScript('user-tags', "
+        $('.img-tags').addClass('animated swing');
+
+        $('.main').on('mouseenter', function ( e )  {
+            $('.imageTagPopup').hide();
+            $('.img-tags').css('z-index', 5);
+        });
+
+
+        /*$('.images').on('mouseenter', function ( e ) {
+            $('.img-tags').show();
+            $('#photoTag').parents('.ui-dialog').mouseenter(function() {
+                var tid = $('input[name=\"tid\"]').val();
+                if (tid !== '')
+                    $('.imageTagPopup#'+ tid).prev().show();
+                else
+                    $('#none').show();
+            });
+        });
+
+
+        $('#photoTag').parents('.ui-dialog').on('mouseenter', function ( e ) {
+            $('.img-tags').show();
+        });
+
+        $('.images').on('mouseleave', function ( e ) {
+            $('.img-tags').hide();
+        });*/
+
+        $('.images').on('mouseenter', '.img-tags', function( e ) {
+            $(this).css('z-index', 20);
+            if ($('.imageTagPopup').is(':visible'))
+                $('.imageTagPopup').hide();
+
+            var imgHeight = $('.main').height();
+            var imgWidth = $('.main').width();
+
+            var tagWidth = this.offsetLeft;
+            var tagHeight = this.offsetTop;
+
+            var popup =  $(this).next();
+
+            /*Detect coords for tag corner*/
+            if (imgWidth - tagWidth < popup.width()) {
+                popup.css('left', tagWidth - popup.width() + 40);
+            }
+            if (imgHeight - tagHeight < popup.height()) {
+                popup.css('top', tagHeight - popup.height() + 40);
+            }
+
+            popup.show();
+        });
+
+        $('.imageTagPopup').on('mouseleave', function ( e ) {
+             $(this).hide();
+        });
+", CClientScript::POS_READY);
+
+if (Yii::app()->user->id == $model->member->id):
+    /*****Adding tag to photo*****/
+    $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
+        'id'=>'photoTag',
+        'options'=>array(
+            'autoOpen'=>false,
+            'closeOnEscape'=> true,
+            'width'=>400,
+            'height'=>385,
+            'show'=>'show',
+            'hide'=>'explode',
+            'resizable'=>false,
+            'title'=>'Add photo tag',
+        ),
+    ));
+    ?>
+    <form id="tagFormPopup" class="tagFormPopup" method="post" action="" style="display: none;" enctype="multipart/form-data">
+        <input type="hidden" name="photoID" value="<?php echo $model->id;?>">
+        <div class="tagBodyContainerPopup">
+            <div class="row-form">
+                <b>Tag name</b> (max 100 chars) <span style="color: red">*</span>
+                <input type="text" class="tagBodyPopup" id="name" name="name" maxlength="100" style="width:365px"/> </br>
+            </div>
+            <div class="row-form">
+                <b>Description</b> (max 255 chars) <span style="color: red">*</span>
+                <textarea style="resize: none; height: 80px;  width: 365px; overflow: hidden; word-wrap: break-word;" class="tagBodyPopup" id="description" name="description" maxlength="255" ></textarea> </br>
+            </div>
+            <div class="row-form">
+                <b>Image</b> (Allowed .jpg, .png, .gif extensions)
+                <?php echo CHtml::activeFileField(new Phototag(), 'image', array('id'=>'image','class'=>'tagBodyPopup', 'accept'=>'image/jpg, image/jpeg, image/png, image/gif')); ?>
+<!--                <input type="file" accept="image/jpg, image/jpeg, image/png, image/gif" class="tagBodyPopup" id="image" name="image" style="width:365px"/> </br>-->
+            </div>
+            <div class="row-form">
+                <b>Link to product</b> (e.g. http://example.com/product)
+                <input type="text" class="tagBodyPopup" id="image_link" name="image_link" maxlength="2048" style="width:365px"/> </br>
+            </div>
+            <div class="row-form">
+                <b>Estimated price</b>
+                $ <input type="text" class="tagBodyPopup" id="price" name="price" maxlength="6" size="6"/> </br>
+            </div>
+            <span class="phtError"></span>
+            <div style="clear:both"></div>
+            <div style="display: block;" class="confirmDialog">
+                <input style="cursor: pointer;" id="addTagButtonPopup" type="button" class="rbBtn submitAddTag" value="Confirm">
+            </div>
+        </div>
+        <input type="hidden" name="tid" value="">
+    </form>
+    <?php
+    $this->endWidget('zii.widgets.jui.CJuiDialog');
+
+    Yii::app()->clientScript->registerScript('photo-tags', "
+        $('img.main').css('cursor', 'crosshair');
+
+        $('.tagBodyPopup').on('keypress', function ( e ) {
+            $(this).removeClass( 'ui-state-error');
+        });
+
+        $('img.main').on('click', function ( e ) {
+
+            var that = $(this).parent();
+            /*x = e.pageX - this.offsetLeft;
+            y = e.pageY - this.offsetTop;
+
+            var height = this.height;
+            var width = this.width;
+
+            var imgHeight = this.naturalHeight;
+            var imgWidth = this.naturalWidth;
+
+            var dX = imgHeight / height;
+            var dY = imgWidth / width;
+
+            imgX = Math.round(dX * x);
+            imgY = Math.round(dY * y);*/
+
+            x = e.clientX;
+            y = e.clientY;
+            $('.phtError').hide();
+            $('.tagBodyPopup').val('');
+            $('.tagBodyPopup').removeClass( 'ui-state-error' );
+
+            $('#photoTag').dialog( 'option', 'hide', { effect: 'explode', duration: 500 } );
+            $('#photoTag').dialog('close');
+            $('#photoTag').dialog({ position: [x,  y + 40]});
+            $('#tagFormPopup').show();
+            $('input[name=\"tid\"]').val('');
+            $('#image').val('');
+            $('.submitAddTag').remove();
+            var button = '<input style=\"cursor: pointer;\" type=\"button\" class=\"rbBtn submitAddTag\" value=\"Confirm\" id=\"addTagButtonPopup\">';
+            $('.confirmDialog').html(button);
+            $('#photoTag').dialog('option', 'title', 'Add photo tag');
+
+            $('#photoTag').dialog('open');
+
+            if(e.offsetX==undefined) // this works for Firefox
+            {
+                tagX = Math.round(e.pageX-$('.main').offset().left);
+                tagY = Math.round(e.pageY-$('.main').offset().top);
+            }
+            else  // works in Google Chrome
+            {
+                tagX = e.offsetX;
+                tagY = e.offsetY;
+            }
+
+            $('#none.img-tags').remove();
+            that.append(\"<div class='img-tags' id='none'/></div>\");
+            $('#none.img-tags').show();
+            $('#none.img-tags').css('left', tagX);
+            $('#none.img-tags').css('top',  tagY);
+
+            $( '#photoTag' ).dialog({
+                beforeClose: function( event, ui ) {
+                    $('#none.img-tags').remove();
+                }
+            });
+        });
+
+         $(document).on('click', '#addTagButtonPopup', function ( e ) {
+
+           var formData = $('#tagFormPopup').serializefiles();
+           formData.append('coordX', tagX);
+           formData.append('coordY', tagY);
+
+           $.ajax({
+                       type: 'POST',
+                       url: '".Yii::app()->createUrl('phototag/add')."',
+                       data: formData,
+                       async: false,
+                       cache: false,
+                       contentType: false,
+                       processData: false,
+                       success: function(msg){
+                             var msg = $.parseJSON(msg);
+                             if (msg.saved == true) {
+                                var pid = $('input[name=\"photoID\"]').val();
+                                var name = $('#name').val();
+                                var description = $('#description').val();
+                                var link = $('#image_link').val();
+                                if (link != '') {
+                                    link = 'href=\"'+link+'\"';
+                                }
+                                var price = $('#price').val();
+                                if (price != '') {
+                                   price = 'Estimated price $ <span class=\"imageTagPopupPriceNotLinked\">'+price+'</span>';
+                                }
+                                var image = '';
+                                if (msg.image !== null) {
+                                    image = '<img src=\"".Yii::app()->baseUrl."/images/products/'+msg.image+'\" style=\"max-width: 100px; height:100px\">';
+                                }
+
+                                var newPhotoTag = $('#none.img-tags').attr('id', pid);
+
+                                var newImageTagPopup = '<div id=\"'+msg.tid+'\" class=\"imageTagPopup\" style=\"left: '+tagX+'px; top: '+tagY+'px; display: none;\">\
+                                                            <div id=\"imageTagBackground\" style=\"width: 300px;\"></div>\
+                                                            <div class=\"imageTagPopupContainer\" style=\"position:relative;top:0;left:0;opacity:1;\">\
+                                                                <div class=\"imageTagPopupActions\">\
+                                                                    <a id=\"'+msg.tid+'\" class=\"tagIcon\" style=\"margin-left: 130px;\">\
+                                                                        <img class=\"buttonsCommentAction buttonTagEditIcon\" title=\"Edit\">\
+                                                                    </a>\
+                                                                    <a id=\"'+msg.tid+'\" class=\"tagIcon\" >\
+                                                                        <img class=\"buttonsCommentAction buttonTagDeleteIcon\" title=\"Delete\">\
+                                                                    </a>\
+                                                                </div>\
+                                                                <div id=\"imageTagPopupTitle\" style=\"padding-left: 25px; padding-right: 40px;\">\
+                                                                    <a class=\"imageTagPopupProductImage\" style=\"float:left;margin-right:5px\" '+link+' target=\"_blank\">\
+                                                                        '+image+'\
+                                                                    </a>\
+                                                                    <div class=\"imageTagPopupProductTitle\"><a '+link+' target=\"_blank\">'+name+'</a></div>\
+                                                                    <div style=\"clear:both\"></div>\
+                                                                </div>\
+                                                                <div id=\"imageTagPopupBody\">\
+                                                                    <div class=\"imageTagPopupDescription\">'+description+'</div>\
+                                                                    <div class=\"imageTagPopupBottom\">\
+                                                                        '+price+'\
+                                                                    </div>\
+                                                                </div>\
+                                                            </div>\
+                                                        </div>';
+                                newPhotoTag.after(newImageTagPopup);
+                                $('#image').val('');
+                                $('#photoTag').dialog( 'option', 'hide', { effect: 'fold', duration: 500 } );
+                                $('#photoTag').dialog('close');
+                             } else {
+                                $('.phtError').html('');
+                                $.each(msg, function ( i, val ) {
+                                    $('#'+i).addClass( 'ui-state-error');
+                                    $('.phtError').append(val[0]);
+                                });
+                                $('.phtError').show();
+                             }
+                       }, error: function(){
+                            alert('error handling here');
+                       }
+           });
+        });
+
+         $(document).on('click', '.buttonTagEditIcon', function ( e ) {
+             var tagId = $(this).parent().attr('id');
+             $.ajax({
+                       type: 'POST',
+                       url: '".Yii::app()->createUrl('phototag/getInfo')."',
+                       data: {id: tagId},
+                       success: function(msg) {
+                            data = $.parseJSON(msg);
+                            if (data.id !== '') {
+                                $('#photoTag').dialog({ position: [e.clientX - 130 ,  e.clientY + 40]});
+                                $.each(data, function ( i, val ) {
+                                    if (i !== 'image')
+                                        $('#'+i).val(val);
+                                });
+                                $('#photoTag').dialog('close');
+                                $('.imageTagPopup').hide();
+                                $('input[name=\"tid\"]').val(tagId);
+                                $('.submitAddTag').remove();
+                                var button = '<input style=\"cursor: pointer;\" type=\"button\" class=\"rbBtn submitAddTag\" value=\"Confirm\" id=\"editTagButtonPopup\">';
+                                $('.confirmDialog').html(button);
+                                $('.phtError').hide();
+                                $('.tagBodyPopup').removeClass( 'ui-state-error' );
+                                $('#tagFormPopup').show();
+                                $('#photoTag').dialog('option', 'title', 'Edit photo tag');
+                                $('#photoTag').dialog('open');
+                            } else {
+                                alert('error handling here');
+                            }
+                       }
+                    });
+        });
+
+        $(document).on('click','#editTagButtonPopup',function(e){
+           var formData = $('#tagFormPopup').serializefiles();
+           $.ajax({
+                       type: 'POST',
+                       url: '".Yii::app()->createUrl('phototag/edit')."',
+                       data: formData,
+                       async: false,
+                       cache: false,
+                       contentType: false,
+                       processData: false,
+                       success: function(msg){
+                            msg = $.parseJSON(msg);
+                            if (msg.saved == true) {
+                                $('.tagBodyPopup').removeClass('ui-state-error');
+                                $('.phtError').html('');
+
+                                var pid = $('input[name=\"photoID\"]').val();
+                                var tid = $('input[name=\"tid\"]').val();
+
+                                var name = $('#name').val();
+                                var description = $('#description').val();
+                                var link = $('#image_link').val();
+                                var price = $('#price').val();
+                                var image = msg.image;
+
+                                var obj = $('#'+tid+'.imageTagPopup');
+                                var n = obj.find('.imageTagPopupProductTitle a');
+                                var d = obj.find('.imageTagPopupDescription');
+                                n.html(name);
+                                d.html(description);
+                                var i = obj.find('.imageTagPopupProductImage');
+                                if (image !== '')
+                                    i.html('<img src=\"".Yii::app()->baseUrl."/images/products/'+image+'\" style=\"max-width: 100px; height:100px\">');
+                                else
+                                    i.html('');
+                                var p = obj.find('.imageTagPopupBottom');
+                                if (price == '' || price == 0)
+                                    p.html('');
+                                else
+                                    p.html('Estimated price $ <span class=\"imageTagPopupPriceNotLinked\">'+price+'</span>');
+
+                                if (link !== '') {
+                                    n.attr('href', link);
+                                    i.attr('href', link);
+                                } else {
+                                    n.removeAttr('href');
+                                    i.removeAttr('href');
+                                }
+
+                                $('#image').val('');
+                                $('#photoTag').dialog( 'option', 'hide', { effect: 'fold', duration: 500 } );
+                                $('#photoTag').dialog('close');
+                            } else {
+                                $('.phtError').html('');
+                                $.each(msg, function ( i, val ) {
+                                    $('#'+i).addClass( 'ui-state-error');
+                                    $('.phtError').append(val[0]);
+                                });
+                                $('.phtError').show();
+                            }
+                        },
+                        error: function(msg){
+                            alert(msg.responseText);
+                        }
+           });
+        });
+        $(document).on('click', '.buttonTagDeleteIcon', function ( e ) {
+             var tagId = $(this).parent().attr('id');
+             if (confirm('Are you sure want to delete this tag?')) {
+                $.ajax({
+                       type: 'POST',
+                       url: '".Yii::app()->createUrl('phototag/delete')."',
+                       data: {id: tagId},
+                       dataType: 'json',
+                       success: function(msg) {
+                            if (msg) {
+                                var obj = $('.imageTagPopup#'+tagId);
+                                var prevObj = $('.imageTagPopup#'+tagId).prev();
+                                obj.remove();
+                                prevObj.remove();
+                            } else {
+                                alert('error handling here');
+                            }
+                       }
+                });
+             } else {
+                return false;
+             }
+        });
+    ",CClientScript::POS_READY);
+endif;
+?>
+
 <style>
-    img.main {
-        cursor: crosshair;
-    }
+
 </style>
 <div class="list-bot izo-list">
 <h1>View photo</h1><h2><?php echo $model->name; ?></h2>
@@ -13,27 +413,81 @@
 </div>
 <br>
     <script type="text/javascript">(function() {
-            if (window.pluso)if (typeof window.pluso.start == "function") return;
-            if (window.ifpluso==undefined) { window.ifpluso = 1;
-                var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
-                s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
-                s.src = ('https:' == window.location.protocol ? 'https' : 'http')  + '://share.pluso.ru/pluso-like.js';
-                var h=d[g]('body')[0];
-                h.appendChild(s);
-            }})();</script>
+                if (window.pluso)if (typeof window.pluso.start == "function") return;
+                if (window.ifpluso==undefined) { window.ifpluso = 1;
+                    var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+                    s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
+                    s.src = ('https:' == window.location.protocol ? 'https' : 'http')  + '://share.pluso.ru/pluso-like.js';
+                    var h=d[g]('body')[0];
+                    h.appendChild(s);
+                }
+            })();
+    </script>
     <div class="pluso" data-background="#000000" data-options="small,square,line,horizontal,counter,theme=04" data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email,digg,pinme,pinterest,liveinternet,linkedin,memori,webdiscover,moikrug,yandex,print"></div>
-<img class="main" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $model->image; echo '?' . time() ?>"/><br/>
-<?php if (!Yii::app()->user->isGuest) { ?>
-<a class="addBookmarkLink" id="<?php echo $model->id; ?>" onclick="return false;" href="#">Add to ideabook</a>&nbsp;&nbsp;
-<?php  } ?>
-<?php echo $model->date; ?>&nbsp;&nbsp;  
-<?php if (count($tags)>0):  ?>
-Tags:&nbsp;
-<?php
-   echo implode(", ",$tagNameArray);
-    
-?>
-<?php endif; ?>  
+    <div class="images">
+<!--        <img id="mainImage" name="mainImage" class="viewImage" style=";padding:0px 0px;" src="http://st.houzz.com/simgs/40511835025dabed_4-9899/craftsman-kitchen.jpg" alt="Library ladder in Kitchen craftsman kitchen" width="640" height="426" onmouseover="onImageMouseOver(this,event);" onmouseout="onImageMouseOut(this,event);" onmousedown="preventImageDrag(event)"  onclick="">-->
+        <img class="main" height="580px" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $model->image; echo '?' . time() ?>" alt="<?php echo $model->name;?>"  ondragstart="return false" onselectstart="return false"/><br/>
+        <?php if (!empty($photoTags)): ?>
+            <?php foreach ($photoTags as $pt): ?>
+                <div class="img-tags" id="<?php echo $pt->photoID;?>" style="left: <?php echo $pt->coordX . 'px';?>; top: <?php echo $pt->coordY . 'px';?>;"></div>
+                <div id="<?php echo $pt->id;?>" class="imageTagPopup" style="left: <?php echo $pt->coordX . 'px';?>; top: <?php echo $pt->coordY . 'px';?>;">
+                    <div id="imageTagBackground" style="width: 300px;"></div>
+                    <div class="imageTagPopupContainer" style="position:relative;top:0;left:0;opacity:1;">
+                        <?php if (Yii::app()->user->id == $model->member->id): ?>
+                            <div class="imageTagPopupActions">
+                                <a id="<?php echo $pt->id; ?>" class="tagIcon" style="margin-left: 130px;">
+                                    <img class="buttonsCommentAction buttonTagEditIcon" title="Edit">
+                                </a>
+                                <a id="<?php echo $pt->id; ?>" class="tagIcon" >
+                                    <img class="buttonsCommentAction buttonTagDeleteIcon" title="Delete">
+                                </a>
+                            </div>
+                        <?php endif; ?>
+                        <div id="imageTagPopupTitle" style="padding-left: 30px; padding-right: 30px;">
+                            <a class="imageTagPopupProductImage" style="float:left;margin-right:5px; width: 100px;" <?php echo !empty($pt->image_link) ? 'href="'.$pt->image_link.'"': '';?> target="_blank">
+                                <?php if (!empty($pt->image)): ?>
+                                        <img src="<?php echo Yii::app()->baseUrl. '/images/products/'. $pt->image;?>" style="max-width: 100px; height:100px">
+                                <?php endif; ?>
+                            </a>
+                            <div class="imageTagPopupProductTitle"><a <?php echo !empty($pt->image_link) ? 'href="'.$pt->image_link.'"': '';?> target="_blank"><?php echo $pt->name;?></a></div>
+                            <div style="clear:both"></div>
+                        </div>
+                        <div id="imageTagPopupBody">
+                            <div class="imageTagPopupDescription">
+                                <?php echo $pt->description; ?>
+                            </div>
+                            <div class="imageTagPopupBottom">
+                                <?php if ($pt->price > 0): ?>
+                                    Estimated price $<span class="imageTagPopupPriceNotLinked"><?php echo $pt->price;?></span>
+                                <?php endif; ?>
+                                <!--<button
+                                    class="rbBtn primary imageTagPopupButton imageTagPopupButtonNoMargin imageTagPopupInfo"
+                                    type="button" onclick="imageTagsViewScreen.openProduct()">More Info
+                                </button>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php endif;?>
+    </div>
+    <?php if (!Yii::app()->user->isGuest) { ?>
+    <div class="linkBookmark" style="margin-bottom: 10px;">
+        <a class="addBookmarkLink" id="<?php echo $model->id; ?>" onclick="return false;" href="#">
+            <span class="graybuttonIcon uiButtonIconAddToIdeabook"><img height="20" width="20" src="/images/fav.jpg"></span>
+            <span class="addBookmark">Add to Ideabook</span>
+        </a>
+    </div>
+    <?php  } ?>
+    <div class="dateTags">
+        <?php echo $model->date; ?> <br/>
+        <?php if (count($tags)>0):  ?>
+            Tags:&nbsp;
+            <?php
+               echo implode(", ",$tagNameArray);
+            ?>
+        <?php endif; ?>
+    </div>
 <br>
 <?php if (!Yii::app()->user->isGuest) { ?>
     <div class="photo__footer">
@@ -182,8 +636,8 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
 /************конец окна успешного добавления фотографии к книге идей****************/
 
 
-       Yii::app()->clientScript->registerScript('fdgd',"
-       
+       Yii::app()->clientScript->registerScript('comment-tags',"
+
        var newComment ='';  
        $('#addCommentButton').live('click', function(event){   
                     $.ajax({
@@ -344,34 +798,6 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
                         });
 
          });
-
-         $('img.main').on('click', function ( e ) {
-             console.log(e);
-             console.log($(this));
-
-//             alert(e.pageX +', '+ e.pageY);
-             var x = e.pageX - this.offsetLeft;
-             var y = e.pageY - this.offsetTop;
-//             alert(x +', '+ y);
-             var coord = {x: x, y: y};
-
-             var height = this.height;
-             var width = this.width;
-
-             var imgHeight = this.naturalHeight;
-             var imgWidth = this.naturalWidth;
-
-             var dX = imgHeight / height;
-             var dY = imgWidth / width;
-
-             var imgX = Math.round(dX * x);
-             var imgY = Math.round(dY * y);
-             //831.260 383.36
-             console.log(coord);
-             console.log(imgX, imgY);
-             
-         });
-         
 ",CClientScript::POS_READY);
 }
 else echo 'Sign up or login to leave your comment.';

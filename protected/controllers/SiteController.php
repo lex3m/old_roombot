@@ -349,6 +349,7 @@ class SiteController extends Controller
                 $k++;
             }
             $this->setPageTitle(Yii::app()->name . ' - ' .Yii::t('sitePhotos', 'Photo').$model->name.'.' . Yii::t('sitePhotos', 'Tags') . ':' .implode(", ",$tagNameArray));
+            $photoTags = Phototag::model()->findAllByAttributes(array('photoID'=>$photoID));
 
             $this->renderPartial('photospoiler',array(
                 'model'=>$model,
@@ -357,7 +358,8 @@ class SiteController extends Controller
                 'comments'=>$comments,
                 'tagNameArray'=>$tagNameArray,
                 'nextPhoto'=>$nextPhotoID,
-                'prevPhoto'=>$prevPhotoID
+                'prevPhoto'=>$prevPhotoID,
+                'photoTags'=>$photoTags,
             ), false, true);
             Yii::app()->end();
 

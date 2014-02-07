@@ -85,6 +85,7 @@ $(document).on('click', '.lastPhotos__item img, .gallery-nav-right, .gallery-nav
     $("#add_toIdeasBook").dialog("close");
     $('#tmpInfoPopup').dialog('close');
     $('#edit_comment').dialog('close');
+    $('#photoTag').dialog('close');
     $.ajax({
         type: "POST",
         url: yii.urls.ajaxGetPhoto,

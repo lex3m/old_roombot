@@ -227,35 +227,45 @@ class MobilepicturesController extends Controller
 
     public function actionViewinfo($id)
     {
-        $model = Mobilepictures::model()->with('taglinks','member')->findbyPk($id);
-        if ($model !== null) {
-            $comments = Comments::model()->with('member','countlikes')->findAll('photoID=:photoID',array(':photoID'=>$model->id));
-            $member= Member::model()->findbyPK($model->companyID);
-            $z=0;
-            $tags_arr = array();
-            $tagNameArray= array();
-            foreach ($model->taglinks as $link)
-            {
-                $tags_arr[$z] = Mobiletags::model()->findbyPk($link->tagId);
-                $z++;
+
+            $model = Mobilepictures::model()->with('taglinks','member')->findbyPk($id);
+            if ($model !== null) {
+                $comments = Comments::model()->with('member','countlikes')->findAll('photoID=:photoID',array(':photoID'=>$model->id));
+                $member= Member::model()->findbyPK($model->companyID);
+                $z=0;
+                $tags_arr = array();
+                $tagNameArray= array();
+                foreach ($model->taglinks as $link)
+                {
+                    $tags_arr[$z] = Mobiletags::model()->findbyPk($link->tagId);
+                    $z++;
+                }
+                $k=0;
+                foreach($tags_arr as $tag)
+                {
+                    $tagNameArray[$k] = (Yii::app()->language == 'en') ? $tag->name_en : $tag->name;
+                    $k++;
+                }
+                $photoTags = Phototag::model()->findAllByAttributes(array('photoID'=>$id));
+                $this->setPageTitle(Yii::app()->name . ' - ' .Yii::t('sitePhotos', 'Photo').$model->name.'.' . Yii::t('sitePhotos', 'Tags') . ':' .implode(", ",$tagNameArray));
+                $this->render('viewinfo',array(
+                    'model'=>$model,
+                    'tags'=>$tags_arr,
+                    'member'=>$member,
+                    'comments'=>$comments,
+                    'tagNameArray'=>$tagNameArray,
+                    'photoTags'=>$photoTags,
+                ));
+                if (Yii::app()->request->isAjaxRequest) {
+                    $this->renderPartial('viewinfo',array(
+                        'width'=>$_POST['width'],
+                        'height'=>$_POST['height']
+                    ), true, false);
+                }
+            } else {
+                throw new CHttpException(404, 'Page not found');
             }
-            $k=0;
-            foreach($tags_arr as $tag)
-            {
-                $tagNameArray[$k] = (Yii::app()->language == 'en') ? $tag->name_en : $tag->name;
-                $k++;
-            }
-            $this->setPageTitle(Yii::app()->name . ' - ' .Yii::t('sitePhotos', 'Photo').$model->name.'.' . Yii::t('sitePhotos', 'Tags') . ':' .implode(", ",$tagNameArray));
-            $this->render('viewinfo',array(
-                'model'=>$model,
-                'tags'=>$tags_arr,
-                'member'=>$member,
-                'comments'=>$comments,
-                'tagNameArray'=>$tagNameArray,
-            ));
-        } else {
-            throw new CHttpException(404, 'Page not found');
-        }
+
     }
 
     public function actionGetinfo($name,$extension)

@@ -320,7 +320,7 @@ class MemberController extends Controller
                     'criteria'=>$criteria,
 
                     'pagination'=>array(
-                        'pageSize'=>12,
+                        'pageSize'=>20,
                     ),
                 )
         );
