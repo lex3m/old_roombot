@@ -53,6 +53,7 @@ $(document).on('click','#close',function(e){
      $("#add_toIdeasBook").dialog("close");
      $('#tmpInfoPopup').dialog('close');
      $('#edit_comment').dialog('close');
+     $('#photoTag').dialog('close');
      $('.phtError').hide();
 });
 

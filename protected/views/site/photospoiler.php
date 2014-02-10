@@ -65,14 +65,14 @@ if (Yii::app()->user->id == $model->member->id):
     $this->endWidget('zii.widgets.jui.CJuiDialog');
 
     Yii::app()->clientScript->registerScript('add-photo-tags', "
-        $('img.image__full').css('cursor', 'crosshair');
+        $('img.image_full').css('cursor', 'crosshair');
 
         $('.tagBodyPopup').on('keypress', function ( e ) {
             $(this).removeClass( 'ui-state-error');
         });
 
-        $('img.image__full').on('click', function ( e ) {
-
+        $('img.image_full').on('click', function ( e ) {
+            e.stopPropagation();
             var that = $(this).parent();
             x = e.clientX;
             y = e.clientY;
@@ -338,7 +338,7 @@ endif;
                 </a>
             <?php endif; ?>
             <div class="usfot">
-                <img class="image__full" height="580" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $model->image; echo '?' . time() ?>" ondragstart="return false" onselectstart="return false" />
+                <img class="image_full" height="580" src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $model->image; echo '?' . time() ?>" ondragstart="return false" onselectstart="return false" />
                 <?php if (!empty($photoTags)): ?>
                     <?php foreach ($photoTags as $pt): ?>
                         <div class="img-tags" id="<?php echo $pt->photoID;?>" style="left: <?php echo $pt->coordX . 'px';?>; top: <?php echo $pt->coordY . 'px';?>;"></div>
@@ -642,7 +642,7 @@ translate = {
 Yii::app()->clientScript->registerScript('photo-tags', "
         $('.img-tags').addClass('animated swing');
 
-        $('.image__full').on('mouseenter', function ( e )  {
+        $('.image_full').on('mouseenter', function ( e )  {
             $('.imageTagPopup').hide();
             $('.img-tags').css('z-index', 5);
         });
