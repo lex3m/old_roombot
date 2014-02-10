@@ -1,6 +1,6 @@
 <?php
 Yii::app()->clientScript->registerScript('helper-messages', '
-          yii = {
+          yiim = {
               messages: {
                 submit: "'.Yii::t('sitePhotos', 'Submit').'",
                 eprice: "'.Yii::t('sitePhotos', 'Estimated price').'",
@@ -87,9 +87,9 @@ if (Yii::app()->user->id == $model->member->id):
             $('input[name=\"tid\"]').val('');
             $('#image').val('');
             $('.submitAddTag').remove();
-            var button = '<input style=\"cursor: pointer;\" type=\"button\" class=\"rbBtn submitAddTag\" value=\"'+yii.messages.submit+'\" id=\"addTagButtonPopup\">';
+            var button = '<input style=\"cursor: pointer;\" type=\"button\" class=\"rbBtn submitAddTag\" value=\"'+yiim.messages.submit+'\" id=\"addTagButtonPopup\">';
             $('.confirmDialog').html(button);
-            $('#photoTag').dialog('option', 'title', yii.messages.aptag);
+            $('#photoTag').dialog('option', 'title', yiim.messages.aptag);
 
             $('#photoTag').dialog('open');
 
@@ -143,7 +143,7 @@ if (Yii::app()->user->id == $model->member->id):
                                 }
                                 var price = $('#price').val();
                                 if (price != '') {
-                                   price = 'yii.messages.eprice $ <span class=\"imageTagPopupPriceNotLinked\">'+price+'</span>';
+                                   price = 'yiim.messages.eprice $ <span class=\"imageTagPopupPriceNotLinked\">'+price+'</span>';
                                 }
                                 var image = '';
                                 if (msg.image !== null) {
@@ -214,12 +214,12 @@ if (Yii::app()->user->id == $model->member->id):
                                 $('.imageTagPopup').hide();
                                 $('input[name=\"tid\"]').val(tagId);
                                 $('.submitAddTag').remove();
-                                var button = '<input style=\"cursor: pointer;\" type=\"button\" class=\"rbBtn submitAddTag\" value=\"'+yii.messages.submit+'\" id=\"editTagButtonPopup\">';
+                                var button = '<input style=\"cursor: pointer;\" type=\"button\" class=\"rbBtn submitAddTag\" value=\"'+yiim.messages.submit+'\" id=\"editTagButtonPopup\">';
                                 $('.confirmDialog').html(button);
                                 $('.phtError').hide();
                                 $('.tagBodyPopup').removeClass( 'ui-state-error' );
                                 $('#tagFormPopup').show();
-                                $('#photoTag').dialog('option', 'title', yii.messages.eptag);
+                                $('#photoTag').dialog('option', 'title', yiim.messages.eptag);
                                 $('#photoTag').dialog('open');
                             } else {
                                 alert('error handling here');
@@ -267,7 +267,7 @@ if (Yii::app()->user->id == $model->member->id):
                                 if (price == '' || price == 0)
                                     p.html('');
                                 else
-                                    p.html('yii.messages.eprice $ <span class=\"imageTagPopupPriceNotLinked\">'+price+'</span>');
+                                    p.html('yiim.messages.eprice $ <span class=\"imageTagPopupPriceNotLinked\">'+price+'</span>');
 
                                 if (link !== '') {
                                     n.attr('href', link);
@@ -296,7 +296,7 @@ if (Yii::app()->user->id == $model->member->id):
         });
        $(document).on('click', '.buttonTagDeleteIcon', function ( e ) {
              var tagId = $(this).parent().attr('id');
-             if (confirm(yii.messages.confirm)) {
+             if (confirm(yiim.messages.confirm)) {
                 $.ajax({
                        type: 'POST',
                        url: '".Yii::app()->createUrl('phototag/delete')."',

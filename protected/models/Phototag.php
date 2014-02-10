@@ -82,11 +82,11 @@ class Phototag extends CActiveRecord
 			'photoID' => 'Photo',
             'coordX'  => 'X coordinate',
             'coordY'  => 'Y coordinate',
-            'image_link'  => 'Link to image',
-            'image'  => 'Image',
-            'name'  => 'Photo name',
-            'description' => 'Description',
-            'price'  => 'Price',
+            'image_link'  => Yii::t('sitePhotos', 'Link to product'),
+            'image'  => Yii::t('sitePhotos', 'Image'),
+            'name'  => Yii::t('sitePhotos', 'Tag name'),
+            'description' => Yii::t('sitePhotos', 'Description'),
+            'price'  => Yii::t('sitePhotos', 'Estimated price'),
 		);
 	}
 

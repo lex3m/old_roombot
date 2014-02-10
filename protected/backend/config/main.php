@@ -50,6 +50,13 @@ return array(
             'allowAutoLogin'=>true,
             'class' => 'WebUser',
         ),
+
+        'clientScript' => array(
+            'scriptMap' => array(
+                'jquery.js' => false,
+            )
+        ),
+
         'chartjs' => array('class' => 'chartjs.components.ChartJs'),
         'authManager' => array(
             // Будем использовать свой менеджер авторизации

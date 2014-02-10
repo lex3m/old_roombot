@@ -22,7 +22,7 @@ Yii::app()->clientScript->registerScript('pluso', "
                                     })();
                                 ", CClientScript::POS_END);
 
-Yii::app()->clientScript->registerScript('helpers', '
+Yii::app()->clientScript->registerScript('helpersss', '
           yii = {
               urls: {
                   likeComment: '.CJSON::encode(Yii::app()->createUrl('commentlike/change')).',

@@ -105,7 +105,7 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
                         
                           $('#add_tag').dialog('close'); 
                           json = jQuery.parseJSON(msg);
-                          $('div#tags'+json.pictureid).append('<div id=\'taglinkk'+json.taglinkid+'\' style=\'margin-bottom:10px;\'>'+json.tagname+'<a id=\'delete_tag\' target=\'20\' href=\'/mobilepictures/delete\'><img id=\''+json.taglinkid+'\' style=\'float:right\' width=\'12px\' height=\'12px\' src=\'http://potolokportal.ru/images/site/delete_icon.png\'></a></div>'); 
+                          $('div#tags'+json.pictureid).append('<div id=\'taglinkk'+json.taglinkid+'\' style=\'margin-bottom:10px;\'>'+json.tagname+'<a id=\'delete_tag\' target=\'20\' href=\'/mobilepictures/delete\'><img id=\''+json.taglinkid+'\' style=\'float:right\' width=\'12px\' height=\'12px\' src=\'/images/site/delete_icon.png\'></a></div>');
                        }
                      });
                 return false;

@@ -45,6 +45,11 @@ return array(
     'Link to product' => 'Ссылка на продукт',
     'Estimated price' => 'Примерная стоимость',
     'Edit photo tag' => 'Редактировать ярлык к фото',
-    'Are you sure want to delete this tag?' => 'Вы уверены, что хотите удалить этот ярлык?'
+    'Are you sure want to delete this tag?' => 'Вы уверены, что хотите удалить этот ярлык?',
+    'Link to product' => 'Сслыка на продукт',
+    'Image' => 'Изображение',
+    'Tag name' => 'Имя ярлыка',
+    'Description' => 'Описание',
+    'Estimated price' => 'Примерная стоимость'
 
 );

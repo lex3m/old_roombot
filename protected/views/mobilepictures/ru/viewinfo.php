@@ -126,7 +126,7 @@ if (Yii::app()->user->id == $model->member->id):
             $('.submitAddTag').remove();
             var button = '<input style=\"cursor: pointer;\" type=\"button\" class=\"rbBtn submitAddTag\" value=\"Отправить\" id=\"addTagButtonPopup\">';
             $('.confirmDialog').html(button);
-            $('#photoTag').dialog('option', 'title', 'Add photo tag');
+            $('#photoTag').dialog('option', 'title', 'Добавить ярлык на фото');
 
             $('#photoTag').dialog('open');
 
@@ -256,7 +256,7 @@ if (Yii::app()->user->id == $model->member->id):
                                 $('.phtError').hide();
                                 $('.tagBodyPopup').removeClass( 'ui-state-error' );
                                 $('#tagFormPopup').show();
-                                $('#photoTag').dialog('option', 'title', 'Edit photo tag');
+                                $('#photoTag').dialog('option', 'title', 'Редактировать ярлык');
                                 $('#photoTag').dialog('open');
                             } else {
                                 alert('error handling here');
