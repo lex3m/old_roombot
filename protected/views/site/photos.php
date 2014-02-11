@@ -42,10 +42,6 @@ Yii::app()->clientScript->registerScript('helpersss', '
       ');
 
 $galery = <<<EOL
-function showModule(){
-//    $("#module").show("slow");
-}
-
 $(document).on('keyup', function(e) {
     var code = (e.keyCode ? e.keyCode : e.which);
     if (code === 27) {

@@ -523,7 +523,7 @@ endif;
                             <textarea onkeydown="if(event.keyCode==9) return false;" onkeyup="if(event.keyCode==37 || event.keyCode==39) event.stopPropagation(); return false;" class="commentBody" name="comment" maxlength="10000" cols="50" rows="3" placeholder="<?php echo Yii::t('sitePhotos', 'Leave your comment');?>" style="resize: none;  overflow: hidden; word-wrap: break-word;"></textarea>
                             <div style="clear:both"></div>
                             <div class="addCommentExtra" style="display: block;">
-                                <input id="addCommentButton" type="button" class="rbBtn submitComment" value="<?php echo Yii::t('sitePhotos','Submit');?>">
+                                <input id="addCommentButton" type="button" class="rbBtn submitComment" value="<?php echo Yii::t('sitePhotos','Submit');?>"> (Ctrl+Enter)
                             </div>
                     </form>
                 </div>
@@ -604,6 +604,7 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
         'closeOnEscape'=> 'true',
         'width'=>'400',
         'show'=>'show',
+        'resizable'=>false,
         'title'=>Yii::t('sitePhotos', 'Edit comment'),
     ),
 ));
@@ -611,7 +612,7 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
 <form id="commentFormPopup" class="commentFormPopup" enctype="multipart/form-data" method="post" action="">
     <input type="hidden" name="photoID" value="">
     <div class="commentBodyContainerPopup">
-        <textarea style="width:100%;height:100px;" class="commentBodyPopup" name="comment" maxlength="10000" style="resize: none; height: 32px; overflow: hidden; word-wrap: break-word;"></textarea>
+        <textarea style="width:100%;height:100px; resize: none;  overflow: hidden; word-wrap: break-word;" onkeyup="if(event.keyCode==37 || event.keyCode==39) event.stopPropagation(); return false;" onkeydown=" if (event.ctrlKey && event.keyCode == 13) { $('#addCommentButtonPopup').trigger('click');}" class="commentBodyPopup" name="comment" maxlength="10000" style="resize: none; height: 32px; overflow: hidden; word-wrap: break-word;"></textarea>
         <div style="clear:both"></div>
         <div style="display: block;">
             <input id="addCommentButtonPopup" type="button" class="rbBtn submitAddComment" value="Ок">
