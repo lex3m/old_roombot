@@ -254,9 +254,8 @@ Yii::app()->clientScript->registerScript('galery', $galery, CClientScript::POS_E
                 'listViewId' => 'yw0',
                 'header' => '',
                 'loaderText'=>'Загрузка...',
-                'options' => array('history' => false, 'triggerPageTreshold' => 2, 'trigger'=>'Загрузить еще'),
+                'options' => array('history' => false, 'triggerPageTreshold' => 65536, 'trigger'=>'Загрузить еще'),
             )
-
         ));
         ?>
        <ul>
