@@ -18,15 +18,16 @@
     <?php foreach ($ideasPhotos as $ideasPhoto):?>
             <div id="<?php echo $ideasPhoto->id; ?>" class="ideaPhotosInBookBlock" style="padding: 0px 20px 30px 20px; float: left; overflow: hidden;
                 display: block;">
-                <a href="<?php echo Yii::app()->createUrl('mobilepictures/viewinfo',array('id'=>$ideasPhoto->photozz->id)); ?>" class="ideaPhotosInBookLink">
+                <a data-lightbox="ideabook" href="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $ideasPhoto->photozz->image;?>" class="ideaPhotosInBookLink">
                     <img style="width: 190px; height:190px; " src="<?php echo Yii::app()->baseUrl; ?>/images/mobile/images/<?php echo $ideasPhoto->photozz->image;?>"/>
                 </a>
                 <div class="ideasPhotosPanel">
                     <div class="ideasPhotosActions">
+                        <a href="<?php echo Yii::app()->createUrl('mobilepictures/viewinfo',array('id'=>$ideasPhoto->photozz->id)); ?>">Просмотр</a>
                         <?php if($ideasBook->member->id == Yii::app()->user->id): ?>
                             <a id="<?php echo $ideasPhoto->id; ?>" class="ideasPhotosIcon  ideasPhotosDeleteIcon" title="Удалить">
                                         <img class="buttonsIdeasPhotosAction buttonIdeasPhotosDeleteIcon" src="">
-                                        </a>
+                            </a>
                         <?php endif; ?>
                     </div>
                     <div class="ideasPhotosDesc">
