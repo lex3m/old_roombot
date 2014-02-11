@@ -47,7 +47,6 @@ function showModule(){
 }
 
 $(document).on('keyup', function(e) {
-console.log(e)
     var code = (e.keyCode ? e.keyCode : e.which);
     if (code === 27) {
         $('#close').trigger('click');
