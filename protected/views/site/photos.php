@@ -244,10 +244,19 @@ Yii::app()->clientScript->registerScript('galery', $galery, CClientScript::POS_E
     <div id="lastPhotosContainer">
         <ul class="lastPhotosList rb-list-nostyle rb-clearfix setka">
         <?php $this->widget('zii.widgets.CListView', array(
-        'dataProvider'=>$photos,
-        'itemView'=>'_photos',
-        'ajaxUpdate'=>false,
-        'summaryText' => Yii::t('sitePhotos', 'Photos {start}-{end} from {count}.'),
+            'dataProvider'=>$photos,
+            'itemView'=>'_photos',
+            'ajaxUpdate'=>false,
+            'summaryText' => Yii::t('sitePhotos', 'Photos {start}-{end} from {count}.'),
+            'pager' => array(
+                'class' => 'ext.infiniteScroll.IasPager',
+                'rowSelector'=>'.lastPhotos__item',
+                'listViewId' => 'yw0',
+                'header' => '',
+                'loaderText'=>'Загрузка...',
+                'options' => array('history' => false, 'triggerPageTreshold' => 2, 'trigger'=>'Загрузить еще'),
+            )
+
         ));
         ?>
        <ul>
