@@ -20,7 +20,7 @@
                           <a  href="<?php echo Yii::app()->createUrl('member/dashboard',array('id'=>$comment->member->urlID)); ?>" class="userAvatar">
                               <img src="<?php echo Yii::app()->baseUrl; ?>/images/members/avatars/<?php echo $data->followed->memberinfo->avatar; ?>"></a>
                       </div>
-                      <a class="rb-username"  href="<?php echo Yii::app()->createUrl('member/dashboard',array('id'=>$comment->member->urlID)); ?>" data-type="profile"><?php echo $comment->member->login; ?></a> commented <?php echo CHtml::link('photo', array('/mobilepictures/viewinfo/'.$comment->photoID), array('target'=>'blank')) ;?>
+                      <a class="rb-username"  href="<?php echo Yii::app()->createUrl('member/dashboard',array('id'=>$comment->member->urlID)); ?>" data-type="profile"><?php echo $comment->member->login; ?></a> commented <?php echo CHtml::link('photo', array('mobilepictures/viewinfo', 'id'=>$comment->photoID), array('target'=>'blank')) ;?>
                       <div class="commentBodyText"><?php echo $comment->content; ?></div>
                       <div class="commentInfo tiny-text">
                         <span>
@@ -70,7 +70,7 @@
                             <a  href="<?php echo Yii::app()->createUrl('member/dashboard',array('id'=>$comment->member->urlID)); ?>" class="userAvatar">
                                 <img src="<?php echo Yii::app()->baseUrl; ?>/images/members/avatars/<?php echo $data->following->memberinfo->avatar; ?>"></a>
                         </div>
-                        <a class="rb-username"  href="<?php echo Yii::app()->createUrl('member/dashboard',array('id'=>$comment->member->urlID)); ?>" data-type="profile"><?php echo $comment->member->login; ?></a> commented <?php echo CHtml::link('photo', array('/mobilepictures/viewinfo/'.$comment->photoID), array('target'=>'blank')) ;?>
+                        <a class="rb-username"  href="<?php echo Yii::app()->createUrl('member/dashboard',array('id'=>$comment->member->urlID)); ?>" data-type="profile"><?php echo $comment->member->login; ?></a> commented <?php echo CHtml::link('photo', array('mobilepictures/viewinfo', 'id'=>$comment->photoID), array('target'=>'blank')) ;?>
                         <div class="commentBodyText"><?php echo $comment->content; ?></div>
                         <div class="commentInfo tiny-text">
                             <span>
