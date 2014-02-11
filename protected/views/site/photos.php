@@ -46,6 +46,19 @@ function showModule(){
 //    $("#module").show("slow");
 }
 
+$(document).on('keyup', function(e) {
+console.log(e)
+    var code = (e.keyCode ? e.keyCode : e.which);
+    if (code === 27) {
+        $('#close').trigger('click');
+    }
+    if (code === 37) {
+        $('.gallery-nav-left').trigger('click');
+    }
+    if (code === 39) {
+        $('.gallery-nav-right').trigger('click');
+    }
+});
 
 $(document).on('click','#close',function(e){
 //     $('body').css('overflow', '');
