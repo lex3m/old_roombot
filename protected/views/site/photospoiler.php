@@ -520,7 +520,7 @@ endif;
                     <form id="commentForm" class="commentForm" method="post" action="">
                         <input type="hidden" name="photoID" value="<?php echo $model->id; ?>">
                         <div class="commentBodyContainer">
-                            <textarea onkeydown="if(event.keyCode==9) return false;" class="commentBody" name="comment" maxlength="10000" cols="50" rows="3" placeholder="<?php echo Yii::t('sitePhotos', 'Leave your comment');?>" style="resize: none;  overflow: hidden; word-wrap: break-word;"></textarea>
+                            <textarea onkeydown="if(event.keyCode==9) return false;" onkeyup="if(event.keyCode==37 || event.keyCode==39) event.stopPropagation(); return false;" class="commentBody" name="comment" maxlength="10000" cols="50" rows="3" placeholder="<?php echo Yii::t('sitePhotos', 'Leave your comment');?>" style="resize: none;  overflow: hidden; word-wrap: break-word;"></textarea>
                             <div style="clear:both"></div>
                             <div class="addCommentExtra" style="display: block;">
                                 <input id="addCommentButton" type="button" class="rbBtn submitComment" value="<?php echo Yii::t('sitePhotos','Submit');?>">
