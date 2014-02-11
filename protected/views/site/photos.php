@@ -253,8 +253,8 @@ Yii::app()->clientScript->registerScript('galery', $galery, CClientScript::POS_E
                 'rowSelector'=>'.lastPhotos__item',
                 'listViewId' => 'yw0',
                 'header' => '',
-                'loaderText'=>'Загрузка...',
-                'options' => array('history' => false, 'triggerPageTreshold' => 65536, 'trigger'=>'Загрузить еще'),
+                'loaderText'=> Yii::t('sitePhotos', 'Loading...'),
+                'options' => array('history' => false, 'triggerPageTreshold' => 65536, 'trigger'=>  Yii::t('sitePhotos', 'Load more')),
             )
         ));
         ?>

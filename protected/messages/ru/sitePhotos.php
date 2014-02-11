@@ -50,6 +50,8 @@ return array(
     'Image' => 'Изображение',
     'Tag name' => 'Имя ярлыка',
     'Description' => 'Описание',
-    'Estimated price' => 'Примерная стоимость'
+    'Estimated price' => 'Примерная стоимость',
+    'Loading...' => 'Загрузка...',
+    'Load more'=>'Загрузить еще'
 
 );
