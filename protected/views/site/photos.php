@@ -212,6 +212,12 @@ $(document).on('click', '#edit_comment #addCommentButtonPopup', function(event){
                    type: 'POST',
                    url: yii.urls.commentsedit,
                    data: {id: idComment, commentContent:contentComment},
+                   beforeSend: function (){
+                        $('.spoiler-content-2').addClass('loading');
+                   },
+                   complete: function() {
+                        $('.spoiler-content-2').removeClass('loading');
+                   },
                    success: function(msg){
                         var data = jQuery.parseJSON(msg);
                         $('.oneComment#'+data.id+' p').empty().append(data.comment);

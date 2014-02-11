@@ -749,6 +749,14 @@ $('#tmpInfoPopupBtn').on('click',function(event){
 });
 
 var newComment ='';
+
+$('.commentBody').on('keydown', function (e) {
+  if (e.ctrlKey && e.keyCode == 13) {
+    // Ctrl-Enter pressed
+    $('#addCommentButton').trigger('click');
+  }
+});
+
 $('#addCommentButton').on('click', function(event){
     if ($('.commentBody').val() == '') {
         $('.commentError').html(translate.message.leaveComment);
@@ -758,6 +766,12 @@ $('#addCommentButton').on('click', function(event){
                    type: 'POST',
                    url: '".Yii::app()->createUrl('comments/add')."',
                    data: $('#commentForm').serialize(),
+                   beforeSend: function (){
+                        $('.spoiler-content-2').addClass('loading');
+                   },
+                   complete: function() {
+                        $('.spoiler-content-2').removeClass('loading');
+                   },
                    success: function(msg){
                    var data = jQuery.parseJSON(msg);
 
