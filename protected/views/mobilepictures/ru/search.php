@@ -89,8 +89,8 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
 
 echo CHtml::textField('Text', '',
  array('id'=>'name_picture_textField', 
-       'width'=>50, 
-       'maxlength'=>50)); 
+       'width'=>100,
+       'maxlength'=>100));
 echo '<br><br>';
 echo CHtml::button('Да', array('id'=>'confirm_name_picture','name'));    
 $this->endWidget('zii.widgets.jui.CJuiDialog');

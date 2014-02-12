@@ -36,7 +36,7 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->setPageTitle(Yii::app()->name . ' - '. Yii::t('siteIndex', 'FREE add a photo of the interior in the mobile app'));
+        $this->setPageTitle(Yii::app()->name . ' - '. Yii::t('siteIndex', 'FREE add a photo of the interior in the mobile app'));
 		$this->render('index', 'password');  
 	}
 	
