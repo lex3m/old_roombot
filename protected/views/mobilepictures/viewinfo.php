@@ -380,7 +380,7 @@ if (Yii::app()->user->id == $model->member->id):
 endif;
 ?>
 <div class="list-bot izo-list">
-<h1>View photo</h1><h2><?php echo $model->name; ?></h2>
+<h1>View photo</h1><h2><?php echo CHtml::link($model->name, CHtml::normalizeUrl('http://'.$model->name), array('target'=>'_blank')); ?></h2>
 <span>Uploaded by:&nbsp;<?php echo CHtml::link($model->member->login,array('member/dashboard','id'=>$model->member->urlID));  ?></span><br/>
 <?php //echo CHtml::link('Назад к списку',array('member/dashboard','id'=>$member->urlID));?>
 <?php // echo $model->name; ?><!--<br>-->
