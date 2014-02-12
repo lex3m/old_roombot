@@ -62,7 +62,7 @@
                      ?>
                  </div>
                  <div class="header__applink">
-                     <a class="" target="_blank" href="https://play.google.com/store/apps/details?id=com.platon.roombot&hl=ru">
+                     <a class="" target="_blank" href="https://play.google.com/store/apps/details?id=com.astam.roombot">
                          <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/app.png"  width="40" height="40" alt="Google play" title="Google play" />
                     </a>
                  </div>

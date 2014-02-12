@@ -3,8 +3,9 @@
         width: 696px;
         padding: 10px 0 0 135px;
     }
-    .alert, .alert h4 {
+    .alert h4 {
         color: #c09853;
+        font-weight: bold;
     }
     .alert {
         padding: 8px 35px 8px 14px;
@@ -15,6 +16,7 @@
         -webkit-border-radius: 4px;
         -moz-border-radius: 4px;
         border-radius: 4px;
+        color: #c09853;
     }
     .alert-block>p, .alert-block>ul {
         margin-bottom: 0;
