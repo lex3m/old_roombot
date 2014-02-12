@@ -28,7 +28,8 @@
         <h4 class="alert-heading">Внимание!</h4>
         <p>
             Уважаемые пользователи Румбот-приложения, Play маркет по ошибке заблокировал наше приложение.
-            Мы его уже восстановили, но для получения обновлений просим его переустановить по ссылке <a href="https://play.google.com/store/apps/details?id=com.astam.roombot" target="_blank">https://play.google.com/store/apps/details?id=com.astam.roombot</a> <br/>
+            Мы его уже восстановили, но для получения обновлений просим его переустановить по ссылке <br/>
+            <a href="https://play.google.com/store/apps/details?id=com.astam.roombot" target="_blank">https://play.google.com/store/apps/details?id=com.astam.roombot</a> <br/>
             Спасибо, друзья, что Вы с нами!
         </p>
     </div>

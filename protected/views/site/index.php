@@ -28,7 +28,8 @@
         <h4 class="alert-heading">Attention!</h4>
         <p>
             Dear Roombot application users! Play market has blocked falsely our application.
-            We have already restored it, but for opportunity to have new updates please reinstall it by link <a href="https://play.google.com/store/apps/details?id=com.astam.roombot" target="_blank">https://play.google.com/store/apps/details?id=com.astam.roombot</a> <br/>
+            We have already restored it, but for opportunity to have new updates please reinstall it by link <br/>
+            <a href="https://play.google.com/store/apps/details?id=com.astam.roombot" target="_blank">https://play.google.com/store/apps/details?id=com.astam.roombot</a> <br/>
             Thank you for your appreciation, friends!
         </p>
     </div>
