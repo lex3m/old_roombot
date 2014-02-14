@@ -17,7 +17,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         array(
             'name' => 'Страна',
             'type' => 'raw',
-            'value' => 'CHtml::encode($data->date)',
+            'value' => 'CHtml::encode($data->country)',
         ),
     ),
 ));
