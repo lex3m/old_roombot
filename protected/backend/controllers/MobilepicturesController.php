@@ -354,7 +354,12 @@ class MobilepicturesController extends Controller
          $criteria->select = "id, moderation, name, image, m.email as memberEmail, date";
          $criteria->join = 'JOIN  kj28_members m ON  (m.id = t.companyID)';
          $criteria->order = 't.id DESC';
-         $dataProvider = new CActiveDataProvider(Mobilepictures::model()->with('taglinks'),  
+
+        if (isset($_GET['active']) && $_GET['active'] == 'yes')
+            $criteria->condition = 'moderation = 1';
+        else
+            $criteria->condition = 'moderation = 0';
+            $dataProvider = new CActiveDataProvider(Mobilepictures::model()->with('taglinks'),
                     array(
                         'criteria'=>$criteria,
                         
@@ -363,6 +368,7 @@ class MobilepicturesController extends Controller
                         ),
                     )
           );
+
         $this->render('index',array(
             'dataProvider'=>$dataProvider,
         ));

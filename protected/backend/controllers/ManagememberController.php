@@ -156,13 +156,13 @@ class ManagememberController extends Controller {
         $item = 0;
     }
 
-    public function actionGetlastmonthusercount($startdate, $enddate, $lastdays) {
+    public function actionGetlastmonthusercount($startdate, $enddate, $lastdays, $param) {
 
-        $arrayStartDate= explode(".", $startdate, 2);
+        $arrayStartDate= explode(".", $startdate, 3);
         $dayStartDate = $arrayStartDate[0];
         $monthStartDate = $arrayStartDate[1];
 
-        $arrayEndDate= explode(".", $enddate, 2);
+        $arrayEndDate= explode(".", $enddate, 3);
         $dayEndDate = $arrayEndDate[0];
         $monthEndDate = $arrayEndDate[1];
 
@@ -185,26 +185,40 @@ class ManagememberController extends Controller {
             $dates[] = date($format, $current);
             $current = strtotime($step, $current);
         }
-
         $criteria = new CDbCriteria();
-        $criteria->select = 'count(*) AS cnt, date';
-        $criteria->addInCondition('date',$dates);
+        $criteria->addInCondition('date', $dates);
         $criteria->group = 'date';
-        $countUsersByDateArray = Member::model()->findAll($criteria);
-        $i=0;
-        $countUsersByDateForJsonArray=array();
 
+        switch($param) {
+            case 'views' :
+                $criteria->select = 'views AS cnt, date';
+                $countUsersByDateArray = SiteStatistic::model()->findAll($criteria);
+            break;
+            case 'hosts' :
+                $criteria->select = 'hosts as cnt, date';
+                $countUsersByDateArray = SiteStatistic::model()->findAll($criteria);
+                break;
+            case 'register' :
+                $criteria->select = 'count(*) AS cnt, date';
+                $countUsersByDateArray = Member::model()->findAll($criteria);
+            break;
+            default:
+                $criteria->select = 'count(*) AS cnt, date';
+                $countUsersByDateArray = Member::model()->findAll($criteria);
+        }
+
+        $i=0; //iterator
+        $countUsersByDateForJsonArray=array();
         foreach ($countUsersByDateArray as $countUsersByDate)
         {
             $date = explode('-', $countUsersByDate->date);
-            $date = $date[2].'.'.$date[1];
+            $date = $date[2].'.'.$date[1].'.'.$date[0];
             $countUsersByDateForJsonArray[$date]=$countUsersByDate->cnt;
             $i++;
         }
         $days = array_flip($days);
         array_walk($days, array($this, 'resetArray'));
         $result = array_merge($days, $countUsersByDateForJsonArray);
-
         $json_array = json_encode(array_values($result));
 
         echo $json_array;

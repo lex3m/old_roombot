@@ -27,6 +27,37 @@ class Controller extends CController
             Yii::app()->language = Yii::app()->request->cookies['language']->value;
     }
 
+    protected function beforeRender()
+    {
+        $userAgent =  (!empty(Yii::app()->request->userAgent)) ? Yii::app()->request->userAgent : 'undefined';
+        $userIP =  Yii::app()->request->userHostAddress;
+        $identity = md5($userAgent.$userIP);
+
+        $userStat = UserStat::model()->find('ip = :ip AND identity = :identity', array(':ip'=>$userIP, ':identity'=>$identity));
+        $siteStat = SiteStatistic::model()->find('date = :date', array(':date'=>date("Y-m-d")));
+        $model = new SiteStatistic();
+
+        if ($userStat !== null) {
+            if ($siteStat !== null)
+                $siteStat->saveCounters(array("views"=>1));
+            else
+                $model->save();
+        } else {
+            $newUserStat = new UserStat('add');
+            $newUserStat->ip = $userIP;
+            $newUserStat->identity = $identity;
+            if ($newUserStat->save()) {
+                if ($siteStat !== null)
+                    $siteStat->saveCounters(array("hosts"=>1, "views"=>1));
+                else
+                    $model->save();
+            }
+        }
+
+        return true;
+    }
+
+
     /**
      * Create a url with chose language
      * @param string $lang

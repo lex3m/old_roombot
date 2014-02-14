@@ -1,6 +1,15 @@
 <h1>Модерация фотографий</h1>
 
 <?php $this->widget('AdminHeadMenu', array()); ?>
+
+<?php
+$this->widget('zii.widgets.CMenu',array(
+    'items'=>array(
+        array('label'=>'Прошли модерацию', 'url'=>array('mobilepictures/index','active'=>"yes")),
+        array('label'=>'Не прошли модерацию', 'url'=>array('mobilepictures/index','active'=>"no")),
+    )));
+?>
+
 <?php
  $this->widget('zii.widgets.CListView', array('viewData' => array(),'dataProvider'=>$dataProvider,'itemView'=>'_photos','ajaxUpdate'=>false)); 
 ?>

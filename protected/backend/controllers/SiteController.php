@@ -58,7 +58,9 @@ class SiteController extends Controller
             'countAllPhotos'=>$countAllPhotos,
             'countModeratePhotos'=>$countModeratePhotos,
             'countAllUsers'=>$countAllUsers,
-            'countActiveUsers'=>$countActiveUsers));   
+            'countActiveUsers'=>$countActiveUsers,
+            'param' => isset($_GET['param']) ? $_GET['param'] : '')
+        );
     }
 
 	/**
