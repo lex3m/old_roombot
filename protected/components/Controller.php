@@ -36,7 +36,6 @@ class Controller extends CController
         $userStat = UserStat::model()->find('ip = :ip AND identity = :identity', array(':ip'=>$userIP, ':identity'=>$identity));
         $siteStat = SiteStatistic::model()->find('date = :date', array(':date'=>date("Y-m-d")));
         $model = new SiteStatistic();
-
         if ($userStat !== null) {
             if ($siteStat !== null)
                 $siteStat->saveCounters(array("views"=>1));

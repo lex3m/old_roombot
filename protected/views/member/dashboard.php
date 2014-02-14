@@ -1,4 +1,3 @@
-
 <div class="list-bot">
 <?php if ($member->id==Yii::app()->user->id): ?><h1 style = "margin-bottom: 0;">Dashboard</h1><?php endif; ?>
 <br>

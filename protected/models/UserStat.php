@@ -11,6 +11,7 @@
  */
 class UserStat extends CActiveRecord
 {
+    public $country;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -81,6 +82,19 @@ class UserStat extends CActiveRecord
             return true;
         } else
             return false;
+    }
+
+    public function afterSave()
+    {
+        if (parent::afterSave()) {
+            if ($this->isNewRecord) {
+                $userInfo = json_decode(file_get_contents('http://ip-api.com/json/'.$this->ip));
+                $this->country = $userInfo->country;
+            }
+            return true;
+        } else
+            return false;
+
     }
 
 

@@ -142,3 +142,7 @@ $cs->registerScriptFile('/js/chartsjs/'.'Chart.js');
                 datasetFill : true,
         });
   </script>
+
+<?php
+$this->widget('UserStatis');
+?>
