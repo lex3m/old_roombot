@@ -193,7 +193,7 @@ class SiteController extends Controller
         if (isset($_GET['id']) && !empty($_GET['id']))
             $tagID = intval($_GET['id']); else $tagID='';
         $criteria = new CDbCriteria();
-        $criteria->order ='date DESC';
+        $criteria->order ='id DESC';
         $criteria->alias = 'p';
         $criteria->select = 'p.id, p.image, p.name, m.login as memberLogin, m.urlID as memberUrlID';
 
@@ -214,7 +214,7 @@ class SiteController extends Controller
             $criteria->params = array(':tagID'=>$tagID);
         }
 
-        $criteria->order = 'p.id DESC';
+        $criteria->order = 'p.date DESC';
         $photos = new CActiveDataProvider('Mobilepictures',
             array(
                 'criteria'=>$criteria,

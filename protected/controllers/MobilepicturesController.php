@@ -294,6 +294,7 @@ class MobilepicturesController extends Controller
             $criteria = new CDbCriteria();    
             $criteria->condition = 'moderation=:moderation';
             $criteria->params = array(':moderation'=>1);
+            $criteria->order = 'date DESC';
             $images = Mobilepictures::model()->findAll($criteria);
             foreach ($images as $image)
             {
@@ -315,6 +316,7 @@ class MobilepicturesController extends Controller
                 $criteria = new CDbCriteria();
                 $criteria->condition = 'moderation=:moderation AND id=:id';  
                 $criteria->params = array(':moderation'=>1, ':id'=>$imagelink->imageId);
+                $criteria->order = 'date DESC';
                 $image = Mobilepictures::model()->find($criteria);    
                 if ($image)
                 {
@@ -324,10 +326,7 @@ class MobilepicturesController extends Controller
                 }
             }
         }
-        
-       $reserve_image_array = array_reverse($image_arr);
-       $reserve_name_array = array_reverse($names_arr);
-       
+
       if ($lang=="en")
 	  $tags = Mobiletags::model()->findAll(array('order'=>'name_en'));
        else
@@ -342,7 +341,7 @@ class MobilepicturesController extends Controller
             $tagsid_arr[$z]=$tag->id;
             $z++;
         }
-                $json_data = array ('tag_name'=> $tagName,'image_arr'=>$reserve_image_array,'names_arr'=>$reserve_name_array,'tags_arr'=>$tags_arr,'tagsid_arr'=>$tagsid_arr); 
+                $json_data = array ('tag_name'=> $tagName,'image_arr'=>$image_arr,'names_arr'=>$names_arr,'tags_arr'=>$tags_arr,'tagsid_arr'=>$tagsid_arr);
         echo json_encode($json_data); 
 
     }
