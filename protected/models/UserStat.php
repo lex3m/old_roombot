@@ -77,24 +77,13 @@ class UserStat extends CActiveRecord
     {
         if (parent::beforeSave()) {
             if ($this->isNewRecord) {
-                $this->date = new CDbExpression('DATE(NOW())');
-            }
-            return true;
-        } else
-            return false;
-    }
-
-    public function afterSave()
-    {
-        if (parent::afterSave()) {
-            if ($this->isNewRecord) {
                 $userInfo = json_decode(file_get_contents('http://ip-api.com/json/'.$this->ip));
+                $this->date = new CDbExpression('DATE(NOW())');
                 $this->country = $userInfo->country;
             }
             return true;
         } else
             return false;
-
     }
 
 

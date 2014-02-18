@@ -96,14 +96,12 @@ $cs->registerScriptFile('/js/chartsjs/'.'Chart.js');
                 datesAjaxResponse = data;
             }
         });
+        Array.max = function( array ){
+            return Math.max.apply( Math, array );
+        };
 
         var countData = $.parseJSON(datesAjaxResponse);
-        var max = 0;
-        $.each(countData, function (i, val) {
-            if (val > max) {
-                max = val;
-            }
-        })
+        var max = Array.max(countData);
 
         var lineChartData = {
         labels : lastDaysArray,

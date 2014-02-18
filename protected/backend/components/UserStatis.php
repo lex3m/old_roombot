@@ -1,10 +1,10 @@
 <?php
 class UserStatis extends CWidget {
-   public $pageSize = 10;
+   public $pageSize = 50;
 
    public function run() {
        $criteria=new CDbCriteria(array(
-           'select'=>'ip,date',
+           'select'=>'DISTINCT(id), ip,date,country',
            'order'=>'date DESC',
        ));
 	  $users = new CActiveDataProvider('UserStat',  array(

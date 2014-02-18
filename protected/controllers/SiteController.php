@@ -193,7 +193,7 @@ class SiteController extends Controller
         if (isset($_GET['id']) && !empty($_GET['id']))
             $tagID = intval($_GET['id']); else $tagID='';
         $criteria = new CDbCriteria();
-        $criteria->order ='id DESC';
+        $criteria->order ='date DESC';
         $criteria->alias = 'p';
         $criteria->select = 'p.id, p.image, p.name, m.login as memberLogin, m.urlID as memberUrlID';
 
