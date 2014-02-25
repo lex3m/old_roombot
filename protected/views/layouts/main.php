@@ -38,9 +38,13 @@
                           <a class="header__logo" href="<?php if(Yii::app()->user->isGuest) echo Yii::app()->getHomeUrl(); else echo $this->createUrl('member/dashboard',array('id'=>Yii::app()->user->urlID)); ?>">
                              <img style="padding-left: 5px;" src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo_r.png"  width="120" height="44" alt="<?php echo Yii::t('mainLayout', 'on main'); ?>" title="<?php echo Yii::app()->name;?>" />
                          </a>
-
                  </h1>
                          <nav class="left header__navWrapper" role="navigation"> <ul class="header__navMenu header__mainMenu left">
+                         <li>
+                             <a class="to_bookmarks" style="cursor: pointer;">
+                                 В закладки!
+                             </a>
+                         </li>
                          <!--<li>
                          <a href="<?php if(Yii::app()->user->isGuest) echo Yii::app()->getHomeUrl(); else echo $this->createUrl('member/dashboard',array('id'=>Yii::app()->user->urlID)); ?>" class="header__mainMenu-home" title="Home">Главная
                          </a>
@@ -178,9 +182,33 @@ $('button.quicksearch__submit').on('click',function(){
             return false;
         }
 });
+$('.to_bookmarks').on('click', function( e ) {
+    if (!window.location.origin)
+        window.location.origin = window.location.protocol+\"//\"+window.location.host;
+
+    var bookmarkUrl =  window.location.origin;
+    var bookmarkTitle = document.title;
+
+    if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+        alert(\"Эта функция не доступна в Google Chrome. Нажмите на символ звездочки в конце строки url-адреса текущей вкладки или нажмите Ctrl-D (Command+D для Mac) чтобы создать закладку.\");
+    } else if (navigator.userAgent.toLowerCase().indexOf('mozilla') > -1) {
+        alert(\"Эта функция не доступна в Mozilla Firefox. Нажмите на символ звездочки в конце строки url-адреса текущей вкладки или нажмите Ctrl-D (Command+D для Mac) чтобы создать закладку.\");
+    }
+    else if (window.sidebar &&  window.sidebar.addPanel) { // For Mozilla Firefox Bookmark
+        window.sidebar.addPanel(bookmarkTitle, bookmarkUrl,'');
+    } else if( window.external && window.external.AddFavorite) { // For IE Favorite
+        window.external.AddFavorite( bookmarkUrl, bookmarkTitle);
+    } else if(window.opera) { // For Opera Browsers
+        $('a.to_bookmarks').attr('href',bookmarkUrl);
+        $('a.to_bookmarks').attr('title',bookmarkTitle);
+        $('a.to_bookmarks').attr('rel', 'sidebar');
+    } else { // for other browsers which does not support
+         alert('Ваш браузер не поддерживает данное действие.');
+         return false;
+    }
+});
 ",CClientScript::POS_READY);
 ?>
 </body>
-
 
 </html>
