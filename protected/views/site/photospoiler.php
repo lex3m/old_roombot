@@ -384,7 +384,7 @@ endif;
         <div class="sotcial">
             <div class="photoElement__stats stats-left">
                 <?php if (!Yii::app()->user->isGuest):?>
-                    <div class="userStats">
+                    <div class="userStats" style="width: 520px;">
                         <ul class="rb-ministats-group">
                             <li title="<?php echo Yii::t('sitePhotos', 'Like photo. Count of likes');?> - <?php echo $model->countLikes; ?>" class="rb-ministats-item">
                                 <div class="rb-button-group rb-button-group-medium">
@@ -401,11 +401,14 @@ endif;
                             </li>
                             <li class="rb-ministats-item">
                                 <div class="pluso" data-options="small,square,line,horizontal,counter,theme=04" data-services="vkontakte,facebook,twitter,google,email"></div>
+                                <div class='linkPhoto' style='margin-top: -24px; margin-left: 170px;'>
+                                    <?php echo CHtml::link(Yii::t('sitePhotos', 'Show photo'),array('mobilepictures/viewinfo','id'=>$model->id), array('target'=>'_blank', 'class'=>'rb-dark-link', 'title'=>Yii::t('sitePhotos', 'Show photo'))); ?>
+                                </div>
                             </li>
                         </ul>
                     </div>
                 <?php else: ?>
-                    <div class="userStats">
+                    <div class="userStats" style="width: 520px;">
                         <ul class="rb-ministats-group">
                             <li title="<?php echo Yii::t('sitePhotos', '{n} comment|{n} comments', $model->countComments); ?>" class="rb-ministats-item">
                                 <a href="<?php echo Yii::app()->createUrl('mobilepictures/viewinfo',array('id'=>$model->id)); ?>" class="rb-ministats rb-ministats-small rb-ministats-comments">
@@ -427,6 +430,7 @@ endif;
                             </li>
                             <li class="rb-ministats-item" style="margin-left: 5px;">
                                 <div class="pluso" data-options="small,square,line,horizontal,counter,theme=04" data-services="vkontakte,facebook,twitter,google,email"></div>
+                                <?php echo CHtml::link(Yii::t('sitePhotos', 'Show photo'),array('mobilepictures/viewinfo','id'=>$model->id), array('target'=>'_blank', 'class'=>'rb-dark-link', 'title'=>Yii::t('sitePhotos', 'Show photo'))); ?>
                             </li>
                         </ul>
                     </div>
