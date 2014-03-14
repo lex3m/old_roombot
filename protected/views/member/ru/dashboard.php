@@ -570,7 +570,9 @@ else:
      $( '#addfollower').on('click', function(event){
            event.preventDefault();
            var followerUrl = $(this).attr('href');
-           var urlID = followerUrl.split('/')[3];
+           var splitUrl = followerUrl.split('/');
+           var len = splitUrl.length;
+           var urlID = splitUrl[len-1]; //fix
                 $.ajax({
                        type: 'POST',
                        url: followerUrl,
@@ -588,7 +590,9 @@ else:
      $( '#rmfollower').on('click', function(event){
            event.preventDefault();
            var followerUrl = $(this).attr('href');
-           var urlID = followerUrl.split('/')[3];
+           var splitUrl = followerUrl.split('/');
+           var len = splitUrl.length;
+           var urlID = splitUrl[len-1]; //fix
                 $.ajax({
                        type: 'POST',
                        url: followerUrl,

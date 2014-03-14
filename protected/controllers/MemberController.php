@@ -34,7 +34,7 @@ class MemberController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','avatar','change', 'following' , 'followed', 'uploadUserPhotos', 'social'),
+				'actions'=>array('create','update','avatar','change', 'following' , 'followed', 'uploadUserPhotos', 'social', 'getPhotos'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -275,6 +275,53 @@ class MemberController extends Controller
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
+    protected function setRandName($length = 11)
+    {
+        $key = '';
+        $keys = array_merge(range(0, 9), range('a', 'z'), range('A', 'Z'));
+
+        for ($i = 0; $i < $length; $i++) {
+            $key .= $keys[array_rand($keys)];
+        }
+
+        return $key . '.jpg';
+    }
+
+
+    public function actionGetPhotos($id, $count, $offset)
+    {
+        $vkUserPhotosUrl = 'https://api.vk.com/method/photos.get?owner_id='.$id.'&album_id=wall&rev=1&extended=0&count='.$count.'&offset='.$offset.'&v=4.1';
+        $vkUserPhotos = json_decode(file_get_contents($vkUserPhotosUrl), true);
+//        print_r($vkUserPhotos); exit;
+        if (isset($vkUserPhotos['response'])) {
+            $vkUserPhotos = $vkUserPhotos['response'];
+            array_shift($vkUserPhotos); //remove first element, it contents service info
+            $userPhotos = array();
+            $i = 0;
+            foreach($vkUserPhotos as $photo) {
+                /*$userPhotos[$i]['photo_id'] = $photo['pid'];
+                $userPhotos[$i]['src'] = $photo['src'];*/
+                if (isset($photo['src_xxxbig'])) {
+                    $userPhotos[$i]['src'] = $photo['src_xxxbig'];
+                } else if (isset($photo['src_xxbig'])) {
+                    $userPhotos[$i]['src'] = $photo['src_xxbig'];
+                } else if (isset($photo['src_xbig'])) {
+                    $userPhotos[$i]['src'] = $photo['src_xbig'];
+                }
+                else {
+                    $userPhotos[$i]['src'] = $photo['src_big'];
+                }
+                if (!empty($userPhotos[$i]['src'])) {
+                    $img = file_get_contents($userPhotos[$i]['src']);
+                    $name = $this->setRandName();
+                    $file = Yii::app()->baseUrl.'images/eropril/'.$name;
+                    file_put_contents($file, $img);
+                    $i++;
+                }
+            }
+            echo 'ok';
+        }
+    }
 	/**
 	 * Lists all models.
 	 */

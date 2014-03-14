@@ -189,22 +189,28 @@ $('.to_bookmarks').on('click', function( e ) {
     var bookmarkUrl =  window.location.origin;
     var bookmarkTitle = document.title;
 
-    if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
-        alert(\"Эта функция не доступна в Google Chrome. Нажмите на символ звездочки в конце строки url-адреса текущей вкладки или нажмите Ctrl-D (Command+D для Mac) чтобы создать закладку.\");
-    } else if (navigator.userAgent.toLowerCase().indexOf('mozilla') > -1) {
-        alert(\"Эта функция не доступна в Mozilla Firefox. Нажмите на символ звездочки в конце строки url-адреса текущей вкладки или нажмите Ctrl-D (Command+D для Mac) чтобы создать закладку.\");
-    }
-    else if (window.sidebar &&  window.sidebar.addPanel) { // For Mozilla Firefox Bookmark
+    if (window.sidebar &&  window.sidebar.addPanel) { // For Mozilla Firefox Bookmark
         window.sidebar.addPanel(bookmarkTitle, bookmarkUrl,'');
+        alert('Успешно добавлено');
     } else if( window.external && window.external.AddFavorite) { // For IE Favorite
         window.external.AddFavorite( bookmarkUrl, bookmarkTitle);
+        alert('Успешно добавлено');
     } else if(window.opera) { // For Opera Browsers
         $('a.to_bookmarks').attr('href',bookmarkUrl);
         $('a.to_bookmarks').attr('title',bookmarkTitle);
         $('a.to_bookmarks').attr('rel', 'sidebar');
+        alert('Успешно добавлено');
     } else { // for other browsers which does not support
-         alert('Ваш браузер не поддерживает данное действие.');
-         return false;
+        if (navigator.userAgent.toLowerCase().indexOf('opr') > -1) {
+            alert(\"Эта функция не доступна в Opera. Нажмите на символ звездочки в конце строки url-адреса текущей вкладки или нажмите Ctrl-D (Command+D для Mac) чтобы создать закладку.\");
+        } else if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+            alert(\"Эта функция не доступна в Mozilla Firefox. Нажмите на символ звездочки в конце строки url-адреса текущей вкладки или нажмите Ctrl-D (Command+D для Mac) чтобы создать закладку.\");
+        } else if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+            alert(\"Эта функция не доступна в Google Chrome. Нажмите на символ звездочки в конце строки url-адреса текущей вкладки или нажмите Ctrl-D (Command+D для Mac) чтобы создать закладку.\");
+        } else {
+            alert(\"Эта функция не доступна для Вашего браузера. Пожалуйста, Добавьте наш сайт в закладки вручную.\");
+        }
+        return false;
     }
 });
 ",CClientScript::POS_READY);
