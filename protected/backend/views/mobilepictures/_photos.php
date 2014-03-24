@@ -4,7 +4,7 @@
         else 
             $checkImage='uncheckepicture.png';
 ?>
-<img id="<?php echo $data->id; ?>" name="checkImage" style="float:left; padding-right:5px;" width="24px" height="24px" src="/images/site/<?php echo $checkImage; ?>"  />
+<img id="<?php echo $data->id; ?>" class="checkImage" style="float:left; padding-right:5px;" width="24px" height="24px" src="/images/site/<?php echo $checkImage; ?>"  />
 <?php
 echo '<span class=\'name_picture_id_'.$data->id.'\' name=\''.$data->id.'\' id=\'name_picture\'>'.$data->name.'</span>';
 ?>
@@ -13,7 +13,7 @@ echo '<span class=\'name_picture_id_'.$data->id.'\' name=\''.$data->id.'\' id=\'
 <br>
 <?php
 echo '<div class="span-22 last" style="margin-bottom:10px;" id="company_photo" name="'.$data->id.'">';
-echo '<a data-lightbox="galerey" href="'. Yii::app()->request->baseUrl. '/images/mobile/images/' . $data->image.'"><img  width="100px" height="100px" style="margin-right: 25px; float:left" src="/images/mobile/images/'.$data->image.'"/></a>';
+echo '<a data-lightbox="galerey" data-id="'.$data->id.'" href="'. Yii::app()->request->baseUrl. '/images/mobile/images/' . $data->image.'"><img  width="100px" height="100px" style="margin-right: 25px; float:left" src="/images/mobile/images/'.$data->image.'"/></a>';
 //echo CHtml::link('удалить',"#",array("submit"=>array('delete', 'id'=>$image->id), 'confirm' => 'Вы уверены?')); 
 echo CHtml::link('<img style="float:left" width="12px" height="12px" src="/images/site/delete_icon.png"  />', array('delete'),array('id'=>'delete_picture','target'=>$data->id));
 echo '<span style="float:right">'.$data->memberEmail.'</span>';

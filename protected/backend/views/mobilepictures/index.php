@@ -133,25 +133,29 @@ $this->endWidget('zii.widgets.jui.CJuiDialog');
                      });
             return false;
         });
-        
-     $('img[name=\'checkImage\']').hover(
+
+     $('.checkImage').hover(
           function() {
              $(this).css('cursor','pointer');
        }, function() {
              $(this).css('cursor','default');
      });
-     
-     $('img[name=\'checkImage\']').live('click', function(){
+
+     $('.checkImage').on('click', function(){
+         var that = $(this);
          $.ajax({
                        type: 'POST',
                        url: '".Yii::app()->createUrl('mobilepictures/check')."',
-                       data: 'id='+this.id,
+                       data: {id: this.id},
                        success: function(msg){
                          json = jQuery.parseJSON(msg); 
-                         if(json.check==1)
-                            $('img#'+json.id).attr('src','".Yii::app()->request->getBaseUrl(true)."/images/site/checkepicture.png'); 
-                         else 
-                            $('img#'+json.id).attr('src','".Yii::app()->request->getBaseUrl(true)."/images/site/uncheckepicture.png');  
+                         if(json.check==1) {
+                            that.attr('src','".Yii::app()->request->getBaseUrl(true)."/images/site/checkepicture.png');
+                            $('.checkImage#'+json.id).attr('src','".Yii::app()->request->getBaseUrl(true)."/images/site/checkepicture.png');
+                         } else {
+                            that.attr('src','".Yii::app()->request->getBaseUrl(true)."/images/site/uncheckepicture.png');
+                            $('.checkImage#'+json.id).attr('src','".Yii::app()->request->getBaseUrl(true)."/images/site/uncheckepicture.png');
+                         }
                        }
                      });
             return false;
